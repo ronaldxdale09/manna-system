@@ -1,0 +1,160 @@
+.box {
+    display: flex;
+}
+
+.side_nav {
+    flex: 1;
+}
+
+.nav_outer a{
+    text-decoration: none;
+    color: rgb(44, 44, 44);
+}
+
+.nav_outer li:hover {
+    background: white;
+}
+
+.nav_outer li {
+    margin: 8px;
+    background: #edf2f7;
+    padding: 15px 5px 15px 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav_outer li i {
+    width: 25px;
+    font-size: 18px;
+}
+
+#white {
+    background: white;
+}
+.nav_inner li {
+    padding: 0 10px;
+    background: white;
+    border-bottom: 1px solid #d7d7d7;
+}
+
+/* ===== My Profile ===== */
+
+.my_profile {
+    flex: 3;
+    margin: 8px 0;
+    background: #edf2f7;
+    padding: 10px;
+}
+
+.dash_carts {
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.dash_carts .cart {
+    width: 250px;
+    height: 100px;
+    background: white;
+    margin: 5px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.cart .icon {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
+
+#cart_one .icon {
+    background: #2852e6;
+}
+#cart_one .text {
+    background: #5f7eec;
+}
+
+#cart_two .icon {
+    background: #c4c4c4;
+}
+#cart_two .text {
+    background: #edf2f7;
+}
+
+#cart_three .icon {
+    background: #fdbb4b;
+}
+
+#cart_three .text {
+    background: #fed287;
+}
+
+.cart .text {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.text span {
+    position: absolute;
+    right: 5px;
+    top: 0;
+    font-weight: 500;
+    font-size: 22px;
+}
+
+
+/*==== Recent Orders ====*/
+.orders_box {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.order {
+    flex: 1;
+    margin: 5px;
+    background: white;
+    padding: 10px;
+}
+
+.order_top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order_top button {
+    padding: 5px 10px;
+    background: #fdbb4b;
+    border: none;
+    cursor: pointer;
+}
+
+.order table {
+    border-collapse: collapse;
+}
+
+.order table td {
+    padding: 5px;
+}
+
+.order table button {
+    border-radius: 50%;
+    background: #fdbb4b;
+    width: 25px;
+    height: 25px;
+    border: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .box,.dash_carts,.orders_box {
+        flex-direction: column;
+    }
+}

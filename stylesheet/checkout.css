@@ -1,0 +1,59 @@
+table {
+    border: none;
+    margin-top: 20px;
+}
+
+table td {
+    padding: 5px;
+}
+table #boxes {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+table .box {
+    width: 220px;
+    height: 220px;
+    border: 1px solid rgb(109, 109, 109);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+table .circle {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    background: orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table td button, table td input {
+    padding: 5px;
+    width: 30px;
+}
+
+.total_checkout {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.total_checkout span {
+    font-size: 19px;
+}
+.total_checkout button {
+    margin: 10px;
+    padding: 8px 20px;
+    width: 120px;
+    background: #fda50f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.total_checkout button:hover {
+    transform: scale(1.05);
+}
