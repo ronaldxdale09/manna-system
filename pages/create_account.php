@@ -7,8 +7,8 @@
     <title>Manna | Create Account</title>
     
     <!-- stylesheet -->
-    <link rel="stylesheet" href="./stylesheet/create_account.css">
-    <link rel="stylesheet" href="./stylesheet/main.css">
+    <link rel="stylesheet" href="../stylesheet/create_account.css">
+    <link rel="stylesheet" href="../stylesheet/main.css">
 
     <!-- animation library -->
     <link
@@ -17,18 +17,18 @@
   />
 
     <!-- manna icon -->
-    <link rel="icon" href="./assets/logo/logo.png" sizes="10x10">
+    <link rel="icon" href="../assets/logo/logo.png" sizes="10x10">
 </head>
 <body>
     <div class="container__">
         <div class="left">
             <div class="info">
-                <a href="./home.html">
-                    <img src="./assets/logo/logo_transparent.png" alt="">
+                <a href="../home.php">
+                    <img src="../assets/logo/logo_transparent.png" alt="">
                 </a>
                 <p>Already Registered?</p>
             </div>
-            <a href="./index.html">
+            <a href="../index.php">
                 <button>Login</button>
             </a>
         </div>

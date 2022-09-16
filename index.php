@@ -25,7 +25,7 @@
     <div class="container">
         <div class="login_box">
             <div class="logo_container">
-                <a href="./home.html">
+                <a href="./home.php">
                     <img src="./assets/logo/logo.png" alt="" class="animate__animated animate__bounceInDown">
                 </a>
                 <br>
@@ -41,9 +41,9 @@
                 <input type="submit" value="Login">
             </form>
             <center>
-                <a href="./fogot_password.html" id="forgot_password">Forgot Password?</a>
+                <a href="./fogot_password.php" id="forgot_password">Forgot Password?</a>
             </center>
-            <a href="./create_account.html">
+            <a href="pages/create_account.php">
                 <input type="button" value="Register New Account">
             </a>
         </div>

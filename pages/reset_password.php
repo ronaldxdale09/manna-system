@@ -7,11 +7,11 @@
     <title>Manna | Reset Password</title>
     
     <!-- stylesheet -->
-    <link rel="stylesheet" href="./stylesheet/reset_password.css">
-    <link rel="stylesheet" href="./stylesheet/main.css">
+    <link rel="stylesheet" href="../stylesheet/reset_password.css">
+    <link rel="stylesheet" href="../stylesheet/main.css">
 
     <!-- manna icon -->
-    <link rel="icon" href="./assets/logo/logo.png" sizes="10x10">
+    <link rel="icon" href="../assets/logo/logo.png" sizes="10x10">
 </head>
 <body> 
     <div class="container">

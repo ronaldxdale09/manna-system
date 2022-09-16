@@ -7,10 +7,10 @@
     <title>Manna | Products</title>
     
     <!-- stylesheet -->
-    <link rel="stylesheet" href="./stylesheet/main.css">
-    <link rel="stylesheet" href="./stylesheet/footer.css">
-    <link rel="stylesheet" href="./stylesheet/header.css">
-    <link rel="stylesheet" href="./stylesheet/products.css">
+    <link rel="stylesheet" href="../stylesheet/main.css">
+    <link rel="stylesheet" href="../stylesheet/footer.css">
+    <link rel="stylesheet" href="../stylesheet/header.css">
+    <link rel="stylesheet" href="../stylesheet/products.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- manna icon -->
-    <link rel="icon" href="./assets/logo/logo.png" sizes="10x10">
+    <link rel="icon" href="../assets/logo/logo.png" sizes="10x10">
 
     <!--font awesome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
@@ -36,19 +36,19 @@
     
     <!-- ============ Header / Nav =========== -->
     <div class="header_bg">
-        <img src="./assets/img/header.png" id="header" alt="">
+        <img src="../assets/img/header.png" id="header" alt="">
     </div>
     <header>
         <div class="logo">
-            <a href="./home.html">
-                <img src="./assets/logo/logo_transparent.png" alt="">
+            <a href="../home.php">
+                <img src="../assets/logo/logo_transparent.png" alt="">
             </a>
         </div>
         <ul>
             <li> <input type="text" placeholder="Search"></li>
             <li><i class="fa fa-bell"></i></li>
-            <li id="login_li"><a href="./index.html">Login</a></li>
-            <li id="sign_li"><a href="./create_account.html">Sign Up</a></li>
+            <li id="login_li"><a href="../index.php">Login</a></li>
+            <li id="sign_li"><a href="../create_account.php">Sign Up</a></li>
             <li><i class="far fa-cart-plus"></i></li>
         </ul>
     </header>
@@ -75,7 +75,7 @@
                         <div class="product_box_cart">
                             <div class="product_box_circle">
                                 <!-- place product img here-->
-                                <img src="./assets/img/product.png" alt="">
+                                <img src="../assets/img/product.png" alt="">
                             </div>
                             <div class="product_box_info">Cream Bread 120g</div>
                         </div>
@@ -87,7 +87,7 @@
                             <div class="product_box_circle">
                                 
                                 <!-- place product img here-->
-                                <img src="./assets/img/product.png" alt="">
+                                <img src="../assets/img/product.png" alt="">
                             </div>
                             <div class="product_box_info">Cream Bread 120g</div>
                         </div>
@@ -99,7 +99,7 @@
                             <div class="product_box_circle">
                                 
                                 <!-- place product img here-->
-                                <img src="./assets/img/product.png" alt="">
+                                <img src="../assets/img/product.png" alt="">
                             </div>
                             <div class="product_box_info">Cream Bread 120g</div>
                         </div>
@@ -111,7 +111,7 @@
                             <div class="product_box_circle">
                                 
                                 <!-- place product img here-->
-                                <img src="./assets/img/product.png" alt="">
+                                <img src="../assets/img/product.png" alt="">
                             </div>
                             <div class="product_box_info">Cream Bread 120g</div>
                         </div>
@@ -189,8 +189,8 @@
                 <br>
                 <br>
                 <p>Follow Us</p>
-                <img id="fol_us" src="./assets/logo/facebook.png" alt="">
-                <img id="fol_us" src="./assets/logo/instagram.png" alt="">
+                <img id="fol_us" src="../assets/logo/facebook.png" alt="">
+                <img id="fol_us" src="../assets/logo/instagram.png" alt="">
                 <br>
                 <br>
                 <br>

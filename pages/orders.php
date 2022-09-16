@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manna | Items</title>
+    <title>Manna | Orders</title>
 
     <!-- stylesheet -->
-    <link rel="stylesheet" href="./stylesheet/items.css">
-    <link rel="stylesheet" href="./stylesheet/main.css">
-    <link rel="stylesheet" href="./stylesheet/footer.css">
-    <link rel="stylesheet" href="./stylesheet/header.css">
+    <link rel="stylesheet" href="../stylesheet/orders.css">
+    <link rel="stylesheet" href="../stylesheet/main.css">
+    <link rel="stylesheet" href="../stylesheet/footer.css">
+    <link rel="stylesheet" href="../stylesheet/header.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +23,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- manna icon -->
-    <link rel="icon" href="./assets/logo/logo.png" sizes="10x10">
+    <link rel="icon" href="../assets/logo/logo.png" sizes="10x10">
 
     <!--font awesome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
@@ -32,12 +32,12 @@
 <body>
     <!-- ============ Header / Nav =========== -->
     <div class="header_bg">
-        <img src="./assets/img/header.png" id="header" alt="">
+        <img src="../assets/img/header.png" id="header" alt="">
     </div>
     <header>
         <div class="logo">
-            <a href="./home.html">
-                <img src="./assets/logo/logo_transparent.png" alt="">
+            <a href="../home.php">
+                <img src="../assets/logo/logo_transparent.png" alt="">
             </a>
         </div>
         <ul id="pro_ul">
@@ -53,19 +53,19 @@
         <div class="box">
             <div class="side_nav">
                 <ul class="nav_outer">
-                    <a href="./profile.html">
+                    <a href="../profile.php">
                         <li><i class="fa fa-user-circle"></i> Abby Quintos</li>
                     </a>
-                    <a href="./dashboard.html">
+                    <a href="../dashboard.php">
                         <li><i class="far fa-user"></i> Dashboard</li>
                     </a>
-                    <a href="./orders.html">
-                        <li><i class="fa fa-list"></i> Orders</li>
+                    <a href="../orders.php">
+                        <li id="active_section"><i class="fa fa-list"></i> Orders</li>
                     </a>
-                    <a href="./items.html">
-                        <li id="active_section"><i class="far fa-sitemap"></i> Items</li>
+                    <a href="../items.php">
+                        <li><i class="far fa-sitemap"></i> Items</li>
                     </a>
-                    <a href="./user_accounts.html">
+                    <a href="../user_accounts.php">
                         <li><i class="fa fa-users"></i> User Accounts</li>
                     </a>
                 </ul>
@@ -78,7 +78,7 @@
             
 
             <div class="my_profile">
-                <h3>Items</h3>
+                <h3>Orders</h3>
                 <br>
                 <button type="button" id="add_new"><i class="fa fa-plus-circle"></i> New</button>
                 <div class="overflow-x">
@@ -86,10 +86,10 @@
                         <thead>
                             <tr>
                                 <th>Action</th>
-                                <th>Product Name</th>
+                                <th>Order ID</th>
                                 <th>Quantity</th>
                                 <th>Price</th>
-                                <th>Cost</th>
+                                <th>Customer Name</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -99,10 +99,10 @@
                                     <button><i class="far fa-edit"></i></button>
                                     <button><i class="far fa-trash"></i></button>
                                 </td>
-                                <td>Product Name A</td>
+                                <td>MN2022-02-000001</td>
                                 <td>100</td>
                                 <td>150.00</td>
-                                <td>130.00</td>
+                                <td>Abby Quintos</td>
                             </tr>
                             <tr>
                                 <td>
@@ -110,10 +110,10 @@
                                     <button><i class="far fa-edit"></i></button>
                                     <button><i class="far fa-trash"></i></button>
                                 </td>
-                                <td>Product Name B</td>
+                                <td>MN2022-02-000002</td>
                                 <td>100</td>
                                 <td>150.00</td>
-                                <td>130.00</td>
+                                <td>Abby Quintos</td>
                             </tr>
                             <tr>
                                 <td>
@@ -121,10 +121,10 @@
                                     <button><i class="far fa-edit"></i></button>
                                     <button><i class="far fa-trash"></i></button>
                                 </td>
-                                <td>Product Name C</td>
+                                <td>MN2022-02-000003</td>
                                 <td>100</td>
                                 <td>150.00</td>
-                                <td>130.00</td>
+                                <td>Abby Quintos</td>
                             </tr>
                             <tr>
                                 <td>
@@ -132,10 +132,10 @@
                                     <button><i class="far fa-edit"></i></button>
                                     <button><i class="far fa-trash"></i></button>
                                 </td>
-                                <td>Product Name D</td>
+                                <td>MN2022-02-000004</td>
                                 <td>100</td>
                                 <td>150.00</td>
-                                <td>130.00</td>
+                                <td>Abby Quintos</td>
                             </tr>
                             <tr>
                                 <td>
@@ -143,10 +143,10 @@
                                     <button><i class="far fa-edit"></i></button>
                                     <button><i class="far fa-trash"></i></button>
                                 </td>
-                                <td>Product Name E</td>
+                                <td>MN2022-02-000005</td>
                                 <td>100</td>
                                 <td>150.00</td>
-                                <td>130.00</td>
+                                <td>Abby Quintos</td>
                             </tr>
                         </tbody>
                     </table>
@@ -190,8 +190,8 @@
                 <br>
                 <br>
                 <p>Follow Us</p>
-                <img id="fol_us" src="./assets/logo/facebook.png" alt="">
-                <img id="fol_us" src="./assets/logo/instagram.png" alt="">
+                <img id="fol_us" src="../assets/logo/facebook.png" alt="">
+                <img id="fol_us" src="../assets/logo/instagram.png" alt="">
                 <br>
                 <br>
                 <br>
