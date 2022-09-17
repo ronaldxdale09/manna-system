@@ -29,16 +29,16 @@
             <div class="side_nav">
                 <ul class="nav_outer">
 
-                    <a href="../../dashboard.php">
+                    <a href="dashboard.php">
                         <li><i class="far fa-user"></i> Dashboard</li>
                     </a>
-                    <a href="../../orders.php">
+                    <a href="orders.php">
                         <li><i class="fa fa-list"></i> Orders</li>
                     </a>
-                    <a href="../../items.php">
+                    <a href="items.php">
                         <li id="active_section"><i class="far fa-sitemap"></i> Items</li>
                     </a>
-                    <a href="../../user_accounts.php">
+                    <a href="user_accounts.php">
                         <li><i class="fa fa-users"></i> User Accounts</li>
                     </a>
                 </ul>
@@ -54,11 +54,13 @@
             <div class="my_profile">
                 <h3>Items</h3>
                 <br>
-      
-                <button type="button" class="btn btn-success btn-sm add_new" data-bs-toggle="modal" data-bs-target="#addItem"><i
-                        class="fa fa-plus-circle"></i> New</button>
+
+                <button type="button" class="btn btn-success btn-sm add_new" data-bs-toggle="modal"
+                    data-bs-target="#addItem"><i class="fa fa-plus-circle"></i> New</button>
                 <div class="overflow-x">
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <?php
+                                    $record  = mysqli_query($con, "SELECT * from products ORDER BY product_id "); ?>
                         <thead>
                             <tr>
                                 <th>Action</th>
@@ -70,19 +72,20 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php while ($row = mysqli_fetch_array($record)) { ?>
                             <tr>
                                 <td>
                                     <button><i class="far fa-eye"></i></button>
                                     <button><i class="far fa-edit"></i></button>
                                     <button><i class="far fa-trash"></i></button>
                                 </td>
-                                <td>234343</td>
-                                <td>Product Name A</td>
+                                <td><?php echo $row['barcode']; ?> </td>
+                                <td><?php echo $row['product_name']; ?> </td>
                                 <td>100</td>
-                                <td>200</td>
-                                <td>130.00</td>
+                                <td><?php echo $row['packing_case']; ?> </td>
+                                <td><?php echo $row['price']; ?> </td>
                             </tr>
-
+                            <?php }?>
                         </tbody>
                     </table>
                 </div>

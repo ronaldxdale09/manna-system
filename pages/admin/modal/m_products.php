@@ -29,7 +29,7 @@
                                                 your
                                                 pic!</button>
                                             <!--this is the actual file input, is set with opacity=0 beacause we wanna see our custom one-->
-                                            <input type="file" value="" accept="image/*" capture="camera" name="img" required
+                                            <input type="file" value="" accept="image/*" capture="camera" name="uploadfile" required
                                                 id="fileup" onchange="readURL(this);">
                                         </div>
                                     </div>
