@@ -31,11 +31,11 @@
                 <br>
                 <p>Sign in to your account</p>
             </div>
-            <form action="">
-                <input type="text" placeholder="Username">
+            <form method='POST' action="function/login.php">
+                <input type="text" name='username' placeholder="Username">
                 <br>
                 <br>
-                <input type="text" placeholder="Password">
+                <input type="text" name='password' placeholder="Password">
                 <br>
                 <br>
                 <input type="submit" value="Login">

@@ -6,7 +6,7 @@
     flex: 1;
 }
 
-.nav_outer a{
+.nav_outer a {
     text-decoration: none;
     color: rgb(44, 44, 44);
 }
@@ -31,11 +31,13 @@
 #white {
     background: white;
 }
+
 .nav_inner li {
     padding: 0 10px;
     background: white;
     border-bottom: 1px solid #d7d7d7;
 }
+
 
 /* ===== My Profile ===== */
 
@@ -46,7 +48,7 @@
     padding: 10px;
 }
 
-#add_new {
+.add_new {
     padding: 2px 5px;
     border: none;
     background: #fda50f;
@@ -60,8 +62,6 @@ table td button {
     padding: 2px;
     color: grey;
 }
-
-
 
 @media screen and (max-width: 768px) {
     .box {
