@@ -53,24 +53,20 @@
         <div class="box">
             <div class="side_nav">
                 <ul class="nav_outer">
-                    <a href="../../profile.php">
-                        <li><i class="fa fa-user-circle"></i> Abby Quintos</li>
-                    </a>
-                    <a href="../../dashboard.php">
+               
+                    <a href="dashboard.php">
                         <li id="active_section"><i class="far fa-user"></i> Dashboard</li>
                     </a>
-                    <a href="../../orders.php">
+                    <a href="orders.php">
                         <li><i class="fa fa-list"></i> Orders</li>
                     </a>
-                    <a href="../../items.php">
+                    <a href="items.php">
                         <li><i class="far fa-sitemap"></i> Items</li>
                     </a>
-                    <a href="../../user_accounts.php">
+                    <a href="user_accounts.php">
                         <li><i class="fa fa-users"></i> User Accounts</li>
                     </a>
-                    <a href="#">
-                        <li><i class="far fa-file"></i> Pages</li>
-                    </a>
+                
                 </ul>
             </div>
             <div class="my_profile">

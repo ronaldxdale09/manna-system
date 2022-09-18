@@ -7,6 +7,7 @@
                             $packing = $_POST['packing'];
                             $price = $_POST['price'];
                 
+                            $category = $_POST['category'];
                             $quantity =  $_POST['quantity'];
 
                             
@@ -20,8 +21,8 @@
                                 echo "<h3>  Failed to upload image!</h3>";
                             }
 
-                            $query = "INSERT INTO products (barcode,product_name,size,packing_case,price,product_img) 
-                            VALUES ('$barcode','$name','$size','$packing','$price','$filename') ";
+                            $query = "INSERT INTO products (barcode,product_name,size,packing_case,price,product_img,category) 
+                            VALUES ('$barcode','$name','$size','$packing','$price','$filename','$category') ";
 
 
                                 $results = mysqli_query($con, $query);

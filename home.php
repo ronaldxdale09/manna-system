@@ -8,10 +8,10 @@
     <title>Manna | Home</title>
 
     <!-- stylesheet -->
-    <link rel="stylesheet" href="../stylesheet/home.css">
-    <link rel="stylesheet" href="../stylesheet/main.css">
-    <link rel="stylesheet" href="../stylesheet/footer.css">
-    <link rel="stylesheet" href="../stylesheet/header.css">
+    <link rel="stylesheet" href="stylesheet/home.css">
+    <link rel="stylesheet" href="stylesheet/main.css">
+    <link rel="stylesheet" href="stylesheet/footer.css">
+    <link rel="stylesheet" href="stylesheet/header.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +23,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- manna icon -->
-    <link rel="icon" href="../assets/logo/logo.png" sizes="10x10">
+    <link rel="icon" href="assets/logo/logo.png" sizes="10x10">
 
     <!--font awesome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
@@ -32,19 +32,19 @@
 
 <body>
     <div class="header_bg">
-        <img src="../assets/img/header.png" id="header" alt="">
+        <img src="assets/img/header.png" id="header" alt="">
     </div>
     <header>
         <div class="logo">
-            <a href="../home.php">
-                <img src="../assets/logo/logo_transparent.png" alt="">
+            <a href="home.php">
+                <img src="assets/logo/logo_transparent.png" alt="">
             </a>
         </div>
         <ul>
             <li> <input type="text" placeholder="Search"></li>
             <li><i class="fa fa-bell"></i></li>
-            <li id="login_li"><a href="../index.php">Login</a></li>
-            <li id="sign_li"><a href="../create_account.php">Sign Up</a></li>
+            <li id="login_li"><a href="login.php">Login</a></li>
+            <li id="sign_li"><a href="create_account.php">Sign Up</a></li>
             <li><i class="far fa-cart-plus"></i></li>
         </ul>
     </header>
@@ -61,7 +61,7 @@
                 </h1>
                 <button>Order Now! <i class="fa fa-search" style="float: right; font-size: 20px"></i></button>
             </div>
-            <img src="../assets/img/right_intro.jpg" alt="">
+            <img src="assets/img/right_intro.jpg" alt="">
         </div>
         <br>
         <br>
@@ -115,7 +115,7 @@
                 <!-- product card -->
                 <div class="product">
                     <div class="circle">
-                        <img src="../assets/img/product.png" alt=""></div>
+                        <img src="assets/img/product.png" alt=""></div>
                     <div class="bottom_box">
                         <p>Monthly Sales 4K+</p>
                     </div>
@@ -125,7 +125,7 @@
                 </div>
                 <div class="product">
                     <div class="circle">
-                        <img src="../assets/img/product.png" alt=""></div>
+                        <img src="assets/img/product.png" alt=""></div>
                     <div class="bottom_box">
                         <p>Monthly Sales 4K+</p>
                     </div>
@@ -135,7 +135,7 @@
                 </div>
                 <div class="product">
                     <div class="circle">
-                        <img src="../assets/img/product.png" alt=""></div>
+                        <img src="assets/img/product.png" alt=""></div>
                     <div class="bottom_box">
                         <p>Monthly Sales 4K+</p>
                     </div>
@@ -145,7 +145,7 @@
                 </div>
                 <div class="product">
                     <div class="circle">
-                        <img src="../assets/img/product.png" alt=""></div>
+                        <img src="assets/img/product.png" alt=""></div>
                     <div class="bottom_box">
                         <p>Monthly Sales 4K+</p>
                     </div>
@@ -174,7 +174,7 @@
         <br>
         <br>
         <br>
-        <script src="../scripts/our_product_nav_bar.js"></script>
+        <script src="scripts/our_product_nav_bar.js"></script>
         <div class="our_products">
             <h2>Our Products</h2>
             <ul>
@@ -203,7 +203,7 @@
     </div>
 
     <!-- CREAM BREAD img outside the container to occupy the 100% of screen size-->
-    <img src="../assets/img/our_product.jpg" class="our_product_bg_img">
+    <img src="assets/img/our_product.jpg" class="our_product_bg_img">
     <br>
     <br>
     <br>
@@ -217,7 +217,7 @@
                     <center>
                         <div class="bread_top">
                             <div class="bread_circle">
-                                <img src="../assets/img/product.png" alt="">
+                                <img src="assets/img/product.png" alt="">
                             </div>
                         </div>
                     </center>
@@ -233,7 +233,7 @@
                     <center>
                         <div class="bread_top">
                             <div class="bread_circle">
-                                <img src="../assets/img/product.png" alt="">
+                                <img src="assets/img/product.png" alt="">
                             </div>
                         </div>
                     </center>
@@ -249,7 +249,7 @@
                     <center>
                         <div class="bread_top">
                             <div class="bread_circle">
-                                <img src="../assets/img/product.png" alt="">
+                                <img src="assets/img/product.png" alt="">
                             </div>
                         </div>
                     </center>
@@ -281,8 +281,8 @@
             <br>
             <br>
             <p>Follow Us</p>
-            <img id="fol_us" src="../assets/logo/facebook.png" alt="">
-            <img id="fol_us" src="../assets/logo/instagram.png" alt="">
+            <img id="fol_us" src="assets/logo/facebook.png" alt="">
+            <img id="fol_us" src="assets/logo/instagram.png" alt="">
             <br>
             <br>
             <br>

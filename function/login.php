@@ -23,10 +23,13 @@
 			$user = mysqli_fetch_array($sql);
 			$userType = $user['userType'];
 			
-			$_SESSION["user_id"] = $user['id'];
+			$_SESSION["user_id"] = $user['user_id'];
 	
 			if ($userType =='admin'){
 				header('Location: ../pages/admin/dashboard.php');
+			}
+			else if ($userType =='customer'){
+			   header("Location: ../pages/user/home.php");
 			}
 		
 		}

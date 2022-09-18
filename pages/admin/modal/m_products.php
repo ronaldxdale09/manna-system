@@ -13,8 +13,8 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="card">
-                            <form name="upload" method="post" action="../../function/admin/addProduct.php" enctype="multipart/form-data"
-                                accept-charset="utf-8">
+                            <form name="upload" method="post" action="../../function/admin/addProduct.php"
+                                enctype="multipart/form-data" accept-charset="utf-8">
                                 <div class="row">
                                     <div class="col-md-12 col-md-offset-3 center">
                                         <div class="btn-container">
@@ -29,8 +29,8 @@
                                                 your
                                                 pic!</button>
                                             <!--this is the actual file input, is set with opacity=0 beacause we wanna see our custom one-->
-                                            <input type="file" value="" accept="image/*" capture="camera" name="uploadfile" required
-                                                id="fileup" onchange="readURL(this);">
+                                            <input type="file" value="" accept="image/*" capture="camera"
+                                                name="uploadfile" required id="fileup" onchange="readURL(this);">
                                         </div>
                                     </div>
                                 </div>
@@ -54,7 +54,8 @@
                                 <div class="form-group">
                                     <label class="col-md-12">Product Name</label>
                                     <div class="col-md-12">
-                                        <input type="text" name='name' id='name' class="form-control form-control-line" required>
+                                        <input type="text" name='name' id='name' class="form-control form-control-line"
+                                            required>
                                     </div>
                                 </div>
                             </div>
@@ -82,8 +83,6 @@
                             </div>
                         </div>
                         <br>
-
-
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -96,12 +95,33 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
+                                    <label class="col-md-12">Category</label>
+                                    <div class="col-md-12">
+                                        <select name="category" id="category" class="form-control" required>
+                                        <option value="" selected disabled>Select Category</option>
+                                            <option value="Bread">Bread</option>
+                                            <option value="Buns">Buns</option>
+                                            <option value="Biscuits">Biscuit</option>
+                                            <option value="Cake">Cake</option>
+                                            <option value="Others">Others</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
                                     <label class="col-md-12">Price</label>
                                     <div class="col-md-12">
                                         <input type="text" name='price' id='price'
                                             class="form-control form-control-line" required>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-sm-6">
+
                             </div>
                         </div>
                     </div>

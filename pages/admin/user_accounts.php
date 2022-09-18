@@ -1,35 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manna | Orders</title>
-
+<?php include('includes/header.php')?>
     <!-- stylesheet -->
-    <link rel="stylesheet" href="../../stylesheet/orders.css">
-    <link rel="stylesheet" href="../../stylesheet/main.css">
-    <link rel="stylesheet" href="../../stylesheet/footer.css">
-    <link rel="stylesheet" href="../../stylesheet/header.css">
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-
-    <!-- animte on scroll -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <!-- manna icon -->
-    <link rel="icon" href="../../assets/logo/logo.png" sizes="10x10">
-
-    <!--font awesome -->
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    
-</head>
-<body>
+    <link rel="stylesheet" href="../../stylesheet/user_account.css">
+ 
     <!-- ============ Header / Nav =========== -->
     <div class="header_bg">
         <img src="../../assets/img/header.png" id="header" alt="">
@@ -53,30 +25,30 @@
         <div class="box">
             <div class="side_nav">
                 <ul class="nav_outer">
-          
+             
                     <a href="dashboard.php">
                         <li><i class="far fa-user"></i> Dashboard</li>
                     </a>
                     <a href="orders.php">
-                        <li id="active_section"><i class="fa fa-list"></i> Orders</li>
+                        <li><i class="fa fa-list"></i> Orders</li>
                     </a>
                     <a href="items.php">
                         <li><i class="far fa-sitemap"></i> Items</li>
                     </a>
                     <a href="user_accounts.php">
-                        <li><i class="fa fa-users"></i> User Accounts</li>
+                        <li id="active_section"><i class="fa fa-users"></i> User Accounts</li>
                     </a>
                 </ul>
             </div>
             
-            <!-- stylesheet unlocated header to avoid conflict design w/ bootstrap -->
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+            <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
             <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
             <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap5.min.css">
-            
+
 
             <div class="my_profile">
-                <h3>Orders</h3>
+                <h3>User Accounts</h3>
                 <br>
                 <button type="button" id="add_new"><i class="fa fa-plus-circle"></i> New</button>
                 <div class="overflow-x">
@@ -84,68 +56,29 @@
                         <thead>
                             <tr>
                                 <th>Action</th>
-                                <th>Order ID</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                                <th>Customer Name</th>
+                                <th>Name</th>
+                                <th>Username</th>
+                                <th>Password</th>
+                                <th>Phone</th>
+                                <th>User Type</th>
                             </tr>
                         </thead>
                         <tbody>
+                        <?php $record  = mysqli_query($con, "SELECT * from users ORDER BY user_id "); ?>
+                        <?php while ($row = mysqli_fetch_array($record)) { ?>
                             <tr>
                                 <td>
-                                    <button><i class="far fa-eye"></i></button>
-                                    <button><i class="far fa-edit"></i></button>
-                                    <button><i class="far fa-trash"></i></button>
+                                    <button><i class="fa fa-eye"></i></button>
+                                    <button><i class="fa fa-edit"></i></button>
+                                    <button><i class="fa fa-trash"></i></button>
                                 </td>
-                                <td>MN2022-02-000001</td>
-                                <td>100</td>
-                                <td>150.00</td>
-                                <td>Abby Quintos</td>
+                                <td><?php echo $row['fname']?> <?php echo $row['lname']?> </td>
+                                <td><?php echo $row['username']?> </td>
+                                <td><?php echo $row['password']?> </td>
+                                <td><?php echo $row['phone']?> </td>
+                                <td><?php echo $row['userType']?> </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <button><i class="far fa-eye"></i></button>
-                                    <button><i class="far fa-edit"></i></button>
-                                    <button><i class="far fa-trash"></i></button>
-                                </td>
-                                <td>MN2022-02-000002</td>
-                                <td>100</td>
-                                <td>150.00</td>
-                                <td>Abby Quintos</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <button><i class="far fa-eye"></i></button>
-                                    <button><i class="far fa-edit"></i></button>
-                                    <button><i class="far fa-trash"></i></button>
-                                </td>
-                                <td>MN2022-02-000003</td>
-                                <td>100</td>
-                                <td>150.00</td>
-                                <td>Abby Quintos</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <button><i class="far fa-eye"></i></button>
-                                    <button><i class="far fa-edit"></i></button>
-                                    <button><i class="far fa-trash"></i></button>
-                                </td>
-                                <td>MN2022-02-000004</td>
-                                <td>100</td>
-                                <td>150.00</td>
-                                <td>Abby Quintos</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <button><i class="far fa-eye"></i></button>
-                                    <button><i class="far fa-edit"></i></button>
-                                    <button><i class="far fa-trash"></i></button>
-                                </td>
-                                <td>MN2022-02-000005</td>
-                                <td>100</td>
-                                <td>150.00</td>
-                                <td>Abby Quintos</td>
-                            </tr>
+                           <?php }?>
                         </tbody>
                     </table>
                 </div>

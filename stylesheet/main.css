@@ -10,12 +10,13 @@ body {
     font-family: 'DM Sans', sans-serif;
 }
 
-button,input {
-    
+button,
+input {
     font-family: 'DM Sans', sans-serif;
 }
 
-.container,.container_ {
+.container,
+.container_ {
     width: 80%;
     margin: auto;
     margin-bottom: 10px;
@@ -26,38 +27,31 @@ button,input {
 }
 
 #active_section {
-    background: white;
+    color: rgb(255, 255, 255);
+    background: rgb(239, 180, 3);
 }
 
-
 @media screen and (max-width: 768px) {
-    
     .overflow-x {
         overflow-x: auto;
         width: 100%;
     }
-    
 }
+
 @media screen and (min-width: 768px) {
-    
-::-webkit-scrollbar {
-    width: 8px;
-}
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: rgb(156, 156, 156);
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: rgb(255, 153, 0);
-}
-
-
-    
+     ::-webkit-scrollbar {
+        width: 8px;
+    }
+    /* Track */
+     ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    /* Handle */
+     ::-webkit-scrollbar-thumb {
+        background: rgb(156, 156, 156);
+    }
+    /* Handle on hover */
+     ::-webkit-scrollbar-thumb:hover {
+        background: rgb(255, 153, 0);
+    }
 }

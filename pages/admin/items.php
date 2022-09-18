@@ -59,8 +59,7 @@
                     data-bs-target="#addItem"><i class="fa fa-plus-circle"></i> New</button>
                 <div class="overflow-x">
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
-                        <?php
-                                    $record  = mysqli_query($con, "SELECT * from products ORDER BY product_id "); ?>
+                        <?php $record  = mysqli_query($con, "SELECT * from products ORDER BY product_id "); ?>
                         <thead>
                             <tr>
                                 <th>Action</th>
