@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2022 at 11:02 AM
+-- Generation Time: Sep 18, 2022 at 11:03 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.29
 
@@ -46,17 +46,17 @@ CREATE TABLE `products` (
   `size` varchar(255) NOT NULL,
   `packing_case` int(11) NOT NULL,
   `price` float NOT NULL,
-  `product_img` text NOT NULL
+  `product_img` text NOT NULL,
+  `category` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`product_id`, `barcode`, `product_name`, `size`, `packing_case`, `price`, `product_img`) VALUES
-(1, '2111160017', 'test a', '500', 1, 25, ''),
-(2, '456451515', 'product b', '23', 42, 54, 'logo.png'),
-(3, '12312431', 'Ronald Dale', '123', 123, 123, 'WIN.png');
+INSERT INTO `products` (`product_id`, `barcode`, `product_name`, `size`, `packing_case`, `price`, `product_img`, `category`) VALUES
+(4, '12312431', 'Product A', '500Grams', 123, 511, 'product.png', NULL),
+(5, '4312423432', 'Cream Bread', '200', 100, 25, 'product.png', 'Bread');
 
 -- --------------------------------------------------------
 
@@ -66,19 +66,22 @@ INSERT INTO `products` (`product_id`, `barcode`, `product_name`, `size`, `packin
 
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `fname` varchar(255) NOT NULL,
+  `lname` varchar(255) DEFAULT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `userType` varchar(255) NOT NULL,
-  `img` text DEFAULT NULL
+  `img` text DEFAULT NULL,
+  `phone` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `name`, `username`, `password`, `userType`, `img`) VALUES
-(1, 'Ron Dale', 'admin', 'admin', 'admin', NULL);
+INSERT INTO `users` (`user_id`, `fname`, `lname`, `username`, `password`, `userType`, `img`, `phone`) VALUES
+(1, 'Ron Dale', NULL, 'admin', 'admin', 'admin', NULL, '0'),
+(2, 'RONALD DALE', 'FUENTEBELLA', 'user', '123', 'customer', NULL, '+6393522320');
 
 --
 -- Indexes for dumped tables
@@ -104,13 +107,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
