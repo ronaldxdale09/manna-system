@@ -26,20 +26,7 @@
     <div class="container_">
         <h2 style="font-weight: 700;">PRODUCTS</h2>
         <br>
-        <nav>
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <button class="nav-link active" id="nav-breads-tab" data-bs-toggle="tab" data-bs-target="#nav-breads"
-                    type="button" role="tab" aria-controls="nav-breads" aria-selected="true">Breads</button>
-                <button class="nav-link" id="nav-buns-tab" data-bs-toggle="tab" data-bs-target="#nav-buns" type="button"
-                    role="tab" aria-controls="nav-buns" aria-selected="false">Buns</button>
-                <button class="nav-link" id="nav-biscuits-tab" data-bs-toggle="tab" data-bs-target="#nav-biscuits"
-                    type="button" role="tab" aria-controls="nav-biscuits" aria-selected="false">Biscuits</button>
-                <button class="nav-link" id="nav-cakes-tab" data-bs-toggle="tab" data-bs-target="#nav-cakes"
-                    type="button" role="tab" aria-controls="nav-cakes" aria-selected="false">Cakes</button>
-                <button class="nav-link" id="nav-others-tab" data-bs-toggle="tab" data-bs-target="#nav-others"
-                    type="button" role="tab" aria-controls="nav-others" aria-selected="false">Others</button>
-            </div>
-        </nav>
+       
         <div class="tab-content" id="nav-tabContent">
             <!-- Breads -->
             <div class="tab-pane fade show active" id="nav-breads" role="tabpanel" aria-labelledby="nav-breads-tab"

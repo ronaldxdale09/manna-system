@@ -6,6 +6,7 @@ table {
 table td {
     padding: 5px;
 }
+
 table #boxes {
     display: flex;
     justify-content: space-around;
@@ -13,24 +14,26 @@ table #boxes {
 }
 
 table .box {
-    width: 220px;
-    height: 220px;
+    width: 100px;
+    height: 100px;
     border: 1px solid rgb(109, 109, 109);
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 table .circle {
     border-radius: 50%;
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     background: orange;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-table td button, table td input {
+table td button,
+table td input {
     padding: 5px;
     width: 30px;
 }
@@ -44,6 +47,7 @@ table td button, table td input {
 .total_checkout span {
     font-size: 19px;
 }
+
 .total_checkout button {
     margin: 10px;
     padding: 8px 20px;
@@ -54,6 +58,7 @@ table td button, table td input {
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
 .total_checkout button:hover {
     transform: scale(1.05);
 }
