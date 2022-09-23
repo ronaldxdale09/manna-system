@@ -42,7 +42,7 @@
             </a>
         </div>
         <ul>
-            <li> <input type="text" placeholder="Search"></li>
+           
             <li><i class="fa fa-bell"></i></li>
 
             <li><i class="far fa-cart-plus"></i></li>

@@ -55,3 +55,17 @@ input {
         background: rgb(255, 153, 0);
     }
 }
+
+.cart_button {
+    background-color: #f5ed90;
+    color: #006;
+    border: 2px solid #006;
+    color: rgb(126, 122, 122);
+    padding: 8px 20px;
+    border-color: black;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}

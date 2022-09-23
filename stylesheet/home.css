@@ -16,16 +16,17 @@
     font-weight: 700;
 }
 
-.intro .left button {
-    padding: 15px 20px;
-    width: 80%;
-    background: white;
-    border: 1px solid rgb(185, 185, 185);
+.intro .left a {
+    padding: 10px 50px;
+    width: 100%;
+    background: #FEF58E;
+    border: 2px solid rgb(15, 15, 15);
     text-transform: uppercase;
     border-radius: 20px;
-    margin-top: 10px;
-    font-size: 16px;
-    color: rgb(102, 102, 102);
+    color: #272727;
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .intro img {

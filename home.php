@@ -1,3 +1,14 @@
+
+<?php 
+include('function/db.php');
+//initialize cart if not set or is unset
+if(!isset($_SESSION['cart'])){
+    $_SESSION['cart'] = array();
+}
+
+//unset qunatity
+unset($_SESSION['qty_array']);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,13 +17,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manna | Home</title>
-
+	<link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css">
     <!-- stylesheet -->
     <link rel="stylesheet" href="stylesheet/home.css">
     <link rel="stylesheet" href="stylesheet/main.css">
     <link rel="stylesheet" href="stylesheet/footer.css">
     <link rel="stylesheet" href="stylesheet/header.css">
-
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,11 +51,11 @@
             </a>
         </div>
         <ul>
-            <li> <input type="text" placeholder="Search"></li>
-            <li><i class="fa fa-bell"></i></li>
+           
+            <li></li>
             <li id="login_li"><a href="login.php">Login</a></li>
             <li id="sign_li"><a href="create_account.php">Sign Up</a></li>
-            <li><i class="far fa-cart-plus"></i></li>
+           	<li><a href="view_cart.php"><span class="badge"><?php echo count($_SESSION['cart']); ?></span> Cart <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
         </ul>
     </header>
     <br>
@@ -59,7 +69,8 @@
                     <font color="#193bb1">Healthy, delicious and faithfully</font> <br>
                     <font color="#fda50f">baked fresh!</font>
                 </h1>
-                <button>Order Now! <i class="fa fa-search" style="float: right; font-size: 20px"></i></button>
+ <Br>
+                <a href="products.php" > <i class="fa fa-shopping-cart" ></i>    Order Now!</a>
             </div>
             <img src="assets/img/right_intro.jpg" alt="">
         </div>
