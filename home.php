@@ -1,4 +1,3 @@
-
 <?php 
 include('function/db.php');
 //initialize cart if not set or is unset
@@ -17,7 +16,7 @@ unset($_SESSION['qty_array']);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manna | Home</title>
-	<link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css">
     <!-- stylesheet -->
     <link rel="stylesheet" href="stylesheet/home.css">
     <link rel="stylesheet" href="stylesheet/main.css">
@@ -36,7 +35,8 @@ unset($_SESSION['qty_array']);
     <link rel="icon" href="assets/logo/logo.png" sizes="10x10">
 
     <!--font awesome -->
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
 </head>
 
@@ -51,11 +51,12 @@ unset($_SESSION['qty_array']);
             </a>
         </div>
         <ul>
-           
+
             <li></li>
             <li id="login_li"><a href="login.php">Login</a></li>
             <li id="sign_li"><a href="create_account.php">Sign Up</a></li>
-           	<li><a href="view_cart.php"><span class="badge"><?php echo count($_SESSION['cart']); ?></span> Cart <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+            <li><a href="view_cart.php"><span class="badge"><?php echo count($_SESSION['cart']); ?></span> Cart <span
+                        class="glyphicon glyphicon-shopping-cart"></span></a></li>
         </ul>
     </header>
     <br>
@@ -69,8 +70,8 @@ unset($_SESSION['qty_array']);
                     <font color="#193bb1">Healthy, delicious and faithfully</font> <br>
                     <font color="#fda50f">baked fresh!</font>
                 </h1>
- <Br>
-                <a href="products.php" > <i class="fa fa-shopping-cart" ></i>    Order Now!</a>
+                <Br>
+                <a href="products.php"> <i class="fa fa-shopping-cart"></i> Order Now!</a>
             </div>
             <img src="assets/img/right_intro.jpg" alt="">
         </div>
@@ -94,21 +95,24 @@ unset($_SESSION['qty_array']);
                     </div>
                     <div class="three"><i class="fa fa-hat-chef"></i></div>
                 </div>
-                <div class="card_info" id="two" data-aos="fade-up" data-aos-anchor-placement="center-center" data-aos-delay="200">
+                <div class="card_info" id="two" data-aos="fade-up" data-aos-anchor-placement="center-center"
+                    data-aos-delay="200">
                     <div class="one"></div>
                     <div class="two">
                         <p>Quick Pickup and Delivery</p>
                     </div>
                     <div class="three"><i class="far fa-truck"></i></div>
                 </div>
-                <div class="card_info" id="three" data-aos="fade-up" data-aos-anchor-placement="center-center" data-aos-delay="300">
+                <div class="card_info" id="three" data-aos="fade-up" data-aos-anchor-placement="center-center"
+                    data-aos-delay="300">
                     <div class="one"></div>
                     <div class="two">
                         <p>Mode of Payment made easier</p>
                     </div>
                     <div class="three"><i class="fa fa-money-bill"></i></div>
                 </div>
-                <div class="card_info" id="four" data-aos="fade-up" data-aos-anchor-placement="center-center" data-aos-delay="400">
+                <div class="card_info" id="four" data-aos="fade-up" data-aos-anchor-placement="center-center"
+                    data-aos-delay="400">
                     <div class="one"></div>
                     <div class="two">
                         <p>Precise product description</p>
@@ -123,47 +127,25 @@ unset($_SESSION['qty_array']);
             <h3 style="font-weight: 700;">TOP PRODUCTS</h3>
             <br>
             <div class="products">
+                <?php         
+                    $record  = mysqli_query($con, "SELECT * from products ORDER BY product_id "); ?>
+
+                <?php while ($row = mysqli_fetch_array($record)) { ?>
                 <!-- product card -->
                 <div class="product">
                     <div class="circle">
-                        <img src="assets/img/product.png" alt=""></div>
+                        <img src="images/<?php echo $row['product_img']?>" alt="">
+                    </div>
                     <div class="bottom_box">
                         <p>Monthly Sales 4K+</p>
                     </div>
                     <div class="info">
-                        <p>Cream Bread 120g</p>
+                        <div class="product_box_info"><?php echo $row['product_name']?> -
+                            <?php echo $row['size']?></div>
                     </div>
                 </div>
-                <div class="product">
-                    <div class="circle">
-                        <img src="assets/img/product.png" alt=""></div>
-                    <div class="bottom_box">
-                        <p>Monthly Sales 4K+</p>
-                    </div>
-                    <div class="info">
-                        <p>Cream Bread 120g</p>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="circle">
-                        <img src="assets/img/product.png" alt=""></div>
-                    <div class="bottom_box">
-                        <p>Monthly Sales 4K+</p>
-                    </div>
-                    <div class="info">
-                        <p>Cream Bread 120g</p>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="circle">
-                        <img src="assets/img/product.png" alt=""></div>
-                    <div class="bottom_box">
-                        <p>Monthly Sales 4K+</p>
-                    </div>
-                    <div class="info">
-                        <p>Cream Bread 120g</p>
-                    </div>
-                </div>
+                <?php }?>
+
                 <div class="product">
                     <div class="next">
 
@@ -177,45 +159,17 @@ unset($_SESSION['qty_array']);
         <br>
         <br>
         <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+ 
+
+
         <br>
         <script src="scripts/our_product_nav_bar.js"></script>
-        <div class="our_products">
-            <h2>Our Products</h2>
-            <ul>
-                <li class="nav-link active-link">
-                    <a href="#">Breads</a>
-                    <div class="underline"></div>
-                </li>
-                <li class="nav-link">
-                    <a href="#">Buns</a>
-                    <div class="underline"></div>
-                </li>
-                <li class="nav-link">
-                    <a href="#">Biscuits</a>
-                    <div class="underline"></div>
-                </li>
-                <li class="nav-link">
-                    <a href="#">Cakes</a>
-                    <div class="underline"></div>
-                </li>
-                <li class="nav-link">
-                    <a href="#">Others</a>
-                    <div class="underline"></div>
-                </li>
-            </ul>
-        </div>
+     
     </div>
 
     <!-- CREAM BREAD img outside the container to occupy the 100% of screen size-->
     <img src="assets/img/our_product.jpg" class="our_product_bg_img">
-    <br>
+
     <br>
     <br>
 
@@ -235,7 +189,8 @@ unset($_SESSION['qty_array']);
                     <div class="bread_bottom">
                         <p>Cream Bread 120g</p>
                         <div class="btn_bread_box">
-                            <button type="button" class="add_to_cart">Add To Cart <i class="far fa-cart-plus"></i></button>
+                            <button type="button" class="add_to_cart">Add To Cart <i
+                                    class="far fa-cart-plus"></i></button>
                             <button type="button" class="buy_now">Buy Now</button>
                         </div>
                     </div>
@@ -251,7 +206,8 @@ unset($_SESSION['qty_array']);
                     <div class="bread_bottom">
                         <p>Cream Bread 120g</p>
                         <div class="btn_bread_box">
-                            <button type="button" class="add_to_cart">Add To Cart <i class="far fa-cart-plus"></i></button>
+                            <button type="button" class="add_to_cart">Add To Cart <i
+                                    class="far fa-cart-plus"></i></button>
                             <button type="button" class="buy_now">Buy Now</button>
                         </div>
                     </div>
@@ -267,7 +223,8 @@ unset($_SESSION['qty_array']);
                     <div class="bread_bottom">
                         <p>Cream Bread 120g</p>
                         <div class="btn_bread_box">
-                            <button type="button" class="add_to_cart">Add To Cart <i class="far fa-cart-plus"></i></button>
+                            <button type="button" class="add_to_cart">Add To Cart <i
+                                    class="far fa-cart-plus"></i></button>
                             <button type="button" class="buy_now">Buy Now</button>
                         </div>
                     </div>
@@ -281,14 +238,16 @@ unset($_SESSION['qty_array']);
             <h2>Mannafest Food Inc.</h2>
             <br>
             <p>One of the leading company that
-                <br> provides the best quality of bread in town</p>
+                <br> provides the best quality of bread in town
+            </p>
             <br>
             <br>
             <p id="footer_p_location">Sapphire St.,
                 <br> Santiago Rd.,
                 <br> Lumbangan, Divisoria
                 <br> Zamboanga City, Philippines 7000 Contact Us: 062-926-1993
-                <br> Email: mannafest_zam@yahoo.co</p>
+                <br> Email: mannafest_zam@yahoo.co
+            </p>
             <br>
             <br>
             <p>Follow Us</p>
@@ -333,7 +292,7 @@ unset($_SESSION['qty_array']);
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-        AOS.init(); //initializing script animate on scroll
+    AOS.init(); //initializing script animate on scroll
     </script>
 </body>
 
