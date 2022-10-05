@@ -65,7 +65,7 @@ include('function/db.php');
 
             <li id="login_li"><a href="login.php">Login</a></li>
             <li id="sign_li"><a href="create_account.php">Sign Up</a></li>
-            <li><a class="cart_button" href="view_cart.php"><span
+            <li><a class="cart_button" href="cart.php"><span
                         class="badge bg-dark"><?php echo count($_SESSION['cart']); ?></span> <i
                         class="fas fa-cart-plus"></i> <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
         </ul>

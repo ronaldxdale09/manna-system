@@ -55,7 +55,7 @@ unset($_SESSION['qty_array']);
             <li></li>
             <li id="login_li"><a href="login.php">Login</a></li>
             <li id="sign_li"><a href="create_account.php">Sign Up</a></li>
-            <li><a href="view_cart.php"><span class="badge"><?php echo count($_SESSION['cart']); ?></span> Cart <span
+            <li><a href="cart.php"><span class="badge"><?php echo count($_SESSION['cart']); ?></span> Cart <span
                         class="glyphicon glyphicon-shopping-cart"></span></a></li>
         </ul>
     </header>

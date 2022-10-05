@@ -10,5 +10,5 @@
 	$_SESSION['qty_array'] = array_values($_SESSION['qty_array']);
 
 	$_SESSION['message'] = "Product deleted from cart";
-	header('location: ../view_cart.php');
+	header('location: ../cart.php');
 ?>

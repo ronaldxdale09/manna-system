@@ -90,7 +90,7 @@ include('function/db.php');
 
 			?>
                 <form method="POST" action="save_cart.php">
-                    <table class="table table-bordered table-striped">
+                    <table class="table table table-striped" style='font-size:19px'>
                         <thead>
                             <th></th>
                             <th>Name</th>
@@ -115,9 +115,11 @@ include('function/db.php');
 								?>
                             <tr>
                                 <td>
-                                    <a href="function/delete_item.php?product_id=<?php echo $row['product_id']; ?>&index=<?php echo $index; ?>"
-                                        class="btn btn-danger btn-sm"><span
-                                            class="far fa-trash"></span></a>
+                                    <div class="product_box_circle" style='width:70px;height:70px'>
+                                        <!-- place product img here-->
+                                        <img src="images/<?php echo $row['product_img']?>"
+                                            style='width:60px;height:60px'>
+                                    </div>
                                 </td>
                                 <td><?php echo $row['product_name']; ?></td>
                                 <td><?php echo number_format($row['price'], 2); ?></td>
@@ -127,6 +129,10 @@ include('function/db.php');
                                         name="qty_<?php echo $index; ?>"></td>
                                 <td><?php echo number_format($_SESSION['qty_array'][$index]*$row['price'], 2); ?></td>
                                 <?php $total += $_SESSION['qty_array'][$index]*$row['price']; ?>
+                                <td>
+                                    <a href="function/delete_item.php?product_id=<?php echo $row['product_id']; ?>&index=<?php echo $index; ?>"
+                                        class="btn btn-danger btn-sm"><span class="far fa-trash"></span></a>
+                                </td>
                             </tr>
                             <?php
 								$index ++;
@@ -147,12 +153,11 @@ include('function/db.php');
                             </tr>
                         </tbody>
                     </table>
-                    <a href="products.php" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span>
-                        Back</a>
-                    <button type="submit" class="btn btn-success" name="save">Save Changes</button>
+
                     <a href="clear_cart.php" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>
                         Clear Cart</a>
-                    <a href="checkout.php" class="btn btn-success"><span class="glyphicon glyphicon-check"></span>
+                    <a href="checkout.php" class="btn btn-warning text-white"><span
+                            class="glyphicon glyphicon-check"></span>
                         Checkout</a>
                 </form>
             </div>
