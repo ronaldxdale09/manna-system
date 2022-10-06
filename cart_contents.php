@@ -13,7 +13,7 @@ if(isset($_POST['cartitems'])){
 
 #items_in_the_carts::-webkit-scrollbar {
 
-    width: 4px;
+    width: 5px;
 }
 </style>
 <div class="row">
