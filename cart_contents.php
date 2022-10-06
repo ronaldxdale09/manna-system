@@ -430,11 +430,8 @@ if(isset($_POST['cartitems'])){
         <div class="modal-content">
             <div class="modal-header">
                 <div class="row">
-                    <!-- <div class="col-md-6"> <span>CREDIT/DEBIT CARD PAYMENT</span> </div> -->
-                    <div class="col-md-6 text-right" style="margin-top: -5px;"> <img
-                            src="https://img.icons8.com/color/36/000000/visa.png"> <img
-                            src="https://img.icons8.com/color/36/000000/mastercard.png"> <img
-                            src="https://img.icons8.com/color/36/000000/amex.png"> </div>
+                    <div class="col-md-12"> <span>CONFIRM TRANSACTION</span> </div>
+             
                 </div>
                 <button type="button" class="btn-close" id="closepm" data-bs-dismiss="modal"
                     aria-label="Close"></button>
@@ -447,7 +444,7 @@ if(isset($_POST['cartitems'])){
 
 
 
-                        <div class="form-group"> <label for="cc-number" class="control-label">CARD NUMBER</label> <input
+                        <!-- <div class="form-group"> <label for="cc-number" class="control-label">CARD NUMBER</label> <input
                                 id="cc-number" type="tel" class="input-lg form-control cc-number di"
                                 autocomplete="cc-number" placeholder="•••• •••• •••• ••••" required maxlength="16"
                                 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
@@ -470,7 +467,7 @@ if(isset($_POST['cartitems'])){
                         </div>
                         <div class="form-group"> <label for="numeric" class="control-label">CARD HOLDER NAME</label>
                             <input type="text" class="input-lg form-control di">
-                        </div>
+                        </div> -->
                         <div id="shipadd" class="d-none">
 
                             <?php 
