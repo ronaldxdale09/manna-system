@@ -79,7 +79,7 @@ if(!isset($_SESSION['cour_id'])){
       <div class="main_contents">
          <div class="container">
          
-          <h5 style="font-weight: bolder;">CREDENTIALS</h5>
+          <h5 style="font-weight: bolder;"></h5>
           <hr>
            <div class="card shadow-sm" style="">
               <div class="card-body">
