@@ -499,8 +499,8 @@ if(isset($_POST['cartitems'])){
 
                         </div>
 
-                        <button type="button" onclick="window.location.href='paypal.php'"
-                            class="btn btn-primary mt-3 form-control py-2" style="font-size: .8rem;">PayPal</button>
+                        <!-- <button type="button" onclick="window.location.href='paypal.php'"
+                            class="btn btn-primary mt-3 form-control py-2" style="font-size: .8rem;">PayPal</button> -->
 
 
 

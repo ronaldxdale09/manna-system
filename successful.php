@@ -60,7 +60,7 @@ include 'connections/connect.php';
                         
                          <div class="ppage" id="ppage">
                             
-                            <h5 style="font-weight: bolder;font-weight:bolder;font-family: 'Courgette', cursive;">EB Fashion  <span style="float: right;font-size: 14px ;font-weight: normal;"><?php echo date('m-d-Y') ?></span></h5>
+                            <h5 style="font-weight: bolder;font-weight:bolder;font-family: 'Courgette', cursive;">Manna <span style="float: right;font-size: 14px ;font-weight: normal;"><?php echo date('m-d-Y') ?></span></h5>
                              <div class="table-responsive">
                              
                         <table class="table  mt-5" >
