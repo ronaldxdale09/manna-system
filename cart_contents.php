@@ -333,11 +333,9 @@ if(isset($_POST['cartitems'])){
                             <span style="font-size: 15px; font-weight: bolder">TOTAL : <span class="float-right"
                                     id="totalamount" style="margin-left: 20px;font-size: 17px">₱ <?php 
                               if(isset($totalamount)){
-
-                                
-
+                          
                                 ?>
-                                    <span id="totalll"> <?php echo array_sum($totalamount) ?></span>
+                                    <span id="totalll"> <?php echo array_sum($totalamount)-6000 ?></span>
                                     <?php
                               }else {
                                 echo '0';
@@ -351,7 +349,7 @@ if(isset($_POST['cartitems'])){
                         <br>
                         <form method="post" action="#" onsubmit="return false" id="proceedwmethod">
                             <input type="hidden" name="proceedwmethod">
-                            <div class="form-check">
+                            <!-- <div class="form-check">
                                 <input class="form-check-input d-none" type="radio" required="" name="flexRadioDefault"
                                     id="flexRadioDefault1" required="" value="reserve">
                                 <input class="form-check-input" type="radio" required="" name="flexRadioDefault"
@@ -362,9 +360,9 @@ if(isset($_POST['cartitems'])){
                                         data-bs-toggle="tooltip" data-bs-placement="right"
                                         title="Online booking and payment. and pick up the order in the physical store or meet in person"></i>
                                 </label>
-                            </div>
+                            </div> -->
 
-
+                            <br>
 
 
                             <div class="form-check">
