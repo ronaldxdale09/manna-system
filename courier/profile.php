@@ -8,7 +8,7 @@ if(!isset($_SESSION['cour_id'])){
 <html>
 
 <?php include 'head.php' ?>
-<body style="background-color: rgb(249, 234, 255)">
+<body style="background-color:white">
  <div class="wrapper">
   
 
@@ -73,9 +73,7 @@ if(!isset($_SESSION['cour_id'])){
      <div class="topbar shadow-sm">
       <button class="btn btn-light text-dark" id="slideleft" style="font-size: 10px;"><i class="fas fa-arrow-left"></i></button>
 
-       <button class="btn btn-light text-dark d-none" id="slideright" style="font-size: 10px;"><i class="fas fa-arrow-right"></i></button>
-         <h5 class="text-primary text-secondary" style="position:absolute; top:10px;right:10px;font-weight:bolder;font-family: 'Courgette', cursive;">EB Fashion</h5>
-
+ 
      </div> 
 
       <div class="main_contents">
