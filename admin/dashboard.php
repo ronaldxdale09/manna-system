@@ -66,17 +66,13 @@ if(!isset($_SESSION['admin_id'])){
                             <span>Sales</span></a>
                     </li>
 
-                    <div class="wrapper">
-                        <li class="nav-item navitems">
+					<li class="nav-item navitems">
 
-                            <a class="nav-link navlinks text-secondary " href="orders.php">
-                                <i class="fas fa-cart-arrow-down"></i>
-                                <span>Orders</span>
-                                <!-- <span class="badge"><?php echo $count[0] ?></span> -->
+						<a class="nav-link navlinks text-secondary" href="orders.php">
+							<i class="fas fa-cart-arrow-down"></i>
+							<span>Orders</span></a>
+					</li>
 
-                            </a>
-                        </li>
-                    </div>
                     <!-- Divider -->
                     <hr class="sidebar-divider">
 
@@ -132,15 +128,15 @@ if(!isset($_SESSION['admin_id'])){
 
         <section class="main">
 
-            <div class="topbar shadow-sm">
+            <div class="">
                 <button class="btn btn-light text-dark" id="slideleft" style="font-size: 10px;"><i
                         class="fas fa-arrow-left"></i></button>
 
                 <button class="btn btn-light text-dark d-none" id="slideright" style="font-size: 10px;"><i
                         class="fas fa-arrow-right"></i></button>
-                <h5 class="text-primary text-secondary"
+                <!--<h5 class="text-primary text-secondary"
                     style="position:absolute; top:10px;right:10px;font-weight:bolder;font-family: 'Courgette', cursive;">
-                </h5>
+                </h5>-->
 
             </div>
 
@@ -155,8 +151,8 @@ if(!isset($_SESSION['admin_id'])){
                         <div class="col-md-4">
                             <div class="card shadow bg-warning">
                                 <div class="card-body">
-                                    <h5 style="font-weight: bolder;text-align: center;" class="text-black">
-                                        ORDERS <span class="badge bg-light text-dark"> <?php 
+                                    <h5 style="font-weight: bolder;text-align: center;" class="text-light">
+                                        PENDING ORDERS <span class="badge bg-light text-dark"> <?php 
                                 $corders = " select * from trans_record  ";
                                             $countord = mysqli_query($con,$corders); 
                                             $allorders= mysqli_num_rows($countord);
@@ -171,10 +167,10 @@ if(!isset($_SESSION['admin_id'])){
                         </div>
 
                         <div class="col-md-4">
-                            <div class="card shadow bg-dark">
+                            <div class="card shadow bg-success">
                                 <div class="card-body">
                                     <h6 style="font-weight: bolder;text-align: center;" class="text-light">
-                                        CUSTOMERS <span class="badge bg-light text-dark">
+                                        REGISTERED CUSTOMERS <span class="badge bg-light text-dark">
                                             <?php 
                                 $ccustomers = " select * from accounts  ";
                                             $ccustom = mysqli_query($con,$ccustomers); 
@@ -194,7 +190,7 @@ if(!isset($_SESSION['admin_id'])){
                             <div class="card shadow bg-primary">
                                 <div class="card-body">
                                     <h6 style="font-weight: bolder;text-align: center;" class="text-light">
-                                        PRODUCTS <span class="badge bg-light text-dark">
+                                        CRITICAL ITEMS <span class="badge bg-light text-dark">
 
                                             <?php 
                                 $cproducts = " select * from product  ";

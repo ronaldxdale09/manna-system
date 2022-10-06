@@ -10,7 +10,7 @@ if(!isset($_SESSION['admin_id'])){
 
 <?php include 'head.php'; include '../connections/connect.php'; ?>
 
-<body style="background-color: white">
+<body style="background-color: #EDF2F7">
     <div class="wrapper">
 
 
@@ -60,17 +60,13 @@ if(!isset($_SESSION['admin_id'])){
                             <span>Sales</span></a>
                     </li>
 
-                    <div class="wrapper">
-                        <li class="nav-item navitems">
-
-                            <a class="nav-link navlinks text-secondary " href="orders.php">
-                                <i class="fas fa-cart-arrow-down"></i>
-                                <span>Orders</span>
-
-
-                            </a>
-                        </li>
-                    </div>
+                   
+					<li class="nav-item navitems">
+						<a class="nav-link navlinks text-secondary" href="orders.php">
+							<i class="fas fa-cart-arrow-down"></i>
+							<span>Orders</span></a>
+					</li>
+                    
 
                     <!-- Divider -->
                     <hr class="sidebar-divider">
@@ -127,14 +123,13 @@ if(!isset($_SESSION['admin_id'])){
 
         <section class="main">
 
-            <div class="topbar shadow-sm">
+            <div class="">
                 <button class="btn btn-light text-dark" id="slideleft" style="font-size: 10px;"><i
                         class="fas fa-arrow-left"></i></button>
 
                 <button class="btn btn-light text-dark d-none" id="slideright" style="font-size: 10px;"><i
                         class="fas fa-arrow-right"></i></button>
               
-
             </div>
 
             <div class="main_contents">
@@ -159,11 +154,6 @@ if(!isset($_SESSION['admin_id'])){
                                 </div>
 
                             </div>
-
-
-
-
-
 
                         </div>
 

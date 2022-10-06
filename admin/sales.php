@@ -61,7 +61,7 @@ if(!isset($_SESSION['admin_id'])){
                     </li>
 
                     <li class="nav-item navitems">
-                        <a class="nav-link navlinks text-secondary " href="orders.php">
+                        <a class="nav-link navlinks text-secondary" href="orders.php">
                             <i class="fas fa-cart-arrow-down"></i>
                             <span>Orders</span></a>
                     </li>
@@ -121,14 +121,12 @@ if(!isset($_SESSION['admin_id'])){
 
         <section class="main">
 
-            <div class="topbar shadow-sm">
+            <div class="">
                 <button class="btn btn-light text-dark" id="slideleft" style="font-size: 10px;"><i
                         class="fas fa-arrow-left"></i></button>
 
                 <button class="btn btn-light text-dark d-none" id="slideright" style="font-size: 10px;"><i
                         class="fas fa-arrow-right"></i></button>
-    
-
             </div>
 
             <div class="main_contents">
@@ -305,7 +303,7 @@ if(!isset($_SESSION['admin_id'])){
                                               $disc = $row['disc'];
                       ?>
                                             <tr>
-                                                <th scope="row"><?php echo 'BnC_'.$row['order_id'] ?></th>
+                                                <th scope="row"><?php echo 'MN_'.$row['order_id'] ?></th>
                                                 <td><?php echo date('F j,Y',strtotime($row['date_ordered'])) ?></td>
                                                 <td><?php
                         $gettingusername = " select * from accounts where user_id = '$user'  ";
@@ -495,7 +493,7 @@ if(!isset($_SESSION['admin_id'])){
                                               $disc = $row['disc'];
                       ?>
                                             <tr>
-                                                <th scope="row"><?php echo 'BnC_'.$row['order_id'] ?></th>
+                                                <th scope="row"><?php echo 'MN_'.$row['order_id'] ?></th>
                                                 <td><?php echo date('F j,Y',strtotime($row['date_ordered'])) ?></td>
                                                 <td><?php
                         $gettingusername = " select * from accounts where user_id = '$user'  ";

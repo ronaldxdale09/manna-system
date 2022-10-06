@@ -92,7 +92,7 @@ if(isset($_POST['category'])){
                       			echo 'ADMINISTRATOR';
                       	}else if($type == 'courier'){ 
 
-                      		echo 'COURIER';
+                      		echo 'DELIVERY';
                       		?>
                       		
                       		<hr>

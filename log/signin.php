@@ -275,7 +275,7 @@ if(isset($_SESSION['admin_id'])){
             </div>
             <div class="col-md-6 col-sm-8">
                 <div class="text text-center">
-                    <img src="../assets/img/right_intro.jpg" style="max-height: 500px">
+                    <img src="" style="max-height: 500px">
                     <link rel="preconnect" href="https://fonts.googleapis.com">
                     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
                     <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">

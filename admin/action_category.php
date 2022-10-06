@@ -30,7 +30,7 @@ if(isset($_POST['category'])){
 	   				<tr>
                       <td><?php echo $row['category_name'] ?></td>
                       <td>
-                      	<span class="badge bg-success" style="font-size: 12px;padding: 5px">ACTIVE</span>
+                      	<span class="badge bg-primary" style="font-size: 12px">ACTIVE</span>
                       </td>
                       <td>
                       	<?php 

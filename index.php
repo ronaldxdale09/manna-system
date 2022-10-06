@@ -97,7 +97,7 @@ $usertempip = getClientIP();
 
 
 
-    <div class="container-fluid mt-4">
+    <div class="container-fluid">
 
         <div class="row">
             <div class="col-md-1">
@@ -105,7 +105,7 @@ $usertempip = getClientIP();
             </div>
             <div class="col-md-10">
                 <div class="banner">
-                    <img src="assets/img/our_product.jpg" style="width: 100%;border-radius: 1px;">
+                    <img src="assets/img/landingpage.png" style="width: 100%;border-radius: 1px; margin-top: 100px;">
                 </div>
             </div>
             <div class="col-md-1">
@@ -113,50 +113,14 @@ $usertempip = getClientIP();
             </div>
 
         </div>
-        <br> <br><br> <br><br>
-        <div class="feature_card">
-            <div class="card_info" data-aos="fade-up" data-aos-anchor-placement="center-center">
-                <div class="one">
-                    <p>&nbsp;</p>
-                </div>
-                <div class="two">
-                    <p>Best Quality Bread in Town</p>
-                </div>
-                <div class="three"><i class="fa fa-hat-chef"></i></div>
-            </div>
-            <div class="card_info" id="two" data-aos="fade-up" data-aos-anchor-placement="center-center"
-                data-aos-delay="200">
-                <div class="one"></div>
-                <div class="two">
-                    <p>Quick Pickup and Delivery</p>
-                </div>
-                <div class="three"><i class="far fa-truck"></i></div>
-            </div>
-            <div class="card_info" id="three" data-aos="fade-up" data-aos-anchor-placement="center-center"
-                data-aos-delay="300">
-                <div class="one"></div>
-                <div class="two">
-                    <p>Mode of Payment made easier</p>
-                </div>
-                <div class="three"><i class="fa fa-money-bill"></i></div>
-            </div>
-            <div class="card_info" id="four" data-aos="fade-up" data-aos-anchor-placement="center-center"
-                data-aos-delay="400">
-                <div class="one"></div>
-                <div class="two">
-                    <p>Precise product description</p>
-                </div>
-                <div class="three"><i class="far fa-file"></i></div>
-            </div>
-        </div>
-
+        
         <br><br><br><br><br>
         <div class="container">
 
             <div class="row mt-3">
 
 
-                <h4 style="font-weight: bolder">Most Ordered</h4>
+                <h4 style="font-weight: bolder">Top Products</h4>
 
                 <div class="row mt-4" id="items">
                     <div class="spinner-grow text-info" role="status">
@@ -169,11 +133,6 @@ $usertempip = getClientIP();
                         <span class="visually-hidden">Loading...</span>
                     </div>
                 </div>
-
-
-
-
-
             </div>
 
             <div class="row mt-5">
@@ -184,7 +143,44 @@ $usertempip = getClientIP();
                             class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
-
+			
+			<br> <br><br> <br><br>
+			<div class="feature_card">
+					
+				<div class="card_info" data-aos="fade-up" data-aos-anchor-placement="center-center">
+					<div class="one">
+						<p>&nbsp;</p>
+					</div>
+					<div class="two">
+						<p>Best Quality Bread in Town</p>
+					</div>
+					<div class="three"><i class="fa fa-hat-chef"></i></div>
+				</div>
+				<div class="card_info" id="two" data-aos="fade-up" data-aos-anchor-placement="center-center"
+					data-aos-delay="200">
+					<div class="one"></div>
+					<div class="two">
+						<p>Quick Pickup and Delivery</p>
+					</div>
+					<div class="three"><i class="far fa-truck"></i></div>
+				</div>
+				<div class="card_info" id="three" data-aos="fade-up" data-aos-anchor-placement="center-center"
+					data-aos-delay="300">
+					<div class="one"></div>
+					<div class="two">
+						<p>Mode of Payment made easier</p>
+					</div>
+					<div class="three"><i class="fa fa-money-bill"></i></div>
+				</div>
+				<div class="card_info" id="four" data-aos="fade-up" data-aos-anchor-placement="center-center"
+					data-aos-delay="400">
+					<div class="one"></div>
+					<div class="two">
+						<p>Precise product description</p>
+					</div>
+					<div class="three"><i class="far fa-file"></i></div>
+				</div>
+			</div>	
 
         </div>
 
@@ -192,7 +188,7 @@ $usertempip = getClientIP();
 
 
 
-        <div class="fixed-top purple-rain shadow  d-none" style="border-bottom: 4px solid black" id="cartalert">
+        <!--<div class="fixed-top purple-rain shadow  d-none" style="border-bottom: 4px solid black" id="cartalert">
 
             <a href="home.php">
                 <img src="assets/logo/logo_transparent.png" alt="">
@@ -204,7 +200,7 @@ $usertempip = getClientIP();
                     Shopping Cart <span class="badge badge-danger bg-dark" style="" id="countcarts"></span></h6>
             </a>
 
-        </div>
+        </div>-->
 
 
 

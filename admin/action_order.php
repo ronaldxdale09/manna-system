@@ -16,7 +16,7 @@ include '../connections/connect.php';
                          <th scope="col">Price</th>
                          <th scope="col">Quantity</th>
                           <th scope="col">Total</th>
-                           <th scope="col">action</th>
+                           <th scope="col">Actions</th>
                      
                     </tr>
                   </thead>
@@ -50,7 +50,7 @@ include '../connections/connect.php';
 
 								?>
 								<tr class="table-warning">
-										<td colspan="7"><h6 style="font-weight:bolder;letter-spacing:2px;text-align: center;"><?php echo $pmorder.' ( BNC_'.$tid.' )' ?> <br>
+										<td colspan="7"><h6 style="font-weight:bolder;letter-spacing:2px;text-align: center;"><?php echo $pmorder.' ( MN_'.$tid.' )' ?> <br>
 												<?php 
 
 	   								$getusername = " select * from accounts where user_id = '$userid'  ";
@@ -133,7 +133,7 @@ include '../connections/connect.php';
 	   							 	?>
 
 	   							 	<tr>
-	   					<td>BNC_<?php echo $row['tid'] ?></td>
+	   					<td>MN_<?php echo $row['tid'] ?></td>
 	   					<td><?php echo date('@H:i:s F j,Y',strtotime($row['datecreated'])) ?></td>
 	   				
 
@@ -483,7 +483,7 @@ if(isset($_POST['completedorder'])){
   <div class="modal-dialog ">
     <div class="modal-content">
       <div class="modal-header">
-        <h6 class="modal-title" id="exampleModalLabel">Proof of Delivery For Order BNC_<?php echo $tid  ?></h6>
+        <h6 class="modal-title" id="exampleModalLabel">Proof of Delivery For Order MN_<?php echo $tid  ?></h6>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
     

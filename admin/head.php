@@ -14,12 +14,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Rye&display=swap" rel="stylesheet">
-    <title>EB Fashion &middot; Admin</title>
+    <title>MannafestFoodInc &middot; Admin</title>
     <style type="text/css">
     @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap');
 
     * {
         font-family: 'Zen Kaku Gothic New', sans-serif;
+		font-weight: bold;
     }
 
     .sidenav {
@@ -28,7 +29,8 @@
         z-index: 1000;
         position: fixed;
         padding: 10px;
-        background-color: #f4f0ee;
+		background-image: url('../assets/img/sidenavbar.png');
+        <!--background-color: #EDF2F7;-->
     }
 
     .userinfo {
@@ -44,12 +46,12 @@
         margin-left: 200px;
     }
 
-    .topbar {
-        height: auto;
+    <!--.topbar {
+        height: 80px;
         width: 100%;
         padding: 5px;
         background-image: url('../assets/img/header.png');
-    }
+    }-->
 
 
     .main_contents {
@@ -61,8 +63,8 @@
     }
 
     .navitems:hover a {
-        background-color: #dee1e2;
-        color: #2f7b8b;
+        background-color: #EDF2F7;
+        color: #FDA50F;
 
     }
 
@@ -70,7 +72,7 @@
 
     .navitems:hover i {
 
-        color: #2f7b8b;
+        color: #FDA50F;
         animation: swing 1.5s;
 
     }

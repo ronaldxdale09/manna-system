@@ -61,7 +61,7 @@ if(!isset($_SESSION['admin_id'])){
                     </li>
 
                     <li class="nav-item navitems">
-                        <a class="nav-link navlinks text-secondary " href="orders.php">
+                        <a class="nav-link navlinks text-secondary" href="orders.php">
                             <i class="fas fa-cart-arrow-down"></i>
                             <span>Orders</span></a>
                     </li>
@@ -121,7 +121,7 @@ if(!isset($_SESSION['admin_id'])){
 
         <section class="main">
 
-            <div class="topbar shadow-sm">
+            <div class="">
                 <button class="btn btn-light text-dark" id="slideleft" style="font-size: 10px;"><i
                         class="fas fa-arrow-left"></i></button>
 
@@ -139,7 +139,7 @@ if(!isset($_SESSION['admin_id'])){
                         <div class="card-body">
 
 
-                            <button class="btn btn-light  text-primary mb-2" data-bs-toggle="modal"
+                            <button class="btn btn-warning  text-white mb-2" data-bs-toggle="modal"
                                 data-bs-target="#addmodal" data-backdrop="static" data-keyboard="false"
                                 style="font-size: 14px;">Add new <i class="fas fa-plus-circle"></i></button>
 
@@ -218,8 +218,8 @@ if(!isset($_SESSION['admin_id'])){
                         <hr>
                         <label style="font-size: 14px">User-Type</label>
                         <select class="form-select mb-1" name="usertype" style="font-size: 14px">
-                            <option value="client">Client</option>
-                            <option value="courier">Courier</option>
+                            <option value="client">Customer</option>
+                            <option value="delivery">Delivery</option>
                         </select>
 
                         <span style="font-size: 14px">Include a Profile Photo.</span>
@@ -241,7 +241,7 @@ if(!isset($_SESSION['admin_id'])){
                         <input type="text" id="pass" name="password" style="font-size: 14px" class="form-control e"
                             required="">
 
-                        <button type="button" class="btn btn-dark mt-2" id='generatepass'
+                        <button type="button" class="btn btn-secondary mt-2" id='generatepass'
                             style="font-size: 13px">Generate a Password</button>
 
 
@@ -271,7 +271,7 @@ if(!isset($_SESSION['admin_id'])){
                     <form method="post" action="action_account.php" onsubmit="return false" id="editcategory">
 
                         <input type="hidden" name="editcategory">
-                        <h6>Modify User</h6>
+                        <h6>Update User</h6>
                         <label style="font-size: 14px">Email</label>
                         <input type="email" name="eemail" id="eemail" style="font-size: 14px" class="form-control"
                             required="">
@@ -286,8 +286,8 @@ if(!isset($_SESSION['admin_id'])){
 
 
                         <input type="hidden" id="catid" name="uid">
-                        <button type="submit" id="disabledsaved" class="btn btn-light text-dark mt-3"
-                            style="font-size: 15px;float: right;">Modify</button>
+                        <button type="submit" id="disabledsaved" class="btn btn-primary text-white mt-3"
+                            style="font-size: 15px;float: right;">Update</button>
 
                     </form>
 

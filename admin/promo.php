@@ -59,7 +59,7 @@ if(!isset($_SESSION['admin_id'])){
             </li>
 
                <li class="nav-item navitems">
-                <a class="nav-link navlinks text-secondary " href="orders.php">
+                <a class="nav-link navlinks text-secondary" href="orders.php">
                    <i class="fas fa-cart-arrow-down"></i>
                     <span>Orders</span></a>
             </li>
@@ -119,11 +119,13 @@ if(!isset($_SESSION['admin_id'])){
 
   <section class="main">
     
-     <div class="topbar shadow-sm">
-      <button class="btn btn-light text-dark" id="slideleft" style="font-size: 10px;"><i class="fas fa-arrow-left"></i></button>
+		<div class="">
+			<button class="btn btn-light text-dark" id="slideleft" style="font-size: 10px;"><i
+					class="fas fa-arrow-left"></i></button>
 
-
-     </div> 
+			<button class="btn btn-light text-dark d-none" id="slideright" style="font-size: 10px;"><i
+					class="fas fa-arrow-right"></i></button>
+		 </div>
 
       <div class="main_contents">
          <div class="container">
@@ -134,7 +136,7 @@ if(!isset($_SESSION['admin_id'])){
               <div class="card-body">
                   
                 
-                         <button class="btn btn-light  text-primary mb-2" data-bs-toggle="modal" data-bs-target="#addmodal" data-backdrop="static" data-keyboard="false" style="font-size: 14px;" >Add new <i class="fas fa-plus-circle"></i></button>   
+                         <button class="btn btn-warning  text-white mb-2" data-bs-toggle="modal" data-bs-target="#addmodal" data-backdrop="static" data-keyboard="false" style="font-size: 14px;" >Add new <i class="fas fa-plus-circle"></i></button>   
 
                         <!--
     <label style="font-size: 14px" class="mb-2 mt-4">Enter new Category:</label>
