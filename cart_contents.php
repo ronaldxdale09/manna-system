@@ -335,7 +335,7 @@ if(isset($_POST['cartitems'])){
                               if(isset($totalamount)){
                           
                                 ?>
-                                    <span id="totalll"> <?php echo array_sum($totalamount)-6000 ?></span>
+                                    <span id="totalll"> <?php echo array_sum($totalamount) ?></span>
                                     <?php
                               }else {
                                 echo '0';
