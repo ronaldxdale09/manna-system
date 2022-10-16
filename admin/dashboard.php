@@ -15,6 +15,10 @@ if(!isset($_SESSION['admin_id'])){
 
 <?php include 'head.php' ?>
 
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+
+
 <body style="background-color: white">
     <div class="wrapper">
 
@@ -66,12 +70,12 @@ if(!isset($_SESSION['admin_id'])){
                             <span>Sales</span></a>
                     </li>
 
-					<li class="nav-item navitems">
+                    <li class="nav-item navitems">
 
-						<a class="nav-link navlinks text-secondary" href="orders.php">
-							<i class="fas fa-cart-arrow-down"></i>
-							<span>Orders</span></a>
-					</li>
+                        <a class="nav-link navlinks text-secondary" href="orders.php">
+                            <i class="fas fa-cart-arrow-down"></i>
+                            <span>Orders</span></a>
+                    </li>
 
                     <!-- Divider -->
                     <hr class="sidebar-divider">
@@ -104,19 +108,6 @@ if(!isset($_SESSION['admin_id'])){
                             <i class="fas fa-users"></i>
                             <span>User Accounts</span></a>
                     </li>
-
-
-
-
-
-
-
-
-
-
-
-
-
                 </ul>
 
 
@@ -211,19 +202,42 @@ if(!isset($_SESSION['admin_id'])){
                     </div>
 
 
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="card" style="width:100%;max-width:100%;max-height:251px;">
+                                <canvas id="net_income" style="width:100%;max-width:100%;max-height:251px;"></canvas>
+                            </div>
+                        </div>
 
+                        <!-- end INCOME CHART -->
+                        <div class="col-4">
+                            <div class="card" style="width:100%;max-width:100%;max-height:251px;">
+                                <canvas id="purchase_chart" style="width:100%;max-width:100%;max-height:251px;">
+                                </canvas>
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="card" style="width:100%;max-width:100%;max-height:210px;">
+                                <canvas id="inventory_chart"
+                                    style="width:100%;max-width:100%;max-height:251px;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
                     <div class="card shadow-sm" style="">
                         <div class="card-body">
 
                             <?php 
 
-                      $getcat = " select * from category  ";
-                                  $gcat = mysqli_query($con,$getcat); 
-                                  $countcat= mysqli_num_rows($gcat);
-                               
+                        $getcat = " select * from category  ";
+                                    $gcat = mysqli_query($con,$getcat); 
+                                    $countcat= mysqli_num_rows($gcat);
+                                
 
 
-                   ?>
+                                ?>
                             <script>
                             window.onload = function() {
 
@@ -279,37 +293,58 @@ if(!isset($_SESSION['admin_id'])){
                             </script>
 
                             <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-                            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
 
 
                         </div>
+                        <br>
 
+
+                    </div>
+                    <br>
+
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"
+                        integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ=="
+                        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="card" style="width:100%;max-width:100%;max-height:251px;">
+                                <canvas id="income_chart" style="width:100%;max-width:100%;max-height:251px;">
+                                </canvas>
+                            </div>
+                        </div>
+
+                        <!-- end INCOME CHART -->
+                        <div class="col-4">
+                            <div class="card" style="width:100%;max-width:100%;max-height:251px;">
+                                <canvas id="gross_chart" style="width:100%;max-width:100%;max-height:251px;">
+                                </canvas>
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="card" style="width:100%;max-height:251px;">
+                                <canvas id="opex_chart" style="width:100%;max-width:100%;max-height:251px;">
+                                </canvas>
+                            </div>
+                        </div>
                     </div>
 
 
 
-
-
-
                 </div>
-
-
-
-            </div>
-
-
-
-
 
         </section>
 
     </div>
 
 
-
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="../js/sidebar.js?v=1"></script>
+
+
+    <?php include ('dashboard_chart.php'); ?>
 
 
 
