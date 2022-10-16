@@ -207,10 +207,10 @@
 
         type: 'bar', //Declare the chart type 
         data: {
-            labels: ['Dairy', 'Canned and Jarred', 'Noodles', 'Hardware', 'Care', 'Coffee', 'Paper', 'Soap'],
+            labels: ['Breads', 'Cake', 'Biscuit', 'Other'],
             datasets: [{
                 label: 'Gross Profit Margin',
-                data: [.7, .19, .3, .5, .2, .3, .3, .4],
+                data: [.7, .19, .3, .5],
                 borderColor: '#262600',
                 borderWidth: .5,
                 backgroundColor: '#994C00',
@@ -268,18 +268,15 @@
         type: 'pie', //Declare the chart type 
         data: {
             labels: [
-                'Dairy',
-                'Canned and Jarred',
-                'Noodles',
-                'Hardware',
-                'Care',
-                'Coffee',
-                'Paper',
-                'Soap'
+                'Biscuit',
+                'Breads',
+                'Cake',
+                'Other',
+              
             ],
             datasets: [{
                 label: 'Opex',
-                data: [30, 50, 70, 10, 10, 10],
+                data: [30, 50, 70, 10],
                 backgroundColor: [
                     '#8F431F', '#8F1103', '#B75A0D', '#D51918', '#D47D14', '#FB412C', '#F0A200',
                     '#F67E7D', '#FDD750', '#A56758', '#F78A05', '#81483D', '#B87F48'
