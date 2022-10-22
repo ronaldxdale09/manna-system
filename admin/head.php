@@ -5,6 +5,7 @@
     <!---->
 
     <script src="https://kit.fontawesome.com/129b086bc9.js" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="badge.scss">
     <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -11,7 +11,7 @@ if(isset($_POST['category'])){
                   <thead>
                     <tr>
                       <th scope="col">Category</th>
-                      <th scope="col">Status</th>
+                 
                       <th scope="col">Date-Created</th>
                       <th scope="col">Action</th>
                     </tr>
@@ -29,9 +29,7 @@ if(isset($_POST['category'])){
 					?>
 	   				<tr>
                       <td><?php echo $row['category_name'] ?></td>
-                      <td>
-                      	<span class="badge bg-primary" style="font-size: 12px">ACTIVE</span>
-                      </td>
+                
                       <td>
                       	<?php 
                       	echo date('M j,Y @ h:i a',strtotime($row['datecreated'])) ;

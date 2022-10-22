@@ -14,109 +14,10 @@ if(!isset($_SESSION['admin_id'])){
     <div class="wrapper">
 
 
-        <nav class="sidenav shadow">
-            <div class="userinfo">
-                <img src="../assets/logo/logo_transparent.png" class="img-thumbnnail shadow"
-                    style="width: 80px;height: 60px;border-radius: 30px;">
-
-
-                <div class="dropdown" style="font-weight: bolder;">
-
-                    Admin_<span id="username" class="dropdown-toggle" type="button" id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown" aria-expanded="false"><?php echo $_SESSION['admin_name'] ?></span>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="font-size: 13px;">
-                        <li><a class="dropdown-item" href="profile.php">Profile</a></li>
-                        <li><a class="dropdown-item" href="../log/logout.php">Logout</a></li>
-
-                    </ul>
-                </div>
-
-                <span style="font-weight: normal;font-size: 13px"><?php echo $_SESSION['admin_email'] ?></span>
-
-            </div>
-            <hr>
-            <div class="navigations">
-
-
-
-                <ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="font-size: 14px">
-
-
-
-
-                    <div class="sidebar-heading text-secondary" style="font-size: 12px">
-                        REPORTS
-                    </div>
-
-                    <li class="nav-item navitems">
-                        <a class="nav-link navlinks text-secondary" href="dashboard.php">
-                            <i class="fas fa-fw fa-tachometer-alt"></i>
-                            <span>Dashboard</span></a>
-                    </li>
-
-                    <li class="nav-item navitems">
-                        <a class="nav-link navlinks  text-secondary" href="sales.php">
-                            <i class="fas fa-hand-holding-usd"></i>
-                            <span>Sales</span></a>
-                    </li>
-
-                    <li class="nav-item navitems">
-                        <a class="nav-link navlinks text-secondary" href="orders.php">
-                            <i class="fas fa-cart-arrow-down"></i>
-                            <span>Orders</span></a>
-                    </li>
-
-                    <!-- Divider -->
-                    <hr class="sidebar-divider">
-
-                    <!-- Heading -->
-                    <div class="sidebar-heading text-secondary" style="font-size: 12px">
-                        MANAGE
-                    </div>
-
-                    <li class="nav-item navitems">
-                        <a class="nav-link navlinks text-secondary " href="products.php">
-                            <i class="fa fa-shirtsinbulk"></i>
-                            <span>Products</span></a>
-                    </li>
-
-                    <li class="nav-item navitems">
-                        <a class="nav-link navlinks  text-secondary" href="categories.php">
-                            <i class="fas fa-list-ul"></i>
-                            <span>Categories</span></a>
-                    </li>
-
-                    <li class="nav-item navitems">
-                        <a class="nav-link navlinks text-secondary " href="promo.php">
-                            <i class="fas fa-tags"></i>
-                            <span>Promo Codes</span></a>
-                    </li>
-
-                    <li class="nav-item navitems">
-                        <a class="nav-link navlinks  " href="accounts.php">
-                            <i class="fas fa-users"></i>
-                            <span>User Accounts</span></a>
-                    </li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-                </ul>
-
-
-            </div>
-
-
+    <nav class="sidenav shadow">
+        <?php include 'navbar.php' ?>
         </nav>
+
 
 
         <section class="main">
@@ -127,7 +28,7 @@ if(!isset($_SESSION['admin_id'])){
 
                 <button class="btn btn-light text-dark d-none" id="slideright" style="font-size: 10px;"><i
                         class="fas fa-arrow-right"></i></button>
-          
+
             </div>
 
             <div class="main_contents">
@@ -572,7 +473,7 @@ if(!isset($_SESSION['admin_id'])){
                             $('#disabledsave').attr('disabled', true);
                             $('#msg').html(
                                 '<span class="text-danger" style="font-size:12px">Already Exist!</span>'
-                                );
+                            );
                         } else {
                             $('#disabledsave').removeAttr('disabled');
                             $('#msg').html('');
@@ -607,7 +508,7 @@ if(!isset($_SESSION['admin_id'])){
                             $('#disabledsaved').attr('disabled', true);
                             $('#msgs').html(
                                 '<span class="text-danger" style="font-size:12px">Already Exist!</span>'
-                                );
+                            );
                         } else {
                             $('#disabledsaved').removeAttr('disabled');
                             $('#msgs').html('');
