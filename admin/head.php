@@ -21,18 +21,10 @@
 
     * {
         font-family: 'Zen Kaku Gothic New', sans-serif;
-		font-weight: bold;
+        font-weight: bold;
     }
 
-    .sidenav {
-        height: 100%;
-        width: 200px;
-        z-index: 1000;
-        position: fixed;
-        padding: 10px;
-		background-image: url('../assets/img/sidenavbar.png');
-        <!--background-color: #EDF2F7;-->
-    }
+
 
     .userinfo {
         text-align: center;
@@ -47,15 +39,14 @@
         margin-left: 200px;
     }
 
-    <!--.topbar {
+    < !--.topbar {
         height: 80px;
         width: 100%;
         padding: 5px;
         background-image: url('../assets/img/header.png');
-    }-->
+    }
 
-
-    .main_contents {
+    -->.main_contents {
         padding: 10px;
     }
 
@@ -114,6 +105,11 @@
         100% {
             transform: rotate(0deg);
         }
+    }
+
+
+    .sidebar .active {
+        background-color: #efc66c !important;
     }
     </style>
 

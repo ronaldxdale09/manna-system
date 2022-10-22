@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="../css/navbar.css" />
-<script src="../js/navbar.js" crossorigin="anonymous"></script>
+<script src="../js/navbar.js"></script>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css'
@@ -32,7 +32,7 @@
                 <span class="link_name">Orders</span>
             </a>
         </li>
-        
+
         <hr style='color:white'>
         <li>
             <a href='products.php'>
@@ -47,7 +47,7 @@
                 <span class="link_name">Item Production</span>
             </a>
         </li>
-        
+
         <hr style='color:white'>
 
         <li>
@@ -75,7 +75,7 @@
 
 
 
-     
+
 
         <hr style='color:white'>
 
@@ -89,8 +89,8 @@
                         style="width: 60px;height: 20px;border-radius: 30px;">
                 </div>
                 <div class='name-job'>
-                    <div class='profile_name'> <a  href="profile.php">User </a></div>
-                    <div class='job'>Administrator</div> 
+                    <div class='profile_name'> <a href="profile.php">User </a></div>
+                    <div class='job'>Administrator</div>
                 </div>
                 <a href="../log/logout.php">
                     <i class='bx bx-log-in'></i>
@@ -99,3 +99,17 @@
         </li>
     </ul>
 </div>
+
+<script>
+const activePage = window.location.pathname;
+const navLinks = document.querySelectorAll('.sidebar a').forEach(link => {
+    if (link.href.includes(`${activePage}`)) {
+        link.classList.add('active');
+        console.log(activePage);
+    }
+})
+
+
+
+
+    </script>

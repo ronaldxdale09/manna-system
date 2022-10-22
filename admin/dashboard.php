@@ -23,9 +23,8 @@ if(!isset($_SESSION['admin_id'])){
     <div class="wrapper">
 
 
-        <nav class="sidenav shadow">
+
         <?php include 'navbar.php' ?>
-        </nav>
 
 
         <section class="main">
