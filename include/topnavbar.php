@@ -12,7 +12,7 @@
          <div class="col-md-2">
              <a href="index.php" style="text-decoration: none">
 
-                 <a href="index.php" style='padding: 50px; margin-left: 20px;'>
+                 <a href="index.php" style='padding: 20px;'>
                      <img src="assets/logo/logo_transparent.png" alt="">
                  </a>
              </a>
@@ -20,14 +20,13 @@
 
          <div class="col-md-6">
 
-             <!--<input type="text" name="" placeholder="Search" class="form-control mt-3 searchbar" style="font-size: 14px"> -->
          </div>
          <div class="col-md-4">
 
              <style type="text/css">
              .dropdown:hover .dropdown-menu {
                  display: block;
-                 margin-top: 0; // remove the gap so it doesn't close
+                 margin-top: 0;
              }
              </style>
 
@@ -35,18 +34,18 @@
              <div class="container">
                  <div class="row" id="buttonsg">
 
-                     <div class="col-auto">
+                     <div class="col-md-6">
                          <?php 
                         if(isset($cart)){
 
                         }else {
                           ?>
 
-                         <button class="btn btn-light mt-3 rounded-circle" id="cartbutton"
-                             onclick="window.location.href='cart.php'" style="position: relative;">
-                             <i class="fas fa-shopping-cart rounded-circle" style="font-size: 20px;"></i>
-                             <span class="badge badge-danger bg-danger rounded-circle"
-                                 style="font-size: 10px;position: absolute;" id="countcart"></span>
+                         <button class="btn btn-dark mt-3 text-light" id="cartbutton"
+                             onclick="window.location.href='cart.php'" style="border-radius: 25px;position: relative;">
+                             <i class="fas fa-shopping-cart" style="font-size: 20px;"></i>
+                             <span class="badge badge-danger bg-danger"
+                                 style="font-size: 10px;border-radius: 20px;position: absolute;" id="countcart"></span>
                          </button>
 
 
@@ -61,12 +60,12 @@
                           ?>
 
 
-                         <button class="btn btn-light mt-3 rounded-circle " onclick="window.location.href='wishlist.php'"
-                             style="position: relative; margin-left: 10px;">
+                         <button class="btn btn-dark mt-3 text-light " onclick="window.location.href='wishlist.php'"
+                             style="border-radius: 25px;position: relative; margin-left: 10px;">
 
-                             <i class="fas fa-heart rounded-circle" style="font-size: 20px;"></i>
-                             <span class="badge badge-danger bg-danger rounded-circle"
-                                 style="font-size: 10px;position: absolute;" id="countwlist"></span>
+                             <i class="fas fa-heart" style="font-size: 20px;"></i>
+                             <span class="badge badge-danger bg-danger"
+                                 style="font-size: 10px;border-radius: 20px;position: absolute;" id="countwlist"></span>
                          </button>
 
                          <?php
@@ -77,7 +76,7 @@
 
                      </div>
 
-                     <div class="col-auto">
+                     <div class="col-md-6">
 
 
 
@@ -94,7 +93,8 @@
     ?>
 
                          <div class="dropdown">
-                             <a class="btn btn-light  mt-1 text-primary" href="#" role="button" style="padding: 5px">
+                             <a class="btn btn-dark  mt-1 text-light" href="#" role="button" style="padding: 5px">
+
                                  <span style="font-weight: bolder">Welcome <br> <span
                                          class="text-primary"><?php echo $_SESSION['user_name'] ?></span></span>
                              </a>
@@ -164,10 +164,10 @@
   }else {
     ?>
                          <div class="dropdown">
-                             <a class="btn btn-light mt-1 text-dark" href="#" role="button"
-                                 style="padding: 10px">
-                                 <i class="far fa-user" style="font-size: 20px;"></i>
-                                 <span style="font-weight: bolder;">Welcome!</span>
+                             <a class="btn btn-dark  mt-1 text-light" href="#" role="button"
+                                 style="border-radius: 40px;padding: 10px">
+                                 <i class="far fa-user" style="font-size: 20px"></i> <br>
+                                 <span style="font-weight: bolder">Welcome Customer</span>
                              </a>
 
 

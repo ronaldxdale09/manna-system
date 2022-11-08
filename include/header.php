@@ -36,15 +36,9 @@
         height: auto;
         width: 100%;
         padding: 5px;
-        overflow: visible;
-		position: fixed;
+        position: relative;
 
     }
-
-	.dropdown	{
-		margin: auto;
-		
-	}
 
     .searchbar {
         padding: 10px;
@@ -63,9 +57,8 @@
 
 
     .purple-rain {
-		
+        
         background-color: #FCF4A3;
-
     }
 
     .det::-webkit-scrollbar {
