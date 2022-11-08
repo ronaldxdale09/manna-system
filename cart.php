@@ -18,9 +18,11 @@ $deletetempwishlist = "DELETE FROM `wishlist` WHERE user_id = '$ipadd' ";
 <html>
 
 <?php include 'include/header.php' ?>
+
 <body style="background-color:white;overflow-x: hidden;">
-<link rel="stylesheet" href="css/cart.css">
-	<?php 
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/address.css">
+    <?php 
   $cart = 1;
   include 'include/topnavbar.php';
 
@@ -28,134 +30,172 @@ $deletetempwishlist = "DELETE FROM `wishlist` WHERE user_id = '$ipadd' ";
  // / include 'include/allcategorynav.php';
 
   ?>
-<style type="text/css">
-  @media screen and (max-width: 768px) {
-    .banner img {
-      height: 240px;
+    <style type="text/css">
+    @media screen and (max-width: 768px) {
+        .banner img {
+            height: 240px;
+        }
+
+        #bnctitle {
+            font-size: 30px;
+        }
+
+        #buttonsg {
+            position: relative;
+            left: 100%;
+        }
     }
-    #bnctitle {
-      font-size: 30px;
+    </style>
+
+    <style type="text/css">
+    .float-right {
+        float: right;
     }
-    #buttonsg {
-      position: relative;
-      left: 100%;
-    }
-  }
-</style>
- 	
- <style type="text/css">
+    </style>
+
+    <div class="container-fluid mt-4">
+
+
+        <div class="container">
+
+                <div class="address_box">
+                    <div class="left">
+                        <div class="delivery_address">
+                            <div class="icon_circle">
+                                <i class="far fa-location"></i>
+                            </div>
+                            <p>Delivery Address</p>
+                            <div class="delivery_address_info">
+                                <div class="info_">
+                                    <p>Abby Quintos</p>
+                                    <p>(+63) 9456517431</p>
+                                    <p>Quintos Drive, Zone V Divisoria, Zamboanga City</p>
+                                </div>
+                                <div class="info_">
+                                    <p>Abby Quintos</p>
+                                    <p>(+63) 9456517431</p>
+                                    <p>Quintos Drive, Zone V Divisoria, Zamboanga City</p>
+                                </div>
+                                <div class="info_add">
+                                    <i class="fa fa-plus-circle"></i>
+                                    <p>Add address</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
  
-  .float-right {
-    float: right;
-  }
- </style>
 
-  <div class="container-fluid mt-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="text-dark" style="font-weight: bolder;">Shopping Cart</h5>
 
+                </div>
 
-  	  <div class="container">
-  	  
-  	  <div class="card">
-         <div class="card-header">
-           <h5 class="text-dark" style="font-weight: bolder;">Shopping Cart</h5>
+                <div class="card-body" id="items_in_the_cart">
 
-         </div> 
-         
-        <div class="card-body" id="items_in_the_cart">
-     
-              <div class="spinner-grow text-info" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
-<div class="spinner-grow text-info" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
-<div class="spinner-grow text-info" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
+                    <div class="spinner-grow text-info" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-info" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-info" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
 
 
 
-        </div> 
-          
-      </div> 
-      
+                </div>
 
-  	 
-  	   
+            </div>
 
-  	  </div> 
-  	  
-  	  <p><br></p>
 
-  	
-  	 
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  
-  <script>
-  $(document).ready(function() {
-     if ( $(window).width() <= 767 ) { 
-      $('#buttonsg').removeClass('row');
-      $('#footrow').removeClass('row');
-       $('#footrow').css('text-align','center');
-       $('.e').removeClass('col-md-4');
 
-      }
-     countitemwishlist();
 
-    function countitemwishlist (){
 
-        $.ajax({
-                 url : "contents.php",
-                  method: "POST",
-                   data  : {cartwlistitems:1},
-                   success : function(data){
-                $('#countwlist').text(data);
-                   }
+        </div>
+
+        <p><br></p>
+
+
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+        <script>
+        $(document).ready(function() {
+            if ($(window).width() <= 767) {
+                $('#buttonsg').removeClass('row');
+                $('#footrow').removeClass('row');
+                $('#footrow').css('text-align', 'center');
+                $('.e').removeClass('col-md-4');
+
+            }
+            countitemwishlist();
+
+            function countitemwishlist() {
+
+                $.ajax({
+                    url: "contents.php",
+                    method: "POST",
+                    data: {
+                        cartwlistitems: 1
+                    },
+                    success: function(data) {
+                        $('#countwlist').text(data);
+                    }
                 })
 
-    }
+            }
 
-  cartitems();
-    function  cartitems (){
+            cartitems();
 
-        $.ajax({
-                 url : "cart_contents.php",
-                  method: "POST",
-                   data  : {cartitems:1},
-                   success : function(data){
-                $('#items_in_the_cart').html(data);
-                   }
+            function cartitems() {
+
+                $.ajax({
+                    url: "cart_contents.php",
+                    method: "POST",
+                    data: {
+                        cartitems: 1
+                    },
+                    success: function(data) {
+                        $('#items_in_the_cart').html(data);
+                    }
                 })
 
-    }
+            }
 
 
-  });
-  </script>
-  	 
+        });
+        </script>
 
 
-  	
-  </div> 
 
- <?php 
+
+    </div>
+
+    <?php 
   include 'include/footer.php';
   include 'include/itemsview.php';
   ?>
-  	
-  
-
-  	
 
 
 
-     	   			 
-		  
-		
-		<!--Bootstrap Plugins-->
-	
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/popper.js"></script>
-		<script type="text/javascript" src="js/bootstrap.js"></script>
+
+
+
+
+
+
+
+    <!--Bootstrap Plugins-->
+
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/popper.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
 </body>
+
 </html>

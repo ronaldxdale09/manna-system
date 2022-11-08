@@ -74,15 +74,9 @@
 										  <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 										</div>
 
-										<label>Card Accepted</label>
+										<label>Input Mobile Number</label>
 										<br>
-										 <div class="" style="font-size: 25px">
-										 
-										 <i class="fa fa-cc-visa" style="color:navy;"></i>
-						              <i class="fa fa-cc-amex" style="color:blue;"></i>
-						              <i class="fa fa-cc-mastercard" style="color:red;"></i>
-						              <i class="fa fa-cc-discover" style="color:orange;"></i>
-						              </div> 
+										
 						              <br>
 
  	 	 		 	 	 	     <label>Name on Card:</label>

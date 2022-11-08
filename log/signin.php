@@ -53,6 +53,31 @@ if(isset($_SESSION['admin_id'])){
         position: absolute;
         right: 20px;
     }
+
+    .form-group {
+        border: 1px solid #ced4da;
+        padding: 5px;
+        border-radius: 6px;
+        width: auto;
+    }
+
+    .form-group:focus {
+        color: #212529;
+        background-color: #fff;
+        border-color: #86b7fe;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+    }
+
+    .form-group input {
+        display: inline-block;
+        width: auto;
+        border: none;
+    }
+
+    .form-group input:focus {
+        box-shadow: none;
+    }
     </style>
     <?php include '../include/header.php' ?>
 </head>
@@ -78,7 +103,7 @@ if(isset($_SESSION['admin_id'])){
                             </a>
                             <br>
                         </div>
-                    
+
                         <!---Login-->
                         <form method="post" action="login.php" id="login" class="" onsubmit="return false">
 
@@ -87,7 +112,7 @@ if(isset($_SESSION['admin_id'])){
                             <div class="container py-4">
                                 <link rel="preconnect" href="https://fonts.googleapis.com">
 
-                    
+
 
 
                                 <div class="alert alert-danger d-none" id="logalert" role="alert"
@@ -225,31 +250,22 @@ if(isset($_SESSION['admin_id'])){
                                         aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
 
-                                <label>Card Accepted</label>
-                                <br>
-                                <div class="" style="font-size: 25px">
-
-                                    <i class="fa fa-cc-visa" style="color:navy;"></i>
-                                    <i class="fa fa-cc-amex" style="color:blue;"></i>
-                                    <i class="fa fa-cc-mastercard" style="color:red;"></i>
-                                    <i class="fa fa-cc-discover" style="color:orange;"></i>
-                                </div>
+                                <label>Enter Mobile Number</label>
                                 <br>
 
-                                <label>Name on Card:</label>
-                                <input type="text" class="form-control txt mb-2" name="cname" style="">
+                                <center>
+                                    <div class="form-group mt-2 d-inline-block">
+                                        <span class="border-end country-code px-2">+63</span>
+                                        <input type="text" class="form-control" name="phone_number"
+                                            aria-describedby="emailHelp" placeholder="91257888" maxlength="10" />
+                                    </div>
+                                </center>
 
-                                <label>Credit Card Number:</label>
-                                <input type="text" class="form-control txt mb-2" name="cnumber" style="">
-
-                                <label>CVV:</label>
-                                <input type="text" class="form-control txt mb-2" name="cvv" style="">
 
                                 <button type="submit" class="btn btn-primary form-control mb-1 py-2 mt-2"
                                     style="font-style: 16px">Register</button>
 
-                                <button type="submit" class="btn btn-secondary form-control mb-1 py-2 mt-2"
-                                    style="font-style: 16px">Skip & Register</button>
+
 
 
                                 <button type="button" class="btn btn-light form-control mb-1 py-2 mt-2 back2"

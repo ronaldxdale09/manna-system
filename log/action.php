@@ -34,12 +34,11 @@ $pass = $_POST['pass'];
 
 if(isset($_POST['reg_step3'])){
 
-$cname = $_POST['cname'];
-$cnumber = $_POST['cnumber'];
-$cvv = $_POST['cvv'];
+$phone = $_POST['phone_number'];
+
 date_default_timezone_set('Asia/Manila'); 
 	$datenow = date('Y-m-d H:i:s');
-	$updatetemp = "UPDATE `tempuser` SET `cardname`='$cname',`cardnumber`='$cnumber',`cvv`='$cvv' WHERE ipaddress = '$tempusers' ";
+	$updatetemp = "UPDATE `tempuser` SET `mobile_number`='$phone' WHERE ipaddress = '$tempusers' ";
 	
 
 
@@ -56,12 +55,11 @@ date_default_timezone_set('Asia/Manila');
                     $deliv = $row['deliveryaddr'];
                     $email = $row['email'];
                     $pass = $row['password'];
-                    $cardname = $row['cardname'];
-                    $cardnum = $row['cardnumber'];
-                    $cvv = $row['cvv'];
+                    $phone = $row['mobile_number'];
+                  
 
-                    $savecustomer = "INSERT INTO `accounts`(`name`, `lastname`, `email`, `user_type`,`date_registered`, `password`,`birthdate`, `address`, `d_address`, `cardname`, `cardnumber`, `cvv`,`ipaddress`)
-                     VALUES ('$fn','$ln','$email','client','$datenow','$pass','$bd','$addr','$deliv','$cardname','$cardnum','$cvv','$tempusers')";
+                    $savecustomer = "INSERT INTO `accounts`(`name`, `lastname`, `email`, `user_type`,`date_registered`, `password`,`birthdate`, `address`, `d_address`, `mobile_number`,`ipaddress`)
+                     VALUES ('$fn','$ln','$email','client','$datenow','$pass','$bd','$addr','$deliv','$phone','$tempusers')";
                     mysqli_query($con,$savecustomer);
 
 			                 }
