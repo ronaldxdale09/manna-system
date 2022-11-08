@@ -441,6 +441,7 @@ if(isset($_SESSION['admin_id'])){
                     $('#step1').addClass('d-none');
                     $('#step2').addClass('d-none');
                     $('#step3').addClass('d-none');
+                    window.location.href = "verify.php";
                     $.notify("Registered Successfully! ", "success");
                 }
             })
