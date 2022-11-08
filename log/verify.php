@@ -2,7 +2,9 @@
 <link rel="stylesheet" type="text/css" href="../css/verify.css">
 
 
-<?php include '../connections/connect.php'; ?>
+<?php
+session_start();
+include '../connections/connect.php'; ?>
 
 <div class="container height-100 d-flex justify-content-center align-items-center">
     <div class="position-relative">
