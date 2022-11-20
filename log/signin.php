@@ -90,7 +90,7 @@ if(isset($_SESSION['admin_id'])){
 
 
 
-            <div class="col-md-4 col-sm-4 offset-md-2">
+            <div class="col-md-4 mx-auto">
 
                 <div class="card shadow-sm" style="border-radius: 20px; background-color:white; color:black;">
                     <div class="card-body">
@@ -276,41 +276,11 @@ if(isset($_SESSION['admin_id'])){
                             </div>
                         </form>
 
-
-
-                        <!--End Register-->
-
-
-
                     </div>
 
                 </div>
-
-
-
             </div>
-            <div class="col-md-6 col-sm-8">
-                <div class="text text-center">
-                    <img src="" style="max-height: 500px">
-                    <link rel="preconnect" href="https://fonts.googleapis.com">
-                    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-                    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
-
-                    <div class="subtitle">
-                        <h2 class="text-light" style="font-family: 'Courgette', cursive;font-weight: bolder;">Style and
-                            Passion, <br> Always the Fashion! ッ</h2>
-                    </div>
-                </div>
-
-
-                <div class="arr" style="position: absolute;bottom: 10px; right: 20px">Allrightsreserved&middot;2022
-                </div>
-
-
-            </div>
-
         </div>
-
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

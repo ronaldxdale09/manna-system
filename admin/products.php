@@ -1,22 +1,23 @@
-<?php 
-  session_start();
-if(!isset($_SESSION['admin_id'])){
-  header('location:../log/signin.php');
+<?php
+session_start();
+if (!isset($_SESSION["admin_id"])) {
+    header("location:../log/signin.php");
 }
- ?>
+?>
 <!DOCTYPE html>
 <html>
 
-<?php include 'head.php';
-  include '../connections/connect.php';
- ?>
+<?php
+include "head.php";
+include "../connections/connect.php";
+?>
 
 <body style="background-color: white">
     <div class="wrapper">
 
 
-    <nav class="sidenav shadow">
-        <?php include 'navbar.php' ?>
+        <nav class="sidenav shadow">
+            <?php include "navbar.php"; ?>
         </nav>
 
 
@@ -46,14 +47,6 @@ if(!isset($_SESSION['admin_id'])){
                                 data-bs-target="#addmodal" data-backdrop="static" data-keyboard="false"
                                 style="font-size: 14px;">Add new <i class="fas fa-plus-circle"></i></button>
 
-                            <!--
-    <label style="font-size: 14px" class="mb-2 mt-4">Enter new Category:</label>
-                      <input type="text" name="" class="form-control" style="font-size: 12px">
-                      <hr>
-                       <button class="btn btn-light  text-primary" style="font-size: 12px;float: right;" >Add new <i class="fas fa-plus-circle"></i></button>
-                        -->
-
-
 
 
                             <div id="table_category">
@@ -80,27 +73,18 @@ if(!isset($_SESSION['admin_id'])){
                     </div>
                 </div>
 
-
-
             </div>
-
 
             <div class="footer shadow">
 
             </div>
-
-
-
-
-
-
         </section>
 
     </div>
 
 
     <div class="modal fade" id="addmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
 
                 <div class="modal-body">
@@ -140,47 +124,73 @@ if(!isset($_SESSION['admin_id'])){
 
 
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-5">
 
                                     <label style="font-size: 14px" class="mb-3 mt-5">Enter Product Name : </label>
                                     <input type="text" name="name" style="font-size: 14px" class="form-control mb-2"
                                         required="">
                                     <label style="font-size: 14px" class="mb-3">Select Category: </label>
                                     <select class="form-select mb-2" name="cat" style="font-size: 14px">
-                                        <?php 
-                    include '../connections/connect.php';
-                        $selectcategory = " select * from category  ";
-                                    $selection = mysqli_query($con,$selectcategory); 
-                                    $countcategory= mysqli_num_rows($selection);
-                                   //  $get_id =  mysqli_insert_id($con); 
-                                 if ($countcategory>=1){
-                                
-                                     while($row = mysqli_fetch_array($selection)){
-                                        ?>
-                                        <option value="<?php echo $row['cat_id'] ?>"><?php echo $row['category_name'] ?>
-                                        </option>
                                         <?php
-                                     }
-                              }else {
-
-                              }
-                     ?>
+                                        include "../connections/connect.php";
+                                        $selectcategory =
+                                            " select * from category  ";
+                                        $selection = mysqli_query(
+                                            $con,
+                                            $selectcategory
+                                        );
+                                        $countcategory = mysqli_num_rows(
+                                            $selection
+                                        );
+                                        //  $get_id =  mysqli_insert_id($con);
+                                        if ($countcategory >= 1) {
+                                            while (
+                                                $row = mysqli_fetch_array(
+                                                    $selection
+                                                )
+                                            ) { ?>
+                                        <option value="<?php echo $row[
+                                            "cat_id"
+                                        ]; ?>"><?php echo $row[
+                                            "category_name"
+                                        ]; ?>
+                                        </option>
+                                        <?php }
+                                        } else {
+                                        }
+                                        ?>
                                     </select>
 
                                     <label style="font-size: 14px" class="mb-3">Enter Price: </label>
                                     <input type="text" name="price"
                                         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                                         style="font-size: 14px" class="form-control mb-2" required="">
+
+                                    <label style="font-size: 14px" class="mb-3">Onhand Quantity: </label>
+                                    <input type="number" name="onhand_quantity" style="font-size: 14px"
+                                        class="form-control mb-2" required="">
+
                                     <label style="font-size: 14px" class="mb-3">Enter Description: </label>
                                     <textarea style="font-size: 14px" name="desc" class="form-control"></textarea>
                                 </div>
+                                <div class="col-md-3">
+                                    <br>
+                                    <label style="font-size: 14px" class="mb-3">Enter Ingredients: </label> <br>
+                                    <button type="button" class=" btn btn-warning add_field_button">Add Field</button>
+                                    <button type="button" class="btn btn-dark  remove_field_button">Remove
+                                        Field</button>
+                                    <hr>
+                                    <div class="input_fields_wrap">
+                                        <input type="text" name="ingredients[]" placeholder="Ingredient" class="form-control field-long" />
 
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
+                        <br>
 
-
-                        <button type="submit" id="disabledsave" class="btn btn-light text-dark"
+                        <button type="submit" id="disabledsave" class="btn btn-warning text-dark"
                             style="font-size: 15px;float: right;">Save</button>
 
                     </form>
@@ -216,24 +226,27 @@ if(!isset($_SESSION['admin_id'])){
 
                             <select class="form-select mb-2" id="categoryid" name="ecat" style="font-size: 14px">
 
-                                <?php 
-                    include '../connections/connect.php';
-                        $selectcategory = " select * from category  ";
-                                    $selection = mysqli_query($con,$selectcategory); 
-                                    $countcategory= mysqli_num_rows($selection);
-                                   //  $get_id =  mysqli_insert_id($con); 
-                                 if ($countcategory>=1){
-                                
-                                     while($row = mysqli_fetch_array($selection)){
-                                        ?>
-                                <option value="<?php echo $row['cat_id'] ?>"><?php echo $row['category_name'] ?>
-                                </option>
                                 <?php
-                                     }
-                              }else {
-
-                              }
-                     ?>
+                                include "../connections/connect.php";
+                                $selectcategory = " select * from category  ";
+                                $selection = mysqli_query(
+                                    $con,
+                                    $selectcategory
+                                );
+                                $countcategory = mysqli_num_rows($selection);
+                                //  $get_id =  mysqli_insert_id($con);
+                                if ($countcategory >= 1) {
+                                    while (
+                                        $row = mysqli_fetch_array($selection)
+                                    ) { ?>
+                                <option value="<?php echo $row[
+                                    "cat_id"
+                                ]; ?>"><?php echo $row["category_name"]; ?>
+                                </option>
+                                <?php }
+                                } else {
+                                }
+                                ?>
                             </select>
 
                             <label style="font-size: 14px" class="mb-3">Enter Price: </label>
@@ -257,15 +270,13 @@ if(!isset($_SESSION['admin_id'])){
     </div>
 
 
-    <?php 
-  if(isset($_GET['viewproducts'])){
-    $id = $_GET['token'];
-
-    ?>
+    <?php if (isset($_GET["viewproducts"])) {
+        $id = $_GET["token"]; ?>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
         $('#openview').click();
+
 
     });
     </script>
@@ -295,49 +306,60 @@ if(!isset($_SESSION['admin_id'])){
                             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
 
-                                    <?php 
-            $gtproductphotosactive = " select * from photo where prod_id = '$id' limit 1  ";
-                        $result_of_getactive = mysqli_query($con,$gtproductphotosactive); 
-                       
-                         while($rowactive = mysqli_fetch_array($result_of_getactive)){
-                          $prodactive = $rowactive['p_id'];
-                          $src = '../img/products/'.$rowactive['photo'];
-                          
+                                    <?php
+                                    $gtproductphotosactive = " select * from photo where prod_id = '$id' limit 1  ";
+                                    $result_of_getactive = mysqli_query(
+                                        $con,
+                                        $gtproductphotosactive
+                                    );
 
-                      ?>
+                                    while (
+                                        $rowactive = mysqli_fetch_array(
+                                            $result_of_getactive
+                                        )
+                                    ) {
+
+                                        $prodactive = $rowactive["p_id"];
+                                        $src =
+                                            "../img/products/" .
+                                            $rowactive["photo"];
+                                        ?>
 
                                     <div class="carousel-item active">
-                                        <img src="<?php echo $src ?>" class="d-block w-100" alt="..."
+                                        <img src="<?php echo $src; ?>" class="d-block w-100" alt="..."
                                             style="width: 100%;height: 500px;">
                                     </div>
 
                                     <?php
-                         }
+                                    }
 
-                        if(isset($prodactive)){
-                            $gtproductphotos = " select * from photo where prod_id = '$id' and p_id != '$prodactive'  ";
-                        $result_of_get = mysqli_query($con,$gtproductphotos); 
-                       
-                         while($row = mysqli_fetch_array($result_of_get)){
-                          $src = '../img/products/'.$row['photo'];
-                      ?>
+                                    if (isset($prodactive)) {
+                                        $gtproductphotos = " select * from photo where prod_id = '$id' and p_id != '$prodactive'  ";
+                                        $result_of_get = mysqli_query(
+                                            $con,
+                                            $gtproductphotos
+                                        );
+
+                                        while (
+                                            $row = mysqli_fetch_array(
+                                                $result_of_get
+                                            )
+                                        ) {
+                                            $src =
+                                                "../img/products/" .
+                                                $row["photo"]; ?>
 
                                     <div class="carousel-item">
-                                        <img src="<?php echo $src ?>" class="d-block w-100" alt="..."
+                                        <img src="<?php echo $src; ?>" class="d-block w-100" alt="..."
                                             style="width: 100%;height: 500px;">
                                     </div>
 
                                     <?php
-                         }
-
-                        }else {
-                          echo 'NO PHOTO AVAILABLE';
-                        }
-
-                        
-                  
-
-         ?>
+                                        }
+                                    } else {
+                                        echo "NO PHOTO AVAILABLE";
+                                    }
+                                    ?>
 
 
 
@@ -367,25 +389,26 @@ if(!isset($_SESSION['admin_id'])){
                                 width: 0px;
                             }
                             </style>
-                            <?php 
-                    $viewprod = " select * from product where prod_id = '$id' ";
-                                $result_of_view = mysqli_query($con,$viewprod); 
-                           
-                            
-                                 while($row = mysqli_fetch_array($result_of_view)){
-                                ?>
-                            <h5 style="font-weight: bolder;" id="pname"><?php echo $row['name'] ?></h5>
-                            <span class="text-secondary mb-2" id="pprice"
-                                style="font-size: 20px;font-weight: bolder;">₱<?php echo $row['price'] ?></span>
+                            <?php
+                            $viewprod = " select * from product where prod_id = '$id' ";
+                            $result_of_view = mysqli_query($con, $viewprod);
+
+                            while (
+                                $row = mysqli_fetch_array($result_of_view)
+                            ) { ?>
+                            <h5 style="font-weight: bolder;" id="pname"><?php echo $row[
+                                "name"
+                            ]; ?></h5>
+                            <span class="text-secondary mb-2" id="pprice" style="font-size: 20px;font-weight: bolder;">₱<?php echo $row[
+                                    "price"
+                                ]; ?></span>
                             <br>
                             <div class="det" id="descc" style="font-size: 14px;height: 240px;overflow-y: scroll;">
-                                <?php echo $row['description'] ?>
+                                <?php echo $row["description"]; ?>
                             </div>
 
-                            <?php
-                                 }
-                          
-                 ?>
+                            <?php }
+                            ?>
 
 
                             <br>
@@ -431,19 +454,14 @@ if(!isset($_SESSION['admin_id'])){
 
 
 
-                        <?php 
-           $tochangep = " select * from photo where prod_id ='$id'   ";
-                       $rechange = mysqli_query($con,$tochangep); 
+                        <?php
+                        $tochangep = " select * from photo where prod_id ='$id'   ";
+                        $rechange = mysqli_query($con, $tochangep);
                         $cchgp = mysqli_num_rows($rechange);
 
-
-                        if($cchgp >=1){
-
-
-
-                        while($row = mysqli_fetch_array($rechange)){
-                            $src = '../img/products/'.$row['photo'];
-                    ?>
+                        if ($cchgp >= 1) {
+                            while ($row = mysqli_fetch_array($rechange)) {
+                                $src = "../img/products/" . $row["photo"]; ?>
                         <div class="col-md-4">
 
                             <div class="card mb-2">
@@ -452,8 +470,10 @@ if(!isset($_SESSION['admin_id'])){
                                         onsubmit="return false" id="updatephoto">
                                         <input type="hidden" name="updatephoto">
 
-                                        <img src="<?php echo $src ?>" style="width: 100%; height: 300px;">
-                                        <input type="hidden" name="photoid" value="<?php echo $row['p_id'] ?>">
+                                        <img src="<?php echo $src; ?>" style="width: 100%; height: 300px;">
+                                        <input type="hidden" name="photoid" value="<?php echo $row[
+                                            "p_id"
+                                        ]; ?>">
                                         <input type="file" name="imagee" class="form-control" accept="image/*"
                                             required="">
 
@@ -469,11 +489,9 @@ if(!isset($_SESSION['admin_id'])){
 
 
                         <?php
-                        }
-
-                           }else {
-
-                            ?>
+                            }
+                        } else {
+                             ?>
                         <script type="text/javascript">
                         $(document).ready(function() {
                             $('#mod').removeClass('modal-lg');
@@ -496,7 +514,7 @@ if(!isset($_SESSION['admin_id'])){
                                 <span style="font-size: 14px" id="imgsad"> Max of 3 Images will only be accepted <span
                                         class="text-danger">*</span></span>
                                 <br>
-                                <input type="hidden" value="<?php echo $id ?>" name="prod">
+                                <input type="hidden" value="<?php echo $id; ?>" name="prod">
 
 
                                 <button class="btn btn-dark mt-4" style="font-size: 14px;float: right;"> Save
@@ -506,13 +524,8 @@ if(!isset($_SESSION['admin_id'])){
                         </div>
 
                         <?php
-
-
-                           }
-
-                       
-                 
-        ?>
+                        }
+                        ?>
 
 
                     </div>
@@ -525,9 +538,7 @@ if(!isset($_SESSION['admin_id'])){
         </div>
 
         <?php
-
-  }
- ?>
+    } ?>
 
         <!-- Modal -->
 
@@ -742,6 +753,28 @@ if(!isset($_SESSION['admin_id'])){
 
 
             }
+
+
+            
+        var max_fields = 10;
+        var wrapper = $(".input_fields_wrap");
+        var add_button = $(".add_field_button");
+        var remove_button = $(".remove_field_button");
+
+        $(add_button).click(function(e) {
+            e.preventDefault();
+            var total_fields = wrapper[0].childNodes.length;
+            if (total_fields < max_fields) {
+                $(wrapper).append('<br><input type="text" name="ingredients[]" placeholder="Ingredient" class="form-control field-long" />');
+            }
+        });
+        $(remove_button).click(function(e) {
+            e.preventDefault();
+            var total_fields = wrapper[0].childNodes.length;
+            if (total_fields > 1) {
+                wrapper[0].childNodes[total_fields - 1].remove();
+            }
+        });
 
 
         });

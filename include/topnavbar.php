@@ -143,7 +143,7 @@
                              $('#logout').click(function() {
                                  Swal.fire({
                                      title: 'Are you sure?',
-                                     text: "We miss you already.",
+                                     text: "",
                                      icon: 'question',
                                      showCancelButton: true,
                                      confirmButtonColor: '#6b9dd4',

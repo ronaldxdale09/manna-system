@@ -138,8 +138,8 @@ $usertempip = getClientIP();
             <div class="row mt-5">
                 <div class="" style="float: right;">
 
-                    <button onclick="window.location.href='category.php' " class="btn btn-primary"
-                        style="font-size: 13px;width: auto;float: right;">View All Categories <i
+                    <button onclick="window.location.href='category.php' " class="btn btn-dark"
+                        style="font-size: 13px;width: auto;float: right;">View All Products <i
                             class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
