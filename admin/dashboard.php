@@ -50,10 +50,10 @@ if(!isset($_SESSION['admin_id'])){
                     <div class="row mb-4">
 
                         <div class="col-md-4">
-                            <div class="card shadow bg-warning">
+                            <div class="card shadow border-warning">
                                 <div class="card-body">
-                                    <h5 style="font-weight: bolder;text-align: center;" class="text-light">
-                                        PENDING ORDERS <span class="badge bg-light text-dark"> <?php 
+                                    <h5 style="font-weight: bolder;text-align: center;" class="text-dark">
+                                        PENDING ORDERS <span class="badge bg-dark text-light"> <?php 
                                 $corders = " select * from trans_record  ";
                                             $countord = mysqli_query($con,$corders); 
                                             $allorders= mysqli_num_rows($countord);
@@ -68,10 +68,10 @@ if(!isset($_SESSION['admin_id'])){
                         </div>
 
                         <div class="col-md-4">
-                            <div class="card shadow bg-success">
+                            <div class="card shadow border-success">
                                 <div class="card-body">
-                                    <h6 style="font-weight: bolder;text-align: center;" class="text-light">
-                                        REGISTERED CUSTOMERS <span class="badge bg-light text-dark">
+                                    <h6 style="font-weight: bolder;text-align: center;" class="text-dark">
+                                        REGISTERED CUSTOMERS <span class="badge bg-success text-light">
                                             <?php 
                                 $ccustomers = " select * from accounts  ";
                                             $ccustom = mysqli_query($con,$ccustomers); 
@@ -88,10 +88,10 @@ if(!isset($_SESSION['admin_id'])){
 
 
                         <div class="col-md-4">
-                            <div class="card shadow bg-primary">
+                            <div class="card shadow border-danger">
                                 <div class="card-body">
-                                    <h6 style="font-weight: bolder;text-align: center;" class="text-light">
-                                        CRITICAL ITEMS <span class="badge bg-light text-dark">
+                                    <h6 style="font-weight: bolder;text-align: center;" class="text-dark">
+                                        CRITICAL ITEMS <span class="badge bg-danger text-light">
 
                                             <?php 
                                 $cproducts = " select * from product  ";
