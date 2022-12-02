@@ -13,11 +13,27 @@ $deletetempwishlist = "DELETE FROM `wishlist` WHERE user_id = '$ipadd' ";
 }
 
 
+
+
+
+
  ?>
 <!DOCTYPE html>
 <html>
 
-<?php include 'include/header.php' ?>
+<?php include 'include/header.php';
+if (isset($_GET['prod'])) {
+    $prod_id = $_GET['prod'];
+  }
+
+  $sql = mysqli_query($con, "SELECT * from product  JOIN photo on
+  product.prod_id = photo.prod_id
+   WHERE product.prod_id='$prod_id'"); 
+  $arr = mysqli_fetch_array($sql);
+
+
+
+?>
 
 <body style="background-color:white;overflow-x: hidden;">
     <link rel="stylesheet" href="css/cart.css">
@@ -42,7 +58,7 @@ $deletetempwishlist = "DELETE FROM `wishlist` WHERE user_id = '$ipadd' ";
             <div class="col-md-6">
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active"> <img class="d-block w-100" src="images/cream_bread.jpg"
+                        <div class="carousel-item active"> <img class="d-block w-100" src="img/products/<?php echo $arr['photo']?>"
                                 alt="First slide">
                         </div>
                         <div class="carousel-item"> <img class="d-block w-100" src="c52.jpg" alt="Second slide"> </div>
@@ -57,7 +73,7 @@ $deletetempwishlist = "DELETE FROM `wishlist` WHERE user_id = '$ipadd' ";
             </div>
             <div class="col-md-6">
                 <div class="row">
-                    <h2>Party Flared Sleeve Top</h2>
+                    <h2><?php echo $arr['name']?></h2>
                 </div>
 
                 <div class="row">

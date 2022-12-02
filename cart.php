@@ -22,6 +22,7 @@ $deletetempwishlist = "DELETE FROM `wishlist` WHERE user_id = '$ipadd' ";
 <body style="background-color:white;overflow-x: hidden;">
     <link rel="stylesheet" href="css/cart.css">
     <link rel="stylesheet" href="css/address.css">
+    <link rel="stylesheet" href="css/select_address.scss">
     <?php 
   $cart = 1;
   include 'include/topnavbar.php';
@@ -58,36 +59,44 @@ $deletetempwishlist = "DELETE FROM `wishlist` WHERE user_id = '$ipadd' ";
 
         <div class="container">
 
-                <div class="address_box">
-                    <div class="left">
-                        <div class="delivery_address">
-                            <div class="icon_circle">
-                                <i class="far fa-location"></i>
-                            </div>
-                            <p>Delivery Address</p>
-                            <div class="delivery_address_info">
-                                <div class="info_">
-                                    <p>Abby Quintos</p>
-                                    <p>(+63) 9456517431</p>
-                                    <p>Quintos Drive, Zone V Divisoria, Zamboanga City</p>
-                                </div>
-                                <div class="info_">
-                                    <p>Abby Quintos</p>
-                                    <p>(+63) 9456517431</p>
-                                    <p>Quintos Drive, Zone V Divisoria, Zamboanga City</p>
-                                </div>
-                                <div class="info_add">
-                                    <i class="fa fa-plus-circle"></i>
-                                    <p>Add address</p>
-                                </div>
-                            </div>
+            <div class="address_box">
+                <div class="left">
+                    <div class="delivery_address">
+                        <div class="icon_circle">
+                            <i class="far fa-location"></i>
                         </div>
+                        <p>Delivery Address</p>
+                        <div class="delivery_address_info">
+
+                            <label class="card mx-2 ">
+                                <input name="plan" class="radio" type="radio" checked hidden>
+
+                                <span class="plan-details">
+
+                                    <span>Ronald Dale Fuentebella | 09352232051</span>
+                                    <span> Lamitan City</span>
+                                    <span>Brgy. Malinis, Lamitan City</span>
+                                </span>
+                            </label>
 
 
+                            <label class="card mx-2 ">
+                                <input name="plan" class="radio" type="radio" hidden>
+                                <span class="plan-details">
+                                    <span>Abby Quintos | 0934321323</span>
+                                    <span> Zamboanga City</span>
+                                    <span>Brgy. Malinis, Lamitan City</span>
+                            </label>
+
+
+                        </div>
                     </div>
 
+
                 </div>
- 
+
+            </div>
+
 
             <div class="card">
                 <div class="card-header">
