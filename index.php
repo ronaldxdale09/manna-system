@@ -69,7 +69,7 @@ $usertempip = getClientIP();
 <?php include 'include/header.php' ?>
 
 <style type="text/css">
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 100%) {
     .banner img {
         height: 240px;
     }
@@ -83,6 +83,17 @@ $usertempip = getClientIP();
         left: 100%;
     }
 }
+
+.stretched-link::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        pointer-events: auto;
+        content: "";
+
+    }
 </style>
 
 <body style="background-color:white;overflow-x: hidden;">
@@ -96,24 +107,41 @@ $usertempip = getClientIP();
 
 
 
-
-    <div class="container-fluid">
-
-        <div class="row">
-            <div class="col-md-1">
-
-            </div>
-            <div class="col-md-10">
+<div class="row">
+          
+            <div class="col-md-12">
                 <div class="banner">
-                    <img src="assets/img/landingpage.png" style="width: 100%;border-radius: 1px; margin-top: 100px;">
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="assets/img/banner.png" alt="First slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="assets/img/banner.png" alt="Second slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="..." alt="Third slide">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                            data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                            data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-1">
-
-            </div>
+          
 
         </div>
-        
+    <div class="container-fluid">
+
+
         <br><br><br><br><br>
         <div class="container">
 
@@ -143,44 +171,44 @@ $usertempip = getClientIP();
                             class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
-			
-			<br> <br><br> <br><br>
-			<div class="feature_card">
-					
-				<div class="card_info" data-aos="fade-up" data-aos-anchor-placement="center-center">
-					<div class="one">
-						<p>&nbsp;</p>
-					</div>
-					<div class="two">
-						<p>Best Quality Bread in Town</p>
-					</div>
-					<div class="three"><i class="fa fa-hat-chef"></i></div>
-				</div>
-				<div class="card_info" id="two" data-aos="fade-up" data-aos-anchor-placement="center-center"
-					data-aos-delay="200">
-					<div class="one"></div>
-					<div class="two">
-						<p>Quick Pickup and Delivery</p>
-					</div>
-					<div class="three"><i class="far fa-truck"></i></div>
-				</div>
-				<div class="card_info" id="three" data-aos="fade-up" data-aos-anchor-placement="center-center"
-					data-aos-delay="300">
-					<div class="one"></div>
-					<div class="two">
-						<p>Mode of Payment made easier</p>
-					</div>
-					<div class="three"><i class="fa fa-money-bill"></i></div>
-				</div>
-				<div class="card_info" id="four" data-aos="fade-up" data-aos-anchor-placement="center-center"
-					data-aos-delay="400">
-					<div class="one"></div>
-					<div class="two">
-						<p>Precise product description</p>
-					</div>
-					<div class="three"><i class="far fa-file"></i></div>
-				</div>
-			</div>	
+
+            <br> <br><br> <br><br>
+            <div class="feature_card">
+
+                <div class="card_info" data-aos="fade-up" data-aos-anchor-placement="center-center">
+                    <div class="one">
+                        <p>&nbsp;</p>
+                    </div>
+                    <div class="two">
+                        <p>Best Quality Bread in Town</p>
+                    </div>
+                    <div class="three"><i class="fa fa-hat-chef"></i></div>
+                </div>
+                <div class="card_info" id="two" data-aos="fade-up" data-aos-anchor-placement="center-center"
+                    data-aos-delay="200">
+                    <div class="one"></div>
+                    <div class="two">
+                        <p>Quick Pickup and Delivery</p>
+                    </div>
+                    <div class="three"><i class="far fa-truck"></i></div>
+                </div>
+                <div class="card_info" id="three" data-aos="fade-up" data-aos-anchor-placement="center-center"
+                    data-aos-delay="300">
+                    <div class="one"></div>
+                    <div class="two">
+                        <p>Mode of Payment made easier</p>
+                    </div>
+                    <div class="three"><i class="fa fa-money-bill"></i></div>
+                </div>
+                <div class="card_info" id="four" data-aos="fade-up" data-aos-anchor-placement="center-center"
+                    data-aos-delay="400">
+                    <div class="one"></div>
+                    <div class="two">
+                        <p>Precise product description</p>
+                    </div>
+                    <div class="three"><i class="far fa-file"></i></div>
+                </div>
+            </div>
 
         </div>
 

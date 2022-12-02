@@ -1,9 +1,10 @@
-<?php 
+<?php
 session_start();
 include 'connections/connect.php';
 $user = $_SESSION['user_id'];
-if(isset($_POST['cartitems'])){ 
-    ?>
+if (isset($_POST['cartitems']))
+{
+?>
 
 <style type="text/css">
 #items_in_the_carts {
@@ -21,28 +22,30 @@ if(isset($_POST['cartitems'])){
     <div class="col-md-8">
         <div id="items_in_the_carts">
             <!--Items-->
-            <?php 
-                            $gettingcartitems = " select * from cart where user_id = '$user'  ";
-                                     $resultofgetting = mysqli_query($con,$gettingcartitems); 
-                                     $countingitems= mysqli_num_rows($resultofgetting);
-                                   
-                                  if ($countingitems>=1){
-                                 
-                                      while($row = mysqli_fetch_array($resultofgetting)){
-                                        $product_id = $row['prod_id'];
-                                        $qty = $row['quantity'];
-                                        $total = $row['total'];
-                                        $cartid = $row['cart_id'];
+            <?php
+    $gettingcartitems = " select * from cart where user_id = '$user'  ";
+    $resultofgetting = mysqli_query($con, $gettingcartitems);
+    $countingitems = mysqli_num_rows($resultofgetting);
 
-                                        $totalqty[] = $qty;
-                                        $totalamount[] = $total;
+    if ($countingitems >= 1)
+    {
 
+        while ($row = mysqli_fetch_array($resultofgetting))
+        {
+            $product_id = $row['prod_id'];
+            $qty = $row['quantity'];
+            $total = $row['total'];
+            $cartid = $row['cart_id'];
 
-                                                    $getproducts = " select * from product where prod_id = '$product_id'  ";
-                                                            $productdetails = mysqli_query($con,$getproducts); 
-                                                           
-                                                             while($item = mysqli_fetch_array($productdetails)){
-                                                            ?>
+            $totalqty[] = $qty;
+            $totalamount[] = $total;
+
+            $getproducts = " select * from product where prod_id = '$product_id'  ";
+            $productdetails = mysqli_query($con, $getproducts);
+
+            while ($item = mysqli_fetch_array($productdetails))
+            {
+?>
             <div class="row">
                 <div class="card">
                     <div class="card-body">
@@ -52,17 +55,17 @@ if(isset($_POST['cartitems'])){
 
                                 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                                     <div class="carousel-inner">
-                                        <?php 
+                                        <?php
 
-      $gtproductphotosactive = " select * from photo where prod_id = '$product_id' limit 1  ";
-                        $result_of_getactive = mysqli_query($con,$gtproductphotosactive); 
-                       
-                         while($rowactive = mysqli_fetch_array($result_of_getactive)){
-                          $prodactive = $rowactive['p_id'];
-                          $src = 'img/products/'.$rowactive['photo'];
-                          
+                $gtproductphotosactive = " select * from photo where prod_id = '$product_id' limit 1  ";
+                $result_of_getactive = mysqli_query($con, $gtproductphotosactive);
 
-                      ?>
+                while ($rowactive = mysqli_fetch_array($result_of_getactive))
+                {
+                    $prodactive = $rowactive['p_id'];
+                    $src = 'img/products/' . $rowactive['photo'];
+
+?>
 
                                         <div class="carousel-item active">
 
@@ -75,15 +78,17 @@ if(isset($_POST['cartitems'])){
                                         </div>
 
                                         <?php
-                         }
+                }
 
-                        if(isset($prodactive)){
-                            $gtproductphotos = " select * from photo where prod_id = '$product_id' and p_id != '$prodactive'  ";
-                        $result_of_get = mysqli_query($con,$gtproductphotos); 
-                       
-                         while($row = mysqli_fetch_array($result_of_get)){
-                          $src = 'img/products/'.$row['photo'];
-                      ?>
+                if (isset($prodactive))
+                {
+                    $gtproductphotos = " select * from photo where prod_id = '$product_id' and p_id != '$prodactive'  ";
+                    $result_of_get = mysqli_query($con, $gtproductphotos);
+
+                    while ($row = mysqli_fetch_array($result_of_get))
+                    {
+                        $src = 'img/products/' . $row['photo'];
+?>
 
                                         <div class="carousel-item">
                                             <img src="<?php echo $src ?>" class="d-block w-100" alt="..."
@@ -91,15 +96,15 @@ if(isset($_POST['cartitems'])){
                                         </div>
 
                                         <?php
-                         }
+                    }
 
-                        }else {
-                          echo 'NO PHOTO AVAILABLE';
-                        }
-                        
-                
+                }
+                else
+                {
+                    echo 'NO PHOTO AVAILABLE';
+                }
 
-    ?>
+?>
                                     </div>
 
                                 </div>
@@ -152,12 +157,13 @@ if(isset($_POST['cartitems'])){
             </div>
 
             <?php
-                                                             }
-                                                      
-                                            
-                                      }
-                               }else {
-                               ?>
+            }
+
+        }
+    }
+    else
+    {
+?>
             <div class="container">
                 <div style="text-align: center;">
                     <img src="img/undraw_empty_cart_co35.svg" class="img-fluid mt-4" style="width: 300px">
@@ -177,10 +183,9 @@ if(isset($_POST['cartitems'])){
             </script>
 
             <?php
-                               }
+    }
 
-
-                      ?>
+?>
 
 
 
@@ -207,13 +212,16 @@ if(isset($_POST['cartitems'])){
                     <div class="card-body">
                         <span>
                             Number of Items : <span class="float-right" id="num_of_items">
-                                <?php 
-                                if(isset($totalqty)){
-                                    echo array_sum($totalqty);
-                                }else {
-                                    echo '0';
-                                }
-                                 ?>
+                                <?php
+    if (isset($totalqty))
+    {
+        echo array_sum($totalqty);
+    }
+    else
+    {
+        echo '0';
+    }
+?>
 
 
                             </span>
@@ -223,42 +231,50 @@ if(isset($_POST['cartitems'])){
 
                                 <select class="form-select" style="font-size: 14px" id="dcode">
                                     <option value="0">Select</option>
-                                    <?php 
+                                    <?php
 
-                                    if(isset($totalamount)){
-                                      $st = array_sum($totalamount);
-                                          $getdisc = " SELECT * FROM `promos`  ";
-                                                      $gdis = mysqli_query($con,$getdisc); 
-                                                      $pcode= mysqli_num_rows($gdis);
-                                                     //  $get_id =  mysqli_insert_id($con); 
-                                                   if ($pcode>=1){
-                                                  
-                                                       while($pc = mysqli_fetch_array($gdis)){
+    if (isset($totalamount))
+    {
+        $st = array_sum($totalamount);
+        $getdisc = " SELECT * FROM `promos`  ";
+        $gdis = mysqli_query($con, $getdisc);
+        $pcode = mysqli_num_rows($gdis);
+        //  $get_id =  mysqli_insert_id($con);
+        if ($pcode >= 1)
+        {
 
-                                                       $ed = $pc['expiration-date'];
-                                                        $ma = $pc['maxvalue_toavail'];
-                                                        $ds = $pc['discount'];
-                                                            if( $st > $ma){
-                                                              $dc = $ds;
+            while ($pc = mysqli_fetch_array($gdis))
+            {
 
-                                                             date_default_timezone_set('Asia/Manila');
-                                                             $datenow = date('Y-m-d');
+                $ed = $pc['expiration-date'];
+                $ma = $pc['maxvalue_toavail'];
+                $ds = $pc['discount'];
+                if ($st > $ma)
+                {
+                    $dc = $ds;
 
-                                                             if(date('Y-m-d',strtotime($ed)) < $datenow ){
+                    date_default_timezone_set('Asia/Manila');
+                    $datenow = date('Y-m-d');
 
-                                                             }else {
-                                                               ?>
+                    if (date('Y-m-d', strtotime($ed)) < $datenow)
+                    {
+
+                    }
+                    else
+                    {
+?>
                                     <option value="<?php echo $ds ?>"><?php echo $pc['code'] ?> (<span
                                             style="float: right;color:red"
                                             class="text-danger">-₱<?php echo $ds ?></span>)</option>
 
 
                                     <?php
-                                                             }
-                                                             
-                                                                
-                                                             }else {
-                                                              ?>
+                    }
+
+                }
+                else
+                {
+?>
                                     <option value="0">Unavailable</option>
                                     <script type="text/javascript">
 
@@ -266,18 +282,18 @@ if(isset($_POST['cartitems'])){
 
                                     </script>
                                     <?php
-                                                             }
+                }
 
+            }
+        }
 
-                                                       }
-                                                }
-                                  
-                                  
-                                }else {
-                                  echo 'No code available';
-                                }
+    }
+    else
+    {
+        echo 'No code available';
+    }
 
-                                   ?>
+?>
 
                                 </select>
 
@@ -331,17 +347,20 @@ if(isset($_POST['cartitems'])){
                             <br>
                             <hr>
                             <span style="font-size: 15px; font-weight: bolder">TOTAL : <span class="float-right"
-                                    id="totalamount" style="margin-left: 20px;font-size: 17px">₱ <?php 
-                              if(isset($totalamount)){
-                          
-                                ?>
+                                    id="totalamount" style="margin-left: 20px;font-size: 17px">₱ <?php
+    if (isset($totalamount))
+    {
+
+?>
                                     <span id="totalll"> <?php echo array_sum($totalamount) ?></span>
                                     <?php
-                              }else {
-                                echo '0';
-                              }
+    }
+    else
+    {
+        echo '0';
+    }
 
-                               ?></span></span>
+?></span></span>
                         </span>
 
                         <hr>
@@ -377,9 +396,10 @@ if(isset($_POST['cartitems'])){
                                 </label>
                             </div>
                             <hr>
-                            <?php 
-                            if(!isset($_SESSION['user_isset'])){
-                              ?>
+                            <?php
+    if (!isset($_SESSION['user_isset']))
+    {
+?>
                             <div class="container">
                                 <h6 class="text-danger">
                                     You need to login before proceeding
@@ -388,14 +408,16 @@ if(isset($_POST['cartitems'])){
                             <button type="button" class="btn btn-dark form-control "
                                 onclick="window.location.href='log/signin.php'">PROCEED</button>
                             <?php
-                            }else {
-                              ?>
+    }
+    else
+    {
+?>
 
                             <button type="submit" class="btn btn-dark form-control proceedcheckout"
                                 id="proceed">PROCEED</button>
                             <?php
-                            }
-                             ?>
+    }
+?>
 
 
                         </form>
@@ -431,7 +453,7 @@ if(isset($_POST['cartitems'])){
             <div class="modal-header">
                 <div class="row">
                     <div class="col-md-12"> <span>CONFIRM TRANSACTION</span> </div>
-             
+
                 </div>
                 <button type="button" class="btn-close" id="closepm" data-bs-dismiss="modal"
                     aria-label="Close"></button>
@@ -470,15 +492,16 @@ if(isset($_POST['cartitems'])){
                         </div> -->
                         <div id="shipadd" class="d-none">
 
-                            <?php 
-                        if(isset($_SESSION['user_daddress'])){
-                          ?>
+                            <?php
+    if (isset($_SESSION['user_daddress']))
+    {
+?>
 
 
                             <label class="mt-3">Shipping Address : <span class="badge bg-success">INUSED</span></label>
                             <br>
                             <textarea required="" id="shippingaddress" data-userid="<?php echo $_SESSION['user_id'] ?>"
-                                class="form-control"><?php  echo $_SESSION['user_daddress']; ?></textarea>
+                                class="form-control"><?php echo $_SESSION['user_daddress']; ?></textarea>
 
                             <button type="button" id="codbtn" class="btn btn-warning mt-3 form-control py-2"
                                 style="font-size: .8rem;">CASH ON DELIVERY</button>
@@ -486,10 +509,9 @@ if(isset($_POST['cartitems'])){
 
 
                             <?php
-                         
-                        }
+    }
 
-                         ?>
+?>
                         </div>
 
                         <div class="form-group"> <span class="text-success"
@@ -665,31 +687,31 @@ $(document).ready(function() {
                 },
                 success: function(data) {
 
-                    <?php 
-                            $user =$_SESSION['user_id'];
-                              $checkif_thersorder = "select * from transaction where user_id ='$user' and status != 'completed'  ";
-                               $chckingorder = mysqli_query($con,$checkif_thersorder); 
-                              
-                              $counts= mysqli_num_rows($chckingorder);
-                                    //$newlyinsertedid = mysqli_insert_id($con);
-                                   if($counts >=1){
-                                     while($row = mysqli_fetch_array($chckingorder)){
-                                 $porder = $row['tid'];  
-                               }
-                               ?>
+                    <?php
+    $user = $_SESSION['user_id'];
+    $checkif_thersorder = "select * from transaction where user_id ='$user' and status != 'completed'  ";
+    $chckingorder = mysqli_query($con, $checkif_thersorder);
+
+    $counts = mysqli_num_rows($chckingorder);
+    //$newlyinsertedid = mysqli_insert_id($con);
+    if ($counts >= 1)
+    {
+        while ($row = mysqli_fetch_array($chckingorder))
+        {
+            $porder = $row['tid'];
+        }
+?>
                     window.location.href = 'orders.php?p=<?php echo $porder ?>';
                     <?php
-
-                                   }else {
-                                       ?>
+    }
+    else
+    {
+?>
                     window.location.href = 'orders.php';
                     <?php
-                                   }
-                           
-                            
-                          
+    }
 
-                            ?>
+?>
 
 
 
@@ -858,4 +880,4 @@ $(document).ready(function() {
 <?php
 }
 
- ?>
+?>

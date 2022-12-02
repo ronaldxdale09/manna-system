@@ -1,30 +1,28 @@
-<?php 
+<?php
 session_start();
 include 'connections/connect.php';
 
-if(isset($_POST['gettheitemsview'])){ 
-	$id = $_POST['id'];
+if (isset($_POST['gettheitemsview']))
+{
+    $id = $_POST['id'];
 
-	 
-      
-
-	?>
+?>
 <div class="row">
     <div class="col-md-8">
 
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <?php 
+                <?php
 
-      $gtproductphotosactive = " select * from photo where prod_id = '$id' limit 1  ";
-                        $result_of_getactive = mysqli_query($con,$gtproductphotosactive); 
-                       
-                         while($rowactive = mysqli_fetch_array($result_of_getactive)){
-                          $prodactive = $rowactive['p_id'];
-                          $src = 'img/products/'.$rowactive['photo'];
-                          
+    $gtproductphotosactive = " select * from photo where prod_id = '$id' limit 1  ";
+    $result_of_getactive = mysqli_query($con, $gtproductphotosactive);
 
-                      ?>
+    while ($rowactive = mysqli_fetch_array($result_of_getactive))
+    {
+        $prodactive = $rowactive['p_id'];
+        $src = 'img/products/' . $rowactive['photo'];
+
+?>
 
                 <div class="carousel-item active">
                     <div class="product">
@@ -35,15 +33,17 @@ if(isset($_POST['gettheitemsview'])){
                 </div>
 
                 <?php
-                         }
+    }
 
-                        if(isset($prodactive)){
-                            $gtproductphotos = " select * from photo where prod_id = '$id' and p_id != '$prodactive'  ";
-                        $result_of_get = mysqli_query($con,$gtproductphotos); 
-                       
-                         while($row = mysqli_fetch_array($result_of_get)){
-                          $src = 'img/products/'.$row['photo'];
-                      ?>
+    if (isset($prodactive))
+    {
+        $gtproductphotos = " select * from photo where prod_id = '$id' and p_id != '$prodactive'  ";
+        $result_of_get = mysqli_query($con, $gtproductphotos);
+
+        while ($row = mysqli_fetch_array($result_of_get))
+        {
+            $src = 'img/products/' . $row['photo'];
+?>
 
                 <div class="carousel-item">
                     <div class="product">
@@ -56,16 +56,15 @@ if(isset($_POST['gettheitemsview'])){
                 </div>
 
                 <?php
-                         }
+        }
 
-                        }else {
-                          echo 'NO PHOTO AVAILABLE';
-                        }
+    }
+    else
+    {
+        echo 'NO PHOTO AVAILABLE';
+    }
 
-                        
-                  
-
-    ?>
+?>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                 data-bs-slide="prev">
@@ -87,13 +86,13 @@ if(isset($_POST['gettheitemsview'])){
 
 
 
-        <?php 
-                    $viewprod = " select * from product where prod_id = '$id' ";
-                                $result_of_view = mysqli_query($con,$viewprod); 
-                           
-                            
-                                 while($row = mysqli_fetch_array($result_of_view)){
-                                ?>
+        <?php
+    $viewprod = " select * from product where prod_id = '$id' ";
+    $result_of_view = mysqli_query($con, $viewprod);
+
+    while ($row = mysqli_fetch_array($result_of_view))
+    {
+?>
         <h5 style="font-weight: bolder;" id="pname"><?php echo $row['name'] ?></h5>
         <span class="text-secondary mb-2" id="pprice"
             style="font-size: 20px;font-weight: bolder;">₱<?php echo $row['price'] ?></span>
@@ -103,25 +102,30 @@ if(isset($_POST['gettheitemsview'])){
         </div>
 
         <?php
-                                 }
-                          
-                 ?>
+    }
+
+?>
         <br>
-        <?php 
-                        if(isset($cart)){
+        <?php
+    if (isset($cart))
+    {
 
-                        }else if(isset($wishlist)){
+    }
+    else if (isset($wishlist))
+    {
 
-                        }else {
-                          ?>
+    }
+    else
+    {
+?>
         <button class="btn btn-light text-info addcarts" style="font-size: 13px;font-weight: bold"
             data-productid="<?php echo $id ?>"> Add to Cart <i class="fas fa-cart-plus"></i></button>
 
 
-        <?php 
+        <?php
 
-           /*   $user = $_SESSION['user_id'];
-
+        /*   $user = $_SESSION['user_id'];
+        
                   $checkifonthelist = " select * from wishlist where prod_id ='$id' and user_id = '$user'  ";
                               $checkingitem = mysqli_query($con,$checkifonthelist); 
                               $thecountings= mysqli_num_rows($checkingitem);
@@ -137,20 +141,19 @@ if(isset($_POST['gettheitemsview'])){
             style="font-size: 13px;font-weight: bold"><i class="far fa-heart"></i></button>
         <?php
                         }
-              */
-               ?>
+        */
+?>
 
         <?php
-                        }
+    }
 
-                        /*
+    /*
+    
+    
+    
+    */
 
-
-
-                        */
-
-
-                         ?>
+?>
         <script type="text/javascript">
         $('.addcarts').click(function() {
 
@@ -185,93 +188,98 @@ if(isset($_POST['gettheitemsview'])){
 
 </div>
 <?php
-	
-
 
 }
 
+if (isset($_POST['cartitems']))
+{
+    $user = $_SESSION['user_id'];
 
-if(isset($_POST['cartitems'])){ 
-  $user = $_SESSION['user_id'];
-
-      $countcartitems = " select * from cart where user_id = '$user'  ";
-                  $result_of_counting = mysqli_query($con,$countcartitems); 
-                  $thecount= mysqli_num_rows($result_of_counting);
-                 //  $get_id =  mysqli_insert_id($con); 
-               if ($thecount>=1){
-                  echo $thecount;
-            }else {
-              echo '0';
-            }
+    $countcartitems = " select * from cart where user_id = '$user'  ";
+    $result_of_counting = mysqli_query($con, $countcartitems);
+    $thecount = mysqli_num_rows($result_of_counting);
+    //  $get_id =  mysqli_insert_id($con);
+    if ($thecount >= 1)
+    {
+        echo $thecount;
+    }
+    else
+    {
+        echo '0';
+    }
 }
 
+if (isset($_POST['cartwlistitems']))
+{
+    $user = $_SESSION['user_id'];
 
-
-if(isset($_POST['cartwlistitems'])){ 
-  $user = $_SESSION['user_id'];
-
-      $countwlistitems = " select * from wishlist where user_id = '$user'  ";
-                  $result_of_counting = mysqli_query($con,$countwlistitems); 
-                  $thecount= mysqli_num_rows($result_of_counting);
-                 //  $get_id =  mysqli_insert_id($con); 
-               if ($thecount>=1){
-                  echo $thecount;
-            }else {
-              echo '0';
-            }
+    $countwlistitems = " select * from wishlist where user_id = '$user'  ";
+    $result_of_counting = mysqli_query($con, $countwlistitems);
+    $thecount = mysqli_num_rows($result_of_counting);
+    //  $get_id =  mysqli_insert_id($con);
+    if ($thecount >= 1)
+    {
+        echo $thecount;
+    }
+    else
+    {
+        echo '0';
+    }
 }
 
-if(isset($_POST['allitems'])){ 
+if (isset($_POST['allitems']))
+{
 
+    $GetProducts = " select * from product limit 4 ";
+    $Items = mysqli_query($con, $GetProducts);
+    $countingItems = mysqli_num_rows($Items);
+    //  $get_id =  mysqli_insert_id($con);
+    if ($countingItems >= 1)
+    {
 
+        while ($row = mysqli_fetch_array($Items))
+        {
+            $itemid = $row['prod_id'];
 
-                $GetProducts = " select * from product limit 4 ";
-                            $Items = mysqli_query($con,$GetProducts); 
-                            $countingItems= mysqli_num_rows($Items);
-                           //  $get_id =  mysqli_insert_id($con); 
-                         if ($countingItems>=1){
-                        
-                             while($row = mysqli_fetch_array($Items)){
-                              $itemid = $row['prod_id'];
+?>
 
-                                
+<!--TOP PRODUCT DISPLAY INDEX-->
 
-                          ?>
+<div class="col-md-3 ">
 
-<!--Items-->
+    <div class="card w-100 dd" style="height:100%">
+        <?php
+            $get_items_photo = " SELECT * FROM `photo` where prod_id = '$itemid' limit 1 ";
+            $productphotos = mysqli_query($con, $get_items_photo);
+            $countproduct_photos = mysqli_num_rows($productphotos);
 
-<div class="col-md-3 cardd">
+            if ($countproduct_photos >= 1)
+            {
 
-    <div class="card w-100 dd" style="height:100%" s>
-        <?php   
-                $get_items_photo = " SELECT * FROM `photo` where prod_id = '$itemid' limit 1 ";
-                                              $productphotos = mysqli_query($con,$get_items_photo); 
-                                              $countproduct_photos= mysqli_num_rows($productphotos);
-                                         
-                                           if ($countproduct_photos>=1){
-                                          
-                                               while($photo= mysqli_fetch_array($productphotos)){
-                                                ?>
+                while ($photo = mysqli_fetch_array($productphotos))
+                {
+        ?>
 
         <center>
             <div class="circle">
-                <img src="<?php echo 'img/products/'.$photo['photo'] ?>" alt="" class="card-img-top"
+        
+                <img src="<?php echo 'img/products/' . $photo['photo'] ?>" alt="" class="card-img-top"
                     style="width:150px;height: 150px">
             </div>
-        </center>
+      
         <?php
-                                               }
-                                        }else {
+                }
+            }
+            else
+            {
 
+            }
 
-                                        }
-
-             ?>
+            ?>
 
         <div class="card-body" style="text-align: center;">
-            <a href="javascript:void(0)" data-bs-toggle="modal" class="openproductview"
-                data-id="<?php echo $row['prod_id'] ?>" data-bs-target="#exampleModald" data-backdrop="static"
-                data-keyboard="false" style="text-decoration: none"> <span
+     
+            <a href="product_details.php?prod=<?php echo $row['prod_id'] ?>" style="text-decoration: none"> <span
                     style="text-align: center;font-weight: bold"><?php echo $row['name'] ?></span> </a><br>
             <span class="card-text" style="text-align: left;"><?php echo $row['description'] ?>
             </span><br>
@@ -279,41 +287,38 @@ if(isset($_POST['allitems'])){
             </span> <br>
             <p></p>
 
-
-
-
-
-
-
         </div>
         <div class="card-footer">
-            <button class="btn btn-warning text-dark addcart"style="font-size: 13px;font-weight: bold;"
+            <button class="btn btn-warning text-dark addcart" style="font-size: 13px;font-weight: bold;"
                 data-productid="<?php echo $row['prod_id'] ?>"> Add to Cart <i class="fas fa-cart-plus"></i></button>
 
-            <?php 
+            <?php
 
-              $user = $_SESSION['user_id'];
+            $user = $_SESSION['user_id'];
 
-                  $checkifonthelist = " select * from wishlist where prod_id ='$itemid' and user_id = '$user'  ";
-                              $checkingitem = mysqli_query($con,$checkifonthelist); 
-                              $thecountings= mysqli_num_rows($checkingitem);
-                             //  $get_id =  mysqli_insert_id($con); 
-                           if ($thecountings>=1){
-                           ?>
+            $checkifonthelist = " select * from wishlist where prod_id ='$itemid' and user_id = '$user'  ";
+            $checkingitem = mysqli_query($con, $checkifonthelist);
+            $thecountings = mysqli_num_rows($checkingitem);
+            //  $get_id =  mysqli_insert_id($con);
+            if ($thecountings >= 1)
+            {
+            ?>
             <button class="btn btn-light text-danger removewlist" data-productid="<?php echo $row['prod_id'] ?>"
                 style="font-size: 13px;font-weight: bold"><i class="fas fa-heart"></i></button>
             <?php
-                        }else {
-                        ?>
+            }
+            else
+            {
+        ?>
             <button class="btn btn-light text-danger addwishlist" data-productid="<?php echo $row['prod_id'] ?>"
                 style="font-size: 13px;font-weight: bold"><i class="far fa-heart"></i></button>
             <?php
-                        }
+            }
 
-               ?>
+            ?>
 
         </div>
-
+        </center>
     </div>
 
 
@@ -323,14 +328,15 @@ if(isset($_POST['allitems'])){
 
 <!---->
 <?php
-                             }
+        }
 
-                      }else {
+    }
+    else
+    {
 
-                      }
+    }
 
-          
-                             ?>
+?>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -463,29 +469,30 @@ $(document).ready(function() {
     }
 });
 </script>
-<?php  
+<?php
 
-
-  
 }
 
-if(isset($_POST['listitems'])){ 
+if (isset($_POST['listitems']))
+{
 
-   
-                    $user = $_SESSION['user_id'];
-                        $items = " SELECT * FROM `wishlist` where user_id = '$user'  ";
-                                    $gettingitems = mysqli_query($con,$items); 
-                                    $count= mysqli_num_rows($gettingitems);
-                                   //  $get_id =  mysqli_insert_id($con); 
-                                 if ($count>=1){
-                                
-                                     while($row = mysqli_fetch_array($gettingitems)){
-                                        $product_id = $row['prod_id'];
-                                            $getproduct = " SELECT * FROM `product` where prod_id = '$product_id' ";
-                                                        $getting_products = mysqli_query($con,$getproduct); 
-                                                       
-                                                         while($item = mysqli_fetch_array($getting_products)){
-                                                      ?>
+    $user = $_SESSION['user_id'];
+    $items = " SELECT * FROM `wishlist` where user_id = '$user'  ";
+    $gettingitems = mysqli_query($con, $items);
+    $count = mysqli_num_rows($gettingitems);
+    //  $get_id =  mysqli_insert_id($con);
+    if ($count >= 1)
+    {
+
+        while ($row = mysqli_fetch_array($gettingitems))
+        {
+            $product_id = $row['prod_id'];
+            $getproduct = " SELECT * FROM `product` where prod_id = '$product_id' ";
+            $getting_products = mysqli_query($con, $getproduct);
+
+            while ($item = mysqli_fetch_array($getting_products))
+            {
+?>
 
 <div class="row">
     <div class="card">
@@ -494,17 +501,17 @@ if(isset($_POST['listitems'])){
                 <div class="col-sm-4">
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            <?php 
+                            <?php
 
-      $gtproductphotosactive = " select * from photo where prod_id = '$product_id' limit 1  ";
-                        $result_of_getactive = mysqli_query($con,$gtproductphotosactive); 
-                       
-                         while($rowactive = mysqli_fetch_array($result_of_getactive)){
-                          $prodactive = $rowactive['p_id'];
-                          $src = 'img/products/'.$rowactive['photo'];
-                          
+                $gtproductphotosactive = " select * from photo where prod_id = '$product_id' limit 1  ";
+                $result_of_getactive = mysqli_query($con, $gtproductphotosactive);
 
-                      ?>
+                while ($rowactive = mysqli_fetch_array($result_of_getactive))
+                {
+                    $prodactive = $rowactive['p_id'];
+                    $src = 'img/products/' . $rowactive['photo'];
+
+?>
 
                             <div class="carousel-item active">
                                 <img src="<?php echo $src ?>" class="d-block w-100" alt="..."
@@ -512,15 +519,17 @@ if(isset($_POST['listitems'])){
                             </div>
 
                             <?php
-                         }
+                }
 
-                        if(isset($prodactive)){
-                            $gtproductphotos = " select * from photo where prod_id = '$product_id' and p_id != '$prodactive'  ";
-                        $result_of_get = mysqli_query($con,$gtproductphotos); 
-                       
-                         while($row = mysqli_fetch_array($result_of_get)){
-                          $src = 'img/products/'.$row['photo'];
-                      ?>
+                if (isset($prodactive))
+                {
+                    $gtproductphotos = " select * from photo where prod_id = '$product_id' and p_id != '$prodactive'  ";
+                    $result_of_get = mysqli_query($con, $gtproductphotos);
+
+                    while ($row = mysqli_fetch_array($result_of_get))
+                    {
+                        $src = 'img/products/' . $row['photo'];
+?>
 
                             <div class="carousel-item">
                                 <img src="<?php echo $src ?>" class="d-block w-100" alt="..."
@@ -528,16 +537,15 @@ if(isset($_POST['listitems'])){
                             </div>
 
                             <?php
-                         }
+                    }
 
-                        }else {
-                          echo 'NO PHOTO AVAILABLE';
-                        }
+                }
+                else
+                {
+                    echo 'NO PHOTO AVAILABLE';
+                }
 
-                        
-                  
-
-    ?>
+?>
                         </div>
 
                     </div>
@@ -562,13 +570,13 @@ if(isset($_POST['listitems'])){
 
                     <button class="btn btn-light text-info addcart"
                         style="font-size: 13px;font-weight: bold;float: right;"
-                        data-productid="<?php echo $item['prod_id']?>"> Add to Cart <i
+                        data-productid="<?php echo $item['prod_id'] ?>"> Add to Cart <i
                             class="fas fa-cart-plus"></i></button>
 
                     <button class="btn btn-light text-danger removefromlist "
-                        data-productid="<?php echo $item['prod_id']?>"
+                        data-productid="<?php echo $item['prod_id'] ?>"
                         style="font-size: 13px;font-weight: bold;float: right; margin-right: 5px;"
-                        data-productid="<?php echo $item['prod_id']?>"> Remove <i class="fas fa-times"></i></button>
+                        data-productid="<?php echo $item['prod_id'] ?>"> Remove <i class="fas fa-times"></i></button>
                 </div>
 
             </div>
@@ -582,13 +590,13 @@ if(isset($_POST['listitems'])){
 
 
 <?php
-                                                         }
-                                                  
+            }
 
-
-                                     }
-                              }else {
-                               ?>
+        }
+    }
+    else
+    {
+?>
 <div class="container">
     <div style="text-align: center;">
         <img src="img/undraw_no_data_re_kwbl.svg" class="img-fluid mt-5" style="width: 200px">
@@ -598,10 +606,9 @@ if(isset($_POST['listitems'])){
 </div>
 
 <?php
-                              }
-                     
-                
-  ?>
+    }
+
+?>
 <script type="text/javascript">
 $(document).ready(function() {
 
@@ -689,4 +696,4 @@ $(document).ready(function() {
 </script>
 <?php
 }
- ?>
+?>
