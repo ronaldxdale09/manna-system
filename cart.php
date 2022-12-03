@@ -58,6 +58,12 @@ $deletetempwishlist = "DELETE FROM `wishlist` WHERE user_id = '$ipadd' ";
 
 
         <div class="container">
+            <?php 
+   if(!isset($_SESSION['user_isset'])){
+
+   }
+   else {
+?>
 
             <div class="address_box">
                 <div class="left">
@@ -68,25 +74,35 @@ $deletetempwishlist = "DELETE FROM `wishlist` WHERE user_id = '$ipadd' ";
                         <p>Delivery Address</p>
                         <div class="delivery_address_info">
 
+                            <?php 
+               $getAddress = " select * from account_ship_address limit 4 ";
+               $results = mysqli_query($con, $getAddress);
+               $countingAddress = mysqli_num_rows($results);
+               //  $get_id =  mysqli_insert_id($con);
+               if ($countingAddress >= 1)
+               {
+           
+                   while ($row = mysqli_fetch_array($results))
+                   {
+                    $ship_id = $row['ship_id'];
+                    ?>
+
                             <label class="card mx-2 ">
                                 <input name="plan" class="radio" type="radio" checked hidden>
-
                                 <span class="plan-details">
 
-                                    <span>Ronald Dale Fuentebella | 09352232051</span>
-                                    <span> Lamitan City</span>
-                                    <span>Brgy. Malinis, Lamitan City</span>
+                                    <span><?php echo $row['contact_name'] ?> | <?php echo $row['phone_number'] ?></span>
+                                    <span>Address : <?php echo $row['address'] ?></span>
+                                    <span>Postal : <?php echo $row['postal_code'] ?></span>
                                 </span>
                             </label>
 
-
-                            <label class="card mx-2 ">
-                                <input name="plan" class="radio" type="radio" hidden>
-                                <span class="plan-details">
-                                    <span>Abby Quintos | 0934321323</span>
-                                    <span> Zamboanga City</span>
-                                    <span>Brgy. Malinis, Lamitan City</span>
-                            </label>
+                            <?php  }
+             } ?>
+                            <button class="btn-light info_add" data-bs-toggle="modal" data-bs-target="#newAddress">
+                                <i class="fa fa-plus-circle"></i>
+                                <p>Add address</p>
+                            </button>
 
 
                         </div>
@@ -96,7 +112,7 @@ $deletetempwishlist = "DELETE FROM `wishlist` WHERE user_id = '$ipadd' ";
                 </div>
 
             </div>
-
+            <?php } ?>
 
             <div class="card">
                 <div class="card-header">
@@ -191,9 +207,77 @@ $deletetempwishlist = "DELETE FROM `wishlist` WHERE user_id = '$ipadd' ";
   include 'include/itemsview.php';
   ?>
 
+    <style>
+    .form-group {
+        border: 1px solid #ced4da;
+        padding: 5px;
+        border-radius: 6px;
+        width: auto;
+    }
+
+    .form-group:focus {
+        color: #212529;
+        background-color: #fff;
+        border-color: #86b7fe;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+    }
+
+    .form-group input {
+        display: inline-block;
+        width: auto;
+        border: none;
+    }
+
+    .form-group input:focus {
+        box-shadow: none;
+    }
+    </style>
+
+    <!-- New Address -->
+    <div class="modal fade" id="newAddress" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">New Delivery Address</h5>
+                    <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method='POST' action='function/newAddress.php'>
+
+                    <input type="number" class="form-control txt mb-2" name="user_id" value='<?php echo $_SESSION['user_id']?>' hidden >
+                        <label>Name:</label>
+                        <input type="text" class="form-control txt mb-2" name="name" style="" required="">
 
 
 
+                        <label>Delivery Address (Street Name, Building, House No.):</label>
+
+                        <textarea class="form-control txt mb-2" name="address" cols="4"></textarea>
+
+                        <label>Postal Code:</label>
+                        <input type="number" class="form-control txt mb-2" name="postal" style="" required="">
+
+
+                        <hr>
+                        <label>Contact Number:</label> <br>
+                        <div class="form-group mt-2 d-inline-block">
+                            <span class="border-end country-code px-2">+63</span>
+                            <input type="text" class="form-control" name="phone_number" aria-describedby="emailHelp"
+                                placeholder="91257888" maxlength="10" required />
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"  class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name='add' class="btn btn-primary">Save changes</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
 

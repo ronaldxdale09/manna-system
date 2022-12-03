@@ -22,10 +22,10 @@ $fn = $_POST['fn'];
 $bd = $_POST['bd'];
 $addr = $_POST['addr'];
 $daddr = $_POST['daddr'];
-
+$postal = $_POST['postal'];
 echo $tempusers;
 
-	$updatetemp = "UPDATE `tempuser` SET `lastname`='$ln',`firstname`='$fn',`birthdate`='$bd',`address`='$addr',`deliveryaddr`='$daddr' WHERE ipaddress = '$tempusers' ";
+	$updatetemp = "UPDATE `tempuser` SET postal='$postal', `lastname`='$ln',`firstname`='$fn',`birthdate`='$bd',`address`='$addr',`deliveryaddr`='$daddr' WHERE ipaddress = '$tempusers' ";
 	mysqli_query($con,$updatetemp);
 
 
@@ -67,6 +67,7 @@ date_default_timezone_set('Asia/Manila');
                     $deliv = $row['deliveryaddr'];
                     $email = $row['email'];
                     $pass = $row['password'];
+					$postal = $row['postal'];
                     $phone = '+63'.$row['mobile_number'];
 
 					$SixDigitRandomNumber = mt_rand(100000,999999);
@@ -82,6 +83,12 @@ date_default_timezone_set('Asia/Manila');
 					$send_otp = "INSERT INTO `otp-sms`(`user_id`, `mobile_number`,`otp`,status)
 					VALUES ('$user_id','$phone','$SixDigitRandomNumber',0)";
 				   mysqli_query($con,$send_otp);
+
+
+				   $full_n = $fn.' '.$ln;
+				   $save_shipping = "INSERT INTO `account_ship_address`(`contact_name`, `phone_number`,`address`,`postal_code`,`user_id`,`status`)
+				   VALUES ('$full_n','$phone','$deliv','$postal','$user_id','1')";
+				  	mysqli_query($con,$save_shipping);
 	
 				   $_SESSION['reg_phone'] = $phone;
 

@@ -170,11 +170,16 @@ if(isset($_SESSION['admin_id'])){
 
                                 <label>BirthDate:</label>
                                 <input type="date" class="form-control txt mb-2" name="bd" style="" required="">
+                                 <hr>
 
                                 <label>Address:</label>
                                 <input type="text" class="form-control txt mb-2" name="addr" style="" required="">
 
-                                <label>Delivery Address:</label>
+                                <label>Postal Code:</label>
+                                <input type="number" class="form-control txt mb-2" name="postal" style="" required="">
+
+
+                                <label>Delivery Address (Street Name, Building, House No.):</label>
 
                                 <textarea class="form-control txt mb-2" name="daddr" cols="4"></textarea>
                                 <div class="form-check">
@@ -241,7 +246,7 @@ if(isset($_SESSION['admin_id'])){
                             <input type="hidden" name="reg_step3">
 
                             <div id="step3" class="d-none">
-                                <h6 class="text-primary mb-4">Set Payment Method</h6>
+                              
 
                                 <h6 style="font-size: 14px"> <span class="badge badge-success bg-success">Step 3 -
                                         3</span></h6>

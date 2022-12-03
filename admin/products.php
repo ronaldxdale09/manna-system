@@ -614,6 +614,16 @@ include "../connections/connect.php";
 
             }
 
+            
+            removeList = function() {
+                var input = document.getElementById('file');
+                var output = document.getElementById('fileList');
+
+                    output.innerHTML =
+                        '';
+            
+            }
+
 
             $('#savenew').on('submit', function(event) {
                 event.preventDefault();
@@ -634,8 +644,11 @@ include "../connections/connect.php";
                         success: function(data) {
                             //alert(data);
                             table_category();
+                            removeList();
+                            $("#file").val(null);
                             $.notify("Added Successfully!", "success");
                             $('.btn-close').click();
+            
 
                         }
                     })

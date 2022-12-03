@@ -20,7 +20,7 @@
 
 	         <label>BirthDate:</label>
 	         <input type="date" class="form-control txt mb-2" name="bd" style="" required="">
-
+	 <hr>
 	         <label>Address:</label>
 	         <input type="text" class="form-control txt mb-2" name="addr" style="" required="">
 
@@ -33,6 +33,8 @@
 	                 Same as the Address
 	             </label>
 	         </div>
+
+			 
 
 	 </form>
 

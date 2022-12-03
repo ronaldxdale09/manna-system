@@ -96,9 +96,11 @@ if (isset($_GET['prod'])) {
                             aria-hidden="true"></i> google wallet </p>
                 </div>
                 <div class="row mt-4">
-                    <h3 class="text-info"><i class="fa fa-map-marker" aria-hidden="true"></i></h3>
-                    <p style="font-size: 20px"> &nbsp; Delivery by23 Jul, Tuesday | &nbsp; <span
-                            class="text-success">FREE</span> </p>
+                   
+
+                            <button class="btn btn-warning text-dark addcart" style="font-size: 13px;font-weight: bold;"
+                            data-productid="<?php echo $arr['prod_id'] ?>"> Add to Cart <i
+                                class="fas fa-cart-plus"></i></button>
                 </div>
 
 
