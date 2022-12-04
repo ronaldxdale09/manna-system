@@ -1,7 +1,4 @@
- <!-- <div class="topbar">
-     <h6 style="float: left;" class="text-light">Globe/Tm: +639557653775 <i class="fas fa-phone"></i></h6>
-     <h6 style="float: right;" class="text-light">Follow us: @Facebook.MannaZamboanga</h6>
- </div> -->
+
 
  <nav class="purple-rain">
 
@@ -18,10 +15,10 @@
              </a>
          </div>
 
-         <div class="col-md-6">
+         <div class="col-md-5">
 
          </div>
-         <div class="col-md-4">
+         <div class="col-md-5">
 
              <style type="text/css">
              .dropdown:hover .dropdown-menu {
@@ -34,14 +31,14 @@
              <div class="container">
                  <div class="row" id="buttonsg">
 
-                     <div class="col-md-6">
+                     <div class="col-md-4">
                          <?php 
                         if(isset($cart)){
 
                         }else {
                           ?>
 
-                         <button class="btn btn-dark mt-3 text-light" id="cartbutton"
+                         <button class="btn  mt-3 text-dark" id="cartbutton"
                              onclick="window.location.href='cart.php'" style="border-radius: 25px;position: relative;">
                              <i class="fas fa-shopping-cart" style="font-size: 20px;"></i>
                              <span class="badge badge-danger bg-danger"
@@ -60,18 +57,25 @@
                           ?>
 
 
-                         <button class="btn btn-dark mt-3 text-light " onclick="window.location.href='wishlist.php'"
+                         <button class="btn mt-3 text-dark " onclick="window.location.href='wishlist.php'"
                              style="border-radius: 25px;position: relative; margin-left: 10px;">
 
                              <i class="fas fa-heart" style="font-size: 20px;"></i>
                              <span class="badge badge-danger bg-danger"
-                                 style="font-size: 10px;border-radius: 20px;position: absolute;" id="countwlist"></span>
+                                 style="font-size: 10px;border-radius: 20px;position: absolute;" id="incomingList"></span>
                          </button>
 
                          <?php
                         }
 
                          ?>
+                    <button class="btn mt-3 text-dark " onclick="window.location.href='orders.php?p=31'"
+                             style="border-radius: 25px;position: relative; margin-left: 10px;">
+
+                             <i class="fas fa-truck" style="font-size: 20px;"></i>
+                             <span class="badge badge-danger bg-danger"
+                                 style="font-size: 10px;border-radius: 20px;position: absolute;" id="countwlist"></span>
+                         </button>
 
 
                      </div>
@@ -93,7 +97,7 @@
     ?>
 
                          <div class="dropdown">
-                             <a class="btn btn-dark  mt-1 text-light" href="#" role="button" style="padding: 5px">
+                             <a class="btn btn-outline-dark  mt-1 text-dark" href="#" role="button" style="padding: 5px">
 
                                  <span style="font-weight: bolder">Welcome <br> <span
                                          class="text-primary"><?php echo $_SESSION['user_name'] ?></span></span>

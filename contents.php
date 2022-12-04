@@ -267,13 +267,13 @@ if (isset($_POST['allitems']))
                     style="width:150px;height: 150px">
             </div>
       
-        <?php
-                }
-            }
-            else
-            {
+                <?php
+                        }
+                    }
+                    else
+                    {
 
-            }
+                    }
 
             ?>
 

@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '08a7f32f2a7303651db177ace4e198db14174102',
+    'reference' => 'f4173b0893ee2fcdcd4ed2e09266a7de29e9891c',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '08a7f32f2a7303651db177ace4e198db14174102',
+      'reference' => 'f4173b0893ee2fcdcd4ed2e09266a7de29e9891c',
     ),
     'clicksend/clicksend-php' => 
     array (

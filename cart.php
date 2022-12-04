@@ -12,6 +12,7 @@ $deletetempwishlist = "DELETE FROM `wishlist` WHERE user_id = '$ipadd' ";
                             mysqli_query($con,$deletetempwishlist);
 }
 
+$user_id=$_SESSION['user_id'];
 
  ?>
 <!DOCTYPE html>
@@ -75,20 +76,26 @@ $deletetempwishlist = "DELETE FROM `wishlist` WHERE user_id = '$ipadd' ";
                         <div class="delivery_address_info">
 
                             <?php 
-               $getAddress = " select * from account_ship_address limit 4 ";
-               $results = mysqli_query($con, $getAddress);
-               $countingAddress = mysqli_num_rows($results);
-               //  $get_id =  mysqli_insert_id($con);
-               if ($countingAddress >= 1)
-               {
+                            $getAddress = " select * from account_ship_address where user_id='$user_id' ";
+                            $results = mysqli_query($con, $getAddress);
+                            $countingAddress = mysqli_num_rows($results);
+                         
+                            //  $get_id =  mysqli_insert_id($con);
+                            if ($countingAddress >= 1)
+                            {
            
-                   while ($row = mysqli_fetch_array($results))
-                   {
-                    $ship_id = $row['ship_id'];
-                    ?>
+                            while ($row = mysqli_fetch_array($results))
+                            {
+                                $ship_id = $row['ship_id'];
+
+                                $status = $row['status'];
+                                
+                               
+                                ?>
 
                             <label class="card mx-2 ">
-                                <input name="plan" class="radio" type="radio" checked hidden>
+                                <input name="address" id='addressSelected' value='<?php echo $row['ship_id'] ?>'
+                                    class="radio" type="radio"  <?php if ($status == '1') { echo 'checked'; } else { echo ''; } ?>  hidden>
                                 <span class="plan-details">
 
                                     <span><?php echo $row['contact_name'] ?> | <?php echo $row['phone_number'] ?></span>
@@ -152,6 +159,26 @@ $deletetempwishlist = "DELETE FROM `wishlist` WHERE user_id = '$ipadd' ";
 
         <script>
         $(document).ready(function() {
+            // ADDRESS
+            $('input[name=address]').change(function() {
+                var value = $('input[name=address]:checked').val();
+                var user_id =<?php echo $user_id ?>;
+                $.ajax({
+                    url: "function/changeAddress.php",
+                    method: "POST",
+                    data: {
+                        ship_id: value,
+                        user_id: user_id
+                    },
+                    success: function(data) {
+                      console.log(data);
+                    }
+                })
+
+
+
+            });
+            //  
             if ($(window).width() <= 767) {
                 $('#buttonsg').removeClass('row');
                 $('#footrow').removeClass('row');
@@ -248,7 +275,8 @@ $deletetempwishlist = "DELETE FROM `wishlist` WHERE user_id = '$ipadd' ";
                 <div class="modal-body">
                     <form method='POST' action='function/newAddress.php'>
 
-                    <input type="number" class="form-control txt mb-2" name="user_id" value='<?php echo $_SESSION['user_id']?>' hidden >
+                        <input type="number" class="form-control txt mb-2" name="user_id"
+                            value='<?php echo $_SESSION['user_id']?>' hidden>
                         <label>Name:</label>
                         <input type="text" class="form-control txt mb-2" name="name" style="" required="">
 
@@ -271,7 +299,7 @@ $deletetempwishlist = "DELETE FROM `wishlist` WHERE user_id = '$ipadd' ";
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button"  class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" name='add' class="btn btn-primary">Save changes</button>
                 </div>
                 </form>
