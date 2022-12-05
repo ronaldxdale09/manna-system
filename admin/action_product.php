@@ -10,11 +10,13 @@ if(isset($_POST['category'])){
     <table class="table table-sm" id="categorytable">
         <thead>
             <tr>
+                <th scope="col">Barcode</th>
                 <th scope="col">Name</th>
                 <th scope="col">Category</th>
                 <th scope="col">Description</th>
-				<th scope="col">Ingredients</th>
+                <th scope="col">Ingredients</th>
                 <th scope="col">Available Quantity</th>
+                <th scope="col">Cost</th>
                 <th scope="col">Price</th>
                 <th scope="col">Date-Created</th>
                 <th scope="col">Action</th>
@@ -34,6 +36,9 @@ if(isset($_POST['category'])){
 	                 	$catid = $row['cat_id'];
 					?>
             <tr>
+                <td>
+                    <?php echo $row['barcode'] ?>
+                </td>
                 <td><a href="products.php?viewproducts&productname=<?php echo $row['name'] ?>&token=<?php echo $row['prod_id'] ?>&_view"
                         style="text-decoration: none"><i class="far fa-images"></i></a> <span
                         style="font-weight: bolder;"><?php echo $row['name'] ?></span></td>
@@ -52,14 +57,17 @@ if(isset($_POST['category'])){
                 <td>
                     <?php echo $row['description'] ?>
                 </td>
-				<td>
+                <td>
                     <?php echo $row['ingredients'] ?>
                 </td>
+                <td>
+                    <span class="badge bg-black"> <?php echo $row['quantity'] ?></span>
+                </td>
 				<td>
-				<span class="badge bg-black"> <?php echo $row['quantity'] ?></span>
+				₱  <?php echo $row['cost'] ?? '0' ?>
                 </td>
                 <td>
-                    ₱<?php echo $row['price'] ?>
+                   ₱ <?php echo $row['price'] ?>
                 </td>
                 <td>
                     <?php 
@@ -212,6 +220,9 @@ if(isset($_POST['checkifexistcat'])){
 if(isset($_POST['savenew'])){ 
 	$name = $_POST['name'];
 	$price = $_POST['price'];
+
+	$cost = $_POST['cost'];
+	$barcode = $_POST['barcode'];
 	$desc = $_POST['desc'];
 	date_default_timezone_set('Asia/Manila'); 
 	$datenow = date('Y-m-d H:i:s');
@@ -228,8 +239,8 @@ if(isset($_POST['savenew'])){
     } 
 	
 	
-	$insertnew_product = "INSERT INTO `product`(`name`, `description`, `cat_id`, `price`, `datecreated`, `ingredients`) 
-	VALUES ('$name','$desc','$cat','$price','$datenow','$list_ingredients')";
+	$insertnew_product = "INSERT INTO `product`(`name`, `description`, `cat_id`, `price`, `datecreated`, `ingredients`,`barcode`,`cost`) 
+	VALUES ('$name','$desc','$cat','$price','$datenow','$list_ingredients','$barcode','$cost')";
 	mysqli_query($con,$insertnew_product);
 
 	$getp_id =  mysqli_insert_id($con); 

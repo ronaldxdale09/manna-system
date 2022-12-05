@@ -125,11 +125,15 @@ include "../connections/connect.php";
 
                                 </div>
                                 <div class="col-md-5">
-
-                                    <label style="font-size: 14px" class="mb-3 mt-5">Enter Product Name : </label>
+                                    <hr>
+                                    <label style="font-size: 14px" class="">Item Code/Barcode: </label>
+                                    <input type="text" name="barcode" style="font-size: 14px" class="form-control"
+                                        required="">
+                                    <br>
+                                    <label style="font-size: 14px" class="">Enter Product Name : </label>
                                     <input type="text" name="name" style="font-size: 14px" class="form-control mb-2"
                                         required="">
-                                    <label style="font-size: 14px" class="mb-3">Select Category: </label>
+                                    <label style="font-size: 14px" class="mb-1">Select Category: </label>
                                     <select class="form-select mb-2" name="cat" style="font-size: 14px">
                                         <?php
                                         include "../connections/connect.php";
@@ -160,11 +164,21 @@ include "../connections/connect.php";
                                         }
                                         ?>
                                     </select>
+                                    <div class="row">
+                                        <div class="col">
+                                            <label style="font-size: 14px" class="mb-3">Enter Cost: </label>
+                                            <input type="text" name="cost"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                                style="font-size: 14px" class="form-control mb-2" required="">
+                                        </div>
+                                        <div class="col">
+                                            <label style="font-size: 14px" class="mb-3">Enter Price: </label>
+                                            <input type="text" name="price"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                                style="font-size: 14px" class="form-control mb-2" required="">
+                                        </div>
+                                    </div>
 
-                                    <label style="font-size: 14px" class="mb-3">Enter Price: </label>
-                                    <input type="text" name="price"
-                                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                                        style="font-size: 14px" class="form-control mb-2" required="">
 
                                     <label style="font-size: 14px" class="mb-3">Onhand Quantity: </label>
                                     <input type="number" name="onhand_quantity" style="font-size: 14px"
@@ -181,7 +195,8 @@ include "../connections/connect.php";
                                         Field</button>
                                     <hr>
                                     <div class="input_fields_wrap">
-                                        <input type="text" name="ingredients[]" placeholder="Ingredient" class="form-control field-long" />
+                                        <input type="text" name="ingredients[]" placeholder="Ingredient"
+                                            class="form-control field-long" />
 
                                     </div>
                                 </div>
@@ -614,14 +629,14 @@ include "../connections/connect.php";
 
             }
 
-            
+
             removeList = function() {
                 var input = document.getElementById('file');
                 var output = document.getElementById('fileList');
 
-                    output.innerHTML =
-                        '';
-            
+                output.innerHTML =
+                    '';
+
             }
 
 
@@ -648,7 +663,7 @@ include "../connections/connect.php";
                             $("#file").val(null);
                             $.notify("Added Successfully!", "success");
                             $('.btn-close').click();
-            
+
 
                         }
                     })
@@ -768,26 +783,28 @@ include "../connections/connect.php";
             }
 
 
-            
-        var max_fields = 10;
-        var wrapper = $(".input_fields_wrap");
-        var add_button = $(".add_field_button");
-        var remove_button = $(".remove_field_button");
 
-        $(add_button).click(function(e) {
-            e.preventDefault();
-            var total_fields = wrapper[0].childNodes.length;
-            if (total_fields < max_fields) {
-                $(wrapper).append('<br><input type="text" name="ingredients[]" placeholder="Ingredient" class="form-control field-long" />');
-            }
-        });
-        $(remove_button).click(function(e) {
-            e.preventDefault();
-            var total_fields = wrapper[0].childNodes.length;
-            if (total_fields > 1) {
-                wrapper[0].childNodes[total_fields - 1].remove();
-            }
-        });
+            var max_fields = 10;
+            var wrapper = $(".input_fields_wrap");
+            var add_button = $(".add_field_button");
+            var remove_button = $(".remove_field_button");
+
+            $(add_button).click(function(e) {
+                e.preventDefault();
+                var total_fields = wrapper[0].childNodes.length;
+                if (total_fields < max_fields) {
+                    $(wrapper).append(
+                        '<br><input type="text" name="ingredients[]" placeholder="Ingredient" class="form-control field-long" />'
+                    );
+                }
+            });
+            $(remove_button).click(function(e) {
+                e.preventDefault();
+                var total_fields = wrapper[0].childNodes.length;
+                if (total_fields > 1) {
+                    wrapper[0].childNodes[total_fields - 1].remove();
+                }
+            });
 
 
         });
