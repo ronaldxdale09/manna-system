@@ -13,10 +13,10 @@
             </a>
         </div>
 
-        <div class="col-md-5">
+        <div class="col-md-4">
 
         </div>
-        <div class="col-md-5">
+        <div class="col-md-6">
 
             <style type="text/css">
             .dropdown:hover .dropdown-menu {

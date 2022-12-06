@@ -147,7 +147,7 @@ if (isset($_POST["cartitems"])) { ?>
         ?>
             <div class="container">
                 <div style="text-align: center;">
-                    <img src="img/undraw_empty_cart_co35.svg" class="img-fluid mt-4" style="width: 300px">
+                    <img src="assets/img/cart_empty.png" class="img-fluid mt-4" style="width: 300px">
                     <h6 class="mt-4">Shopping Cart is Empty</h6>
 
                     <a href="category.php">Make Order</a>
