@@ -27,21 +27,12 @@ if(!isset($_SESSION['admin_id'])){
         <?php include 'navbar.php' ?>
 
 
-        <section class="main">
+        <section class="home-section">
+        
 
-            <div class="">
-                <button class="btn btn-light text-dark" id="slideleft" style="font-size: 10px;"><i
-                        class="fas fa-arrow-left"></i></button>
+           <br> <br>
 
-                <button class="btn btn-light text-dark d-none" id="slideright" style="font-size: 10px;"><i
-                        class="fas fa-arrow-right"></i></button>
-                <!--<h5 class="text-primary text-secondary"
-                    style="position:absolute; top:10px;right:10px;font-weight:bolder;font-family: 'Courgette', cursive;">
-                </h5>-->
-
-            </div>
-
-            <div class="main_contents">
+           
                 <div class="container">
 
                     <h5 style="font-weight: bolder;">DASHBOARD</h5>
