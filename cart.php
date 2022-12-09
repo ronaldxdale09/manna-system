@@ -160,9 +160,11 @@ $user_id=$_SESSION['user_id'];
         <script>
         $(document).ready(function() {
             // ADDRESS
-            $('input[name=address]').change(function() {
+            var user_id ='<?php echo $user_id ?>';
+            if (user_id!='' || user_id!='null'){
+                $('input[name=address]').change(function() {
                 var value = $('input[name=address]:checked').val();
-                var user_id =<?php echo $user_id ?>;
+                var user_id ='<?php echo $user_id ?>';
                 $.ajax({
                     url: "function/changeAddress.php",
                     method: "POST",
@@ -178,6 +180,8 @@ $user_id=$_SESSION['user_id'];
 
 
             });
+            }
+        
             //  
             if ($(window).width() <= 767) {
                 $('#buttonsg').removeClass('row');
