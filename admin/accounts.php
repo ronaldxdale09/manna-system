@@ -19,8 +19,9 @@ if(!isset($_SESSION['admin_id'])){
         </nav>
 
 
+        <section class="home-section">
+      
 
-        <section class="main">
 
             <div class="">
                 <button class="btn btn-light text-dark" id="slideleft" style="font-size: 10px;"><i

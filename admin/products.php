@@ -22,8 +22,8 @@ include "../connections/connect.php";
 
 
 
-        <section class="main">
-
+        <section class="home-section">
+<!-- 
             <div class="">
                 <button class="btn btn-light text-dark" id="slideleft" style="font-size: 10px;"><i
                         class="fas fa-arrow-left"></i></button>
@@ -32,7 +32,7 @@ include "../connections/connect.php";
                         class="fas fa-arrow-right"></i></button>
 
 
-            </div>
+            </div> -->
 
             <div class="main_contents">
                 <div class="container">

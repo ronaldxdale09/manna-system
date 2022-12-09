@@ -85,15 +85,15 @@ $usertempip = getClientIP();
 }
 
 .stretched-link::after {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        pointer-events: auto;
-        content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: auto;
+    content: "";
 
-    }
+}
 </style>
 
 <body style="background-color:white;overflow-x: hidden;">
@@ -107,36 +107,34 @@ $usertempip = getClientIP();
 
 
 
-<div class="row">
-          
-            <div class="col-md-12">
-                <div class="banner">
-                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img class="d-block w-100" src="assets/img/banner.png" alt="First slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="assets/img/landingpage.png" alt="Second slide">
-                            </div>
-                           
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="banner">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="assets/img/banner.png" alt="First slide">
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleControls" role="button"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="assets/img/landingpage.png" alt="Second slide">
+                        </div>
+
                     </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
             </div>
-          
-
         </div>
+
+
+    </div>
     <div class="container-fluid">
 
 
@@ -337,6 +335,7 @@ $usertempip = getClientIP();
 
 
     <!--Bootstrap Plugins-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript" src="js/notify.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/popper.js"></script>
@@ -344,3 +343,20 @@ $usertempip = getClientIP();
 </body>
 
 </html>
+
+<!-- RECEIVING VOUCHER -->
+<?php if (isset($_SESSION['success_verify'])): ?>
+<div class="msg">
+
+    <script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Yehey, Welcome!',
+        text: 'Verification of account is successful',
+    })
+    </script>
+    <?php 
+			unset($_SESSION['success_verify']);
+		?>
+</div>
+<?php endif ?>

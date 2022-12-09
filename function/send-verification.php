@@ -3,58 +3,21 @@
 // Required if your environment does not handle autoloading
 require '../vendor/autoload.php';
 
-// Use the REST API Client to make requests to the Twilio REST API
-// use Twilio\Rest\Client;
 
+$client = new GuzzleHttp\Client(); 
 
+$response = $client->request("POST", "https://api.sms.fortres.net/v1/messages", [
+    "headers" => [
+        "Content-type" => "application/json"
+    ],
+    "auth" => ["ea74cab6-4f29-4ca5-92a8-3ff758aaa9cf", "X0qRewwoT8f36lAPDucrICHbQgQVCenCuD7wbwEB"],
+    "json" => [
+        "recipient" => "09123456789",
+        "message" => "Sample text message"
+    ]
+]);
 
-
-// // Your Account SID and Auth Token from twilio.com/console
-// $sid = 'AC9816983c732135ce8c02e16db932ffe2';
-// $token = '74d01dde1d7889e57959675728b15c75';
-// $client = new Client($sid, $token);
-
-// // Use the client to do fun stuff like send text messages!
-// $messege = $client->messages->create(
-//     // the number you'd like to send the message to
-//     '+639559906613',
-//     [
-//         // A Twilio phone number you purchased at twilio.com/console
-//         'from' => '+19789938350',
-//         // the body of the text message you'd like to send
-//         'body' => 'Your Mannafest verification code is: 432673'
-//     ]
-// );
-
-// if ($messege){
-//     echo 'message sent';
-// }
-// else {
-//     echo 'message not sent';
-// }
-
-
-// Configure HTTP basic authorization: BasicAuth
-$config = ClickSend\Configuration::getDefaultConfiguration()
-    ->setUsername('devweb09@gmail.com')
-    ->setPassword('Darkkeven_1');
-
-$apiInstance = new ClickSend\Api\AccountApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-
-try {
-    $result = $apiInstance->accountGet();
-    print_r($result);
-
-
-    
-} catch (Exception $e) {
-    echo 'Exception when calling AccountApi->accountGet: ', $e->getMessage(), PHP_EOL;
+if ($response->getStatusCode() == 200) {
+    echo $response->getBody();
 }
-
-
 ?>

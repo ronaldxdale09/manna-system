@@ -71,15 +71,16 @@ date_default_timezone_set('Asia/Manila');
                     $phone = '+63'.$row['mobile_number'];
 
 					$SixDigitRandomNumber = mt_rand(100000,999999);
-					echo $SixDigitRandomNumber;
+					 $SixDigitRandomNumber;
                   
 				
 
-                    $savecustomer = "INSERT INTO `accounts`(`name`, `lastname`, `email`, `user_type`,`date_registered`, `password`,`birthdate`, `address`, `d_address`, `mobile_number`,`ipaddress`)
-                     VALUES ('$fn','$ln','$email','client','$datenow','$pass','$bd','$addr','$deliv','$phone','$tempusers')";
+                    $savecustomer = "INSERT INTO `accounts`(`name`, `lastname`, `email`, `user_type`,`date_registered`, `password`,`birthdate`, `address`, `d_address`, `mobile_number`,`ipaddress`,status)
+                     VALUES ('$fn','$ln','$email','client','$datenow','$pass','$bd','$addr','$deliv','$phone','$tempusers','0')";
                     mysqli_query($con,$savecustomer);
 					$user_id = $con->insert_id;
-
+					echo $user_id;
+					
 					$send_otp = "INSERT INTO `otp-sms`(`user_id`, `mobile_number`,`otp`,status)
 					VALUES ('$user_id','$phone','$SixDigitRandomNumber',0)";
 				   mysqli_query($con,$send_otp);
@@ -89,38 +90,36 @@ date_default_timezone_set('Asia/Manila');
 				   $save_shipping = "INSERT INTO `account_ship_address`(`contact_name`, `phone_number`,`address`,`postal_code`,`user_id`,`status`)
 				   VALUES ('$full_n','$phone','$deliv','$postal','$user_id','1')";
 				  	mysqli_query($con,$save_shipping);
-	
+			
+
 				   $_SESSION['reg_phone'] = $phone;
+				   $_SESSION['verify_user_id'] = $user_id;
+				//    require '../vendor/autoload.php';
 
-				   // Your Account SID and Auth Token from twilio.com/console
-						$sid = 'AC9816983c732135ce8c02e16db932ffe2';
-						$token = '3e0e2731353e3edf40092bb82bce4eb2';
-						$client = new Client($sid, $token);
 
-						// Use the client to do fun stuff like send text messages!
-						$messege = $client->messages->create(
-							// the number you'd like to send the message to
-							$phone,
-							[
-								// A Twilio phone number you purchased at twilio.com/console
-								'from' => '+19789938350',
-								// the body of the text message you'd like to send
-								'body' => 'Your Mannafest verification code is: '.$SixDigitRandomNumber
-							]
-						);
+				// 			$client = new GuzzleHttp\Client(); 
 
-						if ($messege){
-							echo 'message sent';
-						}
-						else {
-							echo 'message not sent';
-						}
+				// 			$response = $client->request("POST", "https://api.sms.fortres.net/v1/messages", [
+				// 				"headers" => [
+				// 					"Content-type" => "application/json"
+				// 				],
+				// 				"auth" => ["ea74cab6-4f29-4ca5-92a8-3ff758aaa9cf", "X0qRewwoT8f36lAPDucrICHbQgQVCenCuD7wbwEB"],
+				// 				"json" => [
+				// 					"recipient" => "$phone",
+				// 					"message" => "Your Mannafest verification code is $SixDigitRandomNumber"
+				// 				]
+				// 			]);
+
+				// 			if ($response->getStatusCode() == 200) {
+				// 				echo $response->getBody();
+				// 				header("Location: verify.php?id=$last_id");
+
+				// 			}
+			
 								
 			                 }
-			          
-
-
-
+							
+							
 	}
 
 

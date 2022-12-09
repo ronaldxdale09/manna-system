@@ -170,7 +170,7 @@ if(isset($_SESSION['admin_id'])){
 
                                 <label>BirthDate:</label>
                                 <input type="date" class="form-control txt mb-2" name="bd" style="" required="">
-                                 <hr>
+                                <hr>
 
                                 <label>Address:</label>
                                 <input type="text" class="form-control txt mb-2" name="addr" style="" required="">
@@ -246,7 +246,7 @@ if(isset($_SESSION['admin_id'])){
                             <input type="hidden" name="reg_step3">
 
                             <div id="step3" class="d-none">
-                              
+
 
                                 <h6 style="font-size: 14px"> <span class="badge badge-success bg-success">Step 3 -
                                         3</span></h6>
@@ -310,7 +310,7 @@ if(isset($_SESSION['admin_id'])){
                 method: "POST",
 
                 success: function(data) {
-
+                    console.log(data);
                     if (data == 'match') {
                         $('#em_lg').removeClass('is-invalid');
                         $('#pw_lg').removeClass('is-invalid');
@@ -321,6 +321,17 @@ if(isset($_SESSION['admin_id'])){
                         setInterval(function() {
                             window.location.href = "../index.php";
                         }, 2000);
+
+                    } else if (data == 'verify_first') {
+                        $('#em_lg').removeClass('is-invalid');
+                        $('#pw_lg').removeClass('is-invalid');
+                        $('#em_lg').addClass('is-valid');
+                        $('#pw_lg').addClass('is-valid');
+                        $('#logalert').addClass('d-none');
+
+                        setInterval(function() {
+                            window.location.href = "verify.php";
+                        }, 1000);
                     } else if (data == 'adminmatch') {
                         $('#em_lg').removeClass('is-invalid');
                         $('#pw_lg').removeClass('is-invalid');
@@ -416,7 +427,7 @@ if(isset($_SESSION['admin_id'])){
                     $('#step1').addClass('d-none');
                     $('#step2').addClass('d-none');
                     $('#step3').addClass('d-none');
-                    window.location.href = "verify.php";
+                    window.location.href = "verify.php?v=" + data;
                     $.notify("Registered Successfully! ", "success");
                 }
             })

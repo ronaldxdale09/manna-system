@@ -35,9 +35,7 @@
 
     }
 
-    section {
-        margin-left: 200px;
-    }
+
 
     < !--.topbar {
         height: 80px;
