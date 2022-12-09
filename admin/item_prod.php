@@ -37,18 +37,9 @@ $prod_list .= '
 
 
 
-        <section class="main">
-
-            <div class="">
-                <button class="btn btn-light text-dark" id="slideleft" style="font-size: 10px;"><i
-                        class="fas fa-arrow-left"></i></button>
-
-                <button class="btn btn-light text-dark d-none" id="slideright" style="font-size: 10px;"><i
-                        class="fas fa-arrow-right"></i></button>
-
-
-            </div>
-
+        <section class="home-section">
+       
+<br>
             <div class="main_contents">
                 <div class="container">
 

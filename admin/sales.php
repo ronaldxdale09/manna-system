@@ -19,7 +19,7 @@ if(!isset($_SESSION['admin_id'])){
     <section class="home-section">
         
     
-                <div class="container">
+                <div class="container-fluid">
 
                     <h5 style="font-weight: bolder;">SALES</h5>
                     <hr>

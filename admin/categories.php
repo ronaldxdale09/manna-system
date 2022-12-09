@@ -21,7 +21,7 @@ if(!isset($_SESSION['admin_id'])){
 
 
 
-        <section class="main">
+        <section class="home-section">
 
             <div class="">
                 <button class="btn btn-light text-dark" id="slideleft" style="font-size: 10px;"><i
