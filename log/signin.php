@@ -19,11 +19,11 @@ if(isset($_SESSION['admin_id'])){
     <title>Signin - Manna</title>
 
     <style type="text/css">
-    @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap');
 
-    * {
-        font-family: 'Courgette';
-    }
+* {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+}
 
     .logo_container {
         display: flex;
@@ -78,8 +78,9 @@ if(isset($_SESSION['admin_id'])){
     .form-group input:focus {
         box-shadow: none;
     }
+    
     </style>
-    <?php include '../include/header.php' ?>
+
 </head>
 
 <body style="background-color: #FFFEF1">
