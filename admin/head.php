@@ -37,14 +37,14 @@
 
 
 
-    < !--.topbar {
+   .topbar {
         height: 80px;
         width: 100%;
         padding: 5px;
         background-image: url('../assets/img/header.png');
     }
 
-    -->.main_contents {
+    .main_contents {
         padding: 10px;
     }
 
@@ -115,8 +115,6 @@
 
 <link href="chat_system/style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
-
-
     <a href="#" class="open-chat-widget"><i class="fa-solid fa-comment-dots fa-lg"></i></a>
     <div class="chat-widget">
         <div class="chat-widget-header">
@@ -139,13 +137,11 @@
             </div>
         </div>
     </div>
-
     <script>
     // Variables we will use in our app
     let currentChatTab = 1;
     let conversationId = null;
     let status = 'Idle';
-
     // OnClick event handler for our open chat button
     document.querySelector('.open-chat-widget').onclick = event => {
         event.preventDefault();
@@ -186,7 +182,6 @@
                     );
                 } else if (data.includes('success')) {
                     // Authentication success! Execute AJAX request to retrieve the user's conversations
-
                     fetch('chat_system/conversations.php', {
                         cache: 'no-store'
                     }).then(response => response.text()).then(data => {
@@ -200,7 +195,6 @@
                         // Transition to the conversations tab
                         selectChatTab(2);
                     });
-
                 } else {
                     // Authentication failed! Show the error message on the form
                     document.querySelector('.chat-widget-login-tab .msg').innerHTML = data;
@@ -232,7 +226,6 @@
             selectChatTab(currentChatTab - 1);
         };
     };
-
     // Select chat tab - it will be used to smoothly transition between tabs
     const selectChatTab = value => {
         // Update the current tab variable
@@ -251,8 +244,6 @@
             document.cookie = 'chat_secret=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         }
     };
-
-
     // Conversation handler function - will add the event handlers to the conversations list and new chat button
     const conversationHandler = () => {
         // New chat button OnClick event handler
@@ -278,7 +269,6 @@
             };
         });
     };
-
     // Get conversation function - execute an AJAX request that will retrieve the conversation based on the conversation ID column
     const getConversation = id => {
         // Execute GET AJAX request
@@ -326,7 +316,6 @@
             }
         });
     };
-
     // Update the conversations and messages in real-time
     setInterval(() => {
         // If the current tab is 2

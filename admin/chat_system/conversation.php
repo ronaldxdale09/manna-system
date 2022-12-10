@@ -11,10 +11,10 @@ if (!isset($_GET['id'])) {
     exit('error');
 }
 // Update the account status to Occupied
-$stmt = $pdo->prepare('UPDATE accounts SET status = "Occupied" WHERE id = ?');
+$stmt = $pdo->prepare('UPDATE chat_acc SET status = "Occupied" WHERE id = ?');
 $stmt->execute([ $_SESSION['account_id'] ]);
 // Retrieve the conversation based on the GET ID param and account ID
-$stmt = $pdo->prepare('SELECT c.*, m.msg, a.full_name AS account_sender_full_name, a2.full_name AS account_receiver_full_name FROM conversations c JOIN accounts a ON a.id = c.account_sender_id JOIN accounts a2 ON a2.id = c.account_receiver_id LEFT JOIN messages m ON m.conversation_id = c.id WHERE c.id = ? AND (c.account_sender_id = ? OR c.account_receiver_id = ?)');
+$stmt = $pdo->prepare('SELECT c.*, m.msg, a.full_name AS account_sender_full_name, a2.full_name AS account_receiver_full_name FROM conversations c JOIN chat_acc a ON a.id = c.account_sender_id JOIN chat_acc a2 ON a2.id = c.account_receiver_id LEFT JOIN messages m ON m.conversation_id = c.id WHERE c.id = ? AND (c.account_sender_id = ? OR c.account_receiver_id = ?)');
 $stmt->execute([ $_GET['id'], $_SESSION['account_id'], $_SESSION['account_id'] ]);
 $conversation = $stmt->fetch(PDO::FETCH_ASSOC);
 // If the conversation doesn't exist

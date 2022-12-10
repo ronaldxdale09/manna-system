@@ -8,7 +8,7 @@ if (!isset($_POST['name'], $_POST['email'])) {
 if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 	exit('Please enter a valid email address!');
 }// Select account from the database based on the email address
-$stmt = $pdo->prepare('SELECT * FROM accounts WHERE email = ?');
+$stmt = $pdo->prepare('SELECT * FROM chat_acc WHERE email = ?');
 $stmt->execute([ $_POST['email'] ]);
 // Fetch the results and return them as an associative array
 $account = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -46,7 +46,7 @@ if ($account) {
         exit('success');
     }
 } else {
-    $stmt = $pdo->prepare('INSERT INTO accounts (email, password, full_name, role, last_seen) VALUES (?, ?, ?, ?, ?)');
+    $stmt = $pdo->prepare('INSERT INTO chat_acc (email, password, full_name, role, last_seen) VALUES (?, ?, ?, ?, ?)');
     $stmt->execute([ $_POST['email'], '', $_POST['name'] ? $_POST['name'] : 'Guest', 'Guest', date('Y-m-d H:i:s') ]);
     // Retrieve the account ID
     $id = $pdo->lastInsertId();

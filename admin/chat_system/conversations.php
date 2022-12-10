@@ -8,11 +8,11 @@ if (!is_loggedin($pdo)) {
     exit('error');
 }
 // Update the account status to Idle
-$stmt = $pdo->prepare('UPDATE accounts SET status = "Idle" WHERE id = ?');
+$stmt = $pdo->prepare('UPDATE chat_acc SET status = "Idle" WHERE id = ?');
 $stmt->execute([ $_SESSION['account_id'] ]);
 
 // Retrieve all the conversations associated with the user along with the most recent message
-$stmt = $pdo->prepare('SELECT c.*, (SELECT msg FROM messages WHERE conversation_id = c.id ORDER BY submit_date DESC LIMIT 1) AS msg, (SELECT submit_date FROM messages WHERE conversation_id = c.id ORDER BY submit_date DESC LIMIT 1) AS msg_date, a.full_name AS account_sender_full_name, a2.full_name AS account_receiver_full_name FROM conversations c JOIN accounts a ON a.id = c.account_sender_id JOIN accounts a2 ON a2.id = c.account_receiver_id WHERE c.account_sender_id = ? OR c.account_receiver_id = ? GROUP BY c.id');
+$stmt = $pdo->prepare('SELECT c.*, (SELECT msg FROM messages WHERE conversation_id = c.id ORDER BY submit_date DESC LIMIT 1) AS msg, (SELECT submit_date FROM messages WHERE conversation_id = c.id ORDER BY submit_date DESC LIMIT 1) AS msg_date, a.full_name AS account_sender_full_name, a2.full_name AS account_receiver_full_name FROM conversations c JOIN accounts a ON a.id = c.account_sender_id JOIN chat_acc a2 ON a2.id = c.account_receiver_id WHERE c.account_sender_id = ? OR c.account_receiver_id = ? GROUP BY c.id');
 $stmt->execute([ $_SESSION['account_id'], $_SESSION['account_id'] ]);
 $conversations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // Sort the conversations by the most recent message date

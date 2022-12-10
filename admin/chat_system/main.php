@@ -3,7 +3,7 @@
 session_start();
 // Database connection varibles. Change them to reflect your own.
 $db_host = 'localhost';
-$db_name = 'phpsupportchat';
+$db_name = 'mannafest_db';
 $db_user = 'root';
 $db_pass = '';
 try {
@@ -20,13 +20,13 @@ function is_loggedin($pdo) {
     // Session loggedin?
     if (isset($_SESSION['account_loggedin'])) {
         // Update the last seed date
-        $stmt = $pdo->prepare('UPDATE accounts SET last_seen = ? WHERE id = ?');
+        $stmt = $pdo->prepare('UPDATE chat_acc SET last_seen = ? WHERE id = ?');
         $stmt->execute([ date('Y-m-d H:i:s'), $_SESSION['account_id'] ]);
         return TRUE;
     }
     // Check if the secret cookie is declared in the browser cookies
     if (isset($_COOKIE['chat_secret']) && !empty($_COOKIE['chat_secret'])) {
-        $stmt = $pdo->prepare('SELECT * FROM accounts WHERE secret = ?');
+        $stmt = $pdo->prepare('SELECT * FROM chat_acc WHERE secret = ?');
         $stmt->execute([ $_COOKIE['chat_secret'] ]);
         $account = $stmt->fetch(PDO::FETCH_ASSOC);
         // Does the account exist?
@@ -50,7 +50,7 @@ function update_secret($pdo, $id, $email, $current_secret = '') {
     // Create the new cookie
     setcookie('chat_secret', $cookiehash, (int)(time()+60*60*24*$days));
     // Update the secret code in the databse
-    $stmt = $pdo->prepare('UPDATE accounts SET secret = ? WHERE id = ?');
+    $stmt = $pdo->prepare('UPDATE chat_acc SET secret = ? WHERE id = ?');
     $stmt->execute([ $cookiehash, $id ]);
 }
 // The following function will be used to assign a unique icon color to our users

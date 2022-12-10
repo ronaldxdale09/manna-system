@@ -7,7 +7,7 @@ if (!is_loggedin($pdo)) {
     exit('error');
 }
 // Update the account status to Waiting
-$stmt = $pdo->prepare('UPDATE accounts SET status = "Waiting" WHERE id = ?');
+$stmt = $pdo->prepare('UPDATE chat_acc SET status = "Waiting" WHERE id = ?');
 $stmt->execute([ $_SESSION['account_id'] ]);
 // Check if the conversation was already created
 $stmt = $pdo->prepare('SELECT * FROM conversations WHERE (account_sender_id = ? OR account_receiver_id = ?) AND submit_date > date_sub(?, interval 1 minute)');
