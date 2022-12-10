@@ -18,10 +18,10 @@ if ($conversation) {
     exit($conversation['id']);  
 }// If the user is an Operator, find guest accounts that have their status set to Waiting
 if ($_SESSION['account_role'] == 'Operator') {
-    $stmt = $pdo->prepare('SELECT * FROM accounts WHERE role != "Operator" AND status = "Waiting" AND last_seen > date_sub(?, interval 1 minute)');
+    $stmt = $pdo->prepare('SELECT * FROM chat_acc WHERE role != "Operator" AND status = "Waiting" AND last_seen > date_sub(?, interval 1 minute)');
 // If the user is an Guest, find operator accounts that have their status set to Waiting
 } else {
-    $stmt = $pdo->prepare('SELECT * FROM accounts WHERE role = "Operator" AND status = "Waiting" AND last_seen > date_sub(?, interval 1 minute)');
+    $stmt = $pdo->prepare('SELECT * FROM chat_acc WHERE role = "Operator" AND status = "Waiting" AND last_seen > date_sub(?, interval 1 minute)');
 }
 // Make sure to retrieve all accounts active in the last minute
 $stmt->execute([ date('Y-m-d H:i:s') ]);

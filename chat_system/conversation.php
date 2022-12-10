@@ -46,7 +46,8 @@ foreach ($results as $result) {
     <?php endforeach; ?>
     <?php endforeach; ?>
 </div>
-<form action="chat_system/post_message.php" method="post" class="chat-widget-input-message" autocomplete="off">
+
+<form action="post_message.php" method="post" class="chat-widget-input-message" autocomplete="off">
     <input type="text" name="msg" placeholder="Message">
     <input type="hidden" name="id" value="<?=$conversation['id']?>">
 </form>
