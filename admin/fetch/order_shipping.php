@@ -6,8 +6,8 @@ include '../../connections/connect.php';
 
  $output = '';  
 
-
-$getAddress = " select * from account_ship_address where user_id='36' and status='1' ";
+$userid = $_POST['userid'];
+$getAddress = " select * from account_ship_address where user_id='$userid' and status='1' ";
 $results = mysqli_query($con, $getAddress);
 $row = mysqli_fetch_array($results);
 //  $get_id =  mysqli_insert_id($con);
