@@ -113,15 +113,15 @@ if(!isset($_SESSION['admin_id'])){
 
                                     <?php 
        
-           $gtproductphotosactive = " select * from photo where prod_id = '$id' limit 1  ";
-                        $result_of_getactive = mysqli_query($con,$gtproductphotosactive); 
-                       
-                         while($rowactive = mysqli_fetch_array($result_of_getactive)){
-                          $prodactive = $rowactive['p_id'];
-                          $src = '../img/products/'.$rowactive['photo'];
-                          
+                            $gtproductphotosactive = " select * from photo where prod_id = '$id' limit 1  ";
+                                            $result_of_getactive = mysqli_query($con,$gtproductphotosactive); 
+                                        
+                                            while($rowactive = mysqli_fetch_array($result_of_getactive)){
+                                            $prodactive = $rowactive['p_id'];
+                                            $src = '../img/products/'.$rowactive['photo'];
+                                            
 
-                      ?>
+                                        ?>
 
                                     <div class="carousel-item active">
                                         <img src="<?php echo $src ?>" class="d-block w-100" alt="..."

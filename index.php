@@ -108,7 +108,6 @@ $usertempip = getClientIP();
 
 
 <div class="row">
-          
             <div class="col-md-12">
                 <div class="banner">
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -119,6 +118,7 @@ $usertempip = getClientIP();
                             <div class="carousel-item">
                                 <img class="d-block w-100" src="assets/img/landingpage.png" alt="Second slide">
                             </div>
+                            
                            
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
