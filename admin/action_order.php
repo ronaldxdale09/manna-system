@@ -100,6 +100,7 @@ include '../connections/connect.php';
                     <button class="btn btn-dark text-light deliver" data-od="<?php echo $tid ?>"
                         style="font-size: 14px;font-weight: bolder;">Deliver</button>
                         <button class="btn btn-info text-dark print" data-od="<?php echo $tid ?>"
+                        data-userid="<?php echo $userid ?>"
                         style="font-size: 14px;font-weight: bolder;">Print Delivery</button>
                     <?php
 								}else if ($stat == 'otw'){
@@ -455,6 +456,7 @@ $(document).ready(function() {
                 method: "POST",
                 data: {
                     trans_id: trans_id,
+                 
                 },
                 success: function(data) {
                     $('#print_list_purchased_prod').html(data);
@@ -472,6 +474,7 @@ $(document).ready(function() {
                 method: "POST",
                 data: {
                     trans_id: trans_id,
+                    userid: userid,
                 },
                 success: function(data) {
                     $('#print_address_customer').html(data);
