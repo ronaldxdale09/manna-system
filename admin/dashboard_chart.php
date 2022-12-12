@@ -17,16 +17,36 @@ $today = $currentYear.
 "-".$currentMonth.
 "-".$currentDay;
 
+
+   $sales_count = mysqli_query($con,"SELECT year(date_ordered) as year ,MONTHNAME(date_ordered) as monthname,sum(trans_record.total) as month_total from transaction LEFT JOIN trans_record ON transaction.tid = trans_record.transaction_id  WHERE year(date_ordered)='$currentYear'  group by month(date_ordered) ORDER BY date_ordered");        
+   if($sales_count->num_rows > 0) {
+     foreach($sales_count as $data) {
+         $sale_month[] = $data['monthname'];
+         $sale_amount[] = $data['month_total'];
+     }
+ }
+
+ $top_selling = mysqli_query($con," SELECT trans_record.prod_id,name,sum(quantity) as qty from trans_record LEFT JOIN product on trans_record.prod_id = product.prod_id group by name ");        
+ if($top_selling->num_rows > 0) {
+   foreach($top_selling as $data) {
+       $top_prod[] = $data['name'];
+       $top_qty[] = $data['qty'];
+   }
+}
+
+
+$inv_cost_selling= mysqli_query($con,"SELECT sum(cost*quantity) as total_cost,sum(price * quantity) as selling_total FROM `product_quantity` JOIN product ON product.prod_id = product_quantity.prod_id WHERE quantity > 0");        
+if($inv_cost_selling->num_rows > 0) {
+  foreach($inv_cost_selling as $data) {
+      $inv_cost = $data['total_cost'];
+      $inv_selling= $data['selling_total'];
+  }
+}
+
+
 ?>
 
 
-//    $sales_count = mysqli_query($con,"SELECT year(date) as year ,MONTHNAME(date) as monthname,sum(total_amount) as month_total from ntc_sales  WHERE year(date)='$currentYear'  group by month(date) ORDER BY date");        
-//    if($sales_count->num_rows > 0) {
-//      foreach($sales_count as $data) {
-//          $sale_month[] = $data['monthname'];
-//          $sale_amount[] = $data['month_total'];
-//      }
-//  }
 
 
 
@@ -35,10 +55,10 @@ new Chart(net_income, {
     type: 'line',
 
     data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', ],
+        labels:  <?php echo json_encode($sale_month) ?>,
         datasets: [{
                 label: 'Sales',
-                data: [12, 19, 3, 5, 2, 3, 2, 19, 10, 15, 12, 13],
+                data: <?php echo json_encode($sale_amount) ?>,
                 backgroundColor: '#87CEEB',
                 borderColor: '#0000CD',
                 borderWidth: 2
@@ -82,21 +102,24 @@ new Chart(net_income, {
 
 new Chart(purchase_chart, {
 
-    type: 'line',
+    type: 'bar',
 
     data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', ],
+        labels: ['Inventory Cost', 'Selling Cost'],
         datasets: [{
             label: 'Sales',
-            data: [12, 19, 3, 5, 2, 3, 2, 19, 10.4, 15.5, 12, 13],
-            backgroundColor: '#556B2F',
+            data:  [<?php echo ($inv_cost) ?>,<?php echo ($inv_selling) ?>],
+            backgroundColor: [
+                '#84A7D0', '#8F1103'],
             borderColor: '#025454',
             borderWidth: 2
         }]
     },
     options: {
+        indexAxis: 'y',
         plugins: {
             legend: {
+                position: 'right',
                 display: false,
             },
             title: {
@@ -140,16 +163,10 @@ new Chart(inventory_chart, {
     },
     type: 'pie', //Declare the chart type 
     data: {
-        labels: [
-            'Bread',
-            'Biscuit',
-            'Cake',
-            'Others',
-
-        ],
+        labels:  <?php echo json_encode($top_prod) ?>,
         datasets: [{
-            label: 'Inventory Breakdown',
-            data: [30, 50, 70, 87],
+            label: 'Top Selling Products',
+            data:  <?php echo json_encode($top_qty) ?>,
             backgroundColor: [
                 '#556B2F', '#B0E0E6', '#191970', '#ADFF2F'
             ],

@@ -1,8 +1,8 @@
 <?php
 session_start();
 include 'connections/connect.php';
-
-if (isset($_POST['getAllitems']))
+$char = '';  
+ if (isset($_POST['getAllitems']))
 {
 
     echo '<br><h4 style="font-weight:bolder">All Products</h4> <hr>';

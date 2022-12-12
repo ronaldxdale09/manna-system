@@ -88,7 +88,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		?>
 </div>
 
-<?php endif ?><?php if (isset($_SESSION['verify_first'])): ?>
+<?php endif ?>
+
+
+<?php if (isset($_SESSION['verify_first'])): ?>
 <div class="msg">
 
     <script>

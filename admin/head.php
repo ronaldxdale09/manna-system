@@ -113,7 +113,7 @@
 
 </head>
 
-<link href="chat_system/style.css" rel="stylesheet" type="text/css">
+<link href="../chat_system/style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
     <a href="#" class="open-chat-widget"><i class="fa-solid fa-comment-dots fa-lg"></i></a>
     <div class="chat-widget">
@@ -125,7 +125,7 @@
         <div class="chat-widget-content">
             <div class="chat-widget-tabs">
                 <div class="chat-widget-tab chat-widget-login-tab">
-                    <form action="chat_system/authenticate.php" method="post">
+                    <form action="../chat_system/authenticate.php" method="post">
                         <input type="text" name="name" placeholder="Your Name">
                         <input type="email" name="email" placeholder="Your Email" required>
                         <div class="msg"></div>
@@ -182,7 +182,7 @@
                     );
                 } else if (data.includes('success')) {
                     // Authentication success! Execute AJAX request to retrieve the user's conversations
-                    fetch('chat_system/conversations.php', {
+                    fetch('../chat_system/conversations.php', {
                         cache: 'no-store'
                     }).then(response => response.text()).then(data => {
                         // Update the status
@@ -204,7 +204,7 @@
         // If the secret code cookie exists, attempt to automatically authenticate the user
         if (document.cookie.match(/^(.*;)?\s*chat_secret\s*=\s*[^;]+(.*)?$/)) {
             // Execute GET AJAX request to retireve the conversations
-            fetch('chat_system/conversations.php', {
+            fetch('../chat_system/conversations.php', {
                 cache: 'no-store'
             }).then(response => response.text()).then(data => {
                 // If respone not equals error
@@ -272,7 +272,7 @@
     // Get conversation function - execute an AJAX request that will retrieve the conversation based on the conversation ID column
     const getConversation = id => {
         // Execute GET AJAX request
-        fetch(`chat_system/conversation.php?id=${id}`, {
+        fetch(`../chat_system/conversation.php?id=${id}`, {
             cache: 'no-store'
         }).then(response => response.text()).then(data => {
             // Update conversation ID variable
@@ -321,7 +321,7 @@
         // If the current tab is 2
         if (currentChatTab == 2) {
             // Use AJAX to update the conversations list
-            fetch('chat_system/conversations.php', {
+            fetch('../chat_system/conversations.php', {
                 cache: 'no-store'
             }).then(response => response.text()).then(html => {
                 let doc = (new DOMParser()).parseFromString(html, 'text/html');
@@ -332,7 +332,7 @@
             // If the current tab is 3 and the conversation ID variable is not NUll               
         } else if (currentChatTab == 3 && conversationId != null) {
             // Use AJAX to update the conversation
-            fetch('chat_system/conversation.php?id=' + conversationId, {
+            fetch('../chat_system/conversation.php?id=' + conversationId, {
                 cache: 'no-store'
             }).then(response => response.text()).then(html => {
                 // The following variable will prevent the messages container from automatically scrolling to the bottom if the user previously scrolled up in the chat list
@@ -356,7 +356,7 @@
             // If the current tab is 3 and the status is Waiting           
         } else if (currentChatTab == 3 && status == 'Waiting') {
             // Attempt to find a new conversation between the user and operator (or vice-versa)
-            fetch('chat_system/find_conversation.php', {
+            fetch('../chat_system/find_conversation.php', {
                 cache: 'no-store'
             }).then(response => response.text()).then(data => {
                 if (data != 'error') {

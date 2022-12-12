@@ -15,13 +15,7 @@ session_start();
 
                              $sql = " select * from `otp-sms` where  user_id = '$user_id' and otp='$merged' ";
                               $result = mysqli_query($con,$sql); 
-
-                            //  if ($result) {
-                            //     echo 'success';
-                            // } else {
-                            //     echo "ERROR: Could not be able to execute $result. ".mysqli_error($con);
-                            // }
-                             
+                              
                              $count = mysqli_num_rows($result);
                             if($count == 0){
                                 $_SESSION['error']= "successful";

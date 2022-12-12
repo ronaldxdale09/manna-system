@@ -19,11 +19,11 @@ if(isset($_SESSION['admin_id'])){
     <title>Signin - Manna</title>
 
     <style type="text/css">
- @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap');
 
-* {
-    font-family: 'Zen Kaku Gothic New', sans-serif;
-}
+    * {
+        font-family: 'Zen Kaku Gothic New', sans-serif;
+    }
 
     .logo_container {
         display: flex;
@@ -78,7 +78,6 @@ if(isset($_SESSION['admin_id'])){
     .form-group input:focus {
         box-shadow: none;
     }
-    
     </style>
 
 </head>
@@ -136,8 +135,13 @@ if(isset($_SESSION['admin_id'])){
 
 
                             </div>
-                            <a href="javascript:void(0)" class="registerhere" style="text-decoration: none">Don't have
-                                an Account?<br>Register here.</a>
+                            <div class="row">
+                                <div class="col-sm-8"> <a href="javascript:void(0)" class="registerhere"
+                                        style="text-decoration: none">Don't have
+                                        an Account?<br>Register here.</a></div>
+                                <div class="col-sm-4"> <a href="forgot.php"" style="text-decoration: none">Forgot Password</a></div>
+                            </div>
+
                         </form>
 
                         <!--End Login-->
@@ -428,7 +432,7 @@ if(isset($_SESSION['admin_id'])){
                     $('#step1').addClass('d-none');
                     $('#step2').addClass('d-none');
                     $('#step3').addClass('d-none');
-                    window.location.href = "verify.php?v="+data;
+                    window.location.href = "verify.php?v=" + data;
                     // $.notify("Registered Successfully! ", "success");
                 }
             })
