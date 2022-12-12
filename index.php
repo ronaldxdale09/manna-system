@@ -360,3 +360,21 @@ $usertempip = getClientIP();
 		?>
 </div>
 <?php endif ?>
+
+
+<!-- RECEIVING VOUCHER -->
+<?php if (isset($_SESSION['sent_contact'])): ?>
+<div class="msg">
+
+    <script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Thank you!',
+        text: 'Thank you for submitting the form. We will contact you soon!',
+    })
+    </script>
+    <?php 
+			unset($_SESSION['sent_contact']);
+		?>
+</div>
+<?php endif ?>

@@ -1,50 +1,5 @@
 <link rel="stylesheet" href="css/footer.css">
 
-<?php
-
-$errors = [];
-$errorMessage = '';
-
-if (!empty($_POST)) {
-   $name = $_POST['name'];
-   $email = $_POST['email'];
-   $message = $_POST['message'];
-
-   if (empty($name)) {
-       $errors[] = 'Name is empty';
-   }
-
-   if (empty($email)) {
-       $errors[] = 'Email is empty';
-   } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-       $errors[] = 'Email is invalid';
-   }
-
-   if (empty($message)) {
-       $errors[] = 'Message is empty';
-   }
-
-   if (empty($errors)) {
-       $toEmail = 'example@example.com';
-       $emailSubject = 'New email from your contact form';
-       $headers = ['From' => $email, 'Reply-To' => $email, 'Content-type' => 'text/html; charset=utf-8'];
-       $bodyParagraphs = ["Name: {$name}", "Email: {$email}", "Message:", $message];
-       $body = join(PHP_EOL, $bodyParagraphs);
-
-       if (mail($toEmail, $emailSubject, $body, $headers)) 
-
-           header('Location: thank-you.html');
-       } else {
-           $errorMessage = 'Oops, something went wrong. Please try again later';
-       }
-
-   } else {
-
-       $allErrors = join('<br/>', $errors);
-       $errorMessage = "<p style='color: red;'>{$allErrors}</p>";
-   }
-
-?>
 <footer data-aos="fade-up">
     <div class="footer_left">
         <h2>Mannafest Food Inc.</h2>
@@ -84,7 +39,7 @@ if (!empty($_POST)) {
         <h2>We love to hear from you!</h2>
         <br>
         <?php echo((!empty($errorMessage)) ? $errorMessage : '') ?>
-        <form action="">
+        <form action="function/contact_us.php" method='post'>
             <div class="div_name_email">
                 <input type="text" name='name' placeholder="Name">
                 <input type="email" name='email' placeholder="Email">
@@ -93,7 +48,7 @@ if (!empty($_POST)) {
                 <textarea  name="message" id="" cols="30" rows="10" placeholder="Your feedback"></textarea>
             </div>
             <center>
-                <button type="submit" value="Send" id="feedback_submit">SUBMIT</button>
+                <button type="submit" name="send" id="feedback_submit">SUBMIT</button>
             </center>
         </form>
     </div>
