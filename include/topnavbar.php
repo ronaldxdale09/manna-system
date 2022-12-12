@@ -1,10 +1,9 @@
+
+    <link rel="stylesheet" type="text/css" href="css/search.css">
 <nav class="purple-rain">
-
-
-
     <div class="row purple-rain">
 
-        <div class="col-md-2">
+        <div class="col-md-3">
             <a href="index.php" style="text-decoration: none">
 
                 <a href="index.php" style='padding: 20px;'>
@@ -14,9 +13,22 @@
         </div>
 
         <div class="col-md-4">
+            <div class="header_search">
+                <div class="header_search_content">
+                    <div class="header_search_form_container">
+                        <form action="category.php" method="get" class="header_search_form clearfix">
+                            <input type="search"  name="query"  required="required" class="header_search_input"
+                                placeholder="Search for products...">
 
+                            <button type="submit" class="header_search_button trans_300" value="Submit"><img
+                                    src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918770/search.png"
+                                    alt=""></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
 
             <style type="text/css">
             .dropdown:hover .dropdown-menu {
@@ -29,7 +41,7 @@
             <div class="container">
                 <div class="row" id="buttonsg">
 
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <?php 
                         if(isset($cart)){
 
@@ -91,17 +103,17 @@
 
 
                         <?php 
-  if(isset($_SESSION['user_isset'])){
+                                            if(isset($_SESSION['user_isset'])){
 
-    if(isset($myacc)){
+                                                if(isset($myacc)){
 
-    }else {
-      
-    }
-    ?>
+                                                }else {
+                                                
+                                                }
+                                                ?>
 
                         <div class="dropdown">
-                            <a class="btn btn-outline-dark  mt-1 text-dark" href="#" role="button" style="padding: 5px">
+                            <a class="btn btn-outline-warning  mt-1 text-dark" href="#" role="button" style="padding: 5px">
 
                                 <span style="font-weight: bolder">Welcome <br> <span
                                         class="text-primary"><?php echo $_SESSION['user_name'] ?></span></span>
@@ -112,27 +124,27 @@
 
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <?php 
-    $user =$_SESSION['user_id'];
-      $checkif_thersorder = "select * from transaction where user_id ='$user' and status != 'completed'  ";
-       $chckingorder = mysqli_query($con,$checkif_thersorder); 
-       $count= mysqli_num_rows($chckingorder);
-      
-      if($count >=1){
-     while($row = mysqli_fetch_array($chckingorder)){
-         $porder = $row['tid'];  
-       }
-      ?>
+                                    $user =$_SESSION['user_id'];
+                                    $checkif_thersorder = "select * from transaction where user_id ='$user' and status != 'completed'  ";
+                                    $chckingorder = mysqli_query($con,$checkif_thersorder); 
+                                    $count= mysqli_num_rows($chckingorder);
+                                    
+                                    if($count >=1){
+                                    while($row = mysqli_fetch_array($chckingorder)){
+                                        $porder = $row['tid'];  
+                                    }
+                                         ?>
                                 <li><a class="dropdown-item" style="font-size: 14px"
                                         href="orders.php?p=<?php echo $porder ?>">My Orders</a></li>
                                 <?php   
-     }else {
-      ?>
+                                                }else {
+                                                ?>
                                 <li><a class="dropdown-item" style="font-size: 14px" href="orders.php">My Orders</a>
                                 </li>
                                 <?php
-     }
+                                            }
 
-    ?>
+                                            ?>
 
                                 <li><a class="dropdown-item" style="font-size: 14px" href="myaccount.php">My
                                         Account</a></li>
@@ -169,11 +181,10 @@
 
                         <?php
 
-  }else {
-    ?>
+                                        }else {
+                                            ?>
                         <div class="dropdown">
-                            <a class="btn btn-dark  mt-1 text-light" href="#" role="button"
-                                style="border-radius: 40px;padding: 10px">
+                            <a class="btn btn-outline-warning  mt-1 text-dark" href="#" role="button">
                                 <i class="far fa-user" style="font-size: 20px"></i> <br>
                                 <span style="font-weight: bolder">Welcome Customer</span>
                             </a>
@@ -190,9 +201,9 @@
                         </div>
 
                         <?php
-  }
+                                                }
 
- ?>
+                                                ?>
 
                     </div>
 

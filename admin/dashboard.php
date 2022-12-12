@@ -12,12 +12,24 @@ if(!isset($_SESSION['admin_id'])){
 
 
 
-
 <?php include 'head.php' ?>
 
 <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
+<style>
+.stretched-link::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: auto;
+    content: "";
+
+}
+</style>
 
 <body style="background-color: white">
     <div class="wrapper">
@@ -27,91 +39,92 @@ if(!isset($_SESSION['admin_id'])){
         <?php include 'navbar.php' ?>
 
 
-        <section class="main">
+        <section class="home-section">
 
-            <div class="">
-                <button class="btn btn-light text-dark" id="slideleft" style="font-size: 10px;"><i
-                        class="fas fa-arrow-left"></i></button>
 
-                <button class="btn btn-light text-dark d-none" id="slideright" style="font-size: 10px;"><i
-                        class="fas fa-arrow-right"></i></button>
-                <!--<h5 class="text-primary text-secondary"
-                    style="position:absolute; top:10px;right:10px;font-weight:bolder;font-family: 'Courgette', cursive;">
-                </h5>-->
+            <br> <br>
 
-            </div>
 
-            <div class="main_contents">
-                <div class="container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <h5 style="font-weight: bolder;">DASHBOARD</h5>
+                    </div>
+                    <div class="col-sm-2"> <button type='button' class='btn btn-success getData' id='getData'>
+                            Print Data</button></div>
+                </div>
 
-                    <h5 style="font-weight: bolder;">DASHBOARD</h5>
-                    <hr>
 
-                    <div class="row mb-4">
+                <hr>
 
-                        <div class="col-md-4">
-                            <div class="card shadow border-warning">
-                                <div class="card-body">
-                                    <h5 style="font-weight: bolder;text-align: center;" class="text-dark">
-                                        PENDING ORDERS <span class="badge bg-dark text-light"> <?php 
+                <div class="row mb-4">
+
+                    <div class="col-md-4">
+                        <div class="card shadow border-warning">
+                            <div class="card-body">
+                                <a href="orders.php" class="stretched-link"></a>
+                                <h5 style="font-weight: bolder;text-align: center;" class="text-dark">
+                                    PENDING ORDERS <span class="badge bg-dark text-light"> <?php 
                                 $corders = " select * from trans_record  ";
                                             $countord = mysqli_query($con,$corders); 
                                             $allorders= mysqli_num_rows($countord);
                                   echo $allorders;     
 
                             ?></span>
-                                    </h5>
-                                </div>
-
+                                </h5>
                             </div>
 
                         </div>
 
-                        <div class="col-md-4">
-                            <div class="card shadow border-success">
-                                <div class="card-body">
-                                    <h6 style="font-weight: bolder;text-align: center;" class="text-dark">
-                                        REGISTERED CUSTOMERS <span class="badge bg-success text-light">
-                                            <?php 
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card shadow border-success">
+                            <div class="card-body">
+                                <a href="accounts.php" class="stretched-link"></a>
+                                <h6 style="font-weight: bolder;text-align: center;" class="text-dark">
+                                    REGISTERED CUSTOMERS <span class="badge bg-success text-light">
+                                        <?php 
                                 $ccustomers = " select * from accounts  ";
                                             $ccustom = mysqli_query($con,$ccustomers); 
                                             $allcustomers= mysqli_num_rows($ccustom);
                                     echo $allcustomers;      
                              ?>
-                                        </span>
-                                    </h6>
-                                </div>
-
+                                    </span>
+                                </h6>
                             </div>
 
                         </div>
 
+                    </div>
 
-                        <div class="col-md-4">
-                            <div class="card shadow border-danger">
-                                <div class="card-body">
-                                    <h6 style="font-weight: bolder;text-align: center;" class="text-dark">
-                                        CRITICAL ITEMS <span class="badge bg-danger text-light">
 
-                                            <?php 
+                    <div class="col-md-4">
+                        <div class="card shadow border-danger">
+                            <div class="card-body">
+                                <a href="products.php" class="stretched-link"></a>
+                                <h6 style="font-weight: bolder;text-align: center;" class="text-dark">
+                                    CRITICAL ITEMS <span class="badge bg-danger text-light">
+
+                                        <?php 
                                 $cproducts = " select * from product  ";
                                             $countproduct = mysqli_query($con,$cproducts); 
                                             $allproducts= mysqli_num_rows($countproduct);
                                         echo $allproducts;   
 
                              ?>
-                                        </span>
-                                    </h6>
-                                </div>
-
+                                    </span>
+                                </h6>
                             </div>
 
                         </div>
 
-
                     </div>
 
 
+                </div>
+
+                <div id='div_print'>
                     <div class="row">
                         <div class="col-4">
                             <div class="card" style="width:100%;max-width:100%;max-height:251px;">
@@ -217,13 +230,19 @@ if(!isset($_SESSION['admin_id'])){
                         integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ=="
                         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
+                    <div class="col-12">
+                        <div class="card" style="width:100%;max-width:100%;max-height:251px;">
+                            <canvas id="income_chart" style="width:100%;max-width:100%;max-height:251px;">
+                            </canvas>
+                        </div>
+                    </div>
+                    <br>
                     <div class="row">
                         <div class="col-4">
-                            <div class="card" style="width:100%;max-width:100%;max-height:251px;">
-                                <canvas id="income_chart" style="width:100%;max-width:100%;max-height:251px;">
-                                </canvas>
-                            </div>
+                            <!-- <div class="card" style="width:100%;max-width:100%;max-height:251px;">
+                            <canvas id="income_chart" style="width:100%;max-width:100%;max-height:251px;">
+                            </canvas>
+                        </div> -->
                         </div>
 
                         <!-- end INCOME CHART -->
@@ -241,10 +260,11 @@ if(!isset($_SESSION['admin_id'])){
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
+
+
+                <?php include ('dashboard_chart.php'); ?>
+            </div>
 
         </section>
 
@@ -254,8 +274,30 @@ if(!isset($_SESSION['admin_id'])){
     <script type="text/javascript" src="../js/sidebar.js?v=1"></script>
 
 
-    <?php include ('dashboard_chart.php'); ?>
 
+    <script language="javascript">
+    $('.getData').on('click', function() {
+        console.log('hello');
+        // html2canvas(document.querySelector("#div_print")).then(canvas => {
+        //     document.body.appendChild(canvas);
+        //     document.print();
+        //     // reload the page
+        //     location.reload();
+        // });
+        html2canvas(document.querySelector("#div_print")).then(canvas => {
+            var myImage = canvas.toDataURL("image/png");
+            var tWindow = window.open("");
+            $(tWindow.document.body)
+                .html("<img id='Image' src=" + myImage + " style='width:100%;'></img>")
+                .ready(function() {
+                    tWindow.focus();
+                    tWindow.print();
+                });
+        });
+
+
+    });
+    </script>
 
 
 

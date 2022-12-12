@@ -91,7 +91,7 @@ include '../connections/connect.php';
 								if($stat == 'pending'){
 									?>
                     <button class="btn btn-light text-primary confirmd" data-od="<?php echo $tid ?>"
-                        data-date="<?php echo $row['datecreated'] ?>"
+                        data-date="<?php echo $row['datecreated'] ?>" data-userid="<?php echo $userid ?>"
                         style="font-size: 14px;font-weight: bolder;">Confirm</button>
                     <?php
 								}else if ($stat == 'ready'){
@@ -356,7 +356,7 @@ $(document).ready(function() {
         //
         var od = $(this).data('od');
         var date = $(this).data('date');
-
+        var userid = $(this).data('userid');
         $('#orderDetails').modal('show')
         $('#date_order').val(date)
         $('#order_code').val('MN_' + od)
@@ -387,6 +387,7 @@ $(document).ready(function() {
                 method: "POST",
                 data: {
                     trans_id: trans_id,
+                    userid: userid,
                 },
                 success: function(data) {
                     $('#address_customer').html(data);

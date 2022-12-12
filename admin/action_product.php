@@ -63,11 +63,11 @@ if(isset($_POST['category'])){
                 <td>
                     <span class="badge bg-black"> <?php echo $row['quantity'] ?></span>
                 </td>
-				<td>
-				₱  <?php echo $row['cost'] ?? '0' ?>
+                <td>
+                    ₱ <?php echo $row['cost'] ?? '0' ?>
                 </td>
                 <td>
-                   ₱ <?php echo $row['price'] ?>
+                    ₱ <?php echo $row['price'] ?>
                 </td>
                 <td>
                     <?php 
@@ -81,8 +81,8 @@ if(isset($_POST['category'])){
                             data-keyboard="false" class="btn btn-light text-primary editmodal"
                             data-id="<?php echo $row['prod_id'] ?>" data-name="<?php echo $row['name'] ?>"
                             data-price="<?php echo $row['price'] ?>" data-desc="<?php echo $row['description'] ?>"
-                            data-cat="<?php echo $row['cat_id'] ?>" style="font-size: 12px"><i
-                                class="fas fa-edit"></i></button>
+                            data-cost="<?php echo $row['cost'] ?>" data-cat="<?php echo $row['cat_id'] ?>"
+                            style="font-size: 12px"><i class="fas fa-edit"></i></button>
                         <button type="button" class="btn btn-light text-danger deletecat"
                             data-id="<?php echo $row['prod_id'] ?>" style="font-size: 12px"><i
                                 class="fas fa-trash"></i></button>
@@ -123,13 +123,15 @@ $(document).ready(function() {
         var catid = $(this).data('cat');
         var desc = $(this).data('desc');
         var price = $(this).data('price');
+        var cost = $(this).data('cost');
+
 
         $('#ename').val(name);
         $('#eprice').val(price);
         $('#edesc').val(desc);
         $('#eid').val(id);
         $('#categoryid').val(catid);
-
+        $('#ecost').val(cost);
 
 
     })
@@ -215,7 +217,43 @@ if(isset($_POST['checkifexistcat'])){
 }
 
 
+// image compression
 
+function compressImage($source, $destination, $quality) { 
+    // Get image info 
+    $imgInfo = getimagesize($source); 
+    $mime = $imgInfo['mime']; 
+     
+    // Create a new image from file 
+    switch($mime){ 
+        case 'image/jpeg': 
+            $image = imagecreatefromjpeg($source); 
+            break; 
+        case 'image/png': 
+            $image = imagecreatefrompng($source); 
+            break; 
+        case 'image/gif': 
+            $image = imagecreatefromgif($source); 
+            break; 
+        default: 
+            $image = imagecreatefromjpeg($source); 
+    } 
+     
+    // Save image 
+    imagepng($image, $destination, $quality); 
+     
+    // Return compressed image 
+    return $destination; 
+}
+function convert_filesize($bytes, $decimals = 2) { 
+    $size = array('B','KB','MB','GB','TB','PB','EB','ZB','YB'); 
+    $factor = floor((strlen($bytes) - 1) / 3); 
+    return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$size[$factor]; 
+}
+
+$uploads_dir = '../img/products';
+
+// end
 ////////////////////////////// SAVE EDIT DELETE ///////////////////////////////////////////////
 if(isset($_POST['savenew'])){ 
 	$name = $_POST['name'];
@@ -268,8 +306,8 @@ if(isset($_POST['savenew'])){
 	               
 	                // File upload path
 	            $uploads_dir = '../img/products';
-	         move_uploaded_file($tmp_name , $uploads_dir .'/'.$fileName);
-	             
+	        //  move_uploaded_file($tmp_name , $uploads_dir .'/'.$fileName);
+	             compressImage($tmp_name,$uploads_dir .'/'.$fileName,69);
 	             	
 	         	$insertphotos = "INSERT INTO `photo`(`prod_id`, `photo`) VALUES ('$getp_id','$fileName')";
 	         	mysqli_query($con,$insertphotos);

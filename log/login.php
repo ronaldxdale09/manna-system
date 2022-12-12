@@ -13,19 +13,62 @@ if(isset($_POST['login'])){
 	                $count= mysqli_num_rows($credentials);
 	               //  $get_id =  mysqli_insert_id($con); 
 	             if ($count>=1){
-	            	echo 'match';
+	            	
 	                 while($row = mysqli_fetch_array($credentials)){
 						$_SESSION['user_id'] = $row['user_id'];
 						$_SESSION['user_name'] = $row['name'].' '.$row['lastname'];
 						$_SESSION['user_isset']=1;
 						$_SESSION['user_daddress'] = $row['d_address'];
 						$userid = $row['user_id'];
+						$userphone = $row['mobile_number'];
 						$ipadd = $row['ipaddress'];
 						$_SESSION['user_ip'] = $ipadd;
 	                 }
 
+					 $sql = " select * from `accounts` where  user_id = '$userid' and status=0 ";
+					 $result = mysqli_query($con,$sql); 
+					 $countVerify= mysqli_num_rows($result);
+					 if($countVerify >= 1){
+						// send otp
+
+						$SixDigitRandomNumber = mt_rand(100000,999999);
+						$SixDigitRandomNumber;
+
+									
+							$send_otp = "INSERT INTO `otp-sms`(`user_id`, `mobile_number`,`otp`,status)
+							VALUES ('$userid','$userphone','$SixDigitRandomNumber',0)";
+							mysqli_query($con,$send_otp);
+
+						   require '../vendor/autoload.php';
 
 
+							$client = new GuzzleHttp\Client(); 
+
+							$response = $client->request("POST", "https://api.sms.fortres.net/v1/messages", [
+								"headers" => [
+									"Content-type" => "application/json"
+								],
+								"auth" => ["ea74cab6-4f29-4ca5-92a8-3ff758aaa9cf", "X0qRewwoT8f36lAPDucrICHbQgQVCenCuD7wbwEB"],
+								"json" => [
+									"recipient" => "$userphone",
+									"message" => "Your Mannafest verification code is $SixDigitRandomNumber"
+								]
+							]);
+
+						// 	if ($response->getStatusCode() == 200) {
+						// 		echo $response->getBody();
+							
+
+						// 	}
+						$_SESSION['reg_phone'] = $userphone;
+						$_SESSION['verify_user_id'] = $userid;
+						$_SESSION['verify_first']= "successful";
+						echo 'verify_first';   
+						exit();
+					}
+					else {
+
+						echo 'match';
 	                 		$getallcartitems = " select * from cart where user_id = '$ipadd'  ";
 	                                 $gettingcart_items = mysqli_query($con,$getallcartitems); 
 	                             
@@ -108,7 +151,7 @@ if(isset($_POST['login'])){
 	                                                  
 	                                            
 	                           
-
+			}
 
 
 	          }else {

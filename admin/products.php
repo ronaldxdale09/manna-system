@@ -22,8 +22,8 @@ include "../connections/connect.php";
 
 
 
-        <section class="main">
-
+        <section class="home-section">
+            <!-- 
             <div class="">
                 <button class="btn btn-light text-dark" id="slideleft" style="font-size: 10px;"><i
                         class="fas fa-arrow-left"></i></button>
@@ -32,7 +32,7 @@ include "../connections/connect.php";
                         class="fas fa-arrow-right"></i></button>
 
 
-            </div>
+            </div> -->
 
             <div class="main_contents">
                 <div class="container">
@@ -268,12 +268,19 @@ include "../connections/connect.php";
                             <input type="text" name="eprice" id="eprice"
                                 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                                 style="font-size: 14px" class="form-control mb-2" required="">
+
+                            <label style="font-size: 14px" class="mb-3">Enter Cost: </label>
+                            <input type="text" name="ecost" id="ecost"
+                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                style="font-size: 14px" class="form-control mb-2" required="">
+
+
                             <label style="font-size: 14px" class="mb-3">Enter Description: </label>
                             <textarea style="font-size: 14px" name="edesc" id="edesc" class="form-control"></textarea>
                             <input type="hidden" name="eid" id="eid">
 
                         </div>
-                        <button type="submit" class="btn btn-light text-dark mt-3"
+                        <button type="submit" class="btn btn-warning text-dark mt-3"
                             style="font-size: 15px;float: right;">Modify</button>
 
                     </form>

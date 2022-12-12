@@ -6,33 +6,20 @@ if(!isset($_SESSION['admin_id'])){
   header('location:../log/signin.php');
 }
  ?>
+ <?php include 'head.php' ?>
+<?php include 'navbar.php' ?>
 <!DOCTYPE html>
 <html>
 
-<?php include 'head.php' ?>
 
 <body style="background-color: white">
     <div class="wrapper">
+<br><br>
 
-
-    <nav class="sidenav shadow">
-        <?php include 'navbar.php' ?>
-        </nav>
-
-
-
-        <section class="main">
-
-            <div class="">
-                <button class="btn btn-light text-dark" id="slideleft" style="font-size: 10px;"><i
-                        class="fas fa-arrow-left"></i></button>
-
-                <button class="btn btn-light text-dark d-none" id="slideright" style="font-size: 10px;"><i
-                        class="fas fa-arrow-right"></i></button>
-            </div>
-
-            <div class="main_contents">
-                <div class="container">
+    <section class="home-section">
+        
+    
+                <div class="container-fluid">
 
                     <h5 style="font-weight: bolder;">SALES</h5>
                     <hr>

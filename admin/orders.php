@@ -19,20 +19,11 @@ if(!isset($_SESSION['admin_id'])){
         </nav>
 
 
-
-        <section class="main">
-
-            <div class="">
-                <button class="btn btn-light text-dark" id="slideleft" style="font-size: 10px;"><i
-                        class="fas fa-arrow-left"></i></button>
-
-                <button class="btn btn-light text-dark d-none" id="slideright" style="font-size: 10px;"><i
-                        class="fas fa-arrow-right"></i></button>
-
-            </div>
+        <section class="home-section">
+        
 
             <div class="main_contents">
-                <div class="container">
+                <div class="container-fluid">
 
                     <h5 style="font-weight: bolder;">ORDERS</h5>
                     <hr>
