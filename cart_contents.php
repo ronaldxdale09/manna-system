@@ -295,9 +295,9 @@ if (isset($_POST["cartitems"])) { ?>
                             </script>
                             <br>
                             <p></p>
-
+<!-- 
                             <span id="dfee" class="d-none"> Delivery Fee : <span class="float-right"
-                                    id="delivery_fee">₱100</span></span>
+                                    id="delivery_fee">₱100</span></span> -->
                             <br>
                             <hr>
                             <span style="font-size: 15px; font-weight: bolder">TOTAL : <span class="float-right"
@@ -557,9 +557,9 @@ if (isset($_POST["cartitems"])) { ?>
                                             });
                                             </script>
 
-
+<!-- 
                                             <span id="dfee" class="d-none"> Delivery Fee : <span class="float-right"
-                                                    id="delivery_fee">₱100</span></span>
+                                                    id="delivery_fee">₱100</span></span> -->
                                             <br>
                                             <hr>
                                             <span style="font-size: 15px; font-weight: bolder">TOTAL : <span
@@ -658,7 +658,7 @@ $(document).ready(function() {
         var total = $('#totalll').text();
 
 
-        var finaltotal = Number(total) + 100;
+        var finaltotal = Number(total);
         $(this).addClass('d-none');
 
         $('#totalll').text(finaltotal);

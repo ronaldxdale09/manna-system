@@ -188,7 +188,7 @@ if(!isset($_SESSION['admin_id'])){
                         $user = $row['user_id'];
                         $pid = $row['prod_id'];
                         $total[] = $row['total'];
-                          $dfee = $row['dfee'];
+                
                                               $disc = $row['disc'];
                       ?>
                                             <tr>
@@ -260,24 +260,8 @@ if(!isset($_SESSION['admin_id'])){
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
-                                                <td>
-                                                    <?php 
-                                 if(isset($dfee)){
-                                    echo 'Delivery Fees';
-                                  }else {
-                                    
-                                  }
-                                 ?>
-                                                </td>
-                                                <td>
-                                                    <h6 style=""> <?php 
-                                 if(isset($dfee)){
-                                    echo ' ₱'.$dfee;
-                                  }else {
-                                    
-                                  }
-                                 ?></h6>
-                                                </td>
+                                              
+                                                
                                             </tr>
                                             <tr>
                                                 <td></td>
@@ -295,7 +279,7 @@ if(!isset($_SESSION['admin_id'])){
                                
                                    if(isset($disc)){
                                        if(isset($dfee)){
-                                     echo array_sum($total) + $dfee - $disc;
+                                     echo array_sum($total) - $disc;
                                   }else {
                                     echo array_sum($total) - $disc;
 
@@ -304,7 +288,7 @@ if(!isset($_SESSION['admin_id'])){
                                       }else {
                                         
                                          if(isset($dfee)){
-                                     echo array_sum($total) + $dfee;
+                                     echo array_sum($total);
                                   }else {
                                     echo array_sum($total);
 
@@ -450,24 +434,8 @@ if(!isset($_SESSION['admin_id'])){
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
-                                                <td>
-                                                    <?php 
-                                 if(isset($dfee)){
-                                    echo 'Delivery Fee';
-                                  }else {
-                                    
-                                  }
-                                 ?>
-                                                </td>
-                                                <td>
-                                                    <h6 style=""> <?php 
-                                 if(isset($dfee)){
-                                    echo ' ₱'.$dfee;
-                                  }else {
-                                    
-                                  }
-                                 ?></h6>
-                                                </td>
+                                                
+                                                
                                             </tr>
                                             <tr>
                                                 <td></td>
@@ -485,7 +453,7 @@ if(!isset($_SESSION['admin_id'])){
                                
                                    if(isset($disc)){
                                        if(isset($dfee)){
-                                     echo array_sum($total) + $dfee - $disc;
+                                     echo array_sum($total)- $disc;
                                   }else {
                                     echo array_sum($total) - $disc;
 
@@ -494,7 +462,7 @@ if(!isset($_SESSION['admin_id'])){
                                       }else {
                                         
                                          if(isset($dfee)){
-                                     echo array_sum($total) + $dfee;
+                                     echo array_sum($total);
                                   }else {
                                     echo array_sum($total);
 
