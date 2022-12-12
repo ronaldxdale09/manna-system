@@ -1,9 +1,10 @@
-
-    <link rel="stylesheet" type="text/css" href="css/search.css">
 <nav class="purple-rain">
+
+
+
     <div class="row purple-rain">
 
-        <div class="col-md-3">
+        <div class="col-md-2">
             <a href="index.php" style="text-decoration: none">
 
                 <a href="index.php" style='padding: 20px;'>
@@ -13,22 +14,9 @@
         </div>
 
         <div class="col-md-4">
-            <div class="header_search">
-                <div class="header_search_content">
-                    <div class="header_search_form_container">
-                        <form action="#" class="header_search_form clearfix">
-                            <input type="search" required="required" class="header_search_input"
-                                placeholder="Search for products...">
 
-                            <button type="submit" class="header_search_button trans_300" value="Submit"><img
-                                    src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918770/search.png"
-                                    alt=""></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-6">
 
             <style type="text/css">
             .dropdown:hover .dropdown-menu {
@@ -41,7 +29,7 @@
             <div class="container">
                 <div class="row" id="buttonsg">
 
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <?php 
                         if(isset($cart)){
 
@@ -113,7 +101,7 @@
                                                 ?>
 
                         <div class="dropdown">
-                            <a class="btn btn-outline-warning  mt-1 text-dark" href="#" role="button" style="padding: 5px">
+                            <a class="btn btn-outline-dark  mt-1 text-dark" href="#" role="button" style="padding: 5px">
 
                                 <span style="font-weight: bolder">Welcome <br> <span
                                         class="text-primary"><?php echo $_SESSION['user_name'] ?></span></span>
@@ -184,7 +172,8 @@
                                         }else {
                                             ?>
                         <div class="dropdown">
-                            <a class="btn btn-outline-warning  mt-1 text-dark" href="#" role="button">
+                            <a class="btn btn-dark  mt-1 text-light" href="#" role="button"
+                                style="border-radius: 40px;padding: 10px">
                                 <i class="far fa-user" style="font-size: 20px"></i> <br>
                                 <span style="font-weight: bolder">Welcome Customer</span>
                             </a>

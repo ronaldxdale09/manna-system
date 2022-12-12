@@ -1,40 +1,40 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.navbar{
+.navbar {
     display: flex;
     align-items: center;
     padding: 10px;
 }
 
-nav{
+nav {
     flex: 1;
     text-align: right;
 }
 
-nav ul{
+nav ul {
     display: inline-block;
     list-style-type: none;
 }
 
-nav ul li{
+nav ul li {
     display: inline-block;
     margin-right: 20px;
 }
 
-a{
+a {
     text-decoration: none;
     color: black;
 }
 
-p{
+p {
     color: black;
 }
 
-.container{
+.container {
     background: #FCF4A3;
     /* max-width: 1300px; */
     max-height: fit-content;
@@ -42,10 +42,9 @@ p{
     padding-left: 50px;
     padding-right: 50px;
     margin-bottom: 10px;
-
 }
 
-.row{
+.row {
     /* display: flex; */
     align-items: center;
     flex-wrap: wrap;
@@ -53,13 +52,13 @@ p{
     padding-left: 80px;
 }
 
+
 /* .col-2{
     flex-basis: 50%;
     min-width: 300px;
 } */
 
-
-.col-2 h1{
+.col-2 h1 {
     font-size: 75px;
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -68,18 +67,18 @@ p{
     /* margin: 25px 0; */
 }
 
-.highlight{
+.highlight {
     color: #fda50f;
 }
 
-.section{
+.section {
     display: flex;
     justify-content: space-between;
     padding: 40px;
     background-color: #fffef1;
 }
 
-.btn{
+.btn {
     display: inline-block;
     background: #ffff;
     color: rgb(90, 89, 89);
@@ -100,7 +99,7 @@ p{
     align-items: center;
 } */
 
-.slideshow{
+.slideshow {
     margin: 0;
     /* height: 100vh; */
     display: flex;
@@ -109,36 +108,37 @@ p{
     align-items: center;
 }
 
-.slider{
+.slider {
     width: 800px;
     height: 500px;
     border-radius: 10px;
     overflow: hidden;
 }
 
-.slides{
+.slides {
     width: 500%;
     height: 500px;
     display: flex;
 }
 
-.slides input{
+.slides input {
     display: none;
 }
 
-.slide{
+.slide {
     width: 20%;
     transition: 2s;
 }
 
-.slide img{
+.slide img {
     width: 800px;
     height: 500px;
 }
 
+
 /*css for manual slides*/
 
-.navigation-manual{
+.navigation-manual {
     position: absolute;
     width: 800px;
     margin-top: -40px;
@@ -146,7 +146,7 @@ p{
     justify-content: center;
 }
 
-.manual-btn{
+.manual-btn {
     border: 2px solid orange;
     padding: 5px;
     border-radius: 10px;
@@ -154,33 +154,34 @@ p{
     transition: 1s;
 }
 
-.manual-btn:not(:last-child){
+.manual-btn:not(:last-child) {
     margin-right: 40px;
 }
 
-.manual-btn:hover{
+.manual-btn:hover {
     background: orange;
 }
 
-#radio1:checked ~ .first{
+#radio1:checked~.first {
     margin-left: 0;
 }
 
-#radio2:checked ~ .first{
+#radio2:checked~.first {
     margin-left: -20%;
 }
 
-#radio3:checked ~ .first{
+#radio3:checked~.first {
     margin-left: -40%;
 }
 
-#radio4:checked ~ .first{
+#radio4:checked~.first {
     margin-left: -60%;
 }
 
+
 /*css for automatic slides*/
 
-.navigation-auto{
+.navigation-auto {
     position: absolute;
     display: flex;
     width: 800px;
@@ -188,29 +189,29 @@ p{
     margin-top: 460px;
 }
 
-.navigation-auto div{
+.navigation-auto div {
     border: 2px solid orange;
     padding: 5px;
     border-radius: 10px;
     transition: 1s;
 }
 
-.navigation-auto div:not(:last-child){
+.navigation-auto div:not(:last-child) {
     margin-right: 40px;
 }
 
-#radio1:checked ~ .navigation-auto .auto-btn1{
+#radio1:checked~.navigation-auto .auto-btn1 {
     background: orange;
 }
 
-#radio2:checked ~ .navigation-auto .auto-btn2{
+#radio2:checked~.navigation-auto .auto-btn2 {
     background: orange;
 }
 
-#radio3:checked ~ .navigation-auto .auto-btn3{
+#radio3:checked~.navigation-auto .auto-btn3 {
     background: orange;
 }
 
-#radio4:checked ~ .navigation-auto .auto-btn4{
+#radio4:checked~.navigation-auto .auto-btn4 {
     background: orange;
 }
