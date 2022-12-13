@@ -107,15 +107,14 @@ if (isset($_GET['prod'])) {
 
                 </div>
                 <div class="row">
-                    <p><i class="text-success fa fa-check-square-o" aria-hidden="true"></i> <strong>Bank Offer</strong>
-                        20% Instant Discount on SBI Credit Cards</p>
-                    <p><i class="text-success fa fa-check-square-o" aria-hidden="true"></i> <strong>Bank Offer</strong>
-                        5% Unlimited Cashback on Flipkart Axis Bank Credit Card </p>
-                    <p><i class="text-success fa fa-check-square-o" aria-hidden="true"></i> <strong>Bank Offer</strong>
-                        Extra 5% off* with Axis Bank Buzz Credit Card</p>
-                    <p><i class="text-success fa fa-check-square-o" aria-hidden="true"></i> <strong>Bank
-                            Offer</strong>20% Instant Discount on pay with <i class="fa fa-google-wallet"
-                            aria-hidden="true"></i> google wallet </p>
+                    <p><i class="text-success fa fa-check-square-o" aria-hidden="true"></i>  <?php echo $arr['name']?></p>
+
+                    <p><i class="text-success fa fa-check-square-o" aria-hidden="true"></i> <strong>Details : </strong>
+                    <?php echo $arr['description']?></p>
+
+                    <p><i class="text-success fa fa-check-square-o" aria-hidden="true"></i> <strong>Ingredients</strong>
+                    <?php echo $arr['ingredients']?></p>
+                   
                 </div>
                 <div class="row mt-4">
 

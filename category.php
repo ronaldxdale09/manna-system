@@ -9,41 +9,66 @@ include 'connections/connect.php';
 <?php include 'include/header.php' ?>
 
 <style type="text/css">
-  @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .banner img {
-      height: 240px;
+        height: 240px;
     }
-    #bnctitle {
-      font-size: 30px;
-    }
-    #buttonsg {
-      position: relative;
-      left: 100%;
-    }
-  }
-</style>
-<body style="background-color:white;overflow-x: hidden;">
-<link rel="stylesheet" href="css/home.css">
 
-	<?php 
+    #bnctitle {
+        font-size: 30px;
+    }
+
+    #buttonsg {
+        position: relative;
+        left: 100%;
+    }
+}
+</style>
+
+<body style="background-color:white;overflow-x: hidden;">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/filter.css">
+    <?php 
   include 'include/topnavbar.php';
   include 'include/allcategorynav.php';
 
   ?>
 
- 	
- 
-
-  <div class="container-fluid">
 
 
-  	  <div class="container">
-  	  
-  	  <div class="">
-  	  	  <!--Sort By Categories--->	
-  	  		 
-              
-              <?php 
+
+    <div class="container-fluid">
+
+
+        <div class="container">
+
+            <div class="">
+                <!--Sort By Categories--->
+                <center>
+                    <div class="wrapper">
+                        <div id="search-container">
+                            <input type="search" id="search-input" placeholder="Search product name here.." />
+                            <button id="search">Search</button>
+                        </div>
+                        <div id="buttons">
+                            <a href='category.php' class="button-value" style='text-decoration:none;'>All</a>
+                            <button href='category.php' class="button-value" style='text-decoration:none;'>
+                                Breads
+                                </a>
+                                <button href='category.php?' class="button-value" style='text-decoration:none;'>
+                                    Biscuits
+                                    </a>
+                                    <button class="button-value">
+                                        Cakes
+                                        </a>
+                                        <button class="button-value">
+                                            Others
+                                            </a>
+                        </div>
+                    </div>
+                </center>
+
+                <?php 
               if(isset($_GET['sortbycategory'])){ 
                 $id = $_GET['sortbycategory'];
                 $categoryname = $_GET['category'];
@@ -53,42 +78,42 @@ include 'connections/connect.php';
                 
               }else {
                  ?>
-                   <div id="sorted_by_categories">
-						<div class="spinner-grow text-info" role="status">
-							<span class="visually-hidden">Loading...</span>
-						</div>
-						<div class="spinner-grow text-info" role="status">
-							<span class="visually-hidden">Loading...</span>
-						</div>
-						<div class="spinner-grow text-info" role="status">
-							<span class="visually-hidden">Loading...</span>
-						</div>
-                   </div>
-                 <?php
+                <div id="sorted_by_categories">
+                    <div class="spinner-grow text-info" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-info" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-info" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                <?php
 
                 }
                ?>
-              
-  	  
-  	  		 </div> 
-  	  		 
-  	  	<!--Sort By Categories--->
-  	  		 
 
 
-  	  </div> 
+            </div>
 
-  	 
-  	   
+            <!--Sort By Categories--->
 
-  	  </div> 
-  	  
-  	  <p><br></p>
 
-  	
-  	 
-  
-  	 
+
+        </div>
+
+
+
+
+    </div>
+
+    <p><br></p>
+
+
+
+
+
     <!--<div class="fixed-top purple-rain shadow  d-none" style="border-bottom: 4px solid black" id="cartalert"   >
     <h5 style="font-weight:bolder;font-family: 'Courgette', cursive;float: left;padding: 10px; color:white">EB Fashion</h5> 
     <a href="cart.php"><h6 style="float: right;  font-weight: bolder;margin-right: 10px ;padding: 5px;padding-top: 15px; color:white;">Shopping Cart   <span class="badge badge-danger bg-dark" style="" id="countcarts"></span></h6></a>
@@ -96,111 +121,117 @@ include 'connections/connect.php';
     </div> -->
 
 
-  	
-  </div> 
 
- <?php 
+    </div>
+
+    <?php 
   include 'include/footer.php';
   include 'include/itemsview.php';
   ?>
-  	
-  
-
-  	
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-<script type="text/javascript">
- 
-  $(document).ready(function() {
-       
-        if ( $(window).width() <= 767 ) { 
-      $('#buttonsg').removeClass('row');
-      $('#footrow').removeClass('row');
-       $('#footrow').css('text-align','center');
-       $('.e').removeClass('col-md-4');
-
-      }
-
-           getallitems();
 
 
-          function getallitems(){
-            
-            
-               $.ajax({
-                       url : "categories.php",
-                        method: "POST",
-                         data  : {getAllitems:1},
-                         success : function(data){
-                        $('#sorted_by_categories').html(data);
-                         }
-                      })
-                
-                
-          }
-
-            countitemcart();
-    function countitemcart (){
-        
-         $.ajax({
-                 url : "contents.php",
-                  method: "POST",
-                   data  : {cartitems:1},
-                   success : function(data){
-                $('#countcart').text(data);
-                $('#countcarts').text(data);
-
-                   }
-                })
-        
-      
-  
-          
-    }
-
-    countitemwishlist();
-
-    function countitemwishlist (){
-
-        $.ajax({
-                 url : "contents.php",
-                  method: "POST",
-                   data  : {cartwlistitems:1},
-                   success : function(data){
-                $('#countwlist').text(data);
-                   }
-                })
-
-    }  
-
-        var fixmeTop = $('#cartbutton').offset().top;     
-
-$(window).scroll(function() {                 
-
-    var currentScroll = $(window).scrollTop(); 
-
-    if (currentScroll >= fixmeTop) {           
-        $('#cartalert').removeClass('d-none');
-      //$("#cartalert").toggle("slide", { direction: "left" }, 2000);
-      //$('#cartalert').animate({right:'120'},1000);
-    } else {                                   
-      $('#cartalert').addClass('d-none');
-       //$('#cartalert').animate({left:'120'},1000);
-    }
-
-});
-        });      
-        
-</script> 
 
 
-     	   			 
-		  
-		
-		<!--Bootstrap Plugins-->
-	   <script type="text/javascript" src="js/notify.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/popper.js"></script>
-		<script type="text/javascript" src="js/bootstrap.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+        if ($(window).width() <= 767) {
+            $('#buttonsg').removeClass('row');
+            $('#footrow').removeClass('row');
+            $('#footrow').css('text-align', 'center');
+            $('.e').removeClass('col-md-4');
+
+        }
+
+        getallitems();
+
+
+        function getallitems() {
+
+
+            $.ajax({
+                url: "categories.php",
+                method: "POST",
+                data: {
+                    getAllitems: 1
+                },
+                success: function(data) {
+                    $('#sorted_by_categories').html(data);
+                }
+            })
+
+
+        }
+
+        countitemcart();
+
+        function countitemcart() {
+
+            $.ajax({
+                url: "contents.php",
+                method: "POST",
+                data: {
+                    cartitems: 1
+                },
+                success: function(data) {
+                    $('#countcart').text(data);
+                    $('#countcarts').text(data);
+
+                }
+            })
+
+
+
+
+        }
+
+        countitemwishlist();
+
+        function countitemwishlist() {
+
+            $.ajax({
+                url: "contents.php",
+                method: "POST",
+                data: {
+                    cartwlistitems: 1
+                },
+                success: function(data) {
+                    $('#countwlist').text(data);
+                }
+            })
+
+        }
+
+        var fixmeTop = $('#cartbutton').offset().top;
+
+        $(window).scroll(function() {
+
+            var currentScroll = $(window).scrollTop();
+
+            if (currentScroll >= fixmeTop) {
+                $('#cartalert').removeClass('d-none');
+                //$("#cartalert").toggle("slide", { direction: "left" }, 2000);
+                //$('#cartalert').animate({right:'120'},1000);
+            } else {
+                $('#cartalert').addClass('d-none');
+                //$('#cartalert').animate({left:'120'},1000);
+            }
+
+        });
+    });
+    </script>
+
+
+
+
+
+    <!--Bootstrap Plugins-->
+    <script type="text/javascript" src="js/notify.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/popper.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
 </body>
+
 </html>

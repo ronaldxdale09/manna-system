@@ -77,10 +77,8 @@ $char = '';
 ?>
 
             <div class="card-body" style="text-align: center;">
-                <a href="javascript:void(0)" data-bs-toggle="modal" class="openproductview"
-                    data-id="<?php echo $row['prod_id'] ?>" data-bs-target="#exampleModal1" data-backdrop="static"
-                    data-keyboard="false" style="text-decoration: none"> <span
-                        style="text-align: center;font-weight: bold"><?php echo $row['name'] ?></span> </a><br>
+            <a href="product_details.php?prod=<?php echo $row['prod_id'] ?>" style="text-decoration: none"> <span
+                    style="text-align: center;font-weight: bold"><?php echo $row['name'] ?></span> </a><br>
                 <span class="card-text" style="text-align: left;"><?php echo $row['description'] ?>
                 </span><br>
                 <span class="text-secondary" style="font-size: 20px;font-weight: bolder;">₱ <?php echo $row['price'] ?>
@@ -96,8 +94,8 @@ $char = '';
             </div>
             <div class="card-footer">
                 <center>
-                    <button class="btn btn-dark " style="font-size: 13px;font-weight: bold;"
-                        data-productid="<?php echo $row['prod_id'] ?>"> View Product <i class="fas fa-eye"></i></button>
+                    <a   href="product_details.php?prod=<?php echo $row['prod_id'] ?>" class="btn btn-dark " style="font-size: 13px;font-weight: bold;"
+                      > View Product <i class="fas fa-eye"></i></a>
                     <button class="btn btn-warning text-dark addcart" style="font-size: 13px;font-weight: bold;"
                         data-productid="<?php echo $row['prod_id'] ?>"> Add to Cart <i
                             class="fas fa-cart-plus"></i></button>

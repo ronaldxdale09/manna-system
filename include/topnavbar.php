@@ -85,7 +85,7 @@
                     
                          ?>
 
-                        <button class="btn mt-3 text-dark " onclick="window.location.href='orders.php?p=31'"
+                        <button class="btn mt-3 text-dark " onclick="window.location.href='orders.php'"
                             style="border-radius: 25px;position: relative; margin-left: 10px;">
 
                             <i class="fas fa-truck" style="font-size: 20px;"></i>
