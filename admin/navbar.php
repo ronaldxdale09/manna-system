@@ -33,13 +33,32 @@
             </a>
         </li>
 
-        <hr style='color:white'>
+
         <li>
-            <a href='products.php'>
-                <i class='fa-solid fa-archive'></i>
-                <span class="link_name">Items</span>
-            </a>
+            <hr style='color:white'>
+            <ul class='sub-menu blank'>
+                <li><a class='link_name'>Inventory</a></li>
+            </ul>
         </li>
+
+
+
+        <li>
+            <div class='iocn-link'>
+                <a >
+                    <i class='bx bx-collection'></i>
+                    <span class='link_name'>Items</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class='sub-menu'>
+              <br>
+                <li><a href='products.php'>Item List</a></li>
+                <li><a href='stock-in.php'>Stock-in</a></li>
+                <li><a href='../admin/warehouse_inventory.php'>Stock-out</a></li>
+            </ul>
+        </li>
+       
 
         <li>
             <a href='item_prod.php'>
@@ -115,4 +134,20 @@ const navLinks = document.querySelectorAll('.sidebar a').forEach(link => {
         console.log(activePage);
     }
 })
+
+
+
+let arrow = document.querySelectorAll(".arrow");
+for (var i = 0; i < arrow.length; i++) {
+    arrow[i].addEventListener("click", (e) => {
+        let arrowParent = e.target.parentElement.parentElement; //selecting main parent of arrow
+        arrowParent.classList.toggle("showMenu");
+    });
+}
+let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".bx-menu");
+console.log(sidebarBtn);
+sidebarBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("close");
+});
 </script>

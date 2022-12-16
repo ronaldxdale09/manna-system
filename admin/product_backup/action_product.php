@@ -219,37 +219,37 @@ if(isset($_POST['checkifexistcat'])){
 
 // image compression
 
-function compressImage($source, $destination, $quality) { 
-    // Get image info 
-    $imgInfo = getimagesize($source); 
-    $mime = $imgInfo['mime']; 
+// function compressImage($source, $destination, $quality) { 
+//     // Get image info 
+//     $imgInfo = getimagesize($source); 
+//     $mime = $imgInfo['mime']; 
      
-    // Create a new image from file 
-    switch($mime){ 
-        case 'image/jpeg': 
-            $image = imagecreatefromjpeg($source); 
-            break; 
-        case 'image/png': 
-            $image = imagecreatefrompng($source); 
-            break; 
-        case 'image/gif': 
-            $image = imagecreatefromgif($source); 
-            break; 
-        default: 
-            $image = imagecreatefromjpeg($source); 
-    } 
+//     // Create a new image from file 
+//     switch($mime){ 
+//         case 'image/jpeg': 
+//             $image = imagecreatefromjpeg($source); 
+//             break; 
+//         case 'image/png': 
+//             $image = imagecreatefrompng($source); 
+//             break; 
+//         case 'image/gif': 
+//             $image = imagecreatefromgif($source); 
+//             break; 
+//         default: 
+//             $image = imagecreatefromjpeg($source); 
+//     } 
      
-    // Save image 
-    imagepng($image, $destination, $quality); 
+//     // Save image 
+//     imagepng($image, $destination, $quality); 
      
-    // Return compressed image 
-    return $destination; 
-}
-function convert_filesize($bytes, $decimals = 2) { 
-    $size = array('B','KB','MB','GB','TB','PB','EB','ZB','YB'); 
-    $factor = floor((strlen($bytes) - 1) / 3); 
-    return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$size[$factor]; 
-}
+//     // Return compressed image 
+//     return $destination; 
+// }
+// function convert_filesize($bytes, $decimals = 2) { 
+//     $size = array('B','KB','MB','GB','TB','PB','EB','ZB','YB'); 
+//     $factor = floor((strlen($bytes) - 1) / 3); 
+//     return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$size[$factor]; 
+// }
 
 $uploads_dir = '../img/products';
 
@@ -306,8 +306,8 @@ if(isset($_POST['savenew'])){
 	               
 	                // File upload path
 	            $uploads_dir = '../img/products';
-	        //  move_uploaded_file($tmp_name , $uploads_dir .'/'.$fileName);
-	             compressImage($tmp_name,$uploads_dir .'/'.$fileName,69);
+	         move_uploaded_file($tmp_name , $uploads_dir .'/'.$fileName);
+	            //  compressImage($tmp_name,$uploads_dir .'/'.$fileName,69);
 	             	
 	         	$insertphotos = "INSERT INTO `photo`(`prod_id`, `photo`) VALUES ('$getp_id','$fileName')";
 	         	mysqli_query($con,$insertphotos);

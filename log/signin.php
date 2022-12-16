@@ -16,6 +16,7 @@ if(isset($_SESSION['admin_id'])){
     <!---->
     <script src="https://kit.fontawesome.com/129b086bc9.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery.Wload.css">
     <title>Signin - Manna</title>
 
     <style type="text/css">
@@ -139,7 +140,8 @@ if(isset($_SESSION['admin_id'])){
                                 <div class="col-sm-8"> <a href="javascript:void(0)" class="registerhere"
                                         style="text-decoration: none">Don't have
                                         an Account?<br>Register here.</a></div>
-                                <div class="col-sm-4"> <a href="forgot.php"" style="text-decoration: none">Forgot Password</a></div>
+                                <div class="col-sm-4"> <a href="forgot.php"" style=" text-decoration: none">Forgot
+                                        Password</a></div>
                             </div>
 
                         </form>
@@ -294,7 +296,7 @@ if(isset($_SESSION['admin_id'])){
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
+    <script type="text/javascript" src="../js/jquery.Wload.js"></script>
     <script>
     $(document).ready(function() {
 
@@ -422,6 +424,9 @@ if(isset($_SESSION['admin_id'])){
         });
 
         $('#reg_step3').on('submit', function(event) {
+            $('body').Wload({
+                text: ' Processing',
+            });
             event.preventDefault();
             $.ajax({
                 url: $(this).attr('action'),
@@ -432,7 +437,12 @@ if(isset($_SESSION['admin_id'])){
                     $('#step1').addClass('d-none');
                     $('#step2').addClass('d-none');
                     $('#step3').addClass('d-none');
+
                     window.location.href = "verify.php?v=" + data;
+
+                    // $('body').Wload('hide', {
+                    //     time: 1000
+                    // })
                     // $.notify("Registered Successfully! ", "success");
                 }
             })
@@ -473,6 +483,7 @@ if(isset($_SESSION['admin_id'])){
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/popper.js"></script>
     <script type="text/javascript" src="../js/bootstrap.js"></script>
+
 </body>
 
 </html>

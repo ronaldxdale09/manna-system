@@ -1,14 +1,12 @@
 <?php 
 session_start();
-// include('connections/connect.php');
+include '../connections/connect.php';
+
+
 // Required if your environment does not handle autoloading
 require '../vendor/autoload.php';
 
-// Use the REST API Client to make requests to the Twilio REST API
-use Twilio\Rest\Client;
 
-
-include '../connections/connect.php';
 
 
 

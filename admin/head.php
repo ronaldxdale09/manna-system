@@ -7,6 +7,7 @@
     <script src="https://kit.fontawesome.com/129b086bc9.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/home.css">
     <link rel="stylesheet" type="text/css" href="badge.scss">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,12 +18,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Rye&display=swap" rel="stylesheet">
     <title>MannafestFoodInc &middot; Admin</title>
     <style type="text/css">
-    @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap');
+    /* @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap');
 
     * {
         font-family: 'Zen Kaku Gothic New', sans-serif;
         font-weight: bold;
-    }
+    } */
 
 
 

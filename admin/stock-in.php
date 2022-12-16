@@ -48,7 +48,7 @@ $prod_list .= '
             <div class="main_contents">
                 <div class="container">
 
-                    <h5 style="font-weight: bolder;">ITEM LIST</h5>
+                    <h5 style="font-weight: bolder;">STOCK IN</h5>
                     <hr>
                     <div class="card shadow-sm" style="">
                         <div class="card-body">
@@ -67,12 +67,14 @@ $prod_list .= '
                                 <table id="production_table" class="table table-hover" style="width:100%;">
                                     <thead class="table-warning">
                                         <tr style='font-size:14px'>
-                                            <th> Img </th>
+                                            
                                             <th>Barcode</th>
                                             <th>Product Name</th>
                                             <th>Category</th>
-                                            <th>Description/Details</th>
-                                            <th>Ingredients</th>
+                                            <th>Cost</th>
+                                            <th>Price</th>
+                                            <th>Total Stock</th>
+                                            <th>Price</th>
                                             <th>Action</th>
 
 
@@ -86,26 +88,20 @@ $prod_list .= '
                                           
                                             ?>
                                         <tr>
-                                            <td>
-                                                <div class="circle">
-
-                                                    <img src="<?php echo '../img/products/' . $row['photo'] ?>" alt=""
-                                                        class="card-img-top" style="width:70px;height: 70px">
-                                                </div>
-                                            </td>
+                                           
                                             <td><?php echo $row['barcode']; ?></td>
                                             <td><?php echo $row['name']; ?></td>
                                             <td><?php echo $row['category_name']; ?></td>
-                                            <td><?php echo $row['description']; ?></td>
-                                            <td><?php echo $row['ingredients']; ?></td>
+                                            <td><?php echo $row['cost']; ?></td>
+                                            <td><?php echo $row['price']; ?></td>
+                                            <td></td>
+                                            <td></td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <button type="button" class="btn btn-success text-light editmodal"
-                                                        style="font-size: 12px"><i class="fas fa-edit"></i></button>
-                                                    <button type="button" class="btn btn-dark text-light deletecat"
-                                                        data-id="<?php echo $row['prod_id'] ?>"
-                                                        style="font-size: 12px"><i class="fas fa-trash"></i></button>
-
+                                                    <button type="button" class="btn btn-success btn-sm text-light editmodal"
+                                                        style="font-size: 12px"><i class="fas fa-eye"></i></button>
+                       
+                                        </div>
                                                 </div>
 
                                             </td>
