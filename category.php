@@ -47,38 +47,37 @@ include 'connections/connect.php';
                 <center>
                     <div class="wrapper">
                         <div id="search-container">
-                            <input type="search" id="search-input" placeholder="Search product name here.." />
-                            <button id="search">Search</button>
+                  
                         </div>
-                        <div id="buttons">
-                            <a href='category.php' class="button-value" style='text-decoration:none;'>All</a>
-                            <button href='category.php' class="button-value" style='text-decoration:none;'>
+                        <div id="buttons"> <br>
+                            <a href='category.php' class="button-value active"  style='text-decoration:none;font-weight:bold;color:#FDC96F;'>All</a>
+                            <a href='category.php?search=Breads' class="button-value" style='text-decoration:none;'>
                                 Breads
                                 </a>
-                                <button href='category.php?' class="button-value" style='text-decoration:none;'>
+                                <a href='category.php?search=biscuits' class="button-value" style='text-decoration:none;'>
                                     Biscuits
                                     </a>
-                                    <button class="button-value">
+                                    <a href='category.php?search=Cakes' class="button-value"  style='text-decoration:none;'>
                                         Cakes
                                         </a>
-                                        <button class="button-value">
+                                        <a href='category.php?search=others' class="button-value"  style='text-decoration:none;'>
                                             Others
                                             </a>
                         </div>
+                   
                     </div>
+                    <br>
+                    <hr>
                 </center>
 
                 <?php 
-              if(isset($_GET['sortbycategory'])){ 
-                $id = $_GET['sortbycategory'];
-                $categoryname = $_GET['category'];
+         
+            
+                  include 'products.php';
 
-                  include 'sortbycategory.php';
-
-                
-              }else {
+      
                  ?>
-                <div id="sorted_by_categories">
+                <!-- <div id="sorted_by_categories">
                     <div class="spinner-grow text-info" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>
@@ -88,11 +87,8 @@ include 'connections/connect.php';
                     <div class="spinner-grow text-info" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>
-                </div>
-                <?php
-
-                }
-               ?>
+                </div> -->
+             
 
 
             </div>
@@ -145,25 +141,7 @@ include 'connections/connect.php';
 
         }
 
-        getallitems();
 
-
-        function getallitems() {
-
-
-            $.ajax({
-                url: "categories.php",
-                method: "POST",
-                data: {
-                    getAllitems: 1
-                },
-                success: function(data) {
-                    $('#sorted_by_categories').html(data);
-                }
-            })
-
-
-        }
 
         countitemcart();
 

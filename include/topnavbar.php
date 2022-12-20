@@ -17,7 +17,7 @@
                 <div class="header_search_content">
                     <div class="header_search_form_container">
                         <form action="category.php" method="get" class="header_search_form clearfix">
-                            <input type="search"  name="query"  required="required" class="header_search_input"
+                            <input type="search"  name="search"  required="required" class="header_search_input"
                                 placeholder="Search for products...">
 
                             <button type="submit" class="header_search_button trans_300" value="Submit"><img

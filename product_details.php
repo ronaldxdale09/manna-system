@@ -42,6 +42,24 @@ if (isset($_GET['prod'])) {
     <?php 
   include 'include/topnavbar.php';
   ?>
+    <style>
+    .column {
+        display: grid;
+                column-count: 2;
+                width: 50%;
+    }
+
+    /* Clear floats after the columns */
+    button {
+                column-span: all;
+                margin-top: 5px;
+            }
+
+    .row {
+        display: flex;
+    }
+
+    </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
     <div class="container">
@@ -107,21 +125,33 @@ if (isset($_GET['prod'])) {
 
                 </div>
                 <div class="row">
-                    <p><i class="text-success fa fa-check-square-o" aria-hidden="true"></i>  <?php echo $arr['name']?></p>
+                    <p><i class="text-success fa fa-check-square-o" aria-hidden="true"></i> <?php echo $arr['name']?>
+                    </p>
 
                     <p><i class="text-success fa fa-check-square-o" aria-hidden="true"></i> <strong>Details : </strong>
-                    <?php echo $arr['description']?></p>
+                        <?php echo $arr['description']?></p>
 
                     <p><i class="text-success fa fa-check-square-o" aria-hidden="true"></i> <strong>Ingredients</strong>
-                    <?php echo $arr['ingredients']?></p>
-                   
+                        <?php echo $arr['ingredients']?></p>
+
                 </div>
                 <div class="row mt-4">
+                    <div class="row">
+                        <div class="column">
+                            <button class="btn btn-warning text-dark addcart" 
+                                data-productid="<?php echo $arr['prod_id'] ?>"> Add to Cart <i
+                                    class="fas fa-cart-plus"></i></button>
+                        </div>
+                        <div class="column">
+
+                            <button class="btn btn-dark text-light addwishlist"
+                                data-productid="<?php echo $row['prod_id'] ?>"><i class="far fa-heart"></i>  Wish List</button>
+                        </div>
+                    </div>
 
 
-                    <button class="btn btn-warning text-dark addcart" style="font-size: 13px;font-weight: bold;"
-                        data-productid="<?php echo $arr['prod_id'] ?>"> Add to Cart <i
-                            class="fas fa-cart-plus"></i></button>
+
+
                 </div>
 
 

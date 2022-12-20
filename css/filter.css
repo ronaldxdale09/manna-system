@@ -24,22 +24,23 @@
 
 .button-value {
     border: 2px solid #FDC96F;
-    padding: 1em 2.2em;
+    padding: .5em 2.5em;
     border-radius: 3em;
+    margin-right: 10px;
     background-color: transparent;
     color: #1a1a1a;
     cursor: pointer;
 }
 
 .active {
-    background-color: #6759ff;
+    background-color: #242424;
     color: #ffffff;
 }
 
 #products {
     display: grid;
     grid-template-columns: auto auto auto;
-    grid-column-gap: 1.5em;
+    grid-column-gap: 2em;
     padding: 2em 0;
 }
 
