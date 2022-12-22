@@ -44,31 +44,7 @@ include 'connections/connect.php';
 
             <div class="">
                 <!--Sort By Categories--->
-                <center>
-                    <div class="wrapper">
-                        <div id="search-container">
-                  
-                        </div>
-                        <div id="buttons"> <br>
-                            <a href='category.php' class="button-value active"  style='text-decoration:none;font-weight:bold;color:#FDC96F;'>All</a>
-                            <a href='category.php?search=Breads' class="button-value" style='text-decoration:none;'>
-                                Breads
-                                </a>
-                                <a href='category.php?search=biscuits' class="button-value" style='text-decoration:none;'>
-                                    Biscuits
-                                    </a>
-                                    <a href='category.php?search=Cakes' class="button-value"  style='text-decoration:none;'>
-                                        Cakes
-                                        </a>
-                                        <a href='category.php?search=others' class="button-value"  style='text-decoration:none;'>
-                                            Others
-                                            </a>
-                        </div>
-                   
-                    </div>
-                    <br>
-                    <hr>
-                </center>
+                
 
                 <?php 
          
@@ -88,7 +64,7 @@ include 'connections/connect.php';
                         <span class="visually-hidden">Loading...</span>
                     </div>
                 </div> -->
-             
+
 
 
             </div>
@@ -190,11 +166,11 @@ include 'connections/connect.php';
 
             if (currentScroll >= fixmeTop) {
                 $('#cartalert').removeClass('d-none');
-                //$("#cartalert").toggle("slide", { direction: "left" }, 2000);
-                //$('#cartalert').animate({right:'120'},1000);
+                $("#cartalert").toggle("slide", { direction: "left" }, 2000);
+                $('#cartalert').animate({right:'120'},1000);
             } else {
                 $('#cartalert').addClass('d-none');
-                //$('#cartalert').animate({left:'120'},1000);
+                $('#cartalert').animate({left:'120'},1000);
             }
 
         });

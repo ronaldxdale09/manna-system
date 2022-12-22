@@ -19,7 +19,7 @@
     background-color: #FDC96F;
     color: #ffffff;
     border-radius: 5px;
-    margin-top: 0.5em;
+    margin-top: 1em;
 }
 
 .button-value {
@@ -29,7 +29,6 @@
     margin-right: 10px;
     background-color: transparent;
     color: #1a1a1a;
-    cursor: pointer;
 }
 
 .active {

@@ -1,5 +1,4 @@
-
-    <link rel="stylesheet" type="text/css" href="css/search.css">
+<link rel="stylesheet" type="text/css" href="css/search.css">
 <nav class="purple-rain">
     <div class="row purple-rain">
 
@@ -17,7 +16,7 @@
                 <div class="header_search_content">
                     <div class="header_search_form_container">
                         <form action="category.php" method="get" class="header_search_form clearfix">
-                            <input type="search"  name="search"  required="required" class="header_search_input"
+                            <input type="search" name="search" required="required" class="header_search_input"
                                 placeholder="Search for products...">
 
                             <button type="submit" class="header_search_button trans_300" value="Submit"><img
@@ -113,7 +112,8 @@
                                                 ?>
 
                         <div class="dropdown">
-                            <a class="btn btn-outline-warning  mt-1 text-dark" href="#" role="button" style="padding: 5px">
+                            <a class="btn btn-outline-warning  mt-1 text-dark" href="#" role="button"
+                                style="padding: 5px">
 
                                 <span style="font-weight: bolder">Welcome <br> <span
                                         class="text-primary"><?php echo $_SESSION['user_name'] ?></span></span>
@@ -156,7 +156,7 @@
 
 
                         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-       
+
 
                         <script type="text/javascript">
                         $(document).ready(function() {

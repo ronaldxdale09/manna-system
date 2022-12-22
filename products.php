@@ -4,10 +4,11 @@ include 'connections/connect.php';
 
 
 
-$search = '';  
+
 if(isset($_GET["search"]))  
 {  
      $search = $_GET["search"];  
+     $checked = filter_var($_GET['search']) ;
     //  $char = preg_replace('#[^a-z]#i', '', $char);  
      $query = "SELECT * FROM `product` 
      LEFT JOIN photo on product.prod_id = photo.prod_id
@@ -25,13 +26,45 @@ $sorting_items = mysqli_query($con, $query);
 
 
 ?>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 <div class="row mt-4">
+    <center>
+        <div class="wrapper">
+            <div id="search-container">
 
-    <!--Items-->
+            </div>
+            <div id="buttons">
+                <a href='category.php'
+                    class="button-value  <?php if ($checked == '') { echo 'active'; } else { echo ''; } ?>"
+                    style='text-decoration:none;font-weight:bold;color:#FDC96F;'>All</a>
+                <a href='category.php?search=Breads' class="button-value
+                            <?php if ($checked == 'Breads') { echo 'active'; } else { echo ''; } ?>"
+                    style='text-decoration:none;font-weight:bold;color:#FDC96F;'>
+                    Breads
+                </a>
+                <a href='category.php?search=biscuits'
+                    class="button-value  <?php if ($checked == 'biscuits') { echo 'active'; } else { echo ''; } ?>"
+                    style='text-decoration:none;font-weight:bold;color:#FDC96F;'>
+                    Biscuits
+                </a>
+                <a href='category.php?search=Cakes'
+                    class="button-value  <?php if ($checked == 'Cakes') { echo 'active'; } else { echo ''; } ?>"
+                    style='text-decoration:none;font-weight:bold;color:#FDC96F;'>
+                    Cakes
+                </a>
+                <a href='category.php?search=others'
+                    class="button-value   <?php if ($checked == 'others') { echo 'active'; } else { echo ''; } ?>"
+                    style='text-decoration:none;font-weight:bold;color:#FDC96F;'>
+                    Others
+                </a>
+            </div>
 
+        </div>
+        <br>
+        <hr>
+    </center>
 
     <?php
          if(mysqli_num_rows($sorting_items) > 0)  
@@ -39,8 +72,8 @@ $sorting_items = mysqli_query($con, $query);
            
             while ($row = mysqli_fetch_array($sorting_items))
             {
-                // echo '<h4 class="mb-3" style="font-weight: bolder;text-shadow: 2px 2px #a8b6c5;">' . $row['category_name'] . ' </h4>  ';
-                $itemid = $row['prod_id'];
+                // // echo '<h4 class="mb-3" style="font-weight: bolder;text-shadow: 2px 2px #a8b6c5;">' . $row['category_name'] . ' </h4>  ';
+                // $itemid = $row['prod_id'];
 
 ?>
 
@@ -78,29 +111,9 @@ $sorting_items = mysqli_query($con, $query);
                         data-productid="<?php echo $row['prod_id'] ?>"> Add to Cart <i
                             class="fas fa-cart-plus"></i></button>
                 </center>
-                <?php
 
-                $user = $_SESSION['user_id'];
 
-                $checkifonthelist = " select * from wishlist where prod_id ='$itemid' and user_id = '$user'  ";
-                $checkingitem = mysqli_query($con, $checkifonthelist);
-                $thecountings = mysqli_num_rows($checkingitem);
-                //  $get_id =  mysqli_insert_id($con);
-                if ($thecountings >= 1)
-                {
-?>
-                <button class="btn btn-light text-danger removewlist" data-productid="<?php echo $row['prod_id'] ?>"
-                    style="font-size: 13px;font-weight: bold"><i class="fas fa-heart"></i></button>
-                <?php
-                }
-                else
-                {
-?>
 
-                <?php
-                }
-
-?>
 
             </div>
 
@@ -124,21 +137,11 @@ $sorting_items = mysqli_query($con, $query);
 
 
 </div>
-<?php
-
-
-?>
 
 <!---->
 
 
 <script>
-if ($(window).width() <= 767) {
-    $('.cardd').removeClass('col-md-3').addClass('col').addClass('mt-2');
-
-
-}
-
 $('.addcart').click(function() {
 
 
@@ -164,14 +167,13 @@ $('.addcart').click(function() {
         }
     })
 
+
 })
 
 $('.addwishlist').click(function() {
 
 
     var productid = $(this).data('productid');
-
-
 
     $.ajax({
         url: "add&remove.php",

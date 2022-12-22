@@ -78,7 +78,9 @@
 
 .product {
     background: white;
-    width: 230px;
+    max-width: 230px;
+    width: 100%;
+    height: auto;
     position: relative;
     display: flex;
     justify-content: center;
