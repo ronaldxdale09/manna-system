@@ -258,6 +258,28 @@ $usertempip = getClientIP();
     })
     items();
 
+
+
+    function runOncePerIP() {
+        // Get the IP address of the user
+        var userIP = '<?php echo $_SERVER['REMOTE_ADDR']; ?>';
+        // localStorage.removeItem(userIP);
+        // Check if the function has already been run for this IP address
+        if (localStorage.getItem(userIP) === null) {
+            // Run the function
+            console.log('Running function for the first time for this IP address');
+
+            // Set a value in local storage to indicate that the function has been run
+            localStorage.setItem(userIP, '1');
+        } else {
+            console.log('Function has already been run for this IP address');
+        }
+    }
+
+    // Run the function
+    runOncePerIP();
+
+
     function items() {
 
         $.ajax({

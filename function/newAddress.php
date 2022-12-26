@@ -12,7 +12,7 @@ session_start();
                       
 
                                 $query = "INSERT INTO account_ship_address (contact_name,phone_number,address,postal_code,user_id,status) 
-                                        VALUES ('$name','$contact','$address','$postal','$user_id','1')";
+                                        VALUES ('$ ','$contact','$address','$postal','$user_id','1')";
                                 $results = mysqli_query($con, $query);
                                    
                                     if ($results) {

@@ -247,7 +247,7 @@ if (isset($_POST['allitems']))
 
 <div class="col-md-3 ">
 
-    <div class="card w-100 dd" style="height:100%">
+    <div class="card w-100 " style="height:100%;width:100%">
         <?php
             $get_items_photo = " SELECT * FROM `photo` where prod_id = '$itemid' limit 1 ";
             $productphotos = mysqli_query($con, $get_items_photo);
@@ -262,12 +262,12 @@ if (isset($_POST['allitems']))
 
         <center>
             <div class="circle">
-        
+
                 <img src="<?php echo 'img/products/' . $photo['photo'] ?>" alt="" class="card-img-top"
                     style="width:150px;height: 150px">
             </div>
-      
-                <?php
+
+            <?php
                         }
                     }
                     else
@@ -277,22 +277,23 @@ if (isset($_POST['allitems']))
 
             ?>
 
-        <div class="card-body" style="text-align: center;">
-     
-            <a href="product_details.php?prod=<?php echo $row['prod_id'] ?>" style="text-decoration: none"> <span
-                    style="text-align: center;font-weight: bold"><?php echo $row['name'] ?></span> </a><br>
-            <span class="card-text" style="text-align: left;"><?php echo $row['description'] ?>
-            </span><br>
-            <span class="text-secondary" style="font-size: 20px;font-weight: bolder;">₱ <?php echo $row['price'] ?>
-            </span> <br>
-            <p></p>
+            <div class="card-body" style="text-align: center;">
 
-        </div>
-        <div class="card-footer">
-            <button class="btn btn-warning text-dark addcart" style="font-size: 13px;font-weight: bold;"
-                data-productid="<?php echo $row['prod_id'] ?>"> Add to Cart <i class="fas fa-cart-plus"></i></button>
+                <a href="product_details.php?prod=<?php echo $row['prod_id'] ?>" style="text-decoration: none"> <span
+                        style="text-align: center;font-weight: bold"><?php echo $row['name'] ?></span> </a><br>
+                <span class="card-text" style="text-align: left;"><?php echo $row['description'] ?>
+                </span><br>
+                <span class="text-secondary" style="font-size: 20px;font-weight: bolder;">₱ <?php echo $row['price'] ?>
+                </span> <br>
+                <p></p>
 
-            <?php
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-warning text-dark addcart" style="font-size: 13px;font-weight: bold;"
+                    data-productid="<?php echo $row['prod_id'] ?>"> Add to Cart <i
+                        class="fas fa-cart-plus"></i></button>
+
+                <?php
 
             $user = $_SESSION['user_id'];
 
@@ -303,21 +304,21 @@ if (isset($_POST['allitems']))
             if ($thecountings >= 1)
             {
             ?>
-            <button class="btn btn-light text-danger removewlist" data-productid="<?php echo $row['prod_id'] ?>"
-                style="font-size: 13px;font-weight: bold"><i class="fas fa-heart"></i></button>
-            <?php
+                <button class="btn btn-light text-danger removewlist" data-productid="<?php echo $row['prod_id'] ?>"
+                    style="font-size: 13px;font-weight: bold"><i class="fas fa-heart"></i></button>
+                <?php
             }
             else
             {
         ?>
-            <button class="btn btn-light text-danger addwishlist" data-productid="<?php echo $row['prod_id'] ?>"
-                style="font-size: 13px;font-weight: bold"><i class="far fa-heart"></i></button>
-            <?php
+                <button class="btn btn-light text-danger addwishlist" data-productid="<?php echo $row['prod_id'] ?>"
+                    style="font-size: 13px;font-weight: bold"><i class="far fa-heart"></i></button>
+                <?php
             }
 
             ?>
 
-        </div>
+            </div>
         </center>
     </div>
 
