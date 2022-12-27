@@ -3,13 +3,17 @@ session_start();
 include '../../connections/connect.php';
                         if (isset($_POST['add'])) {
                             
+                            $prod_code = $_POST['prod_code'];
                             $prod_id = $_POST['prod_id'];
                             $qty = $_POST['quantity'];
                             $prod_date = $_POST['prod_date'];
                             $exp_date = $_POST['exp_date'];
 
-                                $query = "INSERT INTO production_log (prod_id,qty_added,prod_date,exp_date) 
-                                        VALUES ('$prod_id','$qty','$prod_date','$exp_date')";
+                            $cost = $_POST['cost'];
+                            $price = $_POST['price'];
+
+                                $query = "INSERT INTO production_log (production_code,prod_id,qty_added,prod_date,exp_date) 
+                                        VALUES ('$prod_code','$prod_id','$qty','$prod_date','$exp_date')";
                                 $results = mysqli_query($con, $query);
                                    
                                     if ($results) {
@@ -25,6 +29,11 @@ include '../../connections/connect.php';
                                         $query = "UPDATE `product_quantity` SET quantity='$newQty'
                                          WHERE prod_id='$prod_id'";         
                                         $results = mysqli_query($con, $query);
+
+
+                                        $sql = "UPDATE `product` SET cost='$cost',price='$price'
+                                        WHERE prod_id='$prod_id'";         
+                                       $res = mysqli_query($con, $query);
 
                         
                                         header("Location: ../item_prod.php");

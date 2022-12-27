@@ -218,9 +218,9 @@
                 <h5 class="modal-title" id="expensesDeleteLabel">Delete Confirmation</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="../../function/admin/expenses_crud.php" method="POST">
+            <form action="functions/deleteProduct.php" method="POST">
                 <div class="modal-body">
-                    <input type="number" id="del_id" name="expenses_id_del" style="display: none">
+                    <input type="number" id="del_id" name="del_id" style="display: none">
                     <p>Row Data will be remove permanently, Continue?</p>
                 </div>
                 <div class="modal-footer">

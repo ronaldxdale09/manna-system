@@ -1,8 +1,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--<link rel="shortout icon" type="image/x-icon" href="">-->
-    <!---->
+  
 
     <script src="https://kit.fontawesome.com/129b086bc9.js" crossorigin="anonymous"></script>
 

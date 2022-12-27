@@ -3,30 +3,30 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="receivingViewLabel">Product Production Detaisl</h5>
+                <h5 class="modal-title" id="receivingViewLabel">Product Production Details</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
 
                
                 <label> Product Name </label> <br>
-                <input id='p_company'  class='form-control'
+                <input id='p_name'  class='form-control'
                     style='font-size:20px;border: none;font-weight:bold' readonly>
                 <hr>
                 <div class="row">
                     <div class="col-sm">
                         <label> Category </label> <br>
-                        <input id='p_voucher' class='form-control'
+                        <input id='p_category' class='form-control'
                             style='font-size:20px;border: none;font-weight:bold' readonly>
                     </div>
                     <div class="col-sm">
                         <label> Current Cost :</label> <br>
-                        <input id='p_date' class='form-control' style='font-size:20px;border: none;font-weight:bold'
+                        <input id='p_cost' class='form-control' style='font-size:20px;border: none;font-weight:bold'
                             readonly>
                     </div>
                     <div class="col-sm">
                         <label> Current Price</label> <br>
-                        <input id='p_due' name='voucher' class='form-control'
+                        <input id='p_price' name='voucher' class='form-control'
                             style='font-size:20px;border: none;font-weight:bold' readonly>
                     </div>
                 </div>

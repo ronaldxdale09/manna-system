@@ -23,6 +23,8 @@ $prod_list .= '
 <option value="'.$arr["prod_id"].'">'.$arr["name"].'</option>';
 }
 
+
+
 $sql = mysqli_query($con, "SELECT  COUNT(*) from production_log  "); 
 $withdrawal = mysqli_fetch_array($sql);
 
@@ -34,6 +36,10 @@ $code = 'P'.$today . $generate;
 
 ?>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
+
+
 
 <body style="background-color: white">
     <div class="wrapper">
@@ -158,7 +164,7 @@ $code = 'P'.$today . $generate;
                     <div class="col-md-12">
                         <div class="mb-3">
                             <label for="product_name" class="form-label">Product List</label>
-                            <select class='form-select category' name='prod_id' required>
+                            <select class='form-select category' name='prod_id' id='prod_select' required>
                                 <option disabled="disabled" selected="selected" value=''>Select Product </option>
                                 <?php echo $prod_list?>
 
@@ -173,6 +179,22 @@ $code = 'P'.$today . $generate;
                             <input type="text" class="form-control" name="quantity" aria-describedby="amount" required>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label for="amount" class="form-label">Cost</label>
+                                <input type="text" class="form-control" name="cost"  id="cost" aria-describedby="amount" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label for="amount" class="form-label">Price</label>
+                                <input type="text" class="form-control" name="price" id="price" aria-describedby="amount" required>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
 
                     <div class="row">
                         <div class="col-sm-6">
@@ -205,10 +227,6 @@ $code = 'P'.$today . $generate;
 <script type="text/javascript">
 $(document).ready(function() {
     $('#production_table').DataTable();
-
-
-
-
 
     var max_fields = 10;
     var wrapper = $(".input_fields_wrap");
@@ -310,8 +328,10 @@ $(document).ready(function() {
             return $(this).text();
         }).get();
         $('#viewProductionDetails').modal('show');
-        // $('#prod_i').val(data[0].replace(/\s/g, ''));
-     
+        $('#p_name').val(data[2]);
+        $('#p_category').val(data[3]);
+        $('#p_cost').val(data[4]);
+        $('#p_price').val(data[5]);
 
         function fetch_table() {
             var prod_id = data[0].replace(/\s/g, '');
@@ -330,17 +350,36 @@ $(document).ready(function() {
         fetch_table();
     });
 
+    $("#prod_select").on("change", function() {
+        var prod_id = $(this).val();
+
+        console.log(prod_id)
+        $.ajax({
+            url: "fetch/fetch_cost_price.php",
+            method: "POST",
+            data: {
+                prod_id: prod_id,
+            },
+            success: function(response) {
+                // Parse the response as a JSON object
+                var myObj = JSON.parse(response);
+
+                // Check if the response contains an error
+                if (myObj.error) {
+                    // If the response contains an error, log the error message
+                    console.error(myObj.error);
+                } else {
+                    // If the response does not contain an error, log the cost and price values
+                    // console.log(myObj.cost);
+                    // console.log(myObj.price);
+                    $('#cost').val(myObj.cost);
+                    $('#price').val(myObj.price);
+                }
+            }
+        });
+    });
+
+
+
 });
 </script>
-
-<?php
-
-	         
-
-// end
-////////////////////////////// SAVE EDIT DELETE ///////////////////////////////////////////////
-
-
-
-
- ?>

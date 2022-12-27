@@ -1,3 +1,40 @@
+<style>
+.badge {
+    /* Set the background color and border */
+    background-color: #FDC96F;
+    border-radius: 10px;
+    border: 1px solid #6c757d;
+
+    /* Set the font size and color */
+    font-size: 17px;
+    color: black;
+
+    /* Add some padding and alignment */
+    padding: 5px 10px;
+    text-align: center;
+}
+
+
+.qty {
+    /* Set the background color and border */
+    background-color: #07377F;
+    border-radius: 10px;
+    border: 1px solid #6c757d;
+
+    /* Set the font size and color */
+    font-size: 17px;
+    color: black;
+
+    /* Add some padding and alignment */
+    padding: 5px 10px;
+    text-align: center;
+}
+
+th {
+    font-size: 14px;
+}
+</style>
+
 <?php  
 include '../../connections/connect.php';
  $prod_id = (string)$_POST['prod_id'];
@@ -11,9 +48,9 @@ $output='';
 
  $result = mysqli_query($con, $sql);  
  $output .= '  
-            <table id="s_record_table"class="table">
-            <thead class="table-dark" style="font-size:12px">
-                <tr>
+            <table id="s_record_table" class="table" style="width:100%">
+            <thead class="table-dark">
+                <tr >
                     <th>Production Code</th>
                     <th>Name</th>
                     <th>Qty Added</th>
@@ -41,14 +78,14 @@ $output='';
           }
            $output .= '  
                 <tr>  
-                <td>'.$arr['production_code'].'</td>
+                <td><div class="badge">'.$arr['production_code'].'</div></td>
                 <td>'.$arr['name'].'</td>
-                <td>'.$arr['qty_added'].'</td>
+                <td><div class="badge">'.$arr['qty_added'].'</div></td>
                 <td></td>
                 <td>'.$arr['prod_date'].'</td>
                 <td>'.$arr['exp_date'].'</td>
-             <td scope="row" >₱ '.number_format($arr["cost"],2).'</td>
-             <td scope="row" >₱ '.number_format($arr["price"],2).'</td>
+               <td scope="row" >₱ '.number_format($arr["cost"],2).'</td>
+               <td scope="row" >₱ '.number_format($arr["price"],2).'</td>
                 <td><span class="badge bg-'.$color.'">'.$arr["status"].'</span></td>
                 </tr>  
            ';  

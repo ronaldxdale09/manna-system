@@ -60,12 +60,7 @@
         </li>
        
 
-        <li>
-            <a href='item_prod.php'>
-                <i class='fa-solid fa-scroll'></i>
-                <span class="link_name">Item Production</span>
-            </a>
-        </li>
+      
 
         <li>
             <a href='prod_report.php'>
