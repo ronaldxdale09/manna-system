@@ -105,7 +105,12 @@
 
         <hr style='color:white'>
 
-
+        <li>
+            <a href='walkin.php'>
+                <i class='fa-solid fa-cash-register'></i>
+                <span class="link_name">Walk-in POS</span>
+            </a>
+        </li>
 
 
         <li>

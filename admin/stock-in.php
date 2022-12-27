@@ -10,7 +10,7 @@ if (!isset($_SESSION["admin_id"])) {
 <?php
 include "head.php";
 include "../connections/connect.php";
-
+include "modal/production_modal.php";
 
 // expense category
 $sql = "SELECT * FROM product";
@@ -23,14 +23,17 @@ $prod_list .= '
 <option value="'.$arr["prod_id"].'">'.$arr["name"].'</option>';
 }
 
+$sql = mysqli_query($con, "SELECT  COUNT(*) from production_log  "); 
+$withdrawal = mysqli_fetch_array($sql);
+
+$generate= sprintf("%'03d", $withdrawal[0]+1);
+$today = date("Y");
+$code = 'P'.$today . $generate;
+
+
 
 ?>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<style>
-.table td {
-    font-size: 18px;
-}
-</style>
 
 <body style="background-color: white">
     <div class="wrapper">
@@ -55,7 +58,7 @@ $prod_list .= '
 
 
                             <button class="btn btn-warning text-white mb-2" data-bs-toggle="modal"
-                                data-bs-target="#newProd" data-backdrop="static" data-keyboard="false"
+                                data-bs-target="#newProduction" data-backdrop="static" data-keyboard="false"
                                 style="font-size: 14px;">Add new <i class="fas fa-plus-circle"></i></button>
 
 
@@ -67,7 +70,7 @@ $prod_list .= '
                                 <table id="production_table" class="table table-hover" style="width:100%;">
                                     <thead class="table-warning">
                                         <tr style='font-size:14px'>
-                                            
+                                            <th hidden>prod_id</th>
                                             <th>Barcode</th>
                                             <th>Product Name</th>
                                             <th>Category</th>
@@ -88,7 +91,7 @@ $prod_list .= '
                                           
                                             ?>
                                         <tr>
-                                           
+                                            <td hidden><?php echo $row['prod_id']; ?></td>
                                             <td><?php echo $row['barcode']; ?></td>
                                             <td><?php echo $row['name']; ?></td>
                                             <td><?php echo $row['category_name']; ?></td>
@@ -98,169 +101,104 @@ $prod_list .= '
                                             <td></td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <button type="button" class="btn btn-success btn-sm text-light editmodal"
+                                                    <button type="button"
+                                                        class="btn btn-success btn-sm text-light btnView"
                                                         style="font-size: 12px"><i class="fas fa-eye"></i></button>
-                       
-                                        </div>
+
                                                 </div>
-
-                                            </td>
-                                        </tr>
-
-                                        <?php } ?>
-                                    </tbody>
-
-                                </table>
-
                             </div>
+
+                            </td>
+                            </tr>
+
+                            <?php } ?>
+                            </tbody>
+
+                            </table>
 
                         </div>
 
                     </div>
+
                 </div>
-
             </div>
 
-            <div class="footer shadow">
+    </div>
 
-            </div>
-        </section>
+    <div class="footer shadow">
+
+    </div>
+    </section>
 
     </div>
 </body>
 
 
 
-
-<div class="modal fade" id="newProd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
+<div class="modal fade" id="newProduction" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
-
             <div class="modal-body">
                 <button type="button" class="btn-close" style="float: right;" data-bs-dismiss="modal"
                     aria-label="Close"></button>
-
-                <br>
-                <form method="post" action="functions/addProduct.php"  id="savenew"
-                    enctype="multipart/form-data">
-
-                    <input type="hidden" name="savenew">
-
-
-
-
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label style="font-size: 14px" class="mb-3">Multiple Photo Selection </label>
-                                <input type="file" name="image[]" onchange="javascript:updateList()" id="file"
-                                    style="font-size: 14px" class="form-control" accept="image/*" multiple="">
-                                <span style="font-size: 14px" id="imgsa"> Max of 3 Images will be accepted <span
-                                        class="text-danger">*</span></span>
-                                <hr>
-                                <style type="text/css">
-                                #fileList::-webkit-scrollbar {
-
-                                    width: 2px;
-                                }
-                                </style>
-                                <h6 style="font-size: 14px">Selected Photos</h6>
-
-                                <div id="fileList"
-                                    style="height: 240px;overflow-y: scroll;border-bottom:1px solid #b2c1c2;border-top:1px solid #b2c1c2">
-                                </div>
-
-
-
-                            </div>
-                            <div class="col-md-5">
-                                <hr>
-                                <label style="font-size: 14px" class="">Item Code/Barcode: </label>
-                                <input type="text" name="barcode" style="font-size: 14px" class="form-control"
-                                    required="">
-                                <br>
-                                <label style="font-size: 14px" class="">Enter Product Name : </label>
-                                <input type="text" name="name" style="font-size: 14px" class="form-control mb-2"
-                                    required="">
-                                <label style="font-size: 14px" class="mb-1">Select Category: </label>
-                                <select class="form-select mb-2" name="cat" style="font-size: 14px">
-                                    <?php
-                                        include "../connections/connect.php";
-                                        $selectcategory =
-                                            " select * from category  ";
-                                        $selection = mysqli_query(
-                                            $con,
-                                            $selectcategory
-                                        );
-                                        $countcategory = mysqli_num_rows(
-                                            $selection
-                                        );
-                                        //  $get_id =  mysqli_insert_id($con);
-                                        if ($countcategory >= 1) {
-                                            while (
-                                                $row = mysqli_fetch_array(
-                                                    $selection
-                                                )
-                                            ) { ?>
-                                    <option value="<?php echo $row[
-                                            "cat_id"
-                                        ]; ?>"><?php echo $row[
-                                            "category_name"
-                                        ]; ?>
-                                    </option>
-                                    <?php }
-                                        } else {
-                                        }
-                                        ?>
-                                </select>
-                                <div class="row">
-                                    <div class="col">
-                                        <label style="font-size: 14px" class="mb-3">Enter Cost: </label>
-                                        <input type="text" name="cost"
-                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                                            style="font-size: 14px" class="form-control mb-2" required="">
-                                    </div>
-                                    <div class="col">
-                                        <label style="font-size: 14px" class="mb-3">Enter Price: </label>
-                                        <input type="text" name="price"
-                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                                            style="font-size: 14px" class="form-control mb-2" required="">
-                                    </div>
-                                </div>
-
-
-                                <label style="font-size: 14px" class="mb-3">Enter Description: </label>
-                                <textarea style="font-size: 14px" name="desc" class="form-control"></textarea>
-                            </div>
-                            <div class="col-md-3">
-                                <br>
-                                <label style="font-size: 14px" class="mb-3">Enter Ingredients: </label> <br>
-                                <button type="button" class=" btn btn-warning add_field_button">Add Field</button>
-                                <button type="button" class="btn btn-dark  remove_field_button">Remove
-                                    Field</button>
-                                <hr>
-                                <div class="input_fields_wrap">
-                                    <input type="text" name="ingredients[]" placeholder="Ingredient"
-                                        class="form-control field-long" />
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <br>
-
-                    <button type="submit" id="disabledsave" name='savenew'class="btn btn-warning text-dark"
-                        style="font-size: 15px;float: right;">Save</button>
-
-                </form>
+                <h5 class="modal-title">Add Daily Production</h5>
 
             </div>
+            <div class="modal-body">
+                <form method='POST' action='functions/addProduction.php'>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="amount" class="form-label">Production Code</label>
+                            <input type="text" class="form-control" name="prod_code" value='<?php echo $code ?>'
+                                aria-describedby="amount" readonly>
+                        </div>
+                    </div>
 
+
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label for="product_name" class="form-label">Product List</label>
+                            <select class='form-select category' name='prod_id' required>
+                                <option disabled="disabled" selected="selected" value=''>Select Product </option>
+                                <?php echo $prod_list?>
+
+                                <!--PHP echo-->
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="amount" class="form-label">Quantity</label>
+                            <input type="text" class="form-control" name="quantity" aria-describedby="amount" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label for="amount" class="form-label">Production Date</label>
+                                <input type="date" class="form-control" name="prod_date" aria-describedby="amount"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label for="amount" class="form-label">Expiration Date</label>
+                                <input type="date" class="form-control" name="exp_date" aria-describedby="amount"
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" name='add' class="btn btn-warning">Add</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+            </form>
         </div>
     </div>
 </div>
-
 
 </html>
 
@@ -363,7 +301,34 @@ $(document).ready(function() {
 
     }
 
+    $('#production_table').on('click', '.btnView', function() {
 
+
+        $tr = $(this).closest('tr');
+
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+        $('#viewProductionDetails').modal('show');
+        // $('#prod_i').val(data[0].replace(/\s/g, ''));
+     
+
+        function fetch_table() {
+            var prod_id = data[0].replace(/\s/g, '');
+            $.ajax({
+                url: "table/production_details.php",
+                method: "POST",
+                data: {
+                    prod_id: prod_id,
+
+                },
+                success: function(data) {
+                    $('#view_prod_history').html(data);
+                }
+            });
+        }
+        fetch_table();
+    });
 
 });
 </script>

@@ -10,6 +10,7 @@ if (!isset($_SESSION["admin_id"])) {
 <?php
 include "head.php";
 include "../connections/connect.php";
+include "modal/product_modal.php";
 
 
 // expense category
@@ -22,6 +23,19 @@ $prod_list .= '
 
 <option value="'.$arr["prod_id"].'">'.$arr["name"].'</option>';
 }
+
+
+$sql = "SELECT * FROM category";
+$result = mysqli_query($con, $sql);
+$category='';
+while($arr = mysqli_fetch_array($result))
+{
+$category .= '
+
+<option value="'.$arr["cat_id"].'">'.$arr["category_name"].'</option>';
+}
+
+
 
 
 ?>
@@ -64,9 +78,10 @@ $prod_list .= '
                                 LEFT JOIN product_quantity ON product_quantity.prod_id =  product.prod_id
                                 LEFT JOIN category ON product.cat_id =  category.cat_id
                                 LEFT JOIN photo ON product.prod_id =  photo.prod_id"); ?>
-                                <table id="production_table" class="table table-hover" style="width:100%;">
+                                <table id="product_table" class="table table-hover" style="width:100%;">
                                     <thead class="table-warning">
                                         <tr style='font-size:14px'>
+                                            <th hidden> id </th>
                                             <th> Img </th>
                                             <th>Barcode</th>
                                             <th>Product Name</th>
@@ -86,6 +101,7 @@ $prod_list .= '
                                           
                                             ?>
                                         <tr>
+                                            <td hidden><?php echo $row['prod_id']; ?> </td>
                                             <td>
                                                 <div class="circle">
 
@@ -102,8 +118,7 @@ $prod_list .= '
                                                 <div class="btn-group" role="group" aria-label="Basic example">
                                                     <button type="button" class="btn btn-success text-light editmodal"
                                                         style="font-size: 12px"><i class="fas fa-edit"></i></button>
-                                                    <button type="button" class="btn btn-dark text-light deletecat"
-                                                        data-id="<?php echo $row['prod_id'] ?>"
+                                                    <button type="button" class="btn btn-dark text-light btnDelete"
                                                         style="font-size: 12px"><i class="fas fa-trash"></i></button>
 
                                                 </div>
@@ -136,141 +151,11 @@ $prod_list .= '
 
 
 
-<div class="modal fade" id="newProd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-
-            <div class="modal-body">
-                <button type="button" class="btn-close" style="float: right;" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-
-                <br>
-                <form method="post" action="functions/addProduct.php"  id="savenew"
-                    enctype="multipart/form-data">
-
-                    <input type="hidden" name="savenew">
-
-
-
-
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label style="font-size: 14px" class="mb-3">Multiple Photo Selection </label>
-                                <input type="file" name="image[]" onchange="javascript:updateList()" id="file"
-                                    style="font-size: 14px" class="form-control" accept="image/*" multiple="">
-                                <span style="font-size: 14px" id="imgsa"> Max of 3 Images will be accepted <span
-                                        class="text-danger">*</span></span>
-                                <hr>
-                                <style type="text/css">
-                                #fileList::-webkit-scrollbar {
-
-                                    width: 2px;
-                                }
-                                </style>
-                                <h6 style="font-size: 14px">Selected Photos</h6>
-
-                                <div id="fileList"
-                                    style="height: 240px;overflow-y: scroll;border-bottom:1px solid #b2c1c2;border-top:1px solid #b2c1c2">
-                                </div>
-
-
-
-                            </div>
-                            <div class="col-md-5">
-                                <hr>
-                                <label style="font-size: 14px" class="">Item Code/Barcode: </label>
-                                <input type="text" name="barcode" style="font-size: 14px" class="form-control"
-                                    required="">
-                                <br>
-                                <label style="font-size: 14px" class="">Enter Product Name : </label>
-                                <input type="text" name="name" style="font-size: 14px" class="form-control mb-2"
-                                    required="">
-                                <label style="font-size: 14px" class="mb-1">Select Category: </label>
-                                <select class="form-select mb-2" name="cat" style="font-size: 14px">
-                                    <?php
-                                        include "../connections/connect.php";
-                                        $selectcategory =
-                                            " select * from category  ";
-                                        $selection = mysqli_query(
-                                            $con,
-                                            $selectcategory
-                                        );
-                                        $countcategory = mysqli_num_rows(
-                                            $selection
-                                        );
-                                        //  $get_id =  mysqli_insert_id($con);
-                                        if ($countcategory >= 1) {
-                                            while (
-                                                $row = mysqli_fetch_array(
-                                                    $selection
-                                                )
-                                            ) { ?>
-                                    <option value="<?php echo $row[
-                                            "cat_id"
-                                        ]; ?>"><?php echo $row[
-                                            "category_name"
-                                        ]; ?>
-                                    </option>
-                                    <?php }
-                                        } else {
-                                        }
-                                        ?>
-                                </select>
-                                <div class="row">
-                                    <div class="col">
-                                        <label style="font-size: 14px" class="mb-3">Enter Cost: </label>
-                                        <input type="text" name="cost"
-                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                                            style="font-size: 14px" class="form-control mb-2" required="">
-                                    </div>
-                                    <div class="col">
-                                        <label style="font-size: 14px" class="mb-3">Enter Price: </label>
-                                        <input type="text" name="price"
-                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                                            style="font-size: 14px" class="form-control mb-2" required="">
-                                    </div>
-                                </div>
-
-
-                                <label style="font-size: 14px" class="mb-3">Enter Description: </label>
-                                <textarea style="font-size: 14px" name="desc" class="form-control"></textarea>
-                            </div>
-                            <div class="col-md-3">
-                                <br>
-                                <label style="font-size: 14px" class="mb-3">Enter Ingredients: </label> <br>
-                                <button type="button" class=" btn btn-warning add_field_button">Add Field</button>
-                                <button type="button" class="btn btn-dark  remove_field_button">Remove
-                                    Field</button>
-                                <hr>
-                                <div class="input_fields_wrap">
-                                    <input type="text" name="ingredients[]" placeholder="Ingredient"
-                                        class="form-control field-long" />
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <br>
-
-                    <button type="submit" id="disabledsave" name='savenew'class="btn btn-warning text-dark"
-                        style="font-size: 15px;float: right;">Save</button>
-
-                </form>
-
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
 </html>
 
 <script type="text/javascript">
 $(document).ready(function() {
-    $('#production_table').DataTable();
+    $('#product_table').DataTable();
 
 
 
@@ -369,17 +254,41 @@ $(document).ready(function() {
 
 
 
+    $('#product_table').on('click', '.editmodal', function() {
+
+
+        $tr = $(this).closest('tr');
+
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+        $('#prodUpdate').modal('show');
+        $('#edit_barcode').val(data[2]);
+        $('#edit_name').val(data[3]);
+        $('#edit_cat').val(data[4]);
+        // Get the select element
+
+
+
+        $('#edit_desc').val(data[5]);
+        // $('#whole_price').val(data[5]);
+    });
+
+
+    $('#product_table').on('click', '.btnDelete', function() {
+
+
+        $tr = $(this).closest('tr');
+
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+        $('#prodDelete').modal('show');
+        $('#del_id').val(data[0].replace(/\s/g, ''));
+   
+        // Get the select element
+
+        // $('#whole_price').val(data[5]);
+    });
 });
 </script>
-
-<?php
-
-	         
-
-// end
-////////////////////////////// SAVE EDIT DELETE ///////////////////////////////////////////////
-
-
-
-
- ?>
