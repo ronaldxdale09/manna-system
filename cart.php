@@ -284,11 +284,15 @@ $user_id=$_SESSION['user_id'];
                         <label>Name:</label>
                         <input type="text" class="form-control txt mb-2" name="name" style="" required="">
 
+                        <label>City:</label>
+                        <input type="text" class="form-control txt mb-2" name="address_3" value='Zamboanga del Sur' readonly style="" >
 
 
-                        <label>Delivery Address (Street Name, Building, House No.):</label>
+                        <label>Street Name,Barangay:</label>
+                        <textarea class="form-control txt mb-2" name="address_1" cols="4"></textarea>
 
-                        <textarea class="form-control txt mb-2" name="address" cols="4"></textarea>
+                        <label>Floor/Unit/Room #):</label>
+                        <textarea class="form-control txt mb-2" name="address_2" cols="4"></textarea>
 
                         <label>Postal Code:</label>
                         <input type="number" class="form-control txt mb-2" name="postal" style="" required="">

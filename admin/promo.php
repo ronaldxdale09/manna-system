@@ -13,8 +13,8 @@ if(!isset($_SESSION['admin_id'])){
     <div class="wrapper">
 
 
-    <nav class="sidenav shadow">
-        <?php include 'navbar.php' ?>
+        <nav class="sidenav shadow">
+            <?php include 'navbar.php' ?>
         </nav>
 
 
@@ -119,9 +119,17 @@ if(!isset($_SESSION['admin_id'])){
                             style="font-size: 14px" name="" class="form-control newcat mb-2" required="">
 
 
-                        <label style="font-size: 14px" class="mb-3"> Set Expiration Date: </label>
-                        <input type="datetime-local" class="form-control" name="xpdate"
-                            min="<?php echo date("Y-m-d"); ?>" required>
+                        <label style="font-size: 14px" class="mb-3">Minimum Amount Order: </label>
+                        <input type="text" name="minOrder"
+                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                            style="font-size: 14px" name="" class="form-control newcat mb-2" required="">
+
+
+                        <hr>
+                        <input type="checkbox" name='noExpiration' id="activateInput" checked> No Expiration<br>
+
+                        <input type="datetime-local" class="form-control" name="xpdate" id='expirationDate'
+                            min="<?php echo date("Y-m-d"); ?>" disabled required>
 
 
 
@@ -137,6 +145,22 @@ if(!isset($_SESSION['admin_id'])){
             </div>
         </div>
     </div>
+
+
+    <script>
+    var checkbox = document.getElementById('activateInput');
+    var inputField = document.getElementById('expirationDate');
+
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            inputField.disabled = true;
+        } else {
+            inputField.disabled = false;
+        }
+    });
+    </script>
+
+
 
 
     <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -248,7 +272,7 @@ if(!isset($_SESSION['admin_id'])){
                             $('#disabledsave').attr('disabled', true);
                             $('#msg').html(
                                 '<span class="text-danger" style="font-size:12px">Already Exist!</span>'
-                                );
+                            );
                         } else {
                             $('#disabledsave').removeAttr('disabled');
                             $('#msg').html('');
@@ -283,7 +307,7 @@ if(!isset($_SESSION['admin_id'])){
                             $('#disabledsaved').attr('disabled', true);
                             $('#msgs').html(
                                 '<span class="text-danger" style="font-size:12px">Already Exist!</span>'
-                                );
+                            );
                         } else {
                             $('#disabledsaved').removeAttr('disabled');
                             $('#msgs').html('');

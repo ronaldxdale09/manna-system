@@ -184,13 +184,15 @@ $code = 'P'.$today . $generate;
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="amount" class="form-label">Cost</label>
-                                <input type="text" class="form-control" name="cost"  id="cost" aria-describedby="amount" required>
+                                <input type="text" class="form-control" name="cost" id="cost" aria-describedby="amount"
+                                    required>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="amount" class="form-label">Price</label>
-                                <input type="text" class="form-control" name="price" id="price" aria-describedby="amount" required>
+                                <input type="text" class="form-control" name="price" id="price"
+                                    aria-describedby="amount" required>
                             </div>
                         </div>
                     </div>

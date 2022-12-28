@@ -398,42 +398,6 @@ $(document).ready(function() {
         fetchAddress();
 
 
-
-        // Swal.fire({
-        //     title: 'Are you sure?',
-        //     text: "",
-        //     icon: 'question',
-        //     showCancelButton: true,
-        //     confirmButtonColor: '#81c3dd',
-        //     cancelButtonColor: '#dd9b81',
-        //     confirmButtonText: 'Yes, confirm!'
-        // }).then((result) => {
-        //     if (result.isConfirmed) {
-
-        //         $.ajax({
-        //             url: "action_order.php",
-        //             method: "POST",
-        //             data: {
-        //                 confirmd: 1,
-        //                 od: od
-        //             },
-        //             success: function(data) {
-        //                 table_category();
-
-        //                 Swal.fire(
-        //                     'Confirmed!',
-        //                     'Order confirmed successfully!',
-        //                     'success'
-        //                 )
-        //             }
-        //         })
-        //     }
-        // })
-
-
-
-
-
     })
 
 

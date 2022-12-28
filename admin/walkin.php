@@ -7,14 +7,14 @@ include "../connections/connect.php";
 
 <body>
     <header> <br>
-        <h3>NTC WHOLESALE </h3>
+        <h3>Mannafest Food Inc.  </h3>
 
     </header>
 
     <main>
         <div class="container-p">
             <div class="flex-2-p">
-                <span class=" bg-dark">
+                <span class=" bg-warning">
                     <h4>Walk in ID : #</h4>
                 </span>
                 <hr>
@@ -37,7 +37,8 @@ include "../connections/connect.php";
                 <div class="bar-top">
                     <br>
                     <div class="dtable">
-                        <?php   $listProd = mysqli_query($con, "SELECT * from product");?>
+                        <?php   $listProd = mysqli_query($con, "SELECT * from product
+                        LEFT JOIN product_quantity on product.prod_id = product_quantity.prod_id");?>
 
 
                         <table id="table-prods" class="table">
@@ -46,9 +47,8 @@ include "../connections/connect.php";
                                     <th hidden>id</th>
                                     <th>Barcode</th>
                                     <th>Product </th>
-                                    <th>Inventory</th>
-                                    <th>Unit Per Box</th>
-                                    <th>Wholesale Price</th>
+                                    <th>Inventory</th>               
+                                    <th> Price</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -57,10 +57,9 @@ include "../connections/connect.php";
                                 <tr>
                                     <td hidden><?php echo $row['prod_id']?></td>
                                     <td><?php echo $row['barcode']?></td>
-                                    <!-- <td><?php echo $row['name']?></td>
+                                    <td><?php echo $row['name']?></td>
                                     <td><?php echo $row['quantity']?></td>
-                                    <td><?php echo $row['case_quantity']?></td>
-                                    <td> ₱ <?php echo number_format($row['case_price'],2); ?></td> -->
+                                    <td> ₱ <?php echo number_format($row['price'],2); ?></td>
                                     <td><button type="button" id='btnAdd' class='btnAdd'><i
                                                 class="fa fa-plus-circle"></i></button>
                                     </td>

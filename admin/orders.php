@@ -1,295 +1,189 @@
-<?php 
+<?php
 session_start();
-if(!isset($_SESSION['admin_id'])){
-  header('location:../log/signin.php');
+if (!isset($_SESSION["admin_id"])) {
+    header("location:../log/signin.php");
 }
-
- ?>
+?>
 <!DOCTYPE html>
 <html>
 
-<?php include 'head.php'; include '../connections/connect.php'; ?>
+<?php
+include "head.php";
+include "../connections/connect.php";
 
-<body style="background-color: #EDF2F7">
+$tab= '';
+if (isset($_GET['tab'])) {
+    $tab = filter_var($_GET['tab']) ;
+  }
+?>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<link rel='stylesheet' href='css/tab-orders.css'>
+
+<style>
+.pending {
+    /* Set the background color and border */
+    background-color: #FDC96F;
+    border-radius: 10px;
+    border: 1px solid #6c757d;
+
+    /* Set the font size and color */
+    font-size: 13px;
+    color: black;
+
+    /* Add some padding and alignment */
+    padding: 5px 5px;
+    text-align: center;
+}
+
+.ready_badge {
+    /* Set the background color and border */
+    background-color: blue;
+    border-radius: 10px;
+    border: 1px solid #6c757d;
+
+    /* Set the font size and color */
+    font-size: 13px;
+    color: black;
+
+    /* Add some padding and alignment */
+    padding: 5px 10px;
+    text-align: center;
+}
+
+.waiting {
+    /* Set the background color and border */
+    background-color: green;
+    border-radius: 10px;
+    border: 1px solid #6c757d;
+
+    /* Set the font size and color */
+    font-size: 13px;
+    color: white;
+
+    /* Add some padding and alignment */
+    padding: 5px 10px;
+    text-align: center;
+}
+</style>
+
+<body style="background-color: white">
     <div class="wrapper">
 
 
-    <nav class="sidenav shadow">
-        <?php include 'navbar.php' ?>
-        </nav>
+
+        <?php include "navbar.php"; ?>
+
 
 
         <section class="home-section">
-        
-
-            <div class="main_contents">
-                <div class="container-fluid">
-
-                    <h5 style="font-weight: bolder;">ORDERS</h5>
-                    <hr>
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <button class="btn btn-light text-success mb-3" id="cpo" style="font-size: 15px">Completed
-                                Orders →</button>
-
-                            <div id="table_category">
-                                <div class="spinner-grow text-dark" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
-                                <div class="spinner-grow text-dark" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
-                                <div class="spinner-grow text-dark" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
 
 
+            <div class="container-fluid">
+                <div class="wrapper" id="myTab">
+                    <input type="radio" name="slider" id="home" checked>
+                    <input type="radio" name="slider" id="blog"
+                    <?php if ($tab == '2') { echo 'checked'; } else { echo ''; } ?>>
+                    <input type="radio" name="slider" id="code"
+                    <?php if ($tab == '3') { echo 'checked'; } else { echo ''; } ?>>
+                    <input type="radio" name="slider" id="help"
+                    <?php if ($tab == '4') { echo 'checked'; } else { echo ''; } ?>>
+                    <input type="radio" name="slider" id="about"
+                    <?php if ($tab == '5') { echo 'checked'; } else { echo ''; } ?>>
+                    <nav>
+                        <label for="home" class="home"><i class="fa fa-book"></i>New Orders</label>
+                        <label for="blog" class="blog"><i class="fas fa-tasks"></i>Preparing</label>
+                        <label for="code" class="code"><i class="fa-solid fa-truck"></i> On Delivery</label>
+                        <label for="help" class="help"><i class="fa-solid fa-check"></i> Completed</label>
+                        <label for="about" class="about"><i class="fa-solid fa-undo"></i> Returns</label>
 
-            </div>
+                        <div class="slider"></div>
+                    </nav>
+                    <section>
+                        <div class="content content-1">
+                            <hr>
+                            <div class="title">New Order</div>
 
-
-
-
-
-        </section>
-
-    </div>
-
-
-
-    <?php 
-   if(isset($_GET['viewproducts'])){ 
-      $id = $_GET['token'];
-      ?>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('#openview').click();
-
-    });
-    </script>
-
-
-
-    <button type="button" class="btn btn-primary " id="openview" data-bs-toggle="modal" data-bs-target="#itemsview"
-        data-bs-target="#staticBackdrop">
-        asd
-    </button>
-
-
-    <div class="modal fade " id="itemsview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-        data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-        aria-hidden="true">
-        <div class="modal-dialog  modal-lg ">
-            <div class="modal-content">
-
-                <div class="modal-body">
-                    <button type="button" onclick="window.location.href='orders.php'" style="float: right;"
-                        class="btn-close mb-2" data-bs-dismiss="modal" aria-label="Close"></button>
-
-
-                    <div class="row">
-                        <div class="col-md-8">
-
-                            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-
-                                    <?php 
-       
-                            $gtproductphotosactive = " select * from photo where prod_id = '$id' limit 1  ";
-                                            $result_of_getactive = mysqli_query($con,$gtproductphotosactive); 
-                                        
-                                            while($rowactive = mysqli_fetch_array($result_of_getactive)){
-                                            $prodactive = $rowactive['p_id'];
-                                            $src = '../img/products/'.$rowactive['photo'];
-                                            
-
-                                        ?>
-
-                                    <div class="carousel-item active">
-                                        <img src="<?php echo $src ?>" class="d-block w-100" alt="..."
-                                            style="width: 100%;height: 500px;">
-                                    </div>
-
-                                    <?php
-                         }
-
-                        if(isset($prodactive)){
-                            $gtproductphotos = " select * from photo where prod_id = '$id' and p_id != '$prodactive'  ";
-                        $result_of_get = mysqli_query($con,$gtproductphotos); 
-                       
-                         while($row = mysqli_fetch_array($result_of_get)){
-                          $src = '../img/products/'.$row['photo'];
-                      ?>
-
-                                    <div class="carousel-item">
-                                        <img src="<?php echo $src ?>" class="d-block w-100" alt="..."
-                                            style="width: 100%;height: 500px;">
-                                    </div>
-
-                                    <?php
-                         }
-
-                        }else {
-                          echo 'NO PHOTO AVAILABLE';
-                        }
-
-                        
-               
-        
-         ?>
-
-
-
-
-                                </div>
-                                <button class="carousel-control-prev" type="button"
-                                    data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button"
-                                    data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
-
+                            <?php include('pages/orders.php') ?>
 
                         </div>
-                        <div class="col-md-4">
+                        <div class="content content-2">
+                            <hr>
+                            <div class="title">Preparing</div>
+                            <?php include('pages/preparing.php') ?>
 
-                            <p><br><br></p>
+                        </div>
+                        <div class="content content-3">
+                            <hr>
+                            <div class="title">On Delivery</div>
 
-                            <style type="text/css">
-                            .det::-webkit-scrollbar {
+                            <?php include('pages/deliver.php') ?>
 
-                                width: 0px;
-                            }
-                            </style>
-                            <?php 
-               
-                    $viewprod = " select * from product where prod_id = '$id' ";
-                                $result_of_view = mysqli_query($con,$viewprod); 
-                           
-                            
-                                 while($row = mysqli_fetch_array($result_of_view)){
-                                ?>
-                            <h5 style="font-weight: bolder;" id="pname"><?php echo $row['name'] ?></h5>
-                            <span class="text-secondary mb-2" id="pprice"
-                                style="font-size: 20px;font-weight: bolder;">₱<?php echo $row['price'] ?></span>
-                            <br>
-                            <div class="det" id="descc" style="font-size: 14px;height: 240px;overflow-y: scroll;">
-                                <?php echo $row['description'] ?>
-                            </div>
+                        </div>
+                        <div class="content content-4">
+                            <hr>
+                            <div class="title">Compelted</div>
 
-                            <?php
-                                 }
-
-                                 
-                          
-                 ?>
-
-
-                            <br>
-
-
+                        </div>
+                        <div class="content content-5">
+                            <hr>
+                            <div class="title">Returns</div>
 
 
 
                         </div>
 
-
-                    </div>
-
-
-
-
+                    </section>
                 </div>
 
             </div>
-        </div>
     </div>
-    <?php
-   }
-
-    ?>
 
 
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-    <script type="text/javascript" src="../js/sidebar.js?v=1"></script>
-
-    <script type="text/javascript">
-    $(document).ready(function() {
-        table_category();
-
-        function table_category() {
-
-
-            $.ajax({
-                url: "action_order.php",
-                method: "POST",
-                data: {
-                    category: 1
-                },
-                success: function(data) {
-                    $('#table_category').html(data);
-                }
-            })
-
-
-        }
-
-        function table_completed() {
-
-
-            $.ajax({
-                url: "action_order.php",
-                method: "POST",
-                data: {
-                    completedorder: 1
-                },
-                success: function(data) {
-                    $('#table_category').html(data);
-                }
-            })
-
-
-        }
-
-        $('#cpo').click(function() {
-            var t = $(this).text();
-
-            if (t == 'Completed Orders →') {
-                table_completed();
-                $(this).text('← Back');
-            } else if (t == '← Back') {
-                $(this).text('Completed Orders →');
-                table_category();
-            }
-
-
-        })
-
-    });
-    </script>
-
-
-    <!--Bootstrap Plugins-->
-    <script type="text/javascript" src="../js/notify.js"></script>
-    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/popper.js"></script>
-    <script type="text/javascript" src="../js/bootstrap.js"></script>
+    </section>
 </body>
 
+
+
 </html>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#production_table').DataTable();
+
+    var max_fields = 10;
+    var wrapper = $(".input_fields_wrap");
+    var add_button = $(".add_field_button");
+    var remove_button = $(".remove_field_button");
+
+    $(add_button).click(function(e) {
+        e.preventDefault();
+        var total_fields = wrapper[0].childNodes.length;
+        if (total_fields < max_fields) {
+            $(wrapper).append(
+                '<br><input type="text" name="ingredients[]" placeholder="Ingredient" class="form-control field-long" />'
+            );
+        }
+    });
+    $(remove_button).click(function(e) {
+        e.preventDefault();
+        var total_fields = wrapper[0].childNodes.length;
+        if (total_fields > 1) {
+            wrapper[0].childNodes[total_fields - 1].remove();
+        }
+    });
+
+
+
+});
+</script>
+
+<script type="text/javascript" src="../js/sidebar.js?v=1"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript" src="../js/datatable/datatables.js"></script>
+<link rel="stylesheet" type="text/css" href="../js/datatable/datatables.css">
+<!--Bootstrap Plugins-->
+<script type="text/javascript" src="../js/notify.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/popper.js"></script>
+<script type="text/javascript" src="../js/bootstrap.js"></script>

@@ -6,7 +6,8 @@ session_start();
                             
                             $user_id = $_POST['user_id'];
                             $name = $_POST['name'];
-                            $address = $_POST['address'];
+                            $address = $_POST['address_1'].', '.$_POST['address_2'].', '.$_POST['address_3'];
+
                             $postal = $_POST['postal'];
                             $contact = $_POST['phone_number'];
                       

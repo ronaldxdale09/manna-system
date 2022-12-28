@@ -33,10 +33,10 @@ include '../../connections/connect.php';
 
                                         $sql = "UPDATE `product` SET cost='$cost',price='$price'
                                         WHERE prod_id='$prod_id'";         
-                                       $res = mysqli_query($con, $query);
+                                          $res = mysqli_query($con, $sql);
 
                         
-                                        header("Location: ../item_prod.php");
+                                        header("Location: ../stock-in.php");
                                         $_SESSION['new_brand']= "successful";
                                         
                                         exit();
