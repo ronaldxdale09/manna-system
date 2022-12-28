@@ -19,45 +19,44 @@ include 'connections/connect.php';
 
   ?>
 
-    <style type="text/css">
-    @media screen and (max-width: 768px) {
-        .banner img {
-            height: 240px;
-        }
-
-        #bnctitle {
-            font-size: 30px;
-        }
-
-        #buttonsg {
-            position: relative;
-            left: 100%;
-        }
+<style type="text/css">
+  @media screen and (max-width: 768px) {
+    .banner img {
+      height: 240px;
     }
-    </style>
-    <style type="text/css">
-    .float-right {
-        float: right;
+    #bnctitle {
+      font-size: 30px;
     }
+    #buttonsg {
+      position: relative;
+      left: 100%;
+    }
+  }
+</style>
+ <style type="text/css">
+ 
+  .float-right {
+    float: right;
+  }
+ 
+  #item::-webkit-scrollbar {
+  width: 5px;
+}
 
-    #item::-webkit-scrollbar {
-        width: 5px;
-    }
+#item::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
 
-    #item::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
+/* Handle */
+#item::-webkit-scrollbar-thumb {
+  background: #888;
+}
 
-    /* Handle */
-    #item::-webkit-scrollbar-thumb {
-        background: #888;
-    }
-
-    /* Handle on hover */
-    #item::-webkit-scrollbar-thumb:hover {
-        background: #555;
-    }
-    </style>
+/* Handle on hover */
+#item::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+ </style>
 
     <div class="container-fluid mt-4">
 
@@ -75,7 +74,7 @@ include 'connections/connect.php';
             <div class="row">
                 <div class="col-md-4">
                     <div class="card shadow-sm" id="myorders">
-                        <div class="card-body" style="height: 300px;overflow-y: scroll;" id="item">
+                        <div class="card-body" style="height:500px;overflow-y: scroll;" id="item">
 
                             <h6 style="font-weight: bolder" class="text-secondary">My orders</h6>
                             <hr>

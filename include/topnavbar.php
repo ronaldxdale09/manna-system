@@ -16,7 +16,7 @@
                 <div class="header_search_content">
                     <div class="header_search_form_container">
                         <form action="category.php" method="get" class="header_search_form clearfix">
-                            <input type="search" name="search" required="required" class="header_search_input"
+                            <input type="search" name="query" required="required" class="header_search_input"
                                 placeholder="Search for products...">
 
                             <button type="submit" class="header_search_button trans_300" value="Submit"><img
@@ -83,15 +83,38 @@
                             
                     
                          ?>
+                        <?php 
+                                    $user =$_SESSION['user_id'];
+                                    $checkif_thersorder = "select * from transaction where user_id ='$user' and status != 'completed'  ";
+                                    $chckingorder = mysqli_query($con,$checkif_thersorder); 
+                                    $count= mysqli_num_rows($chckingorder);
+                                    
+                                    if($count >=1){
+                                    while($row = mysqli_fetch_array($chckingorder)){
+                                        $porder = $row['tid'];  
+                                    }
+                                         ?>
 
-                        <button class="btn mt-3 text-dark " onclick="window.location.href='orders.php'"
+                        <button class="btn mt-3 text-dark "
+                            onclick="window.location.href='orders.php?p=<?php echo $porder ?>'"
                             style="border-radius: 25px;position: relative; margin-left: 10px;">
+                            <?php   
+                                                }else {
+                                                ?>
+                            <button class="btn mt-3 text-dark " onclick="window.location.href='orders.php'"
+                                style="border-radius: 25px;position: relative; margin-left: 10px;">
+                                <?php
+                                            }
 
-                            <i class="fas fa-truck" style="font-size: 20px;"></i>
-                            <span class="badge badge-danger bg-danger"
-                                style="font-size: 10px;border-radius: 20px;position: absolute;" id="countwlist"></span>
-                        </button>
-                        <?php } ?>
+                                            ?>
+
+
+                                <i class="fas fa-truck" style="font-size: 20px;"></i>
+                                <span class="badge badge-danger bg-danger"
+                                    style="font-size: 10px;border-radius: 20px;position: absolute;"
+                                    id="countwlist"></span>
+                            </button>
+                            <?php } ?>
 
                     </div>
 
@@ -157,7 +180,6 @@
 
                         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
                         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
 
                         <script type="text/javascript">
                         $(document).ready(function() {
