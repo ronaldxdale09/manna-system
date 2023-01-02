@@ -1,5 +1,5 @@
 <?php $results  = mysqli_query($con, " SELECT *,transaction.status as stat FROM `transaction`
-    LEFT JOIN accounts ON transaction.user_id = accounts.user_id WHERE transaction.status='otw'"); ?>
+    LEFT JOIN accounts ON transaction.user_id = accounts.user_id WHERE transaction.status='completed'"); ?>
 <table id="production_table" class="table table-hover" style="width:100%;">
     <thead class="table-warning">
         <tr style='font-size:14px'>
@@ -26,7 +26,7 @@
             <td><?php echo $row['name'].' '.$row['lastname']; ?></td>
             <td>₱ <?php echo $gtrans['total_pay']; ?></td>
             <td>
-               <i class="fa-solid fa-truck"></i> Status :   <b>On the Way </b>
+               <i class="fa-solid fa-check"></i> Status :   <b>Completed </b>
             </td>
 
            

@@ -45,22 +45,22 @@
 
         <li>
             <div class='iocn-link'>
-                <a >
+                <a>
                     <i class='bx bx-collection'></i>
                     <span class='link_name'>Items</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class='sub-menu'>
-              <br>
+                <br>
                 <li><a href='products.php'>Item List</a></li>
                 <li><a href='stock-in.php'>Stock-in</a></li>
-                <li><a href='../admin/warehouse_inventory.php'>Stock-out</a></li>
+                <li><a href='stock-out.php'>Stock-out</a></li>
             </ul>
         </li>
-       
 
-      
+
+
 
         <li>
             <a href='prod_report.php'>
@@ -106,7 +106,13 @@
                 <span class="link_name">Walk-in POS</span>
             </a>
         </li>
-
+        <hr style='color:white'>
+        <li>
+            <a type='button' data-bs-toggle="modal" data-bs-target="#settingsModal">
+                <i class='fa-solid fa-gear'></i>
+                <span class="link_name">Settings</span>
+            </a>
+        </li>
 
         <li>
             <div class='profile-details'>
@@ -151,3 +157,30 @@ sidebarBtn.addEventListener("click", () => {
     sidebar.classList.toggle("close");
 });
 </script>
+
+
+<!-- Modal -->
+<div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Settings</h5>
+                <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label style="font-size: 14px" class="mb-1">Reciver Auto Received: </label>
+                <select class="form-select mb-2" name="cat" style="font-size: 14px">
+                    <option disabled="disabled" selected="selected" value="">Select Category </option>
+                    <option  value="">Immidietly </option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

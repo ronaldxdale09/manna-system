@@ -42,6 +42,7 @@ if (isset($_GET['prod'])) {
     <?php 
   include 'include/topnavbar.php';
   ?>
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <style>
     .column {
         display: grid;
@@ -359,6 +360,9 @@ if (isset($_GET['prod'])) {
     </div>
 
 
+
+
+
     <style>
     .progress-label-left {
         float: left;
@@ -386,11 +390,13 @@ if (isset($_GET['prod'])) {
         load_rating_data();
 
         function load_rating_data() {
+            prod_id = <?php echo  $prod_id;?>;
             $.ajax({
                 url: "function/submit_rating.php",
                 method: "POST",
                 data: {
-                    action: 'load_data'
+                    action: 'load_data',
+                    prod_id:prod_id 
                 },
                 dataType: "JSON",
                 success: function(data) {
@@ -489,9 +495,6 @@ if (isset($_GET['prod'])) {
     </script>
 
 
-
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 
 

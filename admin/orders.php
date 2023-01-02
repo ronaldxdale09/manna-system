@@ -123,6 +123,7 @@ if (isset($_GET['tab'])) {
                         <div class="content content-4">
                             <hr>
                             <div class="title">Compelted</div>
+                            <?php include('pages/completed.php') ?>
 
                         </div>
                         <div class="content content-5">

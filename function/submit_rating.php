@@ -8,7 +8,8 @@ if(isset($_POST["rating_data"]))
 {
 
 	$data = array(
-		':user_name'		=>	$_POST["user_name"],
+		':prod_id'		=>	$_POST["prod_id"],
+		':user_id'		=>	$_POST["user_id"],
 		':user_rating'		=>	$_POST["rating_data"],
 		':user_review'		=>	$_POST["user_review"],
 		':datetime'			=>	time()
@@ -16,8 +17,8 @@ if(isset($_POST["rating_data"]))
 
 	$query = "
 	INSERT INTO review_table 
-	(user_name, user_rating, user_review, datetime) 
-	VALUES (:user_name, :user_rating, :user_review, :datetime)
+	(prod_id,user_id, user_rating, user_review, datetime) 
+	VALUES (:prod_id, :user_id, :user_rating, :user_review, :datetime)
 	";
 
 	$statement = $connect->prepare($query);
@@ -40,8 +41,12 @@ if(isset($_POST["action"]))
 	$total_user_rating = 0;
 	$review_content = array();
 
+	$prod_id = $_POST["prod_id"];
+
 	$query = "
 	SELECT * FROM review_table 
+	LEFT JOIN accounts on review_table.user_id = accounts.user_id
+	where prod_id='$prod_id'
 	ORDER BY review_id DESC
 	";
 
@@ -50,7 +55,7 @@ if(isset($_POST["action"]))
 	foreach($result as $row)
 	{
 		$review_content[] = array(
-			'user_name'		=>	$row["user_name"],
+			'user_name'		=>	$row["name"].' '.$row["lastname"],
 			'user_review'	=>	$row["user_review"],
 			'rating'		=>	$row["user_rating"],
 			'datetime'		=>	date('l jS, F Y h:i:s A', $row["datetime"])

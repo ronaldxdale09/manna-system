@@ -19,44 +19,45 @@ include 'connections/connect.php';
 
   ?>
 
-<style type="text/css">
-  @media screen and (max-width: 768px) {
-    .banner img {
-      height: 240px;
-    }
-    #bnctitle {
-      font-size: 30px;
-    }
-    #buttonsg {
-      position: relative;
-      left: 100%;
-    }
-  }
-</style>
- <style type="text/css">
- 
-  .float-right {
-    float: right;
-  }
- 
-  #item::-webkit-scrollbar {
-  width: 5px;
-}
+    <style type="text/css">
+    @media screen and (max-width: 768px) {
+        .banner img {
+            height: 240px;
+        }
 
-#item::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
+        #bnctitle {
+            font-size: 30px;
+        }
 
-/* Handle */
-#item::-webkit-scrollbar-thumb {
-  background: #888;
-}
+        #buttonsg {
+            position: relative;
+            left: 100%;
+        }
+    }
+    </style>
+    <style type="text/css">
+    .float-right {
+        float: right;
+    }
 
-/* Handle on hover */
-#item::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
- </style>
+    #item::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    #item::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+    #item::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    /* Handle on hover */
+    #item::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+    </style>
 
     <div class="container-fluid mt-4">
 
@@ -474,10 +475,10 @@ include 'connections/connect.php';
                                                         <!-- Button trigger modal -->
                                                         <br>
                                                         <br>
-                                                        <?php if ($row['status'] ='delivered') { ?>
-                                                        <button type="button" class="btn btn-warning btn-sm"
-                                                            id="modalrate" data-bs-toggle="modal"
-                                                            data-bs-target="#staticBackdrop"><i class="fa fa-star"></i>
+                                                        <?php if ($row['status'] ='delivered' ) { ?>
+                                                        <button type="button" class="btn btn-warning btn-sm btnRate"
+                                                            id='btnRate' data-prodid="<?php echo $id ?>"> <i
+                                                                class="fa fa-star"></i>
                                                             Send Review</button>
                                                         <?php } ?>
 
@@ -533,8 +534,8 @@ include 'connections/connect.php';
                               ?>
                                 <div class="container">
                                     <div style="text-align: center;">
-                                        <img src="img/undraw_starry_window_re_0v82.svg" class="img-fluid mt-4"
-                                            style="width: 150px">
+                                        <img src="assets/img/cart_empty.png" class="img-fluid mt-4"
+                                            style="width: 300px">
 
 
 
@@ -619,7 +620,7 @@ include 'connections/connect.php';
                                                         od: id
                                                     },
                                                     success: function(data) {
-                                                        $('#modalrate').click();
+                                                        // $('#modalrate').click();
                                                     }
                                                 })
 
@@ -719,7 +720,7 @@ include 'connections/connect.php';
                 integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
                 crossorigin="anonymous"></script>
             <!-- Modal -->
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            <div class="modal fade" id="review_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -742,10 +743,11 @@ include 'connections/connect.php';
                                 <i class="fas fa-star star-light submit_star mr-1" id="submit_star_5"
                                     data-rating="5"></i>
                             </h4>
-                            <div class="form-group">
+                            <input type="text" name="prod_id" id="r_prod_id" hidden />
+                            <!-- <div class="form-group">
                                 <input type="text" name="user_name" id="user_name" class="form-control"
                                     placeholder="Enter Your Name" />
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <textarea name="user_review" id="user_review" class="form-control"
                                     placeholder="Type Review Here"></textarea>
@@ -766,9 +768,7 @@ include 'connections/connect.php';
 
 
 
-        <?php 
 
-                   ?>
 
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -931,8 +931,11 @@ $(document).ready(function() {
 
     var rating_data = 0;
 
-    $('#add_review').click(function() {
+    $('.btnRate').on('click', function() {
+        var prodid = $(this).data('prodid');
+        console.log(prodid)
 
+        $('#r_prod_id').val(prodid);
         $('#review_modal').modal('show');
 
     });
@@ -981,136 +984,30 @@ $(document).ready(function() {
     });
 
     $('#save_review').click(function() {
-
-        var user_name = $('#user_name').val();
+        var prod_id = $('#r_prod_id').val();
+        var user_id = <?php echo  $_SESSION['user_id'];?>
 
         var user_review = $('#user_review').val();
+        $.ajax({
+            url: "function/submit_rating.php",
+            method: "POST",
+            data: {
+                rating_data: rating_data,
+                user_id: user_id,
+                user_review: user_review,
+                prod_id: prod_id
+            },
+            success: function(data) {
+                $('#review_modal').modal('hide');
 
-        if (user_name == '' || user_review == '') {
-            alert("Please Fill Both Field");
-            return false;
-        } else {
-            $.ajax({
-                url: "submit_rating.php",
-                method: "POST",
-                data: {
-                    rating_data: rating_data,
-                    user_name: user_name,
-                    user_review: user_review
-                },
-                success: function(data) {
-                    $('#review_modal').modal('hide');
+                alert(data);
+            }
+        })
 
-                    load_rating_data();
-
-                    alert(data);
-                }
-            })
-        }
 
     });
 
-    load_rating_data();
 
-    function load_rating_data() {
-        $.ajax({
-            url: "submit_rating.php",
-            method: "POST",
-            data: {
-                action: 'load_data'
-            },
-            dataType: "JSON",
-            success: function(data) {
-                $('#average_rating').text(data.average_rating);
-                $('#total_review').text(data.total_review);
-
-                var count_star = 0;
-
-                $('.main_star').each(function() {
-                    count_star++;
-                    if (Math.ceil(data.average_rating) >= count_star) {
-                        $(this).addClass('text-warning');
-                        $(this).addClass('star-light');
-                    }
-                });
-
-                $('#total_five_star_review').text(data.five_star_review);
-
-                $('#total_four_star_review').text(data.four_star_review);
-
-                $('#total_three_star_review').text(data.three_star_review);
-
-                $('#total_two_star_review').text(data.two_star_review);
-
-                $('#total_one_star_review').text(data.one_star_review);
-
-                $('#five_star_progress').css('width', (data.five_star_review / data.total_review) *
-                    100 + '%');
-
-                $('#four_star_progress').css('width', (data.four_star_review / data.total_review) *
-                    100 + '%');
-
-                $('#three_star_progress').css('width', (data.three_star_review / data
-                    .total_review) * 100 + '%');
-
-                $('#two_star_progress').css('width', (data.two_star_review / data.total_review) *
-                    100 + '%');
-
-                $('#one_star_progress').css('width', (data.one_star_review / data.total_review) *
-                    100 + '%');
-
-                if (data.review_data.length > 0) {
-                    var html = '';
-
-                    for (var count = 0; count < data.review_data.length; count++) {
-                        html += '<div class="row mb-3">';
-
-                        html +=
-                            '<div class="col-sm-1"><div class="rounded-circle bg-danger text-white pt-2 pb-2"><h3 class="text-center">' +
-                            data.review_data[count].user_name.charAt(0) + '</h3></div></div>';
-
-                        html += '<div class="col-sm-11">';
-
-                        html += '<div class="card">';
-
-                        html += '<div class="card-header"><b>' + data.review_data[count].user_name +
-                            '</b></div>';
-
-                        html += '<div class="card-body">';
-
-                        for (var star = 1; star <= 5; star++) {
-                            var class_name = '';
-
-                            if (data.review_data[count].rating >= star) {
-                                class_name = 'text-warning';
-                            } else {
-                                class_name = 'star-light';
-                            }
-
-                            html += '<i class="fas fa-star ' + class_name + ' mr-1"></i>';
-                        }
-
-                        html += '<br />';
-
-                        html += data.review_data[count].user_review;
-
-                        html += '</div>';
-
-                        html += '<div class="card-footer text-right">On ' + data.review_data[count]
-                            .datetime + '</div>';
-
-                        html += '</div>';
-
-                        html += '</div>';
-
-                        html += '</div>';
-                    }
-
-                    $('#review_content').html(html);
-                }
-            }
-        })
-    }
 
 });
 </script>
