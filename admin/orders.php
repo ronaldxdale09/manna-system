@@ -188,3 +188,39 @@ $(document).ready(function() {
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../js/popper.js"></script>
 <script type="text/javascript" src="../js/bootstrap.js"></script>
+
+
+<?php if (isset($_SESSION['confirmed_order'])): ?>
+<div class="msg">
+
+    <script>
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Order Accepted!',
+        showConfirmButton: false,
+        timer: 1500
+    })
+    </script>
+    <?php 
+			unset($_SESSION['confirmed_order']);
+		?>
+</div>
+<?php endif ?>
+
+<?php if (isset($_SESSION['deliver_order'])): ?>
+<div class="msg">
+
+    <script>
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'The order has been processed for delivery.',
+        timer: 1500
+    })
+    </script>
+    <?php 
+			unset($_SESSION['deliver_order']);
+		?>
+</div>
+<?php endif ?>

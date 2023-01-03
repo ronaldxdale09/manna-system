@@ -39,7 +39,38 @@ $code = 'P'.$today . $generate;
 
 
 
+<style>
+.badge {
+    /* Set the background color and border */
+    background-color: #FDC96F;
+    border-radius: 10px;
+    border: 1px solid #6c757d;
 
+    /* Set the font size and color */
+    font-size: 15px;
+    color: black;
+
+    /* Add some padding and alignment */
+    padding: 5px 10px;
+    text-align: center;
+}
+
+.badge_1 {
+    /* Set the background color and border */
+    background-color: #19B854;
+    border-radius: 10px;
+    border: 1px solid #6c757d;
+
+    /* Set the font size and color */
+    font-size: 15px;
+    color: white;
+    font-weight:bold;
+
+    /* Add some padding and alignment */
+
+    text-align: center;
+}
+</style>
 
 <body style="background-color: white">
     <div class="wrapper">
@@ -103,7 +134,9 @@ $code = 'P'.$today . $generate;
                                             <td><?php echo $row['category_name']; ?></td>
                                             <td><?php echo $row['cost']; ?></td>
                                             <td><?php echo $row['price']; ?></td>
-                                            <td></td>
+                                            <td>
+                                                <div class='badge'><?php echo $row['quantity']; ?> </div>
+                                            </td>
                                             <td></td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">

@@ -84,6 +84,9 @@ $usertempip = getClientIP();
     }
 }
 
+
+
+
 .stretched-link::after {
     position: absolute;
     top: 0;
@@ -106,39 +109,57 @@ $usertempip = getClientIP();
   ?>
 
 
+    <div class="intro">
+        <div class="row">
+            <div class="col-sm-6">
 
-    <div class="row">
+                <div class="left">
+                <center>
+                    <h1>
+                        Healthy, delicious and faithfully<br>
+                        <div class='intro_sub'>baked fresh!</div>
+                    </h1>
+              
+                        <button>Order Now! <i class="fa fa-search" style="float: right; font-size: 20px"></i></button>
+                    </center>
+                </div>
 
-        <div class="col-md-12">
-            <div class="banner">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img class="d-block w-100" src="assets/img/banner.png" alt="First slide">
+            </div>
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="banner">
+                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item ">
+                                        <img class="d-block w-100" src="assets/img/banner.png" alt="First slide">
+                                    </div>
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" src="assets/img/right_intro.jpg" alt="Second slide">
+                                    </div>
+
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                                    data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="assets/img/landingpage.png" alt="Second slide">
-                        </div>
-
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
                 </div>
             </div>
         </div>
-
-
     </div>
     <div class="container-fluid">
 
 
-        <br><br><br><br><br>
+        <br><br><br>
         <div class="container">
 
             <div class="row mt-3">
@@ -168,8 +189,15 @@ $usertempip = getClientIP();
                 </div>
             </div>
 
-            <br> <br><br> <br><br>
+            <br> <br><br>
+            <center>
+                <h3>Top Features</h3>
+
+                <b>Top Features created just for you.</b>
+            </center>
+            <br><br>
             <div class="feature_card">
+
 
                 <div class="card_info" data-aos="fade-up" data-aos-anchor-placement="center-center">
                     <div class="one">
@@ -207,7 +235,7 @@ $usertempip = getClientIP();
             </div>
 
         </div>
-
+        <!-- <img src="assets/img/banner.png" class="our_product_bg_img"> -->
         <p><br></p>
 
 

@@ -12,8 +12,8 @@ include '../../connections/connect.php';
                             $cost = $_POST['cost'];
                             $price = $_POST['price'];
 
-                                $query = "INSERT INTO production_log (production_code,prod_id,qty_added,prod_date,exp_date) 
-                                        VALUES ('$prod_code','$prod_id','$qty','$prod_date','$exp_date')";
+                                $query = "INSERT INTO production_log (production_code,prod_id,qty_added,qty_remaining,prod_date,exp_date,status) 
+                                        VALUES ('$prod_code','$prod_id','$qty','$qty',1000'$prod_date','$exp_date','ACTIVE')";
                                 $results = mysqli_query($con, $query);
                                    
                                     if ($results) {

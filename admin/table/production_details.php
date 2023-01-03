@@ -1,34 +1,5 @@
 <style>
-.badge {
-    /* Set the background color and border */
-    background-color: #FDC96F;
-    border-radius: 10px;
-    border: 1px solid #6c757d;
 
-    /* Set the font size and color */
-    font-size: 17px;
-    color: black;
-
-    /* Add some padding and alignment */
-    padding: 5px 10px;
-    text-align: center;
-}
-
-
-.qty {
-    /* Set the background color and border */
-    background-color: #07377F;
-    border-radius: 10px;
-    border: 1px solid #6c757d;
-
-    /* Set the font size and color */
-    font-size: 17px;
-    color: black;
-
-    /* Add some padding and alignment */
-    padding: 5px 10px;
-    text-align: center;
-}
 
 th {
     font-size: 14px;
@@ -59,6 +30,7 @@ $output='';
                     <th>Expiration Date</th>
                     <th>Cost</th>
                     <th>Price</th>
+                    <th>Status</th>
                 </tr>
             </thead>';  
  if(mysqli_num_rows($result) > 0)  
@@ -81,12 +53,12 @@ $output='';
                 <td><div class="badge">'.$arr['production_code'].'</div></td>
                 <td>'.$arr['name'].'</td>
                 <td><div class="badge">'.$arr['qty_added'].'</div></td>
-                <td></td>
+                <td><div class="badge_1">'.$arr['qty_remaining'].'</div></td>
                 <td>'.$arr['prod_date'].'</td>
                 <td>'.$arr['exp_date'].'</td>
                <td scope="row" >₱ '.number_format($arr["cost"],2).'</td>
                <td scope="row" >₱ '.number_format($arr["price"],2).'</td>
-                <td><span class="badge bg-'.$color.'">'.$arr["status"].'</span></td>
+                <td><span class="badge bg-'.$color.' text-white">'.$arr["status"].'</span></td>
                 </tr>  
            ';  
       } 
