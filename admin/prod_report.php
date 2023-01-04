@@ -5,6 +5,12 @@ include '../connections/connect.php';
 if(!isset($_SESSION['admin_id'])){
   header('location:../log/signin.php');
 }
+
+$tab= '';
+if (isset($_GET['tab'])) {
+    $tab = filter_var($_GET['tab']) ;
+  }
+
  ?>
 <!DOCTYPE html>
 <html>
@@ -18,6 +24,7 @@ if(!isset($_SESSION['admin_id'])){
 <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 
+<link rel='stylesheet' href='css/tab-orders.css'>
 
 <body style="background-color: white">
     <div class="wrapper">
@@ -29,100 +36,69 @@ if(!isset($_SESSION['admin_id'])){
 
         <section class="home-section">
 
-         
 
-            <div class="main_contents">
-                <div class="container">
+            <div class="container-fluid">
+                <div class="wrapper" id="myTab">
+                    <input type="radio" name="slider" id="home" checked>
+                    <input type="radio" name="slider" id="blog"
+                        <?php if ($tab == '2') { echo 'checked'; } else { echo ''; } ?>>
+                    <input type="radio" name="slider" id="code"
+                        <?php if ($tab == '3') { echo 'checked'; } else { echo ''; } ?>>
+                    <input type="radio" name="slider" id="help"
+                        <?php if ($tab == '4') { echo 'checked'; } else { echo ''; } ?>>
+                    <input type="radio" name="slider" id="about"
+                        <?php if ($tab == '5') { echo 'checked'; } else { echo ''; } ?>>
+                    <nav>
+                        <label for="home" class="home"><i class="fa fa-book"></i>New Orders</label>
+                        <label for="blog" class="blog"><i class="fas fa-tasks"></i>Preparing</label>
+                        <label for="code" class="code"><i class="fa-solid fa-truck"></i> On Delivery</label>
+                        <label for="help" class="help"><i class="fa-solid fa-check"></i> Completed</label>
+                        <label for="about" class="about"><i class="fa-solid fa-undo"></i> Returns</label>
 
-                    <h5 style="font-weight: bolder;">REPORT</h5>
-                    <hr>
+                        <div class="slider"></div>
+                    </nav>
+                    <section>
+                        <div class="content content-1">
+                            <hr>
+                            <div class="title">Sales Report</div>
+                            <?php include('reportPage/sale_rep.php');?>
+
+                        </div>
+                        <div class="content content-2">
+                            <hr>
+                            <div class="title">Preparing</div>
+
+
+                        </div>
+                        <div class="content content-3">
+                            <hr>
+                            <div class="title">On Delivery</div>
 
 
 
+                        </div>
+                        <div class="content content-4">
+                            <hr>
+                            <div class="title">Compelted</div>
 
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="card" style="width:100%;max-width:100%;max-height:251px;">
-                                <canvas id="net_income" style="width:100%;max-width:100%;max-height:251px;"></canvas>
-                            </div>
+
+                        </div>
+                        <div class="content content-5">
+                            <hr>
+                            <div class="title">Returns</div>
+
+
+
                         </div>
 
-                        <!-- end INCOME CHART -->
-                        <div class="col-4">
-                            <div class="col-3" style="width:100%;max-width:100%;max-height:270px;">
-                                <div class="card" style="width:100%;max-width:100%;max-height:270px;">
-                                    <br>
-                                    <center>
-                                        <h5 style="font-weight: bolder;">Top Selling Product</h5>
-                                    </center>
-                                    <?php 
-                   
-                                         $side = mysqli_query($con, "SELECT trans_record.prod_id,name,sum(quantity) as qty from trans_record LEFT JOIN product on trans_record.prod_id = product.prod_id group by name");?>
-                                    <table class="table table-hover">
-                                        <thead class='table-dark'>
-                                            <tr>
-                                                <th scope="col">Product </th>
-                                                <th scope="col">Quantity Sold</th>
-                                            </tr>
-                                        </thead> <?php 
-                                         while ($row = mysqli_fetch_array($side)) { ?> <tbody>
-                                            <tr>
-                                                <td> <?php echo $row['name']?> </td>
-                                                <td> <?php echo $row['qty']?> </td>
-                                            </tr> <?php } ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-4">
-                            <div class="card" style="width:100%;max-width:100%;max-height:210px;">
-                                <canvas id="inventory_chart"
-                                    style="width:100%;max-width:100%;max-height:251px;"></canvas>
-                            </div>
-                        </div>
-                    </div>
-
-                    <br>
-
-
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"
-                        integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ=="
-                        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="card" style="width:100%;max-width:100%;max-height:251px;">
-                                <canvas id="income_chart" style="width:100%;max-width:100%;max-height:251px;">
-                                </canvas>
-                            </div>
-                        </div>
-
-                        <!-- end INCOME CHART -->
-                        <div class="col-4">
-                            <div class="card" style="width:100%;max-width:100%;max-height:251px;">
-                                <canvas id="gross_chart" style="width:100%;max-width:100%;max-height:251px;">
-                                </canvas>
-                            </div>
-                        </div>
-
-                        <div class="col-4">
-                            <div class="card" style="width:100%;max-height:251px;">
-                                <canvas id="opex_chart" style="width:100%;max-width:100%;max-height:251px;">
-                                </canvas>
-                            </div>
-                        </div>
-                    </div>
-
-
-
+                    </section>
                 </div>
 
-        </section>
-
+            </div>
     </div>
+
+    </section>
+
 
 
     <script type="text/javascript" src="../js/sidebar.js?v=1"></script>

@@ -83,13 +83,13 @@ if (isset($_GET['tab'])) {
                 <div class="wrapper" id="myTab">
                     <input type="radio" name="slider" id="home" checked>
                     <input type="radio" name="slider" id="blog"
-                    <?php if ($tab == '2') { echo 'checked'; } else { echo ''; } ?>>
+                        <?php if ($tab == '2') { echo 'checked'; } else { echo ''; } ?>>
                     <input type="radio" name="slider" id="code"
-                    <?php if ($tab == '3') { echo 'checked'; } else { echo ''; } ?>>
+                        <?php if ($tab == '3') { echo 'checked'; } else { echo ''; } ?>>
                     <input type="radio" name="slider" id="help"
-                    <?php if ($tab == '4') { echo 'checked'; } else { echo ''; } ?>>
+                        <?php if ($tab == '4') { echo 'checked'; } else { echo ''; } ?>>
                     <input type="radio" name="slider" id="about"
-                    <?php if ($tab == '5') { echo 'checked'; } else { echo ''; } ?>>
+                        <?php if ($tab == '5') { echo 'checked'; } else { echo ''; } ?>>
                     <nav>
                         <label for="home" class="home"><i class="fa fa-book"></i>New Orders</label>
                         <label for="blog" class="blog"><i class="fas fa-tasks"></i>Preparing</label>

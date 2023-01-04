@@ -119,8 +119,8 @@ $usertempip = getClientIP();
                         Healthy, delicious and faithfully<br>
                         <div class='intro_sub'>baked fresh!</div>
                     </h1>
-              
-                        <button>Order Now! <i class="fa fa-search" style="float: right; font-size: 20px"></i></button>
+                        <br>
+                        <a href='category.php'> <i class="fa fa-search" style=" font-size: 26px"> </i>  Order Now! </a>
                     </center>
                 </div>
 
