@@ -13,7 +13,8 @@
      SUM(CASE WHEN MONTHNAME(date_ordered) = 'September' THEN total END) AS SEP,
      SUM(CASE WHEN MONTHNAME(date_ordered) = 'October' THEN total END) AS OCT,
      SUM(CASE WHEN MONTHNAME(date_ordered) = 'November' THEN total END) AS NOV,
-     SUM(CASE WHEN MONTHNAME(date_ordered) = 'December' THEN total END) AS DECE
+     SUM(CASE WHEN MONTHNAME(date_ordered) = 'December' THEN total END) AS DECE,
+     
  FROM trans_record WHERE YEAR(date_ordered) = 2023 GROUP BY month");        
 
         ?>

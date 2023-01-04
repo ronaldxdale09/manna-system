@@ -49,43 +49,43 @@ if (isset($_GET['tab'])) {
                     <input type="radio" name="slider" id="about"
                         <?php if ($tab == '5') { echo 'checked'; } else { echo ''; } ?>>
                     <nav>
-                        <label for="home" class="home"><i class="fa fa-book"></i>New Orders</label>
-                        <label for="blog" class="blog"><i class="fas fa-tasks"></i>Preparing</label>
-                        <label for="code" class="code"><i class="fa-solid fa-truck"></i> On Delivery</label>
-                        <label for="help" class="help"><i class="fa-solid fa-check"></i> Completed</label>
-                        <label for="about" class="about"><i class="fa-solid fa-undo"></i> Returns</label>
+                        <label for="home" class="home"><i class="fa fa-book"></i>Summary Report</label>
+                        <label for="blog" class="blog"><i class="fas fa-tasks"></i>Sales Report</label>
+                        <label for="code" class="code"><i class="fa-solid fa-truck"></i>Product Report</label>
+                        <label for="help" class="help"><i class="fa-solid fa-check"></i> Customers</label>
+                        <label for="about" class="about"><i class="fa-solid fa-undo"></i> Others</label>
 
                         <div class="slider"></div>
                     </nav>
                     <section>
                         <div class="content content-1">
                             <hr>
-                            <div class="title">Sales Report</div>
+                            <div class="title">Summary</div>
                             <?php include('reportPage/sale_rep.php');?>
 
                         </div>
                         <div class="content content-2">
                             <hr>
-                            <div class="title">Preparing</div>
-
-
+                            <div class="title">Sales Report</div>
+                     
+                            <?php include('reportPage/sale_rep.php');?>
                         </div>
                         <div class="content content-3">
                             <hr>
-                            <div class="title">On Delivery</div>
-
+                            <div class="title">Product Reports</div>
+                            <?php include('reportPage/product_sales.php');?>
 
 
                         </div>
                         <div class="content content-4">
                             <hr>
-                            <div class="title">Compelted</div>
+                            <div class="title">Customer Reports</div>
 
 
                         </div>
                         <div class="content content-5">
                             <hr>
-                            <div class="title">Returns</div>
+                            <div class="title">Others</div>
 
 
 
