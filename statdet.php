@@ -192,7 +192,7 @@ if(isset($_POST['confirmreceived'])){
 $od = $_POST['od']; 
 date_default_timezone_set('Asia/Manila');
 $datenow = date('Y-m-d H:i:s');
-      $orderreceived = "UPDATE `transaction` SET `status`='delivered'  WHERE tid = '$od' ";
+      $orderreceived = "UPDATE `transaction` SET `status`='completed'  WHERE tid = '$od' ";
       mysqli_query($con,$orderreceived);
   
 }

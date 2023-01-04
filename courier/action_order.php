@@ -550,7 +550,7 @@ if(isset($_POST['completedorder'])){
         <tbody>
             <?php
 
-			$gettabledata = " SELECT * FROM `transaction` where status = 'completed' ";
+			$gettabledata = " SELECT * FROM `transaction` where status = 'delivered' ";
 	                $gettingcategories = mysqli_query($con,$gettabledata); 
 	                $cat_count= mysqli_num_rows($gettingcategories);
 	               //  $get_id =  mysqli_insert_id($con); 
@@ -756,7 +756,7 @@ if(isset($_POST['confirmd'])){
 if(isset($_POST['mc'])){ 
 	$od = $_POST['od'];
 
-	$confirm = "UPDATE `transaction` SET `status`='completed' WHERE tid = '$od' ";
+	$confirm = "UPDATE `transaction` SET `status`='delivered' WHERE tid = '$od' ";
 	mysqli_query($con,$confirm);
 	
 }
@@ -785,7 +785,7 @@ if(isset($_POST['uploadproof'])){
 	 $uploads_dir = '../img/Proof_of_delivery';
 	 move_uploaded_file($tmp_name , $uploads_dir .'/'.$fileName);
 
-	$confirm = "UPDATE `transaction` SET `status`='completed' , `photo_proof`='$fileName' WHERE tid = '$tid' ";
+	$confirm = "UPDATE `transaction` SET `status`='delivered' , `photo_proof`='$fileName' WHERE tid = '$tid' ";
 	mysqli_query($con,$confirm);
 
 	$_SESSION['complete'] = 1;

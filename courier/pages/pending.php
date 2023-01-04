@@ -22,7 +22,7 @@
     <div class="col-md-4">
         <div class="card shadow border-success">
             <div class="card-body">
-                <a href="accounts.php" class="stretched-link"></a>
+
                 <h6 style="font-weight: bolder;text-align: center;" class="text-dark">
                     COMPLETED DELIVERY <span class="badge bg-success text-light">
                         <?php 
@@ -40,27 +40,7 @@
     </div>
 
 
-    <div class="col-md-4">
-        <div class="card shadow border-danger">
-            <div class="card-body">
-                <a href="products.php" class="stretched-link"></a>
-                <h6 style="font-weight: bolder;text-align: center;" class="text-dark">
-                    CRITICAL ITEMS <span class="badge bg-danger text-light">
 
-                        <?php 
-            $cproducts = " select * from product  ";
-                        $countproduct = mysqli_query($con,$cproducts); 
-                        $allproducts= mysqli_num_rows($countproduct);
-                    echo $allproducts;   
-
-         ?>
-                    </span>
-                </h6>
-            </div>
-
-        </div>
-
-    </div>
 
 
 </div>
@@ -129,44 +109,84 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method='POST' action='functions/orders_action.php'>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col">
-                            <input type="text" class="form-control" name='trans_id' id="m_trans_id" hidden>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Order Number</label>
-                                <input type="email" class="form-control" id="order_code" aria-describedby="emailHelp"
-                                    readonly style='text-align:center;font-size:20px;font-weight:bold;'>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Order Date</label>
-                                <input type="email" class="form-control" id="date_order" aria-describedby="emailHelp"
-                                    readonly style='text-align:center;font-size:20px;font-weight:bold;'>
-                            </div>
+            <!-- <form method='POST' action='functions/orders_action.php'> -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control" name='trans_id' id="m_trans_id" hidden>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Order Number</label>
+                            <input type="email" class="form-control" id="order_code" aria-describedby="emailHelp"
+                                readonly style='text-align:center;font-size:20px;font-weight:bold;'>
                         </div>
                     </div>
-                    <hr>
-                    <div id='address_customer'> </div>
-                    <hr>
-                    <h6>Product Order List</h6>
-                    <div id='list_purchased_prod'> </div>
-
-
-
-
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Order Date</label>
+                            <input type="email" class="form-control" id="date_order" aria-describedby="emailHelp"
+                                readonly style='text-align:center;font-size:20px;font-weight:bold;'>
+                        </div>
+                    </div>
                 </div>
+                <hr>
+                <div id='address_customer'> </div>
+                <hr>
+                <h6>Product Order List</h6>
+                <div id='list_purchased_prod'> </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" name='confirm' class="btn btn-warning btnSubmitModal" id='btnSubmitModal'>Upload
+                    Proof
+                    Delivery</button>
+            </div>
+            <!-- </form> -->
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="uploadProofModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="exampleModalLabel">Proof of Delivery For Order
+                    BNC_<?php echo $tid  ?></h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form enctype="multipart/form-data" method="post" action="action_order.php">
+                <div class="modal-body">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyHlhRBUevbh8DcWe7o5epTHj3PS0o7vsV1A&usqp=CAU"
+                        id="img<?php echo $tid  ?>" style="width:100%;height:400px;">
+                    <input type="file" name="image" id="<?php echo $tid ?>" class="form-control mt-2" accept="image/*"
+                        required>
+                </div>
+                <input type="hidden" name="tid" value="<?php echo $tid ?>">
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" name='confirm' class="btn btn-warning" id='btnSubmitModal'>Confirm
-                        Order</button>
+
+                    <button type="submit" name="uploadproof" class="btn btn-light text-primary"
+                        style="font-size:13px">Mark as Complete</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#<?php echo $tid?>').change(function() {
+
+        if (this.files[0].type != "image/jpeg" && this.files[0].type !=
+            "image/png" && this.files[0].type != "image/gif") {
+            alert("Sorry invalid file type. Please upload an image");
+        } else {
+            $('#img<?php echo $tid?>').attr('src', URL.createObjectURL(this.files[
+                0]));
+        }
+    })
+
+});
+</script>
 
 
 <script>
@@ -215,6 +235,13 @@ $('.confirmd').click(function() {
         });
     }
     fetchAddress();
+
+
+})
+
+$('.btnSubmitModal').click(function() {
+    $('#orderDetails').modal('hide');
+    $('#uploadProofModal').modal('show');
 
 
 })

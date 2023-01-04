@@ -99,6 +99,7 @@ if (isset($_GET['tab'])) {
                     <div class="content content-2">
                         <hr>
                         <div class="title">Delivered</div>
+                        <?php include('pages/delivered.php')?>
 
 
                     </div>
