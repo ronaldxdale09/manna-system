@@ -113,7 +113,7 @@
                                 <span class="badge badge-danger bg-danger"
                                     style="font-size: 10px;border-radius: 20px;position: absolute;">
                                     <?php 
-                                $sql = " select * from transaction where status !='complete' and user_id ='$user'   ";
+                                $sql = " select * from transaction where status !='completed' and user_id ='$user'   ";
                                             $orders = mysqli_query($con,$sql); 
                                             $allOrders= mysqli_num_rows($orders);
                                         echo $allOrders;   
