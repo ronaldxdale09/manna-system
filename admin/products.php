@@ -10,7 +10,6 @@ if (!isset($_SESSION["admin_id"])) {
 <?php
 include "head.php";
 include "../connections/connect.php";
-include "modal/product_modal.php";
 
 
 // expense category
@@ -35,7 +34,7 @@ $category .= '
 <option value="'.$arr["cat_id"].'">'.$arr["category_name"].'</option>';
 }
 
-
+include "modal/product_modal.php";
 
 
 ?>
