@@ -54,8 +54,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col">
-                        <input type="text" class="form-control" name='trans_id' id="m_trans_id" hidden>
-                        <div class="form-group">
+                        <input type="text" class="form-control" name='trans_id' id="m_trans_id" hidden>                   <div class="form-group">
                             <label for="exampleInputEmail1">Order Number</label>
                             <input type="email" class="form-control" id="v_order_code" aria-describedby="emailHelp"
                                 readonly style='text-align:center;font-size:20px;font-weight:bold;'>
@@ -87,17 +86,17 @@
 
 
 <script>
-$('.confirmd').click(function() {
+$('.btnView').click(function() {
     //
     var od = $(this).data('od');
     var date = $(this).data('date');
     var userid = $(this).data('userid');
 
     console.log(userid);
-    $('#orderDetails').modal('show')
-    $('#date_order').val(date)
-    $('#order_code').val('MN_' + od)
-    $('#m_trans_id').val(od)
+    $('#v_orderDetails').modal('show')
+    $('#v_date_order').val(date)
+    $('#v_order_code').val('MN_' + od)
+
 
     function fetch_table() {
 
@@ -109,7 +108,7 @@ $('.confirmd').click(function() {
                 trans_id: trans_id,
             },
             success: function(data) {
-                $('#list_purchased_prod').html(data);
+                $('#v_list_purchased_prod').html(data);
             }
         });
     }
@@ -127,7 +126,7 @@ $('.confirmd').click(function() {
                 userid: userid,
             },
             success: function(data) {
-                $('#address_customer').html(data);
+                $('#v_address_customer').html(data);
             }
         });
     }

@@ -124,7 +124,7 @@ new Chart(purchase_chart, {
             },
             title: {
                 display: true,
-                text: 'Purchase Trend'
+                text: 'Inventory Cost'
             }
         },
         scales: {

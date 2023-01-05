@@ -61,7 +61,7 @@ if (isset($_GET['tab'])) {
                         <div class="content content-1">
                             <hr>
                             <div class="title">Summary</div>
-                            <?php include('reportPage/sale_rep.php');?>
+                            <?php include('reportPage/summary.php');?>
 
                         </div>
                         <div class="content content-2">
@@ -120,3 +120,54 @@ if (isset($_GET['tab'])) {
 <?php include('footer.php') ?>
 
 </html>
+
+<script>
+
+new Chart(purchase_chart, {
+
+type: 'bar',
+
+data: {
+    labels: ['Inventory Cost', 'Selling Cost'],
+    datasets: [{
+        label: 'Sales',
+        data:  [<?php echo ($inv_cost) ?>,<?php echo ($inv_selling) ?>],
+        backgroundColor: [
+            '#84A7D0', '#8F1103'],
+        borderColor: '#025454',
+        borderWidth: 2
+    }]
+},
+options: {
+    indexAxis: 'y',
+    plugins: {
+        legend: {
+            position: 'right',
+            display: false,
+        },
+        title: {
+            display: true,
+            text: 'Inventory Cost'
+        }
+    },
+    scales: {
+        y: {
+            ticks: {
+                display: true,
+            },
+            grid: {
+                display: false
+            },
+            beginAtZero: true
+        },
+        x: {
+            grid: {
+                display: false
+            }
+        }
+    }
+}
+});
+
+
+</script>

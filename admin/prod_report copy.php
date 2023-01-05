@@ -29,7 +29,7 @@ if(!isset($_SESSION['admin_id'])){
 
         <section class="home-section">
 
-         
+
 
             <div class="main_contents">
                 <div class="container">

@@ -104,23 +104,23 @@ $(document).ready(function() {
 });
 </script>
 <script>
-// function fetch_data() {
+function fetch_data() {
 
-//     var wholesale_id = <?php echo $wholesale_id ?>;
-//     $.ajax({
-//         url: "wholesale_table/wholesale_table.php",
-//         method: "POST",
-//         data: {
-//             wholesale_id: wholesale_id,
+    var wholesale_id = <?php echo $wholesale_id ?>;
+    $.ajax({
+        url: "wholesale_table/wholesale_table.php",
+        method: "POST",
+        data: {
+            wholesale_id: wholesale_id,
 
-//         },
-//         success: function(data) {
-//             $('#live_data').html(data);
-//         }
-//     });
-// }
+        },
+        success: function(data) {
+            $('#live_data').html(data);
+        }
+    });
+}
 
-// fetch_data();
+fetch_data();
 </script>
 
 <script>
