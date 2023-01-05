@@ -1,24 +1,26 @@
 <?php  
 
  $output = '';  
+ session_start();
  include '../../connections/connect.php';
  $trans_id = (string)$_POST['trans_id'];
  
-$sql  = "SELECT * from wholesale_listing_prod
-LEFT JOIN ntc_product_info ON wholesale_listing_prod.product_id =  ntc_product_info.product_id
-WHERE wholesale_id='$wholesale_id'  "; 
+$sql  = "SELECT * from trans_record
+LEFT JOIN product ON trans_record.prod_id =  product.prod_id
+LEFT JOIN photo ON product.prod_id =  photo.prod_id
+WHERE transaction_id='$trans_id'  "; 
 
 
 
  $result = mysqli_query($con, $sql);  
  $output .= '  
             <table class="table">
-            <thead class="table-dark">
+            <thead class="table-warning">
                 <tr>
                     <th hidden>ID</th>
                     <th> Type </th>
                     <th hidden>Prod_id</th>
-                    <th>Product Code</th>
+                    <th>Bardcode</th>
                     <th>Product Name</th>
                     <th> Price </th>
                     <th> Qty</th>
@@ -33,37 +35,42 @@ WHERE wholesale_id='$wholesale_id'  ";
 
            $output .= '  
                 <tr>  
-                <td><span class="badge bg-success">Wholesale</span></td>
-                <td scope="row" hidden>'.$arr["wholesale_id"].'</td>
-                <td scope="row" hidden>'.$arr["product_id"].'</td>
-                <td scope="row" >'.$arr["barcode"].'</td>
-                <td scope="row">'.$arr["product_name"].'- '.$arr["description"].'</td>
-                <td scope="row">₱ '.number_format($arr["price"],2).'</td>
                 <td>
-                <div class="input-counter"  >
-                   <span class="minus-btn"><i class="fa fa-minus"></i></span>
-                   <input type="text"  value="'.$arr['product_quantity'].'">
-                   <span class="plus-btn"><i class="fa fa-plus"></i></span>
-                </div>
-             </td>
-             <td scope="row">₱ '.number_format($arr["total_amount"],2).'</td>
-                </tr>  
-           ';  
-      } 
-    
+        
+                    <img src="../img/products/'.$arr["photo"].'" alt=""
+                    class="card-img-top" style="width:70px;height: 70px">
+                  
+                    </td>
+                    <td scope="row" hidden>'.$arr["transaction_id"].'</td>
+                    <td scope="row" hidden>'.$arr["prod_id"].'</td>
+                    <td scope="row">'.$arr["barcode"].'</td>
+                    <td scope="row">'.$arr["name"].'</td>
+                    <td scope="row">₱ '.number_format($arr["price"],2).'</td>
+                    <td>
+                        <div class="input-counter">
+                            <span class="minus-btn"><i class="fa fa-minus"></i></span>
+                            <input type="text" value="'.$arr['quantity'].'">
+                            <span class="plus-btn"><i class="fa fa-plus"></i></span>
+                        </div>
+                    </td>
+                    <td scope="row">₱ '.number_format($arr["total"],2).'</td>
+                    </tr>
+';
 }
- else  
- {  
-      $output .= '<tr>  
-                          <td colspan="4">Nothings in the cart</td>  
-                     </tr>';  
- }  
- $output .= '</table>  
+
+}
+else
+{
+$output .= '<tr>
+    <td colspan="4">Nothings in the cart</td>
+</tr>';
+}
+$output .= '</table>
 
 
-      </div>';  
- echo $output;  
- ?>
+</div>';
+echo $output;
+?>
 
 
 
@@ -94,15 +101,15 @@ $('.input-counter').each(function() {
         var data = $tr.children("td").map(function() {
             return $(this).text();
         }).get();
-        var wholesale_id = (data[1]);
+        var transaction_id = (data[1]);
         var product_id = (data[2]);
         var quantity = (newVal);
 
         $.ajax({
             type: "POST",
-            url: "../../function/ntc_bodega/wholesale/quantityControl.php",
+            url: "functions/walkin/quantityControl.php",
             data: {
-                wholesale_id: wholesale_id,
+                transaction_id: transaction_id,
                 product_id: product_id,
                 quantity: quantity,
             },
@@ -130,14 +137,14 @@ $('.input-counter').each(function() {
         var data = $tr.children("td").map(function() {
             return $(this).text();
         }).get();
-        var wholesale_id = (data[1]);
+        var transaction_id = (data[1]);
         var product_id = (data[2]);
         var quantity = $(this).val();
         $.ajax({
             type: "POST",
-            url: "../../function/ntc_bodega/wholesale/quantityControl.php",
+            url: "functions/walkin/quantityControl.php",
             data: {
-                wholesale_id: wholesale_id,
+                transaction_id: transaction_id,
                 product_id: product_id,
                 quantity: quantity,
             },
@@ -171,7 +178,7 @@ $('.input-counter').each(function() {
         var data = $tr.children("td").map(function() {
             return $(this).text();
         }).get();
-        var wholesale_id = (data[1]);
+        var transaction_id = (data[1]);
         var product_id = (data[2]);
         var quantity = (newVal);
 
@@ -179,9 +186,9 @@ $('.input-counter').each(function() {
 
             $.ajax({
                 type: "POST",
-                url: "../../function/ntc_bodega/wholesale/remove_product.php",
+                url: "functions/walkin/remove_product.php",
                 data: {
-                    wholesale_id: wholesale_id,
+                    transaction_id: transaction_id,
                     product_id: product_id,
                 },
                 cache: false,
@@ -199,9 +206,9 @@ $('.input-counter').each(function() {
 
             $.ajax({
                 type: "POST",
-                url: "../../function/ntc_bodega/wholesale/quantityControl.php",
+                url: "functions/walkin/quantityControl.php",
                 data: {
-                    wholesale_id: wholesale_id,
+                    transaction_id: transaction_id,
                     product_id: product_id,
                     quantity: quantity,
                 },

@@ -41,8 +41,8 @@ include 'connections/connect.php';
 
 
 					//create transaction
-						$create_transaction = "INSERT INTO `transaction`(`user_id`, `paymentmethod`, `datecreated`,`status`) 
-																	VALUES ('$user','$pm','$datenow','pending')  ";
+						$create_transaction = "INSERT INTO `transaction`(`user_id`, `paymentmethod`, `datecreated`,`status`,`type`) 
+																	VALUES ('$user','$pm','$datenow','pending','online')  ";
 						 $transcation_ = mysqli_query($con,$create_transaction); 
 						
 						 $transaction_id = mysqli_insert_id($con);

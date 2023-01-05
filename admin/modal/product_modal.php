@@ -54,7 +54,7 @@
                                     <option disabled="disabled" selected="selected" value="">Select Category </option>
                                     <?php echo $category?>
                                 </select>
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col">
                                         <label style="font-size: 14px" class="mb-3">Enter Cost: </label>
                                         <input type="text" name="cost"
@@ -67,7 +67,7 @@
                                             oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                                             style="font-size: 14px" class="form-control mb-2" required="">
                                     </div>
-                                </div>
+                                </div> -->
 
 
                                 <label style="font-size: 14px" class="mb-3">Enter Description: </label>

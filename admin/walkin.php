@@ -1,13 +1,30 @@
 <?php include 'head.php';
 include "../connections/connect.php";
+
+if (isset($_GET['trans'])) {
+    $trans_id = $_GET['trans'];
+} 
+
+
+
  ?>
+
 
 </head>
 <link rel="stylesheet" href="css/walkin.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript" src="../js/datatable/datatables.js"></script>
+<link rel="stylesheet" type="text/css" href="../js/datatable/datatables.css">
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+
+
 
 <body>
+
     <header> <br>
-        <h3>Mannafest Food Inc.  </h3>
+        <h3>Mannafest Food Inc. </h3>
 
     </header>
 
@@ -15,7 +32,7 @@ include "../connections/connect.php";
         <div class="container-p">
             <div class="flex-2-p">
                 <span class=" bg-warning">
-                    <h4>Walk in ID : #</h4>
+                    <h4>Walk in ID : #<?php echo  $trans_id ?></h4>
                 </span>
                 <hr>
                 <div class="table-box-p">
@@ -47,7 +64,7 @@ include "../connections/connect.php";
                                     <th hidden>id</th>
                                     <th>Barcode</th>
                                     <th>Product </th>
-                                    <th>Inventory</th>               
+                                    <th>Inventory</th>
                                     <th> Price</th>
                                     <th>Action</th>
                                 </tr>
@@ -90,28 +107,17 @@ include "../connections/connect.php";
 </body>
 
 </html>
-
-<script type="text/javascript">
-$(document).ready(function() {
+<?php include('modal/walkin_modal.php')?>
 
 
-    table = $('#table-prods').DataTable({
-        dom: 'frtip',
-
-    });
-
-
-});
-</script>
 <script>
 function fetch_data() {
 
-    var wholesale_id = <?php echo $wholesale_id ?>;
     $.ajax({
-        url: "wholesale_table/wholesale_table.php",
+        url: "table/walkin_table.php",
         method: "POST",
         data: {
-            wholesale_id: wholesale_id,
+            trans_id: '<?php echo $trans_id ?>',
 
         },
         success: function(data) {
@@ -121,73 +127,51 @@ function fetch_data() {
 }
 
 fetch_data();
-</script>
-
-<script>
-$('#addProd').submit(function() {
-    return false;
-});
 
 
-$('#addBtn').click(function() {
-    $("#addProduct").modal("hide");
-    $.post($('#addProd').attr('action'), $('#addProd :input').serializeArray(), function(result) {
-        console.log(result);
-        let nf = new Intl.NumberFormat('en-US');
-        $('#total_amount').val('₱ ' + nf.format(result));
-        fetch_data();
-    });
-});
-
-
-$('#table-prods').on('click', '.btnAdd', function() {
-
-    $('#addProduct').modal('show');
-    $tr = $(this).closest('tr');
-
-    var data = $tr.children("td").map(function() {
-        return $(this).text();
-    }).get();
-    $('#product_id').val(data[0]);
-    $('#barcode').val(data[1]);
-    $('#p_name').val(data[2]);
-
-    $('#qty_box').val(data[4]);
-    $('#whole_price').val(data[5]);
-});
-</script>
-
-
-
-
-<script>
 $(document).ready(function() {
-    $("#myInput").on("keyup", function() {
-        var value = $(this).val().toLowerCase();
-        $("#myTable tr").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) >
-                -1)
-        });
+
+    table = $('#table-prods').DataTable({
+        dom: 'frtip',
+
     });
 
 
 
-    // $('.btnAdd').on('click', function() {
 
 
-    //     $('#addProduct').modal('show');
-    //     $tr = $(this).closest('tr');
+    $('#addProd').submit(function() {
+        return false;
+    });
 
-    //     var data = $tr.children("td").map(function() {
-    //         return $(this).text();
-    //     }).get();
-    //     $('#product_id').val(data[0]);
-    //     $('#barcode').val(data[1]);
-    //     $('#p_name').val(data[2]);
 
-    //     $('#qty_box').val(data[4]);
-    //     $('#whole_price').val(data[5]);
-    // });
+    $('#addBtn').click(function() {
+        $("#productAdd").modal("hide");
+        $.post($('#addProd').attr('action'), $('#addProd :input').serializeArray(),
+            function(result) {
+                console.log(result);
+                let nf = new Intl.NumberFormat('en-US');
+                $('#total_amount').val('₱ ' + nf.format(result));
+                fetch_data();
+            });
+
+    });
+
+
+    $('#table-prods').on('click', '.btnAdd', function() {
+
+        $('#productAdd').modal('show');
+        $tr = $(this).closest('tr');
+
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+        $('#product_id').val(data[0]);
+        $('#barcode').val(data[1]);
+        $('#p_name').val(data[2]);
+
+        $('#p_price').val(data[4]);
+    });
 
 
 
@@ -195,12 +179,12 @@ $(document).ready(function() {
 
         function fetch_data() {
 
-            var wholesale_id = <?php echo $wholesale_id ?>;
+            var trans_id = <?php echo $trans_id ?>;
             $.ajax({
-                url: "wholesale_table/confirm_wholesale.php",
+                url: "table/confirm_walkin.php",
                 method: "POST",
                 data: {
-                    wholesale_id: wholesale_id,
+                    trans_id: '<?php echo $trans_id ?>',
 
                 },
                 success: function(data) {
@@ -209,7 +193,10 @@ $(document).ready(function() {
             });
         }
         fetch_data();
+        
+        var trans_id = <?php echo $trans_id ?>;
         $('#c_total_amount').val($('#total_amount').val())
+        $('#c_walkin_id').val(trans_id)
         $('#confirmModal').modal('show');
 
 
@@ -217,13 +204,11 @@ $(document).ready(function() {
 
 
     $('.btnVoid').on('click', function() {
-        var wholesale_id = <?php echo $wholesale_id ?>;
 
         $('#voidTransfer').modal('show');
 
 
     });
-
 
 
 
