@@ -24,12 +24,7 @@
 
 
 
-        <li>
-            <a type='button' data-bs-toggle="modal" data-bs-target="#settingsModal">
-                <i class='fa-solid fa-gear'></i>
-                <span class="link_name">Settings</span>
-            </a>
-        </li>
+
 
         <li>
             <div class='profile-details'>
