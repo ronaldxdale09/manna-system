@@ -316,6 +316,55 @@ $user_id=$_SESSION['user_id'];
     </div>
 
 
+    <div class="modal fade" id="openAddress" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Select Delivery Address</h5>
+                    <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method='POST' action='function/newAddress.php'>
+
+                        <input type="number" class="form-control txt mb-2" name="user_id"
+                            value='<?php echo $_SESSION['user_id']?>' hidden>
+                        <label>Name:</label>
+                        <input type="text" class="form-control txt mb-2" name="name" style="" required="">
+
+                        <label>City:</label>
+                        <input type="text" class="form-control txt mb-2" name="address_3" value='Zamboanga del Sur' readonly style="" >
+
+
+                        <label>Street Name,Barangay:</label>
+                        <textarea class="form-control txt mb-2" name="address_1" cols="4"></textarea>
+
+                        <label>Floor/Unit/Room #):</label>
+                        <textarea class="form-control txt mb-2" name="address_2" cols="4"></textarea>
+
+                        <label>Postal Code:</label>
+                        <input type="number" class="form-control txt mb-2" name="postal" style="" required="">
+
+
+                        <hr>
+                        <label>Contact Number:</label> <br>
+                        <div class="form-group mt-2 d-inline-block">
+                            <span class="border-end country-code px-2">+63</span>
+                            <input type="text" class="form-control" name="phone_number" aria-describedby="emailHelp"
+                                placeholder="91257888" maxlength="10" required />
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name='add' class="btn btn-primary">Save changes</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
 
 

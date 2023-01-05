@@ -29,6 +29,9 @@ if(isset($_POST['savenew'])){
 
 	$getp_id =  mysqli_insert_id($con); 
 
+	$insertQty = "INSERT INTO `product_quantity`(`prod_id`, `quantity`) VALUES ('$getp_id','0')";
+	mysqli_query($con,$insertQty);
+
 
 	// $sql = "INSERT INTO `product_quantity`(`prod_id`, `quantity`)
 	//  VALUES ('$getp_id','$onhand_quantity')";

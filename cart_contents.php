@@ -295,7 +295,7 @@ if (isset($_POST["cartitems"])) { ?>
                             </script>
                             <br>
                             <p></p>
-<!-- 
+                            <!-- 
                             <span id="dfee" class="d-none"> Delivery Fee : <span class="float-right"
                                     id="delivery_fee">₱100</span></span> -->
                             <br>
@@ -400,48 +400,7 @@ if (isset($_POST["cartitems"])) { ?>
                         <div id="shipadd" class="d-none">
 
 
-                            <div class="address_box">
-                                <div class="left">
-                                    <div class="delivery_address">
-                                        <div class="icon_circle">
-                                            <i class="far fa-location"></i>
-                                        </div>
-                                        <p>Delivery Address</p>
-                                        <div class="delivery_address_info">
-
-                                            <?php
-										$getAddress = " select * from account_ship_address where user_id='$user' and status='1' ";
-										$results = mysqli_query($con, $getAddress);
-										$countingAddress = mysqli_num_rows($results);
-										//  $get_id =  mysqli_insert_id($con);
-										if ($countingAddress >= 1) {
-											while ($row = mysqli_fetch_array($results)) {
-												$ship_id = $row["ship_id"]; ?>
-
-                                            <label class="card mx-2 ">
-                                                <input name="address" id='addressSelected' value='<?php echo $row[
-											"ship_id"
-										]; ?>' class="radio" type="radio" checked hidden>
-                                                <span class="plan-details">
-
-                                                    <span><?php echo $row["contact_name"]; ?> |
-                                                        <?php echo $row["phone_number"]; ?></span>
-                                                    <span>Address : <?php echo $row["address"]; ?></span>
-                                                    <span>Postal : <?php echo $row["postal_code"]; ?></span>
-                                                </span>
-                                            </label>
-
-                                            <?php
-												}
-											}
-											?>
-
-
-                                        </div>
-                                    </div>
-                                    <hr>
-                                </div>
-                            </div>
+                        <div id='address_customer'> </div>
                             <hr>
                             <div class="col-md-12">
 
@@ -557,7 +516,7 @@ if (isset($_POST["cartitems"])) { ?>
                                             });
                                             </script>
 
-<!-- 
+                                            <!-- 
                                             <span id="dfee" class="d-none"> Delivery Fee : <span class="float-right"
                                                     id="delivery_fee">₱100</span></span> -->
                                             <br>
@@ -811,6 +770,23 @@ $(document).ready(function() {
             success: function(data) {
 
                 $('#btnpmmodal').click();
+
+                function fetchAddress() {
+
+                    $.ajax({
+                        url: "fetch/user_address.php",
+                        method: "POST",
+                        data: {
+
+                            userid:  <?php echo $_SESSION["user_id"];?>,
+                        },
+                        success: function(data) {
+                            $('#address_customer').html(data);
+                        }
+                    });
+                }
+                fetchAddress();
+
                 if (data == 'reserve') {
 
                     $('#pm').val('reserve');

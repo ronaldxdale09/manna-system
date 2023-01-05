@@ -189,12 +189,7 @@ if(isset($_SESSION['admin_id'])){
                                 <label>Delivery Address (Street Name, Building, House No.):</label>
 
                                 <textarea class="form-control txt mb-2" name="daddr" cols="4"></textarea>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Same as the Address
-                                    </label>
-                                </div>
+                               
 
 
 
