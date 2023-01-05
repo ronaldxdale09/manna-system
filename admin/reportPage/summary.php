@@ -163,38 +163,55 @@
                 <th></th>
             </tfoot>
         </table>
+        <!-- end INCOME CHART -->
 
-        <!-- chart -->
-        <div class="row">
-            <div class="col-sm-6">col-sm-8</div>
-            <div class="col-sm-6">col-sm-4</div>
+
+
+
+    <!-- chart -->
+    <div class="row">
+        <div class="col-sm-6">
+
+            <div class="card" style="width:100%;max-width:100%;max-height:251px;">
+                <canvas id="purchase_chart" style="width:100%;max-width:100%;max-height:251px;">
+                </canvas>
+            </div>
+
         </div>
+        <div class="col-sm-6">
 
+            <div class="card" style="width:100%;max-width:100%;max-height:210px;">
+                <canvas id="inventory_chart" style="width:100%;max-width:100%;max-height:251px;"></canvas>
+            </div>
+
+        </div>
     </div>
-    <div class="col-sm-3">
 
-        <center>
-            <h5 style="font-weight: bolder;">Top Selling Product</h5>
-        </center>
-        <?php 
+</div>
+<div class="col-sm-3">
+
+    <center>
+        <h5 style="font-weight: bolder;">Top Selling Product</h5>
+    </center>
+    <?php 
                    
                                          $side = mysqli_query($con, "SELECT trans_record.prod_id,name,sum(quantity) as qty from trans_record LEFT JOIN product on trans_record.prod_id = product.prod_id group by name");?>
-        <table class="table table-hover">
-            <thead class='table-warning'>
-                <tr>
-                    <th scope="col">Product </th>
-                    <th scope="col">Quantity Sold</th>
-                </tr>
-            </thead> <?php 
+    <table class="table table-hover">
+        <thead class='table-warning'>
+            <tr>
+                <th scope="col">Product </th>
+                <th scope="col">Quantity Sold</th>
+            </tr>
+        </thead> <?php 
                                          while ($row = mysqli_fetch_array($side)) { ?> <tbody>
-                <tr>
-                    <td> <?php echo $row['name']?> </td>
-                    <td> <?php echo $row['qty']?> </td>
-                </tr> <?php } ?>
-            </tbody>
-        </table>
+            <tr>
+                <td> <?php echo $row['name']?> </td>
+                <td> <?php echo $row['qty']?> </td>
+            </tr> <?php } ?>
+        </tbody>
+    </table>
 
 
 
-    </div>
+</div>
 </div>

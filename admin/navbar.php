@@ -173,8 +173,10 @@ sidebarBtn.addEventListener("click", () => {
             <div class="modal-body">
                 <label style="font-size: 14px" class="mb-1">Reciver Auto Received: </label>
                 <select class="form-select mb-2" name="cat" style="font-size: 14px">
-                    <option disabled="disabled" selected="selected" value="">Select Category </option>
-                    <option  value="">Immidietly </option>
+                    <option selected="selected" value="">1 Day Upon Delivery</option>
+                    <option value="">2 Days Upon Delivery</option>
+                    <option value="">3 Days Upon Delivery</option>
+                    <option value="">Immediately </option>
                 </select>
             </div>
             <div class="modal-footer">
