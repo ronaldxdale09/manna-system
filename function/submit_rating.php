@@ -1,9 +1,7 @@
 <?php
 
-//submit_rating.php
-
-$connect = new PDO("mysql:host=localhost;dbname=mannafest_db", "root", "");
-
+session_start();
+ include('../connections/connect.php');
 if(isset($_POST["rating_data"]))
 {
 
@@ -21,7 +19,7 @@ if(isset($_POST["rating_data"]))
 	VALUES (:prod_id, :user_id, :user_rating, :user_review, :datetime)
 	";
 
-	$statement = $connect->prepare($query);
+	$statement = $con->prepare($query);
 
 	$statement->execute($data);
 
@@ -50,7 +48,7 @@ if(isset($_POST["action"]))
 	ORDER BY review_id DESC
 	";
 
-	$result = $connect->query($query, PDO::FETCH_ASSOC);
+	$result = $con->query($query, PDO::FETCH_ASSOC);
 
 	foreach($result as $row)
 	{

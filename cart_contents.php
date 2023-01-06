@@ -771,21 +771,19 @@ $(document).ready(function() {
 
                 $('#btnpmmodal').click();
 
-                function fetchAddress() {
-
                     $.ajax({
                         url: "fetch/user_address.php",
                         method: "POST",
                         data: {
 
-                            userid:  <?php echo $_SESSION["user_id"];?>,
+                            userid:  '<?php echo $_SESSION["user_id"];?>',
                         },
                         success: function(data) {
                             $('#address_customer').html(data);
                         }
                     });
-                }
-                fetchAddress();
+         
+           
 
                 if (data == 'reserve') {
 
