@@ -42,24 +42,23 @@ if (isset($_GET['prod'])) {
     <?php 
   include 'include/topnavbar.php';
   ?>
-      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <style>
     .column {
         display: grid;
-                column-count: 2;
-                width: 50%;
+        column-count: 2;
+        width: 50%;
     }
 
     /* Clear floats after the columns */
     button {
-                column-span: all;
-                margin-top: 5px;
-            }
+        column-span: all;
+        margin-top: 5px;
+    }
 
     .row {
         display: flex;
     }
-
     </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
@@ -115,7 +114,15 @@ if (isset($_GET['prod'])) {
                                     <i class="fas fa-star star-light mr-1 main_star"></i>
                                 </div>
                             </div>
-
+                            <?php 
+                            $sqlTotalSold = "SELECT prod_id,SUM(quantity) as total_sold FROM trans_record 
+                            LEFT JOIN transaction on trans_record.transaction_id = transaction.tid
+                            where prod_id='$prod_id' and status='delivered' or status='completed'";
+                            $soldResult = $con->query($sqlTotalSold);
+                            $total = mysqli_fetch_array($soldResult);
+                            $total_sold = $total['total_sold'];
+                        echo  '  '.$total_sold.' Sold' ;
+                                ?>
 
                         </div>
 
@@ -139,14 +146,15 @@ if (isset($_GET['prod'])) {
                 <div class="row mt-4">
                     <div class="row">
                         <div class="column">
-                            <button class="btn btn-warning text-dark addcart" 
+                            <button class="btn btn-warning text-dark addcart"
                                 data-productid="<?php echo $arr['prod_id'] ?>"> Add to Cart <i
                                     class="fas fa-cart-plus"></i></button>
                         </div>
                         <div class="column">
 
                             <button class="btn btn-dark text-light addwishlist"
-                                data-productid="<?php echo $row['prod_id'] ?>"><i class="far fa-heart"></i>  Wish List</button>
+                                data-productid="<?php echo $row['prod_id'] ?>"><i class="far fa-heart"></i> Wish
+                                List</button>
                         </div>
                     </div>
 
@@ -396,7 +404,7 @@ if (isset($_GET['prod'])) {
                 method: "POST",
                 data: {
                     action: 'load_data',
-                    prod_id:prod_id 
+                    prod_id: prod_id
                 },
                 dataType: "JSON",
                 success: function(data) {

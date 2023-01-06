@@ -103,7 +103,7 @@
      MAX(CASE WHEN MONTHNAME(date_ordered) = 'November' THEN total END) AS NOV,
      MAX(CASE WHEN MONTHNAME(date_ordered) = 'December' THEN total END) AS DECE
  FROM trans_record   LEFT JOIN product on trans_record.prod_id = product.prod_id
- WHERE YEAR(date_ordered) = 2022 GROUP BY product.name");        
+ WHERE YEAR(date_ordered) = 2023 GROUP BY product.name");        
 
         ?>
 
@@ -168,50 +168,51 @@
 
 
 
-    <!-- chart -->
-    <div class="row">
-        <div class="col-sm-6">
+        <!-- chart -->
+        <div class="row">
+            <div class="col-sm-6">
 
-            <div class="card" style="width:100%;max-width:100%;max-height:251px;">
-                <canvas id="purchase_chart" style="width:100%;max-width:100%;max-height:251px;">
-                </canvas>
+                <div class="card" style="width:100%;max-width:100%;max-height:251px;">
+                    <canvas id="purchase_chart" style="width:100%;max-width:100%;max-height:251px;">
+                    </canvas>
+                </div>
+
             </div>
+            <div class="col-sm-6">
 
-        </div>
-        <div class="col-sm-6">
+                <div class="card" style="width:100%;max-width:100%;max-height:210px;">
+                    <canvas id="inventory_chart" style="width:100%;max-width:100%;max-height:251px;"></canvas>
+                </div>
 
-            <div class="card" style="width:100%;max-width:100%;max-height:210px;">
-                <canvas id="inventory_chart" style="width:100%;max-width:100%;max-height:251px;"></canvas>
             </div>
-
         </div>
+
     </div>
+    <div class="col-sm-3">
 
-</div>
-<div class="col-sm-3">
-
-    <center>
-        <h5 style="font-weight: bolder;">Top Selling Product</h5>
-    </center>
-    <?php 
+        <center>
+            <h5 style="font-weight: bolder;">Top Selling Product</h5>
+        </center>
+        <?php 
                    
-                                         $side = mysqli_query($con, "SELECT trans_record.prod_id,name,sum(quantity) as qty from trans_record LEFT JOIN product on trans_record.prod_id = product.prod_id group by name");?>
-    <table class="table table-hover">
-        <thead class='table-warning'>
-            <tr>
-                <th scope="col">Product </th>
-                <th scope="col">Quantity Sold</th>
-            </tr>
-        </thead> <?php 
+                                         $side = mysqli_query($con, "SELECT trans_record.prod_id,name,sum(quantity) as qty from trans_record
+                                          LEFT JOIN product on trans_record.prod_id = product.prod_id group by name");?>
+        <table class="table table-hover">
+            <thead class='table-warning'>
+                <tr>
+                    <th scope="col">Product </th>
+                    <th scope="col">Quantity Sold</th>
+                </tr>
+            </thead> <?php 
                                          while ($row = mysqli_fetch_array($side)) { ?> <tbody>
-            <tr>
-                <td> <?php echo $row['name']?> </td>
-                <td> <?php echo $row['qty']?> </td>
-            </tr> <?php } ?>
-        </tbody>
-    </table>
+                <tr>
+                    <td> <?php echo $row['name']?> </td>
+                    <td> <?php echo $row['qty']?> </td>
+                </tr> <?php } ?>
+            </tbody>
+        </table>
 
 
 
-</div>
+    </div>
 </div>

@@ -48,6 +48,9 @@ $output='';
           else if ($arr['status'] =='ACTIVE'){
                $color = 'success';
           }
+          else if ($arr['status'] =='EXPIRED'){
+               $color = 'danger';
+          }
            $output .= '  
                 <tr>  
                 <td><div class="badge">'.$arr['production_code'].'</div></td>

@@ -5,7 +5,7 @@
     <!---->
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-    
+
     <link rel="stylesheet" type="text/css" href="css/jquery.Wload.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,6 +23,10 @@
 
     * {
         font-family: 'Zen Kaku Gothic New', sans-serif;
+    }
+
+    .yellow-star {
+        color: #FFD700;
     }
 
     .topbar {
@@ -105,4 +109,3 @@
 </body>
 
 </html>
-

@@ -1,3 +1,89 @@
+<div class="row mb-4">
+
+    <div class="col-md-4">
+        <div class="card shadow border-warning">
+            <div class="card-body">
+                <center>
+                    <h4 style="font-weight: bolder;text-align: center;" class="text-dark">
+                        Total Sales Today <br>
+
+
+                        <?php 
+                $current_date = date('F d, Y');
+             $total_today  = mysqli_query($con, "SELECT  sum(total) as total from transaction
+             left join trans_record on transaction.tid = trans_record.transaction_id where DATE(datecreated) = CURDATE();");
+             $total_today = mysqli_fetch_array($total_today);
+              echo  '₱ '.number_format($total_today['total'],2);     
+          
+             ?>
+
+                    </h4>
+                    <?php echo $current_date?>
+                </center>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow border-success">
+            <div class="card-body">
+                <center>
+                    <h4 style="font-weight: bolder;text-align: center;" class="text-dark">
+                        Total Sales this Month <br>
+
+
+                        <?php 
+            $current_month_year = date('F Y');
+            $total_month  = mysqli_query($con, "SELECT  sum(total) as total from transaction
+            left join trans_record on transaction.tid = trans_record.transaction_id where  MONTH(datecreated) = MONTH(CURDATE())");
+            $total_month = mysqli_fetch_array($total_month);
+             echo  '₱ '.number_format($total_month['total'],2);     
+
+            ?>
+
+                    </h4>
+                    <?php echo $current_month_year?>
+                </center>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-4">
+        <div class="card shadow border-danger">
+            <div class="card-body">
+                <center>
+                    <h4 style="font-weight: bolder;text-align: center;" class="text-dark">
+                        Total Sales this Year <br>
+
+
+                        <?php 
+             $current_year = date('Y');
+            $total_year  = mysqli_query($con, "SELECT  sum(total) as total from transaction
+            left join trans_record on transaction.tid = trans_record.transaction_id where year(datecreated) = year(CURDATE())");
+            $total_year = mysqli_fetch_array($total_year);
+             echo  '₱ '.number_format($total_year['total'],2);     
+
+            ?>
+
+                    </h4>
+                    <?php echo $current_year?>
+                </center>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
 <table id="table-shelves" class="table display nowrap" style="width:100%;">
     <?php
 
@@ -76,6 +162,6 @@
 </table>
 
 <div class="row">
-  <div class="col-sm-8">col-sm-8</div>
-  <div class="col-sm-4">col-sm-4</div>
+    <div class="col-sm-8">col-sm-8</div>
+    <div class="col-sm-4">col-sm-4</div>
 </div>

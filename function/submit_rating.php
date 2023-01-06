@@ -5,23 +5,34 @@ session_start();
 if(isset($_POST["rating_data"]))
 {
 
-	$data = array(
-		':prod_id'		=>	$_POST["prod_id"],
-		':user_id'		=>	$_POST["user_id"],
-		':user_rating'		=>	$_POST["rating_data"],
-		':user_review'		=>	$_POST["user_review"],
-		':datetime'			=>	time()
-	);
+	// $data = array(
+	// 	':prod_id'		=>	$_POST["prod_id"],
+	// 	':user_id'		=>	$_POST["user_id"],
+	// 	':user_rating'		=>	$_POST["rating_data"],
+	// 	':user_review'		=>	$_POST["user_review"],
+	// 	':datetime'			=>	time()
+	// );
 
-	$query = "
-	INSERT INTO review_table 
-	(prod_id,user_id, user_rating, user_review, datetime) 
-	VALUES (:prod_id, :user_id, :user_rating, :user_review, :datetime)
-	";
+	// $query = "
+	// INSERT INTO review_table 
+	// (prod_id,user_id, user_rating, user_review, datetime) 
+	// VALUES (:prod_id, :user_id, :user_rating, :user_review, :datetime)
+	// ";
 
-	$statement = $con->prepare($query);
+	// $statement = $con->prepare($query);
 
-	$statement->execute($data);
+	// $statement->execute($data);
+
+	$prod_id =$_POST["prod_id"];
+	$user_id = $_POST["user_id"];
+	$user_rating = $_POST["rating_data"];
+	$user_review = $_POST["user_review"];
+	$datetime = time();
+
+	$query = "INSERT INTO review_table (prod_id,user_id,user_rating,user_review,datetime) 
+	VALUES ('$prod_id','$user_id','$user_rating','$user_review','$datetime')";
+	$results = mysqli_query($con, $query);
+
 
 	echo "Your Review & Rating Successfully Submitted";
 
@@ -48,8 +59,8 @@ if(isset($_POST["action"]))
 	ORDER BY review_id DESC
 	";
 
-	$result = $con->query($query, PDO::FETCH_ASSOC);
 
+	$result = mysqli_query($con, $query);
 	foreach($result as $row)
 	{
 		$review_content[] = array(

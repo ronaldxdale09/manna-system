@@ -742,6 +742,9 @@ $(document).ready(function() {
         var prod_id = $('#r_prod_id').val();
         var user_id = <?php echo  $_SESSION['user_id'];?>;
 
+        console.log(user_review)
+        console.log(prod_id)
+        console.log(user_id)
         $.ajax({
             url: "function/submit_rating.php",
             method: "POST",
@@ -754,6 +757,7 @@ $(document).ready(function() {
             success: function(data) {
                 $('#review_modal').modal('hide');
                 alert(data);
+                console.log(data);
             }
         })
     });

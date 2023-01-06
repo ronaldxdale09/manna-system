@@ -274,7 +274,37 @@ if(!isset($_SESSION['admin_id'])){
 
     <script type="text/javascript" src="../js/sidebar.js?v=1"></script>
 
+    <script>
+    var current_date = new Date();
 
+    // Set the time of day to run the code (e.g. midnight)
+    var run_time = new Date(current_date.getFullYear(), current_date.getMonth(), current_date.getDate(), 0, 0, 0);
+
+    // Check if it is after the specified time of day
+    if (current_date > run_time) {
+        // Run the code
+        console.log('first code run');
+
+        $.ajax({
+            type: "POST",
+            url: "fetch/check_expiration.php",
+        
+            success: function(data) {
+               console.log(data)
+            }
+        });
+        // Set the flag to prevent the code from running again
+        var code_ran = true;
+    }
+
+    // Check if the code has already run
+    if (!code_ran) {
+        // Run the code
+        console.log('first code again');
+        // Set the flag to prevent the code from running again
+        var code_ran = true;
+    }
+    </script>
 
     <script language="javascript">
     $('.getData').on('click', function() {

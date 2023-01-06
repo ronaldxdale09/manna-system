@@ -114,7 +114,7 @@ $code = 'P'.$today . $generate;
                                             <th>Cost</th>
                                             <th>Price</th>
                                             <th>Total Stock</th>
-                                            <th>Price</th>
+                                          
                                             <th>Action</th>
 
 
@@ -137,7 +137,7 @@ $code = 'P'.$today . $generate;
                                             <td>
                                                 <div class='badge'><?php echo $row['quantity']; ?> </div>
                                             </td>
-                                            <td></td>
+                                            
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
                                                     <button type="button"

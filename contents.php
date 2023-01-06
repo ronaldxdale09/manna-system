@@ -286,6 +286,44 @@ if (isset($_POST['allitems']))
                 <span class="text-secondary" style="font-size: 20px;font-weight: bolder;">₱ <?php echo $row['price'] ?>
                 </span> <br>
                 <p></p>
+                <?php 
+                        $prod_id = $row['prod_id'];
+                    $query = "SELECT SUM(user_rating) as sum, COUNT(*) as count FROM review_table where prod_id='$prod_id '";
+                    $result = $con->query($query);
+                    
+                    if ($result->num_rows > 0) {
+                        $row = mysqli_fetch_array($result);
+                        $sum = $row['sum'];
+                        $count = $row['count'];
+                    } else {
+                        $sum = 0;
+                        $count = 0;
+                    }
+           
+                    // Calculate the average rating
+                    $avg_rating = $sum / $count;
+                    
+                    
+                    
+                        // Display the stars
+                        for ($i = 1; $i <= 5; $i++) {
+                            if ($i <= $avg_rating) {
+                                echo '<i class="fa fa-star yellow-star"></i>';
+                            
+                            } else {
+                                echo '<i class="fa fa-star-o"></i>';
+                            }
+                        }
+
+                        $sqlTotalSold = "SELECT prod_id,SUM(quantity) as total_sold FROM trans_record 
+                        LEFT JOIN transaction on trans_record.transaction_id = transaction.tid
+                        where prod_id='$prod_id' and status='delivered' or status='completed'";
+                        $soldResult = $con->query($sqlTotalSold);
+                        $arr = mysqli_fetch_array($soldResult);
+                        $total_sold = $arr['total_sold'];
+                echo  '  '.$total_sold.' Sold' ;
+                ?>
+
 
             </div>
             <div class="card-footer">
