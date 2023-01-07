@@ -160,8 +160,136 @@
         <th></th>
     </tfoot>
 </table>
+<center>
+    <div class="row">
+        <div class="col">
+            <label><b>Transaction Type </b></label>
+            <div class="form-group">
+                <select class='form-select' name='category' id='category_filter' style="width: 230px;">
+                    <option disabled="disabled" selected>Select Type </option>
+                    <option value=''>All</option>
+                    <option value='Online'>Online</option>
+                    <option value='Walkin'>Walkin</option>
+                    <option value='Distributor'>Distributor</option>
+                    <!--PHP echo-->
+                </select>
+            </div>
+        </div>
 
+        <div class="col">
+            <label><b>Year Filter </b></label>
+            <div class="form-group">
+                <select class='form-select' name='year' id='year' style="width: 230px;">
+                    <option disabled="disabled">Select Year </option>
+                    <option selected value='2023'>2023</option>
+                    <option value='2022'>2022</option>
+                    <option value='2021'>2021</option>
+
+                    <!--PHP echo-->
+                </select>
+            </div>
+
+        </div>
+        <div class="col">
+            <label><b>Date Filter </b></label>
+            <input type="text" id="min" class='form-control' name="min" placeholder="From Date" />
+        </div>
+        <div class="col">
+            <label> </label>
+            <input type="text" id="max" class='form-control' name="max" placeholder="To Date" />
+        </div>
+    </div>
+    <hr>
+</center>
 <div class="row">
-    <div class="col-sm-8">col-sm-8</div>
-    <div class="col-sm-4">col-sm-4</div>
+    <div class="col-sm-8">
+        <center>
+            <h5 style="font-weight: bolder;">Recent Transaction</h5>
+        </center>
+
+
+        <hr>
+        <?php 
+            $side = mysqli_query($con, "SELECT *  from transaction
+            LEFT JOIN trans_record on trans_record.transaction_id = transaction.tid");
+            
+            
+            ?>
+        <table class="table table-hover">
+            <thead class='table-dark'>
+                <tr>
+                    <th scope="col">Transaction ID </th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Type</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead> <?php 
+                                         while ($row = mysqli_fetch_array($side)) { ?> <tbody>
+                <tr>
+                    <td> <?php echo $row['tid']?> </td>
+                    <td> <?php echo $row['datecreated']?> </td>
+                    <td> <?php echo $row['status']?> </td>
+                    <td> <?php echo $row['type']?> </td>
+                    <td> <button type="button" class="btn btn-success text-light viewTransRecord"
+                            style="font-size: 12px"><i class="fas fa-book"></i></button>
+                    </td>
+                </tr> <?php } ?>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="col-sm-4">
+        <center>
+            <h5 style="font-weight: bolder;">Sales Trend</h5>
+        </center>
+        <div class="card" style="width:100%;max-width:100%;max-height:251px;">
+            <canvas id="sales_charts" style="width:100%;max-width:100%;max-height:251px;"></canvas>
+        </div>
+    </div>
 </div>
+
+
+
+
+<?php
+
+// // Get the start and end dates from the GET parameters
+// $start_date = $_GET['start_date'];
+// $end_date = $_GET['end_date'];
+
+
+// if(isset($_GET["start_date"]))  
+// {  
+//      $char = $_GET["char"];  
+//      $query = "SELECT sum(total) FROM trans_record WHERE date_oredered BETWEEN '$start_date' AND '$end_date'";
+// }  
+// else  
+// {  
+//      $query = "SELECT * from dictionary ORDER BY word_id";  
+// }  
+
+// $result = mysqli_query($con, $query); 
+// // Build the SELECT query
+
+
+// // Prepare and execute the query
+// $stmt = $pdo->prepare($query);
+// $stmt->execute();
+
+// // Fetch the results
+// $sales = $stmt->fetchAll();
+
+// // Convert the results to a format that Chart.js can use
+// $data = [];
+// $labels = [];
+// foreach ($sales as $sale) {
+//   $data[] = $sale['amount'];
+//   $labels[] = $sale['date'];
+// }
+
+// // Encode the data and labels as JSON
+// $data_json = json_encode($data);
+// $labels_json = json_encode($labels);
+
+?>

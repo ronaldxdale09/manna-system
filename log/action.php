@@ -42,6 +42,31 @@ $pass = $_POST['pass'];
 	
 }
 
+function encrypt_decrypt($action, $string) {
+    $output = false;
+
+    $encrypt_method = "AES-256-CBC";
+    $secret_key = '1f312kj3hj12h5jh32j4h';
+    $secret_iv = '45643tj2ikljrdlfjsaljd';
+
+    // hash
+    $key = hash('sha256', $secret_key);
+
+    // iv - encrypt method AES-256-CBC expects 16 bytes - else you will get a warning
+    $iv = substr(hash('sha256', $secret_iv), 0, 16);
+
+    if( $action == 'encrypt' ) {
+        $output = openssl_encrypt($string, $encrypt_method, $key, 0, $iv);
+        $output = base64_encode($output);
+    }
+    else if( $action == 'decrypt' ){
+        $output = openssl_decrypt(base64_decode($string), $encrypt_method, $key, 0, $iv);
+    }
+
+    return $output;
+}
+
+
 if(isset($_POST['reg_step3'])){
 
 $phone = $_POST['phone_number'];
@@ -67,6 +92,10 @@ date_default_timezone_set('Asia/Manila');
                     $pass = $row['password'];
 					$postal = $row['postal'];
                     $phone = '+63'.$row['mobile_number'];
+
+					$pass = encrypt_decrypt('encrypt', $pass);
+
+
 
 					$SixDigitRandomNumber = mt_rand(100000,999999);
 					 $SixDigitRandomNumber;

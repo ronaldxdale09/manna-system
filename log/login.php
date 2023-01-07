@@ -2,17 +2,49 @@
 session_start();
 include '../connections/connect.php';
 
+function encrypt_decrypt($action, $string) {
+    $output = false;
+
+    $encrypt_method = "AES-256-CBC";
+    $secret_key = '1f312kj3hj12h5jh32j4h';
+    $secret_iv = '45643tj2ikljrdlfjsaljd';
+
+    // hash
+    $key = hash('sha256', $secret_key);
+
+    // iv - encrypt method AES-256-CBC expects 16 bytes - else you will get a warning
+    $iv = substr(hash('sha256', $secret_iv), 0, 16);
+
+    if( $action == 'encrypt' ) {
+        $output = openssl_encrypt($string, $encrypt_method, $key, 0, $iv);
+        $output = base64_encode($output);
+    }
+    else if( $action == 'decrypt' ){
+        $output = openssl_decrypt(base64_decode($string), $encrypt_method, $key, 0, $iv);
+    }
+
+    return $output;
+}
+
+
+
 if(isset($_POST['login'])){ 
 
 	$email = $_POST['email'];
 	$password = $_POST['password'];
 
+	$password = encrypt_decrypt('encrypt', $password);
+
 	
 			$compare = " SELECT * FROM `accounts` where email = '$email' and password = '$password' and user_type = 'client'  ";
 	                $credentials = mysqli_query($con,$compare); 
 	                $count= mysqli_num_rows($credentials);
+
+
+
 	               //  $get_id =  mysqli_insert_id($con); 
 	             if ($count>=1){
+					
 	            	
 	                 while($row = mysqli_fetch_array($credentials)){
 						$_SESSION['user_id'] = $row['user_id'];

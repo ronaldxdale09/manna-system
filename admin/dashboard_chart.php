@@ -1,5 +1,5 @@
 <script>
-net_income = document.getElementById("net_income");
+sales_trend = document.getElementById("sales_trend");
 purchase_chart = document.getElementById("purchase_chart");
 inventory_chart = document.getElementById("inventory_chart");
 income_chart = document.getElementById("income_chart");
@@ -50,7 +50,7 @@ if($inv_cost_selling->num_rows > 0) {
 
 
 
-new Chart(net_income, {
+new Chart(sales_trend, {
 
     type: 'line',
 

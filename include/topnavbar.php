@@ -1,11 +1,28 @@
 <link rel="stylesheet" type="text/css" href="css/search.css">
+<style>
+@media only screen and (max-width: 992px) {
+    .purple-rain {
+        flex-direction: column;
+    }
+
+    .purple-rain .header_search {
+        display: none;
+    }
+
+    .purple-rain .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+</style>
 <nav class="purple-rain">
     <div class="row purple-rain">
 
         <div class="col-md-3">
             <a href="index.php" style="text-decoration: none">
 
-                <a href="index.php" style='padding: 20px;'>
+                <a href="index.php" style='padding: 10px;'>
                     <img src="assets/logo/logo_transparent.png" alt="">
                 </a>
             </a>
@@ -50,6 +67,7 @@
                         <button class="btn  mt-3 text-dark" id="cartbutton" onclick="window.location.href='cart.php'"
                             style="border-radius: 25px;position: relative;">
                             <i class="fas fa-shopping-cart" style="font-size: 20px;"></i>
+
                             <span class="badge badge-danger bg-danger"
                                 style="font-size: 10px;border-radius: 20px;position: absolute;" id="countcart"></span>
                         </button>

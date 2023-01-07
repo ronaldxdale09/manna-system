@@ -129,7 +129,7 @@ if(!isset($_SESSION['admin_id'])){
                     <div class="row">
                         <div class="col-4">
                             <div class="card" style="width:100%;max-width:100%;max-height:251px;">
-                                <canvas id="net_income" style="width:100%;max-width:100%;max-height:251px;"></canvas>
+                                <canvas id="sales_trend" style="width:100%;max-width:100%;max-height:251px;"></canvas>
                             </div>
                         </div>
 
@@ -288,9 +288,9 @@ if(!isset($_SESSION['admin_id'])){
         $.ajax({
             type: "POST",
             url: "fetch/check_expiration.php",
-        
+
             success: function(data) {
-               console.log(data)
+                console.log(data)
             }
         });
         // Set the flag to prevent the code from running again

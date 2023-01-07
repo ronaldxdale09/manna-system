@@ -100,12 +100,11 @@ include "modal/product_modal.php";
                                             <td><?php echo $row['stat']; ?></td>
 
                                             <td>
-                                                <div class="btn-group" role="group" aria-label="Basic example">
+                                              
                                                     <button type="button" class="btn btn-success text-light editmodal"
                                                         style="font-size: 12px"><i class="fas fa-book"></i></button>
                                                    
 
-                                                </div>
 
                                             </td>
                                         </tr>
