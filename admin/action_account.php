@@ -9,7 +9,7 @@ if(isset($_POST['category'])){
    
 	    <table class="table table-sm" id="categorytable">
                   <thead>
-                    <tr>
+                    <tr>`
                     	<th scope="col">Photo</th>
                       <th scope="col">Email</th>
                       <th scope="col">Lastname</th>

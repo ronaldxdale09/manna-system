@@ -21,12 +21,12 @@ if (isset($_POST["cartitems"])) { ?>
         <div id="items_in_the_carts">
             <!--Items-->
             <?php
-   $gettingcartitems = " select * from cart where user_id = '$user'  ";
-   $resultofgetting = mysqli_query($con, $gettingcartitems);
-   $countingitems = mysqli_num_rows($resultofgetting);
+            $gettingcartitems = " select * from cart where user_id = '$user'  ";
+            $resultofgetting = mysqli_query($con, $gettingcartitems);
+            $countingitems = mysqli_num_rows($resultofgetting);
 
-   if ($countingitems >= 1) {
-       while ($row = mysqli_fetch_array($resultofgetting)) {
+            if ($countingitems >= 1) {
+                while ($row = mysqli_fetch_array($resultofgetting)) {
            $product_id = $row["prod_id"];
            $qty = $row["quantity"];
            $total = $row["total"];
@@ -175,8 +175,7 @@ if (isset($_POST["cartitems"])) { ?>
 
         </div>
 
-
-
+     
 
     </div>
 
@@ -367,6 +366,11 @@ if (isset($_POST["cartitems"])) { ?>
 
 
     </div>
+    <center>
+            <button onclick="window.location.href='category.php' " class="btn btn-warning"
+                style="font-size: 18px;width: auto;float: left;">Select More Product <i
+                    class="fas fa-arrow-right"></i></button>
+        </center>
 </div>
 
 
@@ -400,7 +404,7 @@ if (isset($_POST["cartitems"])) { ?>
                         <div id="shipadd" class="d-none">
 
 
-                        <div id='address_customer'> </div>
+                            <div id='address_customer'> </div>
                             <hr>
                             <div class="col-md-12">
 
@@ -771,19 +775,19 @@ $(document).ready(function() {
 
                 $('#btnpmmodal').click();
 
-                    $.ajax({
-                        url: "fetch/user_address.php",
-                        method: "POST",
-                        data: {
+                $.ajax({
+                    url: "fetch/user_address.php",
+                    method: "POST",
+                    data: {
 
-                            userid:  '<?php echo $_SESSION["user_id"];?>',
-                        },
-                        success: function(data) {
-                            $('#address_customer').html(data);
-                        }
-                    });
-         
-           
+                        userid: '<?php echo $_SESSION["user_id"];?>',
+                    },
+                    success: function(data) {
+                        $('#address_customer').html(data);
+                    }
+                });
+
+
 
                 if (data == 'reserve') {
 

@@ -26,7 +26,6 @@ $sorting_items = mysqli_query($con, $query);
 
 
 ?>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
@@ -101,16 +100,15 @@ $sorting_items = mysqli_query($con, $query);
                 <span class="text-secondary" style="font-size: 20px;font-weight: bolder;">₱ <?php echo $row['price'] ?>
                 </span> <br>
                 <p></p>
-
                 <?php 
-                        $prod_id = $row['prod_id'];
+                    $prod_id = $row['prod_id'];
                     $query = "SELECT SUM(user_rating) as sum, COUNT(*) as count FROM review_table where prod_id='$prod_id '";
-                    $result = $con->query($query);
+                    $sqlRes = $con->query($query);
                     
-                    if ($result->num_rows > 0) {
-                        $row = mysqli_fetch_array($result);
-                        $sum = $row['sum'];
-                        $count = $row['count'];
+                    if ($sqlRes->num_rows > 0) {
+                        $row_n = mysqli_fetch_array($sqlRes);
+                        $sum = $row_n['sum'];
+                        $count = $row_n['count'];
                     } else {
                         $sum = 0;
                         $count = 0;

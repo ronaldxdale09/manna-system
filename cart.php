@@ -95,7 +95,8 @@ $user_id=$_SESSION['user_id'];
 
                             <label class="card mx-2 ">
                                 <input name="address" id='addressSelected' value='<?php echo $row['ship_id'] ?>'
-                                    class="radio" type="radio"  <?php if ($status == '1') { echo 'checked'; } else { echo ''; } ?>  hidden>
+                                    class="radio" type="radio"
+                                    <?php if ($status == '1') { echo 'checked'; } else { echo ''; } ?> hidden>
                                 <span class="plan-details">
 
                                     <span><?php echo $row['contact_name'] ?> | <?php echo $row['phone_number'] ?></span>
@@ -124,11 +125,11 @@ $user_id=$_SESSION['user_id'];
             <div class="card">
                 <div class="card-header">
                     <h5 class="text-dark" style="font-weight: bolder;">Shopping Cart</h5>
-
                 </div>
 
                 <div class="card-body" id="items_in_the_cart">
 
+               
                     <div class="spinner-grow text-info" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>
@@ -140,7 +141,10 @@ $user_id=$_SESSION['user_id'];
                     </div>
 
 
-
+                  
+                     
+                   
+                    <hr>
                 </div>
 
             </div>
@@ -160,28 +164,28 @@ $user_id=$_SESSION['user_id'];
         <script>
         $(document).ready(function() {
             // ADDRESS
-            var user_id ='<?php echo $user_id ?>';
-            if (user_id!='' || user_id!='null'){
+            var user_id = '<?php echo $user_id ?>';
+            if (user_id != '' || user_id != 'null') {
                 $('input[name=address]').change(function() {
-                var value = $('input[name=address]:checked').val();
-                var user_id ='<?php echo $user_id ?>';
-                $.ajax({
-                    url: "function/changeAddress.php",
-                    method: "POST",
-                    data: {
-                        ship_id: value,
-                        user_id: user_id
-                    },
-                    success: function(data) {
-                      console.log(data);
-                    }
-                })
+                    var value = $('input[name=address]:checked').val();
+                    var user_id = '<?php echo $user_id ?>';
+                    $.ajax({
+                        url: "function/changeAddress.php",
+                        method: "POST",
+                        data: {
+                            ship_id: value,
+                            user_id: user_id
+                        },
+                        success: function(data) {
+                            console.log(data);
+                        }
+                    })
 
 
 
-            });
+                });
             }
-        
+
             //  
             if ($(window).width() <= 767) {
                 $('#buttonsg').removeClass('row');
@@ -285,7 +289,8 @@ $user_id=$_SESSION['user_id'];
                         <input type="text" class="form-control txt mb-2" name="name" style="" required="">
 
                         <label>City:</label>
-                        <input type="text" class="form-control txt mb-2" name="address_3" value='Zamboanga del Sur' readonly style="" >
+                        <input type="text" class="form-control txt mb-2" name="address_3" value='Zamboanga del Sur'
+                            readonly style="">
 
 
                         <label>Street Name,Barangay:</label>
@@ -335,7 +340,8 @@ $user_id=$_SESSION['user_id'];
                         <input type="text" class="form-control txt mb-2" name="name" style="" required="">
 
                         <label>City:</label>
-                        <input type="text" class="form-control txt mb-2" name="address_3" value='Zamboanga del Sur' readonly style="" >
+                        <input type="text" class="form-control txt mb-2" name="address_3" value='Zamboanga del Sur'
+                            readonly style="">
 
 
                         <label>Street Name,Barangay:</label>

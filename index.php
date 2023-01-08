@@ -70,7 +70,7 @@ if (!isset($_SESSION['ran_traffic_script'])) {
     }
     $current_datetime = date("Y-m-d H:i:s");
      // Insert the data into the database
-     $query = "INSERT INTO traffic_log (date, device_type) VALUES ('$current_datetime', '$device_type')";
+     $query = "INSERT INTO traffic_log (date, device_type) VALUES ('$current_datetime', '$current_datetime')";
      mysqli_query($con,$query);
  
      // Set a session variable to indicate that the script has been run
