@@ -338,47 +338,6 @@ document.getElementById('max').value = getURLParameter('max');
 </script>
 
 
-<?php
-
-// // Get the start and end dates from the GET parameters
-// $start_date = $_GET['start_date'];
-// $end_date = $_GET['end_date'];
-
-
-// if(isset($_GET["start_date"]))  
-// {  
-//      $char = $_GET["char"];  
-//      $query = "SELECT sum(total) FROM trans_record WHERE date_oredered BETWEEN '$start_date' AND '$end_date'";
-// }  
-// else  
-// {  
-//      $query = "SELECT * from dictionary ORDER BY word_id";  
-// }  
-
-// $result = mysqli_query($con, $query); 
-// // Build the SELECT query
-
-
-// // Prepare and execute the query
-// $stmt = $pdo->prepare($query);
-// $stmt->execute();
-
-// // Fetch the results
-// $sales = $stmt->fetchAll();
-
-// // Convert the results to a format that Chart.js can use
-// $data = [];
-// $labels = [];
-// foreach ($sales as $sale) {
-//   $data[] = $sale['amount'];
-//   $labels[] = $sale['date'];
-// }
-
-// // Encode the data and labels as JSON
-// $data_json = json_encode($data);
-// $labels_json = json_encode($labels);
-
-?>
 
 
 
@@ -456,5 +415,85 @@ $('.viewTransRecord').on('click', function() {
     $('#viewSalesDetails').modal('show');
 
 
+});
+
+
+sales_charts = document.getElementById("sales_charts");
+
+<?php
+
+$query = "SELECT *,year(date_ordered) as year ,(date_ordered) as date,sum(trans_record.total) as month_total FROM transaction LEFT JOIN trans_record on trans_record.transaction_id = transaction.tid WHERE 1=1";
+
+// filter by category if specified
+if ($category != '') {
+$query .= " AND type = '$category'";
+}
+
+// filter by year if specified
+if ($year != '') {
+$query .= " AND year(datecreated) = '$year'";
+}
+
+// filter by date range if specified
+if ($min_date != '' && $max_date != '') {
+$query .= " AND datecreated BETWEEN '$min_date' AND '$max_date'";
+}
+
+// execute the query
+$result = mysqli_query($con, $query);
+
+while ($row = mysqli_fetch_array($result)) { 
+      $sale_month[] = $row['date'];
+      $sale_amount[] = $row['month_total'];
+  }
+
+?>
+
+new Chart(sales_charts, {
+
+    type: 'line',
+
+    data: {
+        labels: <?php echo json_encode($sale_month) ?>,
+        datasets: [{
+                label: 'Sales',
+                data: <?php echo json_encode($sale_amount) ?>,
+                backgroundColor: '#87CEEB',
+                borderColor: '#0000CD',
+                borderWidth: 2
+            }
+
+        ]
+    },
+    options: {
+        plugins: {
+            legend: {
+                display: false,
+
+            },
+            title: {
+
+
+                display: true,
+                text: 'Sales Trend',
+            },
+        },
+        scales: {
+            y: {
+                ticks: {
+                    display: true
+                },
+                grid: {
+                    display: false
+                },
+                beginAtZero: true
+            },
+            x: {
+                grid: {
+                    display: false
+                }
+            }
+        }
+    }
 });
 </script>
