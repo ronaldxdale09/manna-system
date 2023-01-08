@@ -202,7 +202,7 @@
         </div>
         <div class="col">
             <br>
-            <button type="button" class="btn btn-success text-light viewTransRecord" style='width:200px'><i
+            <button type="button" class="btn btn-success text-light filterSalesRec" style='width:200px'><i
                     class="fas fa-submit"></i>Confirm Filter </button>
 
         </div>
@@ -219,13 +219,54 @@
         <center>
             <h5 style="font-weight: bolder;"> Transaction Record</h5>
         </center>
+        <?php
 
+       
+            // set default values for filters
+            $category = '';
+            $year = '';
+            $min_date = '';
+            $max_date = '';
+
+            // get values from form input if present
+            if (isset($_GET['category'])) {
+            $category = $_GET['category'];
+            }
+            if (isset($_GET['year'])) {
+            $year = $_GET['year'];
+            }
+            if (isset($_GET['min'])) {
+            $min_date = $_GET['min'];
+            }
+            if (isset($_GET['max'])) {
+            $max_date = $_GET['max'];
+            }
+
+            // set up query to select transactions
+            $query = "SELECT * FROM transaction LEFT JOIN trans_record on trans_record.transaction_id = transaction.tid WHERE 1=1";
+
+            // filter by category if specified
+            if ($category != '') {
+            $query .= " AND type = '$category'";
+            }
+
+            // filter by year if specified
+            if ($year != '') {
+            $query .= " AND year(datecreated) = '$year'";
+            }
+
+            // filter by date range if specified
+            if ($min_date != '' && $max_date != '') {
+            $query .= " AND datecreated BETWEEN '$min_date' AND '$max_date'";
+            }
+
+            // execute the query
+            $result = mysqli_query($con, $query);
+            ?>
 
         <hr>
         <?php 
-            $side = mysqli_query($con, "SELECT *  from transaction
-            LEFT JOIN trans_record on trans_record.transaction_id = transaction.tid");
-            
+      
             
             ?>
         <table class="table table-hover">
@@ -238,7 +279,7 @@
                     <th scope="col"></th>
                 </tr>
             </thead> <?php 
-                                         while ($row = mysqli_fetch_array($side)) { ?> <tbody>
+                                         while ($row = mysqli_fetch_array($result)) { ?> <tbody>
                 <tr>
                     <td> <?php echo $row['tid']?> </td>
                     <td> <?php echo $row['datecreated']?> </td>
@@ -263,6 +304,38 @@
 </div>
 
 
+<script>
+function addFilterToURL() {
+    // get values from form inputs
+    var category = document.getElementById('category_filter').value;
+    var year = document.getElementById('year').value;
+    var min_date = document.getElementById('min').value;
+    var max_date = document.getElementById('max').value;
+
+    // build URL with filters
+    var url = 'prod_report.php?tab=2&category=' + category + '&year=' + year + '&min=' + min_date + '&max=' + max_date;
+
+    // update current URL and refresh page
+    window.location.href = url;
+}
+
+// add event listener to filter button
+document.querySelector('.filterSalesRec').addEventListener('click', addFilterToURL);
+
+
+// get URL parameters
+function getURLParameter(name) {
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null,
+        ''
+    ])[1].replace(/\+/g, '%20')) || null;
+}
+
+// set form input values to URL parameters
+document.getElementById('category_filter').value = getURLParameter('category');
+document.getElementById('year').value = getURLParameter('year');
+document.getElementById('min').value = getURLParameter('min');
+document.getElementById('max').value = getURLParameter('max');
+</script>
 
 
 <?php
@@ -319,15 +392,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-         
+
                 <div class="row">
                     <div class="col-sm">
-                        <label> Transactio ID  </label> <br>
+                        <label> Transactio ID </label> <br>
                         <input id='s_trans_id' class='form-control' style='font-size:20px;border: none;font-weight:bold'
                             readonly>
                     </div>
                     <div class="col-sm">
-                        <label> Date  :</label> <br>
+                        <label> Date :</label> <br>
                         <input id='s_date' class='form-control' style='font-size:20px;border: none;font-weight:bold'
                             readonly>
                     </div>
@@ -363,7 +436,7 @@ $('.viewTransRecord').on('click', function() {
     $('#s_trans_id').val(data[0]);
     $('#s_date').val(data[1]);
     $('#s_trans_type').val(data[3]);
-   
+
     function fetch_table() {
 
         var trans_id = (data[0]);
