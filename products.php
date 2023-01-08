@@ -29,7 +29,6 @@ $sorting_items = mysqli_query($con, $query);
 ?>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
 <div class="row mt-4">
     <center>
         <div class="wrapper">
@@ -50,6 +49,7 @@ $sorting_items = mysqli_query($con, $query);
                     style='text-decoration:none;font-weight:bold;color:#FDC96F;'>
                     Biscuits
                 </a>
+              
                 <a href='category.php?search=Cakes'
                     class="button-value  <?php if ($checked == 'Cakes') { echo 'active'; } else { echo ''; } ?>"
                     style='text-decoration:none;font-weight:bold;color:#FDC96F;'>
@@ -97,12 +97,13 @@ $sorting_items = mysqli_query($con, $query);
                 <a href="product_details.php?prod=<?php echo $row['prod_id'] ?>" style="text-decoration: none"> <span
                         style="text-align: center;font-weight: bold"><?php echo $row['name'] ?></span> </a><br>
                 <span class="card-text" style="text-align: left;"><?php echo $row['description'] ?>
-                <span class="card-text" style="text-align: left;"><?php echo $row['category_name'] ?>
-                </span><br>
-                <span class="text-secondary" style="font-size: 20px;font-weight: bolder;">₱ <?php echo $row['price'] ?>
-                </span> <br>
-                <p></p>
-                <?php 
+                    <span class="card-text" style="text-align: left;"><?php echo $row['category_name'] ?>
+                    </span><br>
+                    <span class="text-secondary" style="font-size: 20px;font-weight: bolder;">₱
+                        <?php echo $row['price'] ?>
+                    </span> <br>
+                    <p></p>
+                    <?php 
                     $prod_id = $row['prod_id'];
                     $query = "SELECT SUM(user_rating) as sum, COUNT(*) as count FROM review_table where prod_id='$prod_id '";
                     $sqlRes = $con->query($query);
