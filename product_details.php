@@ -152,9 +152,9 @@ if (isset($_GET['prod'])) {
                                     FROM production_log
                                     LEFT JOIN product ON product.prod_id = production_log.prod_id
                                     WHERE production_log.prod_id='$prod_id' and production_log.status ='ACTIVE' or production_log.status ='LOW'");
-                                    $arr = mysqli_fetch_array($sql);
+                                    $arrSold = mysqli_fetch_array($sql);
                             
-                                if ($arr['quantity'] != 0) { ?>
+                                if ($arrSold['quantity'] != 0) { ?>
 
                                  <button class="btn btn-warning text-dark addcart"
                                     data-productid="<?php echo $arr['prod_id'] ?>"> Add to Cart <i
