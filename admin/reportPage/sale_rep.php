@@ -190,21 +190,33 @@
             </div>
 
         </div>
-        <div class="col">
-            <label><b>Date Filter </b></label>
-            <input type="text" id="min" class='form-control' name="min" placeholder="From Date" />
+        <div class="col-3">
+            <label><b>Filter: From </b></label>
+            <input type="date" id="min" class='form-control' name="min" placeholder="From Date" />
+        </div>
+        <div class="col-3">
+            <label><b> Filter: To </b></label>
+            <input type="date" id="max" class='form-control' name="max" placeholder="To Date" />
+          
+         
         </div>
         <div class="col">
-            <label> </label>
-            <input type="text" id="max" class='form-control' name="max" placeholder="To Date" />
+        <br>
+            <button type="button" class="btn btn-success text-light viewTransRecord" style='width:200px'><i class="fas fa-submit"></i>Confirm Filter </button>
+         
         </div>
+         
+          
+         
+ 
+   
     </div>
     <hr>
 </center>
 <div class="row">
     <div class="col-sm-8">
         <center>
-            <h5 style="font-weight: bolder;">Recent Transaction</h5>
+            <h5 style="font-weight: bolder;"> Transaction Record</h5>
         </center>
 
 

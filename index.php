@@ -31,7 +31,7 @@ if(isset($_SESSION['user_isset'])){
     return getenv('REMOTE_ADDR');
 }
 
-$usertempip = getClientIP();
+    $usertempip = getClientIP();
       $checktemporary_user = " SELECT * FROM `tempuser` WHERE ipaddress= '$usertempip'  ";
                   $checkandtosave = mysqli_query($con,$checktemporary_user); 
                   $counttemporary_user= mysqli_num_rows($checkandtosave);
@@ -55,6 +55,28 @@ $usertempip = getClientIP();
 
 }
 
+if (!isset($_SESSION['ran_traffic_script'])) {
+
+    // Get the user agent
+    $user_agent = $_SERVER['HTTP_USER_AGENT'];
+
+    // Try to determine the device type (phone, tablet, or computer)
+    if (preg_match('/mobile/i', $user_agent)) {
+        $device_type = "phone";
+    } elseif (preg_match('/tablet/i', $user_agent)) {
+        $device_type = "tablet";
+    } else {
+        $device_type = "computer";
+    }
+    $current_datetime = date("Y-m-d H:i:s");
+     // Insert the data into the database
+     $query = "INSERT INTO traffic_log (date, device_type) VALUES ('$current_datetime', '$device_type')";
+     mysqli_query($con,$query);
+ 
+     // Set a session variable to indicate that the script has been run
+     $_SESSION['ran_traffic_script'] = true;
+
+}
 
 
                //////////////////////////////////////////////////////////
@@ -114,13 +136,13 @@ $usertempip = getClientIP();
             <div class="col-sm-6">
 
                 <div class="left">
-                <center>
-                    <h1>
-                        Healthy, delicious and faithfully<br>
-                        <div class='intro_sub'>baked fresh!</div>
-                    </h1>
+                    <center>
+                        <h1>
+                            Healthy, delicious and faithfully<br>
+                            <div class='intro_sub'>baked fresh!</div>
+                        </h1>
                         <br>
-                        <a href='category.php'> <i class="fa fa-search" style=" font-size: 26px"> </i>  Order Now! </a>
+                        <a href='category.php'> <i class="fa fa-search" style=" font-size: 26px"> </i> Order Now! </a>
                     </center>
                 </div>
 

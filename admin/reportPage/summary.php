@@ -195,8 +195,8 @@
         </center>
         <?php 
                    
-                                         $side = mysqli_query($con, "SELECT trans_record.prod_id,name,sum(quantity) as qty from trans_record
-                                          LEFT JOIN product on trans_record.prod_id = product.prod_id group by name");?>
+           $side = mysqli_query($con, "SELECT trans_record.prod_id,name,sum(quantity) as qty from trans_record
+            LEFT JOIN product on trans_record.prod_id = product.prod_id group by name");?>
         <table class="table table-hover">
             <thead class='table-warning'>
                 <tr>
@@ -212,7 +212,34 @@
             </tbody>
         </table>
 
+        <center>
+            <h5 style="font-weight: bolder;">Website Traffic</h5>
+        </center>
 
+        <?php 
+                   
+                   $web_traffic = mysqli_query($con,
+    "SELECT COUNT(*) AS log_count, DATE(date) AS log_date FROM traffic_log GROUP BY DATE(date) ");?>
+        <table class="table table-hover">
+            <thead class='table-warning'>
+                <tr>
+                    <th scope="col">Date </th>
+                    <th scope="col">Web Traffic</th>
+                </tr>
+            </thead> <?php 
+                    while ($row = mysqli_fetch_array($web_traffic)) { ?> <tbody>
+                <tr>
+                    <td> <?php echo $row['log_date']?> </td>
+                    <td> <?php echo $row['log_count']?> </td>
+                </tr> <?php } ?>
+            </tbody>
+        </table>
+
+
+
+        <div class="card" style="width:100%;max-width:100%;max-height:210px;">
+            <canvas id="web_traffic" style="width:100%;max-width:100%;max-height:251px;"></canvas>
+        </div>
 
     </div>
 </div>

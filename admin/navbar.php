@@ -106,6 +106,12 @@
                 <span class="link_name">Walk-in POS</span>
             </a>
         </li>
+        <li>
+            <a href='walkin_record.php'>
+                <i class='fa-solid fa-person'></i>
+                <span class="link_name">Distributor</span>
+            </a>
+        </li>
         <hr style='color:white'>
         <li>
             <a type='button' data-bs-toggle="modal" data-bs-target="#settingsModal">

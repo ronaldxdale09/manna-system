@@ -6,7 +6,7 @@ income_chart = document.getElementById("income_chart");
 gross_chart = document.getElementById("gross_chart");
 opex_chart = document.getElementById("opex_chart");
 shrinkage_chart = document.getElementById("shrinkage_chart");
-
+web_traffic = document.getElementById("web_traffic");
 
 <?php 
 $currentMonth = date("m");
@@ -55,7 +55,7 @@ new Chart(sales_trend, {
     type: 'line',
 
     data: {
-        labels:  <?php echo json_encode($sale_month) ?>,
+        labels: <?php echo json_encode($sale_month) ?>,
         datasets: [{
                 label: 'Sales',
                 data: <?php echo json_encode($sale_amount) ?>,
@@ -108,9 +108,10 @@ new Chart(purchase_chart, {
         labels: ['Inventory Cost', 'Selling Cost'],
         datasets: [{
             label: 'Sales',
-            data:  [<?php echo ($inv_cost) ?>,<?php echo ($inv_selling) ?>],
+            data: [<?php echo ($inv_cost) ?>, <?php echo ($inv_selling) ?>],
             backgroundColor: [
-                '#84A7D0', '#8F1103'],
+                '#84A7D0', '#8F1103'
+            ],
             borderColor: '#025454',
             borderWidth: 2
         }]
@@ -163,10 +164,10 @@ new Chart(inventory_chart, {
     },
     type: 'pie', //Declare the chart type 
     data: {
-        labels:  <?php echo json_encode($top_prod) ?>,
+        labels: <?php echo json_encode($top_prod) ?>,
         datasets: [{
             label: 'Top Selling Products',
-            data:  <?php echo json_encode($top_qty) ?>,
+            data: <?php echo json_encode($top_qty) ?>,
             backgroundColor: [
                 '#556B2F', '#B0E0E6', '#191970', '#ADFF2F'
             ],
@@ -367,6 +368,69 @@ new Chart(shrinkage_chart, {
                 },
                 ticks: {
                     display: true
+                }
+            }
+        }
+    }
+});
+
+
+<?php
+// area chart
+$web_traffic = mysqli_query($con,
+    "SELECT COUNT(*) AS log_count, DATE(date) AS log_date FROM traffic_log GROUP BY DATE(date) ");
+if ($web_traffic -> num_rows > 0) {
+    foreach($web_traffic as $data) {
+        $log_date = $data['log_date'];
+        $log_count = $data['log_count'];
+    }
+}
+?>
+
+
+
+new Chart(web_traffic, {
+
+    type: 'line',
+
+    data: {
+        labels: <?php echo json_encode($log_date) ?>,
+        datasets: [{
+                label: 'Date',
+                data: <?php echo json_encode($log_count) ?>,
+                backgroundColor: '#87CEEB',
+                borderColor: '#0000CD',
+                borderWidth: 2
+            }
+
+        ]
+    },
+    options: {
+        plugins: {
+            legend: {
+                display: false,
+
+            },
+            title: {
+
+
+                display: true,
+                text: 'Web Traffic',
+            },
+        },
+        scales: {
+            y: {
+                ticks: {
+                    display: true
+                },
+                grid: {
+                    display: false
+                },
+                beginAtZero: true
+            },
+            x: {
+                grid: {
+                    display: false
                 }
             }
         }

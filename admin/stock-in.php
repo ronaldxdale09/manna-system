@@ -64,7 +64,7 @@ $code = 'P'.$today . $generate;
     /* Set the font size and color */
     font-size: 15px;
     color: white;
-    font-weight:bold;
+    font-weight: bold;
 
     /* Add some padding and alignment */
 
@@ -101,7 +101,6 @@ $code = 'P'.$today . $generate;
 
                             <div class="table-responsive">
                                 <?php $results  = mysqli_query($con, " SELECT * FROM `product` 
-                                LEFT JOIN product_quantity ON product_quantity.prod_id =  product.prod_id
                                 LEFT JOIN category ON product.cat_id =  category.cat_id
                                 LEFT JOIN photo ON product.prod_id =  photo.prod_id"); ?>
                                 <table id="production_table" class="table table-hover" style="width:100%;">
@@ -114,7 +113,7 @@ $code = 'P'.$today . $generate;
                                             <th>Cost</th>
                                             <th>Price</th>
                                             <th>Total Stock</th>
-                                          
+
                                             <th>Action</th>
 
 
@@ -125,7 +124,13 @@ $code = 'P'.$today . $generate;
                                             if ($row['ingredients']== ','){
                                                 $row['ingredients'] = 'N/A';
                                             } 
-                                          
+
+                                            $prod_id =$row['prod_id'];
+                                            $sql  = mysqli_query($con, "SELECT production_log.prod_id, sum(production_log.qty_remaining) AS quantity
+                                                FROM production_log
+                                                LEFT JOIN product ON product.prod_id = production_log.prod_id
+                                                WHERE production_log.prod_id='$prod_id' and production_log.status ='ACTIVE' or production_log.status ='LOW'");
+                                                $arr = mysqli_fetch_array($sql);
                                             ?>
                                         <tr>
                                             <td hidden><?php echo $row['prod_id']; ?></td>
@@ -135,9 +140,9 @@ $code = 'P'.$today . $generate;
                                             <td><?php echo $row['cost']; ?></td>
                                             <td><?php echo $row['price']; ?></td>
                                             <td>
-                                                <div class='badge'><?php echo $row['quantity']; ?> </div>
+                                                <div class='badge'><?php echo  (empty($arr['quantity'])) ? "0" : $arr['quantity']; ?> </div>
                                             </td>
-                                            
+
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
                                                     <button type="button"

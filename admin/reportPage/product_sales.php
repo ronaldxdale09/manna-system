@@ -154,40 +154,32 @@ inventoryCount_chart = document.getElementById("inventoryList_chart");
 
 
 
-$inv_prod = mysqli_query($con,
-    " SELECT name,quantity from product_quantity LEFT JOIN product on product_quantity.prod_id = product.prod_id group by name "
-);
-if ($inv_prod - > num_rows > 0) {
-    foreach($inv_prod as $data) {
-        $prod[] = $data['name'];
-        $qty[] = $data['qty'];
-    }
-}
-new Chart(inventoryCount_chart, {
-    options: {
-        "responsive": true,
-        "maintainAspectRatio": false,
-        plugins: {
-            legend: {
-                position: 'left',
-            },
-            title: {
-                display: true,
-                text: 'Inventory Breakdown',
-            },
-        },
-    },
-    type: 'pie', //Declare the chart type 
-    data: {
-        labels: <?php echo json_encode($top_prod) ?>,
-        datasets: [{
-            label: 'Top Selling Products',
-            data: <?php echo json_encode($top_qty) ?>,
-            backgroundColor: [
-                '#556B2F', '#B0E0E6', '#191970', '#ADFF2F'
-            ],
-            hoverOffset: 4
-        }]
-    },
-});
+
+// new Chart(inventoryCount_chart, {
+//     options: {
+//         "responsive": true,
+//         "maintainAspectRatio": false,
+//         plugins: {
+//             legend: {
+//                 position: 'left',
+//             },
+//             title: {
+//                 display: true,
+//                 text: 'Inventory Breakdown',
+//             },
+//         },
+//     },
+//     type: 'pie', //Declare the chart type 
+//     data: {
+//         labels: <?php echo json_encode($top_prod) ?>,
+//         datasets: [{
+//             label: 'Top Selling Products',
+//             data: <?php echo json_encode($top_qty) ?>,
+//             backgroundColor: [
+//                 '#556B2F', '#B0E0E6', '#191970', '#ADFF2F'
+//             ],
+//             hoverOffset: 4
+//         }]
+//     },
+// });
 </script>
