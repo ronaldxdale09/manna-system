@@ -9,20 +9,7 @@ include 'connections/connect.php';
 <?php include 'include/header.php' ?>
 
 <style type="text/css">
-@media screen and (max-width: 768px) {
-    .banner img {
-        height: 240px;
-    }
 
-    #bnctitle {
-        font-size: 30px;
-    }
-
-    #buttonsg {
-        position: relative;
-        left: 100%;
-    }
-}
 </style>
 
 <body style="background-color:white;overflow-x: hidden;">

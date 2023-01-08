@@ -1,25 +1,16 @@
 <link rel="stylesheet" type="text/css" href="css/search.css">
 <style>
-@media only screen and (max-width: 992px) {
-    .purple-rain {
-        flex-direction: column;
-    }
-
-    .purple-rain .header_search {
-        display: none;
-    }
-
-    .purple-rain .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+@media (max-width: 480px) {
+  .purple-rain .col-md-3, .purple-rain .col-md-4, .purple-rain .col-md-5 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }
+
 </style>
 <nav class="purple-rain">
     <div class="row purple-rain">
-
-        <div class="col-md-3">
+        <div class="col">
             <a href="index.php" style="text-decoration: none">
 
                 <a href="index.php" style='padding: 10px;'>
@@ -28,8 +19,8 @@
             </a>
         </div>
 
-        <div class="col-md-4">
-            <div class="header_search">
+      
+            <div class="col header_search">
                 <div class="header_search_content">
                     <div class="header_search_form_container">
                         <form action="category.php" method="get" class="header_search_form clearfix">
@@ -43,8 +34,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-5">
+
+        <div class="col">
 
             <style type="text/css">
             .dropdown:hover .dropdown-menu {
@@ -54,10 +45,10 @@
             </style>
 
 
-            <div class="container">
+          
                 <div class="row" id="buttonsg">
 
-                    <div class="col-md-5">
+                    <div class="col">
                         <?php 
                         if(isset($cart)){
 
@@ -143,7 +134,7 @@
 
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col">
 
 
 
@@ -257,7 +248,7 @@
 
                 </div>
 
-            </div>
+          
         </div>
 
     </div>

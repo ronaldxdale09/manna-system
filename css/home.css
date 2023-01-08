@@ -19,7 +19,7 @@
     font-weight: 700;
 }
 
-.intro .left a {
+.intro .left .orderNow {
     padding: 15px 60px;
     width: 50%;
     background: #0D3CE3;
@@ -31,6 +31,25 @@
     font-size: 26px;
     color: #FEF58E;
     text-decoration: none;
+}
+
+.intro .left .downloadNow {
+    padding: 15px 60px;
+    width: 50%;
+    background: #FEF58E;
+    border: 1px solid rgb(185, 185, 185);
+    text-transform: uppercase;
+    border-radius: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 26px;
+    color: #0D3CE3;
+    text-decoration: none;
+}
+
+a.orderNow,
+a.downloadNow {
+    margin: 0 10px;
 }
 
 @media (max-width: 768px) {
