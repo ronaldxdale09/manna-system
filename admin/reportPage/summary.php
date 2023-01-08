@@ -213,7 +213,7 @@
         </table>
 
         <center>
-            <h5 style="font-weight: bolder;">Website Traffic</h5>
+            <h5 style="font-weight: bolder;">Website Visits</h5>
         </center>
 
         <?php 
@@ -224,7 +224,7 @@
             <thead class='table-warning'>
                 <tr>
                     <th scope="col">Date </th>
-                    <th scope="col">Web Traffic</th>
+                    <th scope="col">Traffic</th>
                 </tr>
             </thead> <?php 
                     while ($row = mysqli_fetch_array($web_traffic)) { ?> <tbody>
