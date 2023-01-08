@@ -82,13 +82,117 @@
         </table>
         <!-- end table -->
 
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="card" style="width:100%;max-width:100%;max-height:210px;">
-                    <canvas id="inventoryList_chart" style="width:100%;max-width:100%;max-height:251px;"></canvas>
-                </div>
-            </div>
-            <div class="col-sm-6">col-sm-4</div>
+        <center>
+            <h5 style="font-weight: bolder;">Production Record</h5>
+        </center>
+
+
+        <div class="table-responsive">
+            <?php $results  = mysqli_query($con, " SELECT * FROM `product` 
+                                LEFT JOIN category ON product.cat_id =  category.cat_id
+                                LEFT JOIN photo ON product.prod_id =  photo.prod_id"); ?>
+            <table id="production_table" class="table table-hover" style="width:100%;">
+                <thead class="table-warning">
+                    <tr style='font-size:14px'>
+                        <th hidden>prod_id</th>
+                        <th>Barcode</th>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Cost</th>
+                        <th>Price</th>
+                        <th>Total Stock</th>
+
+                        <th>Action</th>
+
+
+                    </tr>
+                </thead>
+                <tbody style='font-size:40px'>
+                    <?php while ($row = mysqli_fetch_array($results)) {
+                                            if ($row['ingredients']== ','){
+                                                $row['ingredients'] = 'N/A';
+                                            } 
+
+                                            $prod_id =$row['prod_id'];
+                                            $sql  = mysqli_query($con, "SELECT production_log.prod_id, sum(production_log.qty_remaining) AS quantity
+                                                FROM production_log
+                                                LEFT JOIN product ON product.prod_id = production_log.prod_id
+                                                WHERE production_log.prod_id='$prod_id' and production_log.status ='ACTIVE' or production_log.status ='LOW'");
+                                                $arr = mysqli_fetch_array($sql);
+                                            ?>
+                    <tr>
+                        <td hidden><?php echo $row['prod_id']; ?></td>
+                        <td><?php echo $row['barcode']; ?></td>
+                        <td><?php echo $row['name']; ?></td>
+                        <td><?php echo $row['category_name']; ?></td>
+                        <td><?php echo $row['cost']; ?></td>
+                        <td><?php echo $row['price']; ?></td>
+                        <td>
+                            <div class='badge'>
+                                <?php echo  (empty($arr['quantity'])) ? "0" : $arr['quantity']; ?>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-success btn-sm text-light btnViewProdDetails"
+                                    style="font-size: 12px"><i class="fas fa-eye"></i></button>
+
+                            </div>
+
+                        </td>
+                    </tr>
+                    <?php } ?>
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <center>
+            <h5 style="font-weight: bolder;">Stock-out Record</h5>
+        </center>
+
+
+        <div class="table-responsive">
+            <?php $results  = mysqli_query($con, " SELECT * FROM `transaction` 
+                                LEFT JOIN trans_record on transaction.tid = trans_record.transaction_id
+                                LEFT JOIN product ON trans_record.prod_id =  product.prod_id"); ?>
+            <table id="stockout_table" class="table table-hover" style="width:100%;">
+                <thead class="table-warning">
+                    <tr style='font-size:14px'>
+                        <th>Order ID</th>
+                        <th>Date</th>
+                        <th>Barcode</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Transaction Type</th>
+
+
+                    </tr>
+                </thead>
+                <tbody style='font-size:40px'>
+                    <?php while ($row = mysqli_fetch_array($results)) {
+                                       
+                                            ?>
+                    <tr>
+                        <td><?php echo $row['order_id']; ?></td>
+                        <td><?php echo $row['date_ordered']; ?></td>
+                        <td><?php echo $row['barcode']; ?></td>
+                        <td><?php echo $row['name']; ?></td>
+                        <td><?php echo $row['quantity']; ?></td>
+                        <td><?php echo $row['total']; ?></td>
+                        <td><?php echo $row['type']; ?></td>
+
+                    </tr>
+
+                    <?php } ?>
+                </tbody>
+
+            </table>
+
         </div>
 
 
@@ -149,37 +253,36 @@
     </div>
 </div>
 
+<?php include('modal/production_modal.php')?>
 <script>
-inventoryCount_chart = document.getElementById("inventoryList_chart");
+$('#production_table').on('click', '.btnViewProdDetails', function() {
 
 
+    $tr = $(this).closest('tr');
 
+    var data = $tr.children("td").map(function() {
+        return $(this).text();
+    }).get();
+    $('#viewProductionDetails').modal('show');
+    $('#p_name').val(data[2]);
+    $('#p_category').val(data[3]);
+    $('#p_cost').val(data[4]);
+    $('#p_price').val(data[5]);
 
-// new Chart(inventoryCount_chart, {
-//     options: {
-//         "responsive": true,
-//         "maintainAspectRatio": false,
-//         plugins: {
-//             legend: {
-//                 position: 'left',
-//             },
-//             title: {
-//                 display: true,
-//                 text: 'Inventory Breakdown',
-//             },
-//         },
-//     },
-//     type: 'pie', //Declare the chart type 
-//     data: {
-//         labels: <?php echo json_encode($top_prod) ?>,
-//         datasets: [{
-//             label: 'Top Selling Products',
-//             data: <?php echo json_encode($top_qty) ?>,
-//             backgroundColor: [
-//                 '#556B2F', '#B0E0E6', '#191970', '#ADFF2F'
-//             ],
-//             hoverOffset: 4
-//         }]
-//     },
-// });
+    function fetch_table() {
+        var prod_id = data[0].replace(/\s/g, '');
+        $.ajax({
+            url: "table/production_details.php",
+            method: "POST",
+            data: {
+                prod_id: prod_id,
+
+            },
+            success: function(data) {
+                $('#view_prod_history').html(data);
+            }
+        });
+    }
+    fetch_table();
+});
 </script>

@@ -23,7 +23,7 @@ $user_id=$_SESSION['user_id'];
 <body style="background-color:white;overflow-x: hidden;">
     <link rel="stylesheet" href="css/cart.css">
     <link rel="stylesheet" href="css/address.css">
-    <link rel="stylesheet" href="css/select_address.scss">
+    <link rel="stylesheet" href="css/select_address.css">
     <?php 
   $cart = 1;
   include 'include/topnavbar.php';

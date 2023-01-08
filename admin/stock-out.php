@@ -46,7 +46,7 @@ include "../connections/connect.php";
                                 <?php $results  = mysqli_query($con, " SELECT * FROM `transaction` 
                                 LEFT JOIN trans_record on transaction.tid = trans_record.transaction_id
                                 LEFT JOIN product ON trans_record.prod_id =  product.prod_id"); ?>
-                                <table id="production_table" class="table table-hover" style="width:100%;">
+                                <table id="stockout_table" class="table table-hover" style="width:100%;">
                                     <thead class="table-warning">
                                         <tr style='font-size:14px'>
                                             <th>Order ID</th>

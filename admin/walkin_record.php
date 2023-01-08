@@ -100,10 +100,11 @@ include "modal/product_modal.php";
                                             <td><?php echo $row['stat']; ?></td>
 
                                             <td>
-                                              
-                                                    <button type="button" class="btn btn-success text-light editmodal"
-                                                        style="font-size: 12px"><i class="fas fa-book"></i></button>
-                                                   
+
+                                                <button type="button" class="btn btn-success text-light viewTransRecord"
+                                                    id='viewTransRecord' style="font-size: 12px"><i
+                                                        class="fas fa-book"></i></button>
+
 
 
                                             </td>
@@ -175,3 +176,85 @@ include "modal/product_modal.php";
         </div>
     </div>
 </div>
+
+
+
+
+
+<!-- Modal View-->
+<div class="modal fade" id="viewSalesDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="receivingViewLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="receivingViewLabel">SALE RECORD</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-sm">
+                        <label> Transactio ID </label> <br>
+                        <input id='s_trans_id' class='form-control' style='font-size:20px;border: none;font-weight:bold'
+                            readonly>
+                    </div>
+                    <div class="col-sm">
+                        <label> Date :</label> <br>
+                        <input id='s_date' class='form-control' style='font-size:20px;border: none;font-weight:bold'
+                            readonly>
+                    </div>
+                    <div class="col-sm">
+                        <label>Transaction Type</label> <br>
+                        <input id='s_trans_type' name='voucher' class='form-control'
+                            style='font-size:20px;border: none;font-weight:bold' readonly>
+                    </div>
+                </div>
+
+
+                <hr>
+                <div id='view_sales_rec'> </div>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Return</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+$('.viewTransRecord').on('click', function() {
+
+    $tr = $(this).closest('tr');
+
+    var data = $tr.children("td").map(function() {
+        return $(this).text();
+    }).get();
+
+    $('#s_trans_id').val(data[0]);
+    $('#s_date').val(data[1]);
+    $('#s_trans_type').val(data[3]);
+
+    function fetch_table() {
+
+        var trans_id = (data[0]);
+        $.ajax({
+            url: "table/sales_record_table.php",
+            method: "POST",
+            data: {
+                trans_id: trans_id,
+
+            },
+            success: function(data) {
+                $('#view_sales_rec').html(data);
+            }
+        });
+    }
+    fetch_table();
+    $('#viewSalesDetails').modal('show');
+
+
+});
+</script>

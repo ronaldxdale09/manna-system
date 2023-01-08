@@ -219,7 +219,7 @@
         <?php 
                    
                    $web_traffic = mysqli_query($con,
-    "SELECT COUNT(*) AS log_count, DATE(date) AS log_date FROM traffic_log GROUP BY DATE(date) ");?>
+    "SELECT device_type, COUNT(*) AS visitors_today, DATE(date) AS visit_date FROM traffic_log GROUP BY device_type, DATE(date)");?>
         <table class="table table-hover">
             <thead class='table-warning'>
                 <tr>
@@ -229,17 +229,18 @@
             </thead> <?php 
                     while ($row = mysqli_fetch_array($web_traffic)) { ?> <tbody>
                 <tr>
-                    <td> <?php echo $row['log_date']?> </td>
-                    <td> <?php echo $row['log_count']?> </td>
+                    <td> <?php echo $row['visit_date']?> </td>
+                    <td> <?php echo $row['device_type']?> </td>
+                    <td> <?php echo $row['visitors_today']?> </td>
                 </tr> <?php } ?>
             </tbody>
         </table>
 
 
 
-        <div class="card" style="width:100%;max-width:100%;max-height:210px;">
+        <!-- <div class="card" style="width:100%;max-width:100%;max-height:210px;">
             <canvas id="web_traffic" style="width:100%;max-width:100%;max-height:251px;"></canvas>
-        </div>
+        </div> -->
 
     </div>
 </div>

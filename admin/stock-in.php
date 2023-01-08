@@ -140,7 +140,9 @@ $code = 'P'.$today . $generate;
                                             <td><?php echo $row['cost']; ?></td>
                                             <td><?php echo $row['price']; ?></td>
                                             <td>
-                                                <div class='badge'><?php echo  (empty($arr['quantity'])) ? "0" : $arr['quantity']; ?> </div>
+                                                <div class='badge'>
+                                                    <?php echo  (empty($arr['quantity'])) ? "0" : $arr['quantity']; ?>
+                                                </div>
                                             </td>
 
                                             <td>
@@ -150,29 +152,27 @@ $code = 'P'.$today . $generate;
                                                         style="font-size: 12px"><i class="fas fa-eye"></i></button>
 
                                                 </div>
+
+                                            </td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+
+                                </table>
+
                             </div>
-
-                            </td>
-                            </tr>
-
-                            <?php } ?>
-                            </tbody>
-
-                            </table>
 
                         </div>
 
                     </div>
-
                 </div>
+
             </div>
 
-    </div>
+            <div class="footer shadow">
 
-    <div class="footer shadow">
-
-    </div>
-    </section>
+            </div>
+        </section>
 
     </div>
 </body>
