@@ -146,9 +146,30 @@ if (isset($_GET['prod'])) {
                 <div class="row mt-4">
                     <div class="row">
                         <div class="column">
-                            <button class="btn btn-warning text-dark addcart"
-                                data-productid="<?php echo $arr['prod_id'] ?>"> Add to Cart <i
-                                    class="fas fa-cart-plus"></i></button>
+                            <?php 
+                                
+                                $sql  = mysqli_query($con, "SELECT production_log.prod_id, sum(production_log.qty_remaining) AS quantity
+                                    FROM production_log
+                                    LEFT JOIN product ON product.prod_id = production_log.prod_id
+                                    WHERE production_log.prod_id='$prod_id' and production_log.status ='ACTIVE' or production_log.status ='LOW'");
+                                    $arr = mysqli_fetch_array($sql);
+                            
+                                if ($arr['quantity'] != 0) { ?>
+
+                                 <button class="btn btn-warning text-dark addcart"
+                                    data-productid="<?php echo $arr['prod_id'] ?>"> Add to Cart <i
+                                        class="fas fa-cart-plus"></i></button>
+
+
+                            <?php 
+                                 }else{
+                             ?>
+                            <div class="btn btn-danger text-white"
+                                style="font-size: 13px;font-weight: bold; cursor: text;">
+                                SOLD OUT </div>
+
+                            <?php } ?>
+
                         </div>
                         <div class="column">
 

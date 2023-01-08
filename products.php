@@ -10,16 +10,17 @@ if(isset($_GET["search"]))
      $search = $_GET["search"];  
      $checked = filter_var($_GET['search']) ;
     //  $char = preg_replace('#[^a-z]#i', '', $char);  
-     $query = "SELECT * FROM `product` 
-     LEFT JOIN photo on product.prod_id = photo.prod_id
-     LEFT JOIN category on product.cat_id = category.cat_id WHERE
-      name LIKE '%$search%' or  category_name LIKE '%$search%'"; 
+     $query = "SELECT *
+     FROM `product`
+     LEFT JOIN photo ON product.prod_id = photo.prod_id
+     LEFT JOIN category ON product.cat_id = category.cat_id
+     WHERE (name LIKE '%$search%' OR category_name LIKE '%$search%') AND (price IS NOT NULL AND cost IS NOT NULL) "; 
 }  
 else  
 {  
     $query = " SELECT * FROM `product`
     LEFT JOIN category on product.cat_id = category.cat_id
-    LEFT JOIN photo on product.prod_id = photo.prod_id ";
+    LEFT JOIN photo on product.prod_id = photo.prod_id  WHERE  price !='' or cost !=''   ";
 }  
 $sorting_items = mysqli_query($con, $query);
 
@@ -96,6 +97,7 @@ $sorting_items = mysqli_query($con, $query);
                 <a href="product_details.php?prod=<?php echo $row['prod_id'] ?>" style="text-decoration: none"> <span
                         style="text-align: center;font-weight: bold"><?php echo $row['name'] ?></span> </a><br>
                 <span class="card-text" style="text-align: left;"><?php echo $row['description'] ?>
+                <span class="card-text" style="text-align: left;"><?php echo $row['category_name'] ?>
                 </span><br>
                 <span class="text-secondary" style="font-size: 20px;font-weight: bolder;">₱ <?php echo $row['price'] ?>
                 </span> <br>
@@ -114,9 +116,13 @@ $sorting_items = mysqli_query($con, $query);
                         $count = 0;
                     }
            
-                    // Calculate the average rating
-                    $avg_rating = $sum / $count;
-                    
+                    if ($count != 0) {
+                        // Calculate the average rating
+                        $avg_rating = $sum / $count;
+                      } else {
+                        // Set the average rating to zero if the count is zero
+                        $avg_rating = 0;
+                      }
                     
                     
                         // Display the stars
@@ -141,11 +147,35 @@ $sorting_items = mysqli_query($con, $query);
             </div>
             <div class="card-footer">
                 <center>
-                    <a href="product_details.php?prod=<?php echo $row['prod_id'] ?>" class="btn btn-dark "
-                        style="font-size: 13px;font-weight: bold;"> View Product <i class="fas fa-eye"></i></a>
+
+                    <?php 
+        
+                       $sql  = mysqli_query($con, "SELECT production_log.prod_id, sum(production_log.qty_remaining) AS quantity
+                           FROM production_log
+                           LEFT JOIN product ON product.prod_id = production_log.prod_id
+                           WHERE production_log.prod_id='$prod_id' and production_log.status ='ACTIVE' or production_log.status ='LOW'");
+                           $arr = mysqli_fetch_array($sql);
+                    
+                           if ($arr['quantity'] != 0) { ?>
+
                     <button class="btn btn-warning text-dark addcart" style="font-size: 13px;font-weight: bold;"
                         data-productid="<?php echo $row['prod_id'] ?>"> Add to Cart <i
                             class="fas fa-cart-plus"></i></button>
+
+
+                    <?php 
+                         }else{
+                     ?>
+                    <div class="btn btn-danger text-white" style="font-size: 13px;font-weight: bold; cursor: text;">
+                        SOLD OUT </div>
+
+                    <?php } ?>
+
+
+
+                    <a href="product_details.php?prod=<?php echo $row['prod_id'] ?>" class="btn btn-dark "
+                        style="font-size: 13px;font-weight: bold;"> View Product <i class="fas fa-eye"></i></a>
+
                 </center>
 
 

@@ -230,7 +230,9 @@ if (isset($_POST['cartwlistitems']))
 if (isset($_POST['allitems']))
 {
 
-    $GetProducts = " select * from product limit 4 ";
+    $GetProducts = " select * from product
+    LEFT JOIN category on product.cat_id= category.cat_id
+    where price !='' or cost !='' limit 4";
     $Items = mysqli_query($con, $GetProducts);
     $countingItems = mysqli_num_rows($Items);
     //  $get_id =  mysqli_insert_id($con);
@@ -282,12 +284,13 @@ if (isset($_POST['allitems']))
                 <a href="product_details.php?prod=<?php echo $row['prod_id'] ?>" style="text-decoration: none"> <span
                         style="text-align: center;font-weight: bold"><?php echo $row['name'] ?></span> </a><br>
                 <span class="card-text" style="text-align: left;"><?php echo $row['description'] ?>
+                <span class="card-text" style="text-align: left;"><?php echo $row['category_name'] ?>
                 </span><br>
                 <span class="text-secondary" style="font-size: 20px;font-weight: bolder;">₱ <?php echo $row['price'] ?>
                 </span> <br>
                 <p></p>
                 <?php 
-                        $prod_id = $row['prod_id'];
+                    $prod_id = $row['prod_id'];
                     $query = "SELECT SUM(user_rating) as sum, COUNT(*) as count FROM review_table where prod_id='$prod_id '";
                     $result = $con->query($query);
                     
@@ -300,8 +303,13 @@ if (isset($_POST['allitems']))
                         $count = 0;
                     }
            
-                    // Calculate the average rating
-                    $avg_rating = $sum / $count;
+                    if ($count != 0) {
+                        // Calculate the average rating
+                        $avg_rating = $sum / $count;
+                      } else {
+                        // Set the average rating to zero if the count is zero
+                        $avg_rating = 0;
+                      }
                     
                     
                     
@@ -317,19 +325,50 @@ if (isset($_POST['allitems']))
 
                         $sqlTotalSold = "SELECT prod_id,SUM(quantity) as total_sold FROM trans_record 
                         LEFT JOIN transaction on trans_record.transaction_id = transaction.tid
-                        where prod_id='$prod_id' and status='delivered' or status='completed'";
+                        where prod_id='$prod_id' and (status='delivered' or status='completed')";
                         $soldResult = $con->query($sqlTotalSold);
                         $arr = mysqli_fetch_array($soldResult);
                         $total_sold = $arr['total_sold'];
-                echo  '  '.$total_sold.' Sold' ;
+
+
+
+                        if ($total_sold != 0 || $total_sold=null || $total_sold='') {
+                            // Calculate the average rating
+                            echo  '  '.$total_sold.' Sold' ;
+                          } else {
+                            // Set the average rating to zero if the count is zero
+                        
+                          }
+                        
+                        
                 ?>
 
 
             </div>
             <div class="card-footer">
-                <button class="btn btn-warning text-dark addcart" style="font-size: 13px;font-weight: bold;"
-                    data-productid="<?php echo $row['prod_id'] ?>"> Add to Cart <i
-                        class="fas fa-cart-plus"></i></button>
+            <?php 
+                                
+                                $sql  = mysqli_query($con, "SELECT production_log.prod_id, sum(production_log.qty_remaining) AS quantity
+                                    FROM production_log
+                                    LEFT JOIN product ON product.prod_id = production_log.prod_id
+                                    WHERE production_log.prod_id='$prod_id' and production_log.status ='ACTIVE' or production_log.status ='LOW'");
+                                    $arr = mysqli_fetch_array($sql);
+                            
+                                if ($arr['quantity'] != 0) { ?>
+
+                                 <button class="btn btn-warning text-dark addcart"
+                                    data-productid="<?php echo $arr['prod_id'] ?>"> Add to Cart <i
+                                        class="fas fa-cart-plus"></i></button>
+
+
+                            <?php 
+                                 }else{
+                             ?>
+                            <div class="btn btn-danger text-white"
+                                style="font-size: 13px;font-weight: bold; cursor: text;">
+                                SOLD OUT </div>
+
+                            <?php } ?>
 
                 <?php
 

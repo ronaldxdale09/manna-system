@@ -156,10 +156,6 @@ include "modal/product_modal.php";
 $(document).ready(function() {
     $('#product_table').DataTable();
 
-
-
-
-
     var max_fields = 10;
     var wrapper = $(".input_fields_wrap");
     var add_button = $(".add_field_button");
@@ -261,12 +257,12 @@ $(document).ready(function() {
         var data = $tr.children("td").map(function() {
             return $(this).text();
         }).get();
-        $('#prodUpdate').modal('show');
+
         $('#edit_barcode').val(data[2]);
         $('#edit_name').val(data[3]);
         $('#edit_cat').val(data[4]);
         // Get the select element
-
+        $('#prodUpdate').modal('show');
 
 
         $('#edit_desc').val(data[5]);
