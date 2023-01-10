@@ -1,15 +1,25 @@
 <?php
 session_start();
+include "../connections/connect.php";
 if (!isset($_SESSION["cour_id"])) {
     header("location:../log/signin.php");
 }
+$courier_id = $_SESSION["cour_id"];
+
+
+$sql  = mysqli_query($con, "SELECT *  from accounts where user_id='$courier_id'");
+$users_row = mysqli_fetch_array($sql);
+$rider_name = $users_row['name'];
+
+
+
 ?>
 <!DOCTYPE html>
 <html>
 
 <?php
 include "head.php";
-include "../connections/connect.php";
+
 
 $tab= '';
 if (isset($_GET['tab'])) {
@@ -92,7 +102,7 @@ if (isset($_GET['tab'])) {
                 <section>
                     <div class="content content-1">
                         <hr>
-                        <div class="title">Pending Delivery</div>
+                        <div class="title">Pending Delivery : <?php echo $rider_name?></div>
                         <?php include('pages/pending.php')?>
 
                     </div>

@@ -28,9 +28,9 @@
 
             <td>
 
-            <button class="btn btn-dark text-light deliver" data-od="<?php echo $tid ?>"
-                        data-date="<?php echo $row['datecreated'] ?>" data-userid="<?php echo $row['user_id']  ?>"
-                        style="font-size: 14px;font-weight: bolder;">Deliver</button>
+                <button class="btn btn-dark text-light deliver" data-od="<?php echo $tid ?>"
+                    data-date="<?php echo $row['datecreated'] ?>" data-userid="<?php echo $row['user_id']  ?>"
+                    style="font-size: 14px;font-weight: bolder;">Deliver</button>
 
                 <button class="btn btn-info text-dark print" data-od="<?php echo $tid ?>"
                     data-date_created="<?php echo $row['datecreated'] ?>" data-userid="<?php echo $row['user_id'] ?>"
@@ -45,7 +45,18 @@
     </tbody>
 </table>
 
+<?php 
 
+$res  = mysqli_query($con, "SELECT * from accounts where user_type='courier'"); 
+$courierList='';
+while($arr = mysqli_fetch_array($res))
+{
+$courierList .= '
+
+<option value="'.$arr["user_id"].','.$arr["name"].' '.$arr["lastname"].' | Contact : '.$arr["mobile_number"].'">'.$arr["name"].' '.$arr["lastname"].' | Contact : '.$arr["mobile_number"].'</option>';
+}
+
+?>
 
 <div class="modal fade" id="deliverOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -76,6 +87,20 @@
                             </div>
                         </div>
                     </div>
+                    <hr>
+                    <div class="col">
+                        <center>
+                            <label for="product_name" class="form-label"> Delivery</label>
+                            <select class='form-select' name='courier' style='font-weight:bold;font-size:18px' required>
+                                <option disabled="disabled" selected="selected" value=''>Select Courier </option>
+                                <?php echo $courierList?>
+
+                                <!--PHP echo-->
+                            </select>
+                        </center>
+                    </div>
+
+               
                     <hr>
                     <div id='d_address_customer'> </div>
                     <hr>

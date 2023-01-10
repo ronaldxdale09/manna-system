@@ -1,11 +1,35 @@
 <hr>
 <div class="row mb-4">
-    <div class="col-md-4">
+
+
+    <div class="col-md-3">
+        <div class="card shadow border-success">
+            <div class="card-body">
+
+                <h5 style="font-weight: bolder;text-align: center;" class="text-dark">
+                    TOTAL CASH ON HAND <br> ₱ 
+                    <?php 
+            $ccustomers = " select * from accounts  ";
+                        $ccustom = mysqli_query($con,$ccustomers); 
+                        $allcustomers= mysqli_num_rows($ccustom);
+                echo $allcustomers;      
+         ?>
+
+                </h5>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="col-md-3">
         <div class="card shadow border-warning">
             <div class="card-body">
 
                 <h5 style="font-weight: bolder;text-align: center;" class="text-dark">
-                    PENDING DELIVERY <span class="badge bg-dark text-light"> <?php 
+                    PENDING DELIVERY  <br><span class="badge bg-dark text-light"> <?php 
             $corders = " select * from transaction where status='otw'  ";
                         $countord = mysqli_query($con,$corders); 
                         $allorders= mysqli_num_rows($countord);
@@ -19,12 +43,12 @@
 
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card shadow border-success">
             <div class="card-body">
 
-                <h6 style="font-weight: bolder;text-align: center;" class="text-dark">
-                    COMPLETED DELIVERY <span class="badge bg-success text-light">
+                <h5 style="font-weight: bolder;text-align: center;" class="text-dark">
+                    COMPLETED DELIVERY <br> <span class="badge bg-success text-light"> 
                         <?php 
             $ccustomers = " select * from accounts  ";
                         $ccustom = mysqli_query($con,$ccustomers); 
@@ -32,7 +56,27 @@
                 echo $allcustomers;      
          ?>
                     </span>
-                </h6>
+                </h5>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow border-success">
+            <div class="card-body">
+
+                <h5 style="font-weight: bolder;text-align: center;" class="text-dark">
+                    TOTAL DELIVERY AMOUNT <br>  ₱ 
+                        <?php 
+            $ccustomers = " select * from accounts  ";
+                        $ccustom = mysqli_query($con,$ccustomers); 
+                        $allcustomers= mysqli_num_rows($ccustom);
+                echo $allcustomers;      
+         ?>
+                   
+                </h5>
             </div>
 
         </div>
@@ -43,11 +87,17 @@
 
 
 
+
+
 </div>
 
 
-<?php $results  = mysqli_query($con, " SELECT *,transaction.status as stat FROM `transaction`
-    LEFT JOIN accounts ON transaction.user_id = accounts.user_id WHERE transaction.status='otw'"); ?>
+<?php
+
+$courier_id = $_SESSION["cour_id"];
+$results  = mysqli_query($con, " SELECT *,transaction.status as stat FROM `transaction`
+    LEFT JOIN accounts ON transaction.user_id = accounts.user_id WHERE transaction.status='otw'
+    and delivery_rider_id='$courier_id'"); ?>
 <table id="production_table" class="table table-hover" style="width:100%;">
     <thead class="table-warning">
         <tr style='font-size:14px'>
@@ -133,6 +183,18 @@
                 <hr>
                 <h6>Product Order List</h6>
                 <div id='list_purchased_prod'> </div>
+
+                <div class="form-group">
+                    <center>
+                        <label for="exampleInputEmail1">Total Payable</label> <br>
+                        <input type="email" class="form-control" id="m_total_pay" name='total_pay' readonly
+                            style='text-align:center;font-size:35px;font-weight:bold;'>
+                    </center>
+                </div>
+
+
+
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -192,6 +254,14 @@ $(document).ready(function() {
 <script>
 $('.confirmd').click(function() {
     //
+
+    $tr = $(this).closest('tr');
+
+    var data = $tr.children("td").map(function() {
+        return $(this).text();
+    }).get();
+
+
     var od = $(this).data('od');
     var date = $(this).data('date');
     var userid = $(this).data('userid');
@@ -201,6 +271,7 @@ $('.confirmd').click(function() {
     $('#date_order').val(date)
     $('#order_code').val('MN_' + od)
     $('#m_trans_id').val(od)
+    $('#m_total_pay').val(data[3])
 
     function fetch_table() {
 

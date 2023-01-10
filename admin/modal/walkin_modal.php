@@ -11,8 +11,7 @@
 
 
                     <input type="text" class="form-control" name='product_id' id='product_id' hidden>
-                    <input type="text" class="form-control" name='trans_id' value='<?php echo  $trans_id?> 'hidden
-                        >
+                    <input type="text" class="form-control" name='trans_id' value='<?php echo  $trans_id?> ' hidden>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="mb-3">
@@ -66,19 +65,23 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="receivingViewLabel">CONFIRM WHOLESALE</h5>
+                <h5 class="modal-title" id="receivingViewLabel">CONFIRM TRANSACTION</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method='POST'  action='functions/confirmWalkin.php'  id='addProd'>
-   
-       
+                <form method='POST' action='functions/confirmWalkin.php' id='addProd'>
+
+
                     <div class="row">
                         <div class="col">
+
+
                             <div class="mb-3">
-                                <label for="product_name" class="form-label">Total Amount: </label>
-                                <input type="text" class="form-control" name='total_amount' id='c_total_amount' readonly
-                                    style='font-size:20px;border: none;font-weight:bold'>
+                                <label for="supplier" class="form-label">Customer Name : (optional) </label>
+                                <input type="text" class="form-control" name='customer' id='customer'
+                                    style='font-size:20px;font-weight:bold'>
+
+                                </select>
                             </div>
                         </div>
                         <div class="col">
@@ -102,14 +105,38 @@
                         </div>
                     </div>
 
+
                     <br>
                     <div class="mb-3">
-                        <label for="supplier" class="form-label">Customer Name : (optional) </label>
-                        <input type="text" class="form-control" name='customer' id='customer'
-                            style='font-size:20px;font-weight:bold' >
-
-                        </select>
+                        <label for="product_name" class="form-label">Total Amount: </label>
+                        <input type="text" class="form-control" name='total_amount' id='con_total_amount' readonly
+                            style='font-size:35px;border: none;font-weight:bold;text-align:center'>
                     </div>
+
+                    <div class="row">
+                        <div class="col">
+
+
+                            <div class="mb-3">
+                                <label for="supplier" class="form-label"> Pay : </label>
+                                <input type="text" class="form-control" name='trans_pay' id='customer_pay'
+                                    style='font-size:35px;font-weight:bold;text-align:center'>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="supplier" class="form-label">Changes </label>
+                                <input type="text" class="form-control" name='trans_change' id='trans_changes' readonly
+                                    style='font-size:35px;font-weight:bold;text-align:center' required>
+
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
                     <hr>
                     <div id='confirm_table'> </div>
             </div>
@@ -123,6 +150,8 @@
 </div>
 
 
+
+
 <!-- Delete -->
 <div class="modal fade" id="voidTransfer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -132,7 +161,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method='POST'  action='functions/voidWalkin.php'>
+                <form method='POST' action='functions/voidWalkin.php'>
                     <div class="mb-3">
                         <input type="text" hidden class="form-control" name='transaction_id'
                             value='<?php echo  $trans_id?>'>
@@ -149,4 +178,3 @@
         </div>
     </div>
 </div>
-

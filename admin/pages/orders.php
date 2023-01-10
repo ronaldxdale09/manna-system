@@ -58,39 +58,45 @@
                 </button>
             </div>
             <form method='POST' action='functions/orders_action.php'>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col">
-                        <input type="text" class="form-control" name='trans_id' id="m_trans_id" hidden>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Order Number</label>
-                            <input type="email" class="form-control" id="order_code" aria-describedby="emailHelp"
-                                readonly style='text-align:center;font-size:20px;font-weight:bold;'>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" name='trans_id' id="m_trans_id" hidden>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Order Number</label>
+                                <input type="email" class="form-control" id="order_code" aria-describedby="emailHelp"
+                                    readonly style='text-align:center;font-size:20px;font-weight:bold;'>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Order Date</label>
+                                <input type="email" class="form-control" id="date_order" aria-describedby="emailHelp"
+                                    readonly style='text-align:center;font-size:20px;font-weight:bold;'>
+                            </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Order Date</label>
-                            <input type="email" class="form-control" id="date_order" aria-describedby="emailHelp"
-                                readonly style='text-align:center;font-size:20px;font-weight:bold;'>
-                        </div>
-                    </div>
+
+                  
+
+
+
+                    <hr>
+                    <div id='address_customer'> </div>
+                    <hr>
+                    <h6>Product Order List</h6>
+                    <div id='list_purchased_prod'> </div>
+
+
+
+
                 </div>
-                <hr>
-                <div id='address_customer'> </div>
-                <hr>
-                <h6>Product Order List</h6>
-                <div id='list_purchased_prod'> </div>
-
-
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" name='confirm' class="btn btn-warning" id='btnSubmitModal'>Confirm Order</button>
-            </div>
-        </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name='confirm' class="btn btn-warning" id='btnSubmitModal'>Confirm
+                        Order</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

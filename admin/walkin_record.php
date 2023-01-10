@@ -83,6 +83,8 @@ include "modal/product_modal.php";
                                             <th> Transaction ID </th>
                                             <th>Date</th>
                                             <th>Total</th>
+                                            <th>Total Pay</th>
+                                            <th>Changes</th>
                                             <th>Status</th>
                                             <th>Action</th>
 
@@ -97,6 +99,8 @@ include "modal/product_modal.php";
                                             <td><?php echo $row['tid']; ?> </td>
                                             <td><?php echo $row['datecreated']; ?></td>
                                             <td>₱ <?php echo number_format($row['total_amount'],2)?></td>
+                                            <td>₱ <?php echo number_format($row['trans_pay'],2)?></td>
+                                            <td>₱ <?php echo number_format($row['trans_changes'],2)?></td>
                                             <td><?php echo $row['stat']; ?></td>
 
                                             <td>

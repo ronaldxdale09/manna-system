@@ -136,7 +136,27 @@ $(document).ready(function() {
 
     });
 
+    $(function() {
+        $("#customer_pay").keyup(function() {
 
+
+            total = $('#con_total_amount').val().replace(/[^0-9]/g, "");
+            pay = $('#customer_pay').val()
+
+            total = isNaN(total) ? 0 : parseFloat(total);
+            pay = isNaN(pay) ? 0 : parseFloat(pay);
+
+
+            console.log(parseFloat(+total))
+
+            console.log(parseFloat(+pay))
+
+            changes =   parseFloat(+pay)   - (parseFloat(+total))
+
+            document.getElementById("trans_changes").value = (+changes);
+
+        });
+    });
 
 
 
@@ -193,9 +213,9 @@ $(document).ready(function() {
             });
         }
         fetch_data();
-        
+
         var trans_id = <?php echo $trans_id ?>;
-        $('#c_total_amount').val($('#total_amount').val())
+        $('#con_total_amount').val($('#total_amount').val())
         $('#c_walkin_id').val(trans_id)
         $('#confirmModal').modal('show');
 

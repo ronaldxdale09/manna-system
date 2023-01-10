@@ -9,7 +9,7 @@ if (isset($_GET['trans'])) {
 $sql  = mysqli_query($con, "SELECT *  from transaction
 left join distributor_details on transaction.dis_id = distributor_details.dis_id where tid='$trans_id'");
 $arr_dis = mysqli_fetch_array($sql);
-
+$distributor_name = $arr_dis['distributor_name'];
 
  ?>
 
@@ -113,7 +113,7 @@ $arr_dis = mysqli_fetch_array($sql);
 </body>
 
 </html>
-<?php include('modal/walkin_modal.php')?>
+<?php include('modal/distributor_modal.php')?>
 
 
 <script>

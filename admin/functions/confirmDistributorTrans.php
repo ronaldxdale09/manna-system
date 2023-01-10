@@ -4,14 +4,6 @@ include '../../connections/connect.php';
   if (isset($_POST['confirm'])) {
     echo $total_amount = preg_replace('/[^A-Za-z0-9!. ]/', '',$_POST['total_amount']);
     echo $transaction_id = $_POST['transaction_id'];
-
-    echo $transaction_id = $_POST['transaction_id'];
-
-    echo $trans_pay = $_POST['trans_pay'];
-    echo $trans_changes = $_POST['trans_change'];
-
-
-
     $listTrans = mysqli_query($con, "SELECT * from trans_record where transaction_id='$transaction_id'");
     
     
@@ -32,33 +24,26 @@ include '../../connections/connect.php';
 
       $sql = mysqli_query($con, "SELECT * from production_log where prod_id='$product_id' AND status='ACTIVE' ORDER BY `production_code` DESC LIMIT 1");  
       $log = mysqli_fetch_array($sql);
-    $prod_code = $log['production_code'];
+
       $prod_log_qty =  $log['qty_remaining'];
 
 
-
-      // $newQty = (float)$inv - ((float)$product_quantity );
       $newQty_log = (float)$prod_log_qty - ((float)$product_quantity );
 
-      // $sql = "UPDATE  product_quantity set quantity ='$newQty' WHERE  prod_id='$product_id'";
-      // $results = mysqli_query($con, $sql);
-
-
+  
       $update = "UPDATE  production_log set qty_remaining ='$newQty_log' WHERE  prod_id='$prod_id'
-      AND status='ACTIVE' and production_code='$prod_code'";
+      AND status='ACTIVE' ORDER BY `production_code` DESC LIMIT 1";
       $res = mysqli_query($con, $update);
 
 
     }
 
           
-    $update = "UPDATE  transaction set status ='walkin-completed' ,
-    trans_pay='$trans_pay',trans_changes='$trans_changes'
-    WHERE  tid='$transaction_id'";
+    $update = "UPDATE  transaction set status ='distributor-completed' WHERE  tid='$transaction_id'";
     $results = mysqli_query($con, $update);
 
      
-    header("Location: ../walkin_record.php");
+    header("Location: ../distributor_record.php");
    
                               
     exit();              

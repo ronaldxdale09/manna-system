@@ -58,7 +58,7 @@ include "modal/distributor_modal.php";
                             <div class="table-responsive">
                                 <?php $results  = mysqli_query($con, "SELECT *,transaction.status as stat , sum(trans_record.total) as total_amount FROM `transaction` 
                                 LEFT JOIN accounts ON transaction.user_id = accounts.user_id LEFT JOIN trans_record ON transaction.tid = trans_record.transaction_id 
-                                WHERE transaction.type='walkin' group by tid"); ?>
+                                WHERE transaction.type='distributor' group by tid"); ?>
                                 <table id="product_table" class="table table-hover" style="width:100%;">
                                     <thead class="table-warning">
                                         <tr style='font-size:14px'>
