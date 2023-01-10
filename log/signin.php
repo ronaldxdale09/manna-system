@@ -189,16 +189,28 @@ if(isset($_SESSION['admin_id'])){
                                 <label>Delivery Address (Street Name, Building, House No.):</label>
 
                                 <textarea class="form-control txt mb-2" name="daddr" cols="4"></textarea>
-                               
+
 
 
 
 
                                 <button type="submit" class="btn btn-primary form-control mb-1 py-2 mt-2"
                                     style="font-style: 16px"> Next</button>
-
+                                    <center>
                                 <button type="button" class="btn btn-secondary text-light mt-2 back"
                                     style="font-size: 14px"> Already have an account</button>
+
+                               <br>
+                                    <p style='font-size:12px'> <br>
+
+                                        DATA PRIVACY NOTICE
+                                        <br>
+                                        The Mannafest Food Inc. values the confidentiality of persoanl date. All
+                                        information
+                                        we collect shall be kept private and in accordance with the Data Privacy Act of
+                                        2012.
+                                    </p>
+                                </center>
                             </div>
 
                         </form>
@@ -237,6 +249,9 @@ if(isset($_SESSION['admin_id'])){
                                     Back</button>
                                 <button type="button" class="btn btn-light text-primary mt-2 back"
                                     style="font-size: 14px"> Already have an account</button>
+
+                                <br>
+
                             </div>
 
                         </form>

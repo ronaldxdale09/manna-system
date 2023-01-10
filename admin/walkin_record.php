@@ -82,8 +82,8 @@ include "modal/product_modal.php";
 
                                             <th> Transaction ID </th>
                                             <th>Date</th>
-                                            <th>Total</th>
-                                            <th>Total Pay</th>
+                                            <th>Total Purchased</th>
+                                            <th>Pay</th>
                                             <th>Changes</th>
                                             <th>Status</th>
                                             <th>Action</th>
