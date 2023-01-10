@@ -15,6 +15,8 @@ if (isset($_POST["cartitems"])) { ?>
     width: 5px;
 }
 </style>
+
+
 <div class="row">
 
     <div class="col-md-8">
@@ -113,21 +115,28 @@ if (isset($_POST["cartitems"])) { ?>
                                 <div class="quantity mt-3" style="float: right;">
 
                                     <button class="btn btn-dark plus" data-qty="<?php echo $qty; ?>" data-price="<?php echo $item[
-    "price"
-]; ?>" data-cartid="<?php echo $cartid; ?>" data-productid="<?php echo $item[
-    "prod_id"
-]; ?>" style="border-radius: 50px;padding: 2px"><i class="fas fa-plus-circle"></i></button>
+                                        "price"
+                                            ]; ?>" data-cartid="<?php echo $cartid; ?>" data-productid="<?php echo $item[
+                                                "prod_id"
+                                            ]; ?>" style="border-radius: 50px;padding: 2px"><i
+                                            class="fas fa-plus-circle"></i></button>
 
                                     <input type="text" id="qty"
                                         style="width: 40px; text-align: center;outline: none;border:1px solid #bdbfc0;border-radius: 8px;font-weight: bolder;cursor: default;"
-                                        name="" maxlength="1"
+                                        name=""
                                         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                                        value="<?php echo $qty; ?>" readonly="">
+                                        value="<?php echo $qty; ?>">
+
+
+
+
                                     <button class="btn btn-dark minus" data-qty="<?php echo $qty; ?>" data-price="<?php echo $item[
-    "price"
-]; ?>" data-total="<?php echo $total; ?>" data-cartid="<?php echo $cartid; ?>" data-productid="<?php echo $item[
-    "prod_id"
-]; ?>" style="padding: 2px;border-radius: 50px"><i class="fas fa-minus-circle"></i></button>
+                                        "price"
+                                    ]; ?>" data-total="<?php echo $total; ?>" data-cartid="<?php echo $cartid; ?>"
+                                        data-productid="<?php echo $item[
+                                        "prod_id"
+                                    ]; ?>" style="padding: 2px;border-radius: 50px"><i
+                                            class="fas fa-minus-circle"></i></button>
                                 </div>
 
                             </div>
@@ -175,7 +184,7 @@ if (isset($_POST["cartitems"])) { ?>
 
         </div>
 
-     
+
 
     </div>
 
@@ -367,10 +376,10 @@ if (isset($_POST["cartitems"])) { ?>
 
     </div>
     <center>
-            <button onclick="window.location.href='category.php' " class="btn btn-warning"
-                style="font-size: 18px;width: auto;float: left;">Select More Product <i
-                    class="fas fa-arrow-right"></i></button>
-        </center>
+        <button onclick="window.location.href='category.php' " class="btn btn-warning"
+            style="font-size: 18px;width: auto;float: left;">Select More Product <i
+                class="fas fa-arrow-right"></i></button>
+    </center>
 </div>
 
 
@@ -587,6 +596,7 @@ if (isset($_POST["cartitems"])) { ?>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
 $(document).ready(function() {
 
@@ -830,6 +840,8 @@ $(document).ready(function() {
             }
         })
     })
+
+
     $('.plus').click(function() {
         var cartid = $(this).data('cartid');
         var productid = $(this).data('productid');
@@ -853,10 +865,13 @@ $(document).ready(function() {
                 $('#totalamount').css('color', 'red');
             }
         })
-
-
-
     })
+
+
+
+
+
+
     $('.minus').click(function() {
         var cartid = $(this).data('cartid');
         var productid = $(this).data('productid');
@@ -921,6 +936,52 @@ $(document).ready(function() {
         })
 
     }
+
+
+    // Get the input element
+    var inputElement = document.getElementById("qty");
+
+    // Add an onchange event listener to the input element
+    inputElement.addEventListener("change", function() {
+        // Get the product ID, price, and cart ID from the data attributes
+        var productId = this.getAttribute("data-productid");
+        var price = this.getAttribute("data-price");
+        var cartId = this.getAttribute("data-cartid");
+
+        // Call the updateQuantity() function when the value of the input element changes
+        updateQuantity(productId, price, cartId);
+    });
+
+    function updateQuantity(input) {
+        var cartid = $(this).data('cartid');
+        var productid = $(this).data('productid');
+        var qty = $(this).data('qty');
+        var totalqty = qty + 1;
+        var price = $(this).data('price');
+        var totalprice = price * totalqty;
+
+        console.log(cartid)
+        console.log(productid)
+        console.log(qty)
+
+        // $.ajax({
+        //     url: "add&remove.php",
+        //     method: "POST",
+        //     data: {
+        //         updateqty: 1,
+        //         cartid: cartid,
+        //         totalqty: qty,
+        //         total: totalprice
+        //     },
+        //     success: function(data) {
+        //         console.log(data)
+        //         cartitems();
+        //         $('#totalamount').css('color', 'red');
+        //     }
+        // })
+    }
+
+
 });
 </script>
 

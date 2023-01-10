@@ -107,7 +107,7 @@
             </a>
         </li>
         <li>
-            <a href='walkin_record.php'>
+            <a href='distributor_record.php'>
                 <i class='fa-solid fa-person'></i>
                 <span class="link_name">Distributor</span>
             </a>

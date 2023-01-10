@@ -20,7 +20,7 @@ if(isset($_POST['category'])){
                     </tr>
                   </thead>
                   <tbody >
-	<?php
+					<?php
 
 			$gettabledata = " SELECT * FROM `promos` ";
 	                $gettingcategories = mysqli_query($con,$gettabledata); 
@@ -67,7 +67,7 @@ if(isset($_POST['category'])){
 
                       </td>
                     </tr>
-	<?php
+				<?php
 	                 }
 	          }else {
 	          	//echo 'none';

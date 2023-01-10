@@ -12,29 +12,9 @@ include "head.php";
 include "../connections/connect.php";
 
 
-// expense category
-$sql = "SELECT * FROM product";
-$result = mysqli_query($con, $sql);
-$prod_list='';
-while($arr = mysqli_fetch_array($result))
-{
-$prod_list .= '
-
-<option value="'.$arr["prod_id"].'">'.$arr["name"].'</option>';
-}
 
 
-$sql = "SELECT * FROM category";
-$result = mysqli_query($con, $sql);
-$category='';
-while($arr = mysqli_fetch_array($result))
-{
-$category .= '
-
-<option value="'.$arr["cat_id"].'">'.$arr["category_name"].'</option>';
-}
-
-include "modal/product_modal.php";
+include "modal/distributor_modal.php";
 
 
 ?>
@@ -61,7 +41,7 @@ include "modal/product_modal.php";
             <div class="main_contents">
                 <div class="container">
 
-                    <h5 style="font-weight: bolder;">WALK-IN TRANSACTION RECORD</h5>
+                    <h5 style="font-weight: bolder;">DISTRIBUTOR TRANSACTION RECORD</h5>
                     <hr>
                     <div class="card shadow-sm" style="">
                         <div class="card-body">
@@ -70,6 +50,9 @@ include "modal/product_modal.php";
                             <button class="btn btn-dark text-white mb-2" data-bs-toggle="modal"
                                 data-bs-target="#createTransaction" data-backdrop="static" data-keyboard="false"
                                 style="font-size: 14px;">NEW TRANSACTION <i class="fas fa-plus-circle"></i></button>
+                            <button class="btn btn-warning text-white mb-2" data-bs-toggle="modal"
+                                data-bs-target="#distributorList" data-backdrop="static" data-keyboard="false"
+                                style="font-size: 14px;">DISTRIBUTOR LIST <i class="fas fa-plus-circle"></i></button>
 
 
                             <div class="table-responsive">
@@ -151,31 +134,6 @@ include "modal/product_modal.php";
 
 
 
-<div class="modal fade" id="createTransaction" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog ">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="createProductLabel">WALK-IN TRANSACTION</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method='POST' action='functions/newWalkin.php'>
-                    <div class="row">
-
-                        <div id="brand" class="form-text mb-3">Click New Transaction to proceed.</div>
-                    </div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="submit" name='add' class="btn btn-success">NEW TRANSACTION</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 
 
