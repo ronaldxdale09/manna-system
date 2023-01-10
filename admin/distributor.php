@@ -1,10 +1,14 @@
 <?php include 'head.php';
+
 include "../connections/connect.php";
 
 if (isset($_GET['trans'])) {
     $trans_id = $_GET['trans'];
-} 
+}
 
+$sql  = mysqli_query($con, "SELECT *  from transaction
+left join distributor_details on transaction.dis_id = distributor_details.dis_id where tid='$trans_id'");
+$arr_dis = mysqli_fetch_array($sql);
 
 
  ?>
@@ -32,7 +36,9 @@ if (isset($_GET['trans'])) {
         <div class="container-p">
             <div class="flex-2-p">
                 <span class=" bg-warning">
-                    <h4>Walk in ID : #<?php echo  $trans_id ?></h4>
+                    <h4>Trans ID : #<?php echo  $trans_id ?></h4>
+
+                    <h4>Distributor : #<?php echo  $arr_dis['distributor_name'] ?></h4>
                 </span>
                 <hr>
                 <div class="table-box-p">
