@@ -33,12 +33,17 @@ if(isset($_POST['category'])){
 	   				<tr>
                       <td><span class="text-info"  style="font-weight: bolder;"><?php echo $row['code'] ?></span></td>
                       <td>₱<?php echo $row['discount'] ?> </td>
-                      <td>₱<?php echo $row['maxvalue_toavail'] ?></td>
+                      <td>₱<?php echo $row['minvalue_toavail'] ?></td>
                       <td>
                       	<?php 
                       	date_default_timezone_set('Asia/Manila');
                       	$datenow = date('Y-m-d');
-                      	if(date('Y-m-d',strtotime($row['expiration-date'])) < $datenow  ){
+						if(($row['expiration-date']) == 'No Expiry'  ){
+							?>
+							<span class="badge bg-info" style="font-size: 12px;padding: 5px">No Expiry</span>
+							<?php
+						}
+                      	elseif(($row['expiration-date']) < $datenow  ){
                       		?>
                       		<span class="badge bg-danger" style="font-size: 12px;padding: 5px">Expired</span>
                       		<?php
@@ -57,7 +62,18 @@ if(isset($_POST['category'])){
                       	 ?>
 
                       </td>
-                      <td><?php echo date('M j,Y @ h:i a',strtotime($row['expiration-date'])) ?></td>
+                      <td><?php  
+					  
+					  if ($row['expiration-date'] == 'No Expiry'){
+
+						  echo $row['expiration-date'];
+					  }
+					  else {
+						 	echo date('M j,Y @ h:i a', strtotime($row['expiration-date']));
+					  }?>
+					  
+					
+					</td>
                       <td>
                       	<div class="btn-group" role="group" aria-label="Basic example">
 					  <button type="button" data-bs-toggle="modal" data-bs-target="#editmodal" data-backdrop="static" data-keyboard="false" class="btn btn-light text-primary editmodal" data-id="<?php echo $row['promo_id'] ?>" data-discount="<?php echo $row['discount'] ?>"   data-maxamount="<?php echo $row['maxvalue_toavail'] ?>"  style="font-size: 12px"><i class="fas fa-edit"></i></button>
@@ -182,7 +198,7 @@ if(isset($_POST['checkifexistcat'])){
 ////////////////////////////// SAVE EDIT DELETE ///////////////////////////////////////////////
 if(isset($_POST['savenew'])){ 
 	// Saving NEW CATEGORY
-	$maxamount = $_POST['maxamount'];
+	$minvalue_toavail = $_POST['minimum'];
 	$discount = $_POST['discount'];
 	$xpdate = $_POST['xpdate'];
 
@@ -200,7 +216,15 @@ $code =  generateRandomString();
 
 	date_default_timezone_set('Asia/Manila'); 
 	$datenow = date('Y-m-d H:i:s');
-	$insertnew_category = "INSERT INTO `promos`(`code`, `maxvalue_toavail`, `discount`, `datecreated`, `expiration-date`) VALUES ('$code','$maxamount','$discount','$datenow','$xpdate')";
+
+			
+		if(empty($xpdate)) {
+			$expiry = "No Expiry";
+		} else {
+			$expiry = $xpdate;
+		}
+			
+	$insertnew_category = "INSERT INTO `promos`(`code`, `minvalue_toavail`, `discount`, `datecreated`, `expiration-date`) VALUES ('$code','$minvalue_toavail','$discount','$datenow','$expiry')";
 	mysqli_query($con,$insertnew_category); 
 
 

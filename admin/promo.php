@@ -113,16 +113,13 @@ if(!isset($_SESSION['admin_id'])){
                             oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                             style="font-size: 14px" name="" class="form-control newcat mb-2" required="">
 
-                        <label style="font-size: 14px" class="mb-3">Enter Maximum amount to Avail : </label>
-                        <input type="text" name="maxamount"
+                        <label style="font-size: 14px" class="mb-3">Enter Minimum Purchase to Avail : </label>
+                        <input type="text" name="minimum"
                             oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                             style="font-size: 14px" name="" class="form-control newcat mb-2" required="">
 
 
-                        <label style="font-size: 14px" class="mb-3">Minimum Amount Order: </label>
-                        <input type="text" name="minOrder"
-                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                            style="font-size: 14px" name="" class="form-control newcat mb-2" required="">
+                     
 
 
                         <hr>
@@ -190,7 +187,7 @@ if(!isset($_SESSION['admin_id'])){
 
                         <label style="font-size: 14px" class="mb-3">Change Expiration Date: </label>
                         <input type="datetime-local" class="form-control" name="expdate"
-                            min="<?php echo date("Y-m-d H:i:s"); ?>" required>
+                            min="<?php echo date("Y-m-d"); ?>" required>
 
                         <input type="hidden" id="promoid" name="promoid">
                         <button type="submit" id="disabledsaved" class="btn btn-light text-dark mt-4"
