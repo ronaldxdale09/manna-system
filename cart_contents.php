@@ -223,20 +223,20 @@ if (isset($_POST["cartitems"])) { ?>
              if ($pcode >= 1) {
                  while ($pc = mysqli_fetch_array($gdis)) {
                      $ed = $pc["expiration-date"];
-                     $ma = $pc["maxvalue_toavail"];
+                     $ma = $pc["minvalue_toavail"];
                      $ds = $pc["discount"];
-                     if ($st > $ma) {
+                     if ($st < $ma) {
                          $dc = $ds;
 
                          date_default_timezone_set("Asia/Manila");
                          $datenow = date("Y-m-d");
 
-                         if (date("Y-m-d", strtotime($ed)) < $datenow) {
+                         if (date("Y-m-d", strtotime($ed)) < $datenow || $ed !='No Expiry' ) {
+                            
                          } else {
                               ?>
-                                    <option value="<?php echo $ds; ?>"><?php echo $pc[
-    "code"
-]; ?> (<span style="float: right;color:red" class="text-danger">-₱<?php echo $ds; ?></span>)</option>
+                                    <option value="<?php echo $ds; ?>"><?php echo $pc["code"]; ?>
+                                 (<span style="float: right;color:red" class="text-danger">-₱<?php echo $ds; ?></span>)</option>
 
 
                                     <?php
@@ -278,6 +278,7 @@ if (isset($_POST["cartitems"])) { ?>
                                     var fnaltotal = total - val;
 
                                     $('#totalll').text(fnaltotal);
+                                    $('#final_total').text(fnaltotal);
                                     $('#reselect').removeClass('d-none');
                                     $(this).addClass('d-none');
 
@@ -427,107 +428,15 @@ if (isset($_POST["cartitems"])) { ?>
                                         <span>
                                             Number of Items : <span class="float-right" id="num_of_items">
                                                 <?php if (isset($totalqty)) {
-                  echo array_sum($totalqty);
-              } else {
-                  echo "0";
-              } ?>
+                                                    echo array_sum($totalqty);
+                                                } else {
+                                                    echo "0";
+                                                } ?>
                                             </span>
 
-                                            <br>
-                                            Discount code : <span class="float-right" id="discount">
 
-                                                <select class="form-select" style="font-size: 14px" id="dcode">
-                                                    <option value="0">Select</option>
-                                                    <?php if (isset($totalamount)) {
-                                        $st = array_sum($totalamount);
-                                        $getdisc = " SELECT * FROM `promos`  ";
-                                        $gdis = mysqli_query($con, $getdisc);
-                                        $pcode = mysqli_num_rows($gdis);
-                                        //  $get_id =  mysqli_insert_id($con);
-                                        if ($pcode >= 1) {
-                                            while ($pc = mysqli_fetch_array($gdis)) {
-                                                $ed = $pc["expiration-date"];
-                                                $ma = $pc["maxvalue_toavail"];
-                                                $ds = $pc["discount"];
-                                                if ($st > $ma) {
-                                                    $dc = $ds;
-
-                                                    date_default_timezone_set("Asia/Manila");
-                                                    $datenow = date("Y-m-d");
-
-                                    if (date("Y-m-d", strtotime($ed)) < $datenow) {
-                                    } else {
-                                            ?>
-                                                    <option value="<?php echo $ds; ?>"><?php echo $pc["code"]; ?>
-                                                        (<span style="float: right;color:red"
-                                                            class="text-danger">-₱<?php echo $ds; ?></span>)
-                                                    </option>
-
-
-                                                    <?php
-                                                                    }
-                                                                } else {
-                                                                        ?>
-                                                    <option value="0">Unavailable</option>
-                                                    <script type="text/javascript">
-
-
-
-                                                    </script>
-                                                    <?php
-                                                        }
-                                                    }
-                                                }
-                                            } else {
-                                                echo "No code available";
-                                            } ?>
-
-                                                </select>
-
-
-
-                                            </span>
-
-                                            <span style="float: right;" class="text-danger" id="dsct"></span>
-                                            <br>
-                                            <a href="cart.php" id="reselect" class="d-none"
-                                                style="font-size: 14px;">Reselect </a>
                                             <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-                                            <script>
-                                            $(document).ready(function() {
-                                                $('#dcode').change(function() {
-                                                    var val = $(this).val();
-
-                                                    $('#dsct').text('-₱' + val);
-                                                    var total = $('#totalll').text();
-
-                                                    var fnaltotal = total - val;
-
-                                                    $('#totalll').text(fnaltotal);
-                                                    $('#reselect').removeClass('d-none');
-                                                    $(this).addClass('d-none');
-
-
-
-                                                    $.ajax({
-                                                        url: "transact.php",
-                                                        method: "POST",
-                                                        data: {
-                                                            makesession: 1,
-                                                            val: val
-                                                        },
-                                                        success: function(data) {
-
-                                                        }
-                                                    })
-
-
-
-                                                })
-
-                                            });
-                                            </script>
 
                                             <!-- 
                                             <span id="dfee" class="d-none"> Delivery Fee : <span class="float-right"
@@ -539,7 +448,7 @@ if (isset($_POST["cartitems"])) { ?>
                                                     style="margin-left: 20px;font-size: 17px">₱ <?php if (
                                                         isset($totalamount)
                                                     ) { ?>
-                                                    <span id="totalll">
+                                                    <span id="final_total">
                                                         <?php echo array_sum($totalamount); ?></span>
                                                     <?php } else {echo "0";} ?></span></span>
                                         </span>

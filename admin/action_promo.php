@@ -12,7 +12,7 @@ if(isset($_POST['category'])){
                     <tr>
                       <th scope="col">Code</th>
                        <th scope="col">Discount Amount</th>
-                        <th scope="col">Max Amount to Avail</th>
+                        <th scope="col">Min Amount to Avail</th>
                       <th scope="col">Status</th>
                       <th scope="col">Date-Created</th>
                        <th scope="col">Expiration Date</th>
