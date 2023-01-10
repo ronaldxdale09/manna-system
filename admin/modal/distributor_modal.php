@@ -1,3 +1,25 @@
+<?php
+$month = date("m");
+$day = date("d");
+$year = date("Y");
+$dateNow = $month . "/" . $day . "/" . $year;
+
+
+$res  = mysqli_query($con, "SELECT * from distributor_details ORDER BY dis_id ASC "); 
+
+$disList='';
+while($arr = mysqli_fetch_array($res))
+{
+$disList .= '
+
+<option value="'.$arr["dis_id"].'">'.$arr["distributor_name"].'</option>';
+}
+
+
+
+
+?>
+
 <div class="modal fade" id="distributorList" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-xl  ">
@@ -16,11 +38,11 @@
 
                                 <label for="category" class="form-label">Contact #</label>
                                 <input type="text" class="form-control" name="contact" aria-describedby="category">
-                                
+
                                 <label for="category" class="form-label">Address</label>
                                 <input type="text" class="form-control" name="address" aria-describedby="category">
-                                
-                             <br> 
+
+                                <br>
                                 <button type="submit" name='add' class="btn btn-success">Add Distributor</button>
                             </div>
                         </form>
@@ -87,10 +109,28 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method='POST' action='functions/newWalkin.php'>
+                <form method='POST' action='functions/newDistributor.php'>
                     <div class="row">
+                        <div class="col-md-7">
+                            <div class="mb-3">
+                                <label for="barcode" class="form-label">Date</label>
+                                <input type="text" class="form-control" name='date' value='<?php echo $dateNow ?>'
+                                    style='font-size:20px;border: 1;font-weight:bold' readonly>
 
-                        <div id="brand" class="form-text mb-3">Click New Transaction to proceed.</div>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="product_name" class="form-label">Distributor</label>
+                        <select class='form-select' name='distributor'required>
+                            <option disabled="disabled" selected="selected" value=''>Select Distributor </option>
+                            <?php echo $disList?>
+
+                            <!--PHP echo-->
+                        </select>
                     </div>
             </div>
 
