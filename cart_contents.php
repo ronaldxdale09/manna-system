@@ -223,15 +223,15 @@ if (isset($_POST["cartitems"])) { ?>
              if ($pcode >= 1) {
                  while ($pc = mysqli_fetch_array($gdis)) {
                      $ed = $pc["expiration-date"];
-                     $ma = $pc["minvalue_toavail"];
+                     $min = $pc["minvalue_toavail"];
                      $ds = $pc["discount"];
-                     if ($st < $ma) {
+                     if ($st >= $min) {
                          $dc = $ds;
 
                          date_default_timezone_set("Asia/Manila");
                          $datenow = date("Y-m-d");
 
-                         if (date("Y-m-d", strtotime($ed)) < $datenow || $ed !='No Expiry' ) {
+                         if (date("Y-m-d", strtotime($ed)) >= $datenow || $ed !='No Expiry' ) {
                             
                          } else {
                               ?>
@@ -241,16 +241,10 @@ if (isset($_POST["cartitems"])) { ?>
 
                                     <?php
                          }
-                     } else {
-                          ?>
-                                    <option value="0">Unavailable</option>
-                                    <script type="text/javascript">
-
-
-
-                                    </script>
-                                    <?php
-                     }
+                     } 
+                     
+                     
+               
                  }
              }
          } else {
