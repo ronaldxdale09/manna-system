@@ -65,13 +65,13 @@ if(!isset($_SESSION['admin_id'])){
                             <div class="card-body">
                                 <a href="orders.php" class="stretched-link"></a>
                                 <h5 style="font-weight: bolder;text-align: center;" class="text-dark">
-                                    PENDING ORDERS <span class="badge bg-dark text-light"> <?php 
-                                $corders = " select * from trans_record  ";
+                                    PENDING ORDERS  <br><?php 
+                                $corders = " select * from transaction where status='pending'  ";
                                             $countord = mysqli_query($con,$corders); 
                                             $allorders= mysqli_num_rows($countord);
                                   echo $allorders;     
 
-                            ?></span>
+                            ?>
                                 </h5>
                             </div>
 
@@ -83,16 +83,16 @@ if(!isset($_SESSION['admin_id'])){
                         <div class="card shadow border-success">
                             <div class="card-body">
                                 <a href="accounts.php" class="stretched-link"></a>
-                                <h6 style="font-weight: bolder;text-align: center;" class="text-dark">
-                                    REGISTERED CUSTOMERS <span class="badge bg-success text-light">
+                                <h5 style="font-weight: bolder;text-align: center;" class="text-dark">
+                                    REGISTERED CUSTOMERS <br>
                                         <?php 
                                 $ccustomers = " select * from accounts  ";
                                             $ccustom = mysqli_query($con,$ccustomers); 
                                             $allcustomers= mysqli_num_rows($ccustom);
                                     echo $allcustomers;      
                              ?>
-                                    </span>
-                                </h6>
+                                 
+                                </h5>
                             </div>
 
                         </div>
@@ -104,18 +104,18 @@ if(!isset($_SESSION['admin_id'])){
                         <div class="card shadow border-danger">
                             <div class="card-body">
                                 <a href="products.php" class="stretched-link"></a>
-                                <h6 style="font-weight: bolder;text-align: center;" class="text-dark">
-                                    CRITICAL ITEMS <span class="badge bg-danger text-light">
+                                <h5 style="font-weight: bolder;text-align: center;" class="text-dark">
+                                    CRITICAL ITEMS <br>
 
                                         <?php 
-                                $cproducts = " select * from product  ";
+                                $cproducts = " SELECT count(*) FROM production_log WHERE production_log.status ='LOW' ";
                                             $countproduct = mysqli_query($con,$cproducts); 
                                             $allproducts= mysqli_num_rows($countproduct);
                                         echo $allproducts;   
 
                              ?>
-                                    </span>
-                                </h6>
+                                 
+                                </h5>
                             </div>
 
                         </div>

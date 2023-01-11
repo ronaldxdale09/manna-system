@@ -210,7 +210,6 @@
 
 
 
-
     </div>
     <hr>
 </center>
@@ -219,6 +218,9 @@
         <center>
             <h5 style="font-weight: bolder;"> Transaction Record</h5>
         </center>
+
+        <div class="col-sm-2"> <button type='button' class='btn btn-success getData' id='getData'>
+                Print Data</button></div>
         <?php
 
        
@@ -243,7 +245,8 @@
             }
 
             // set up query to select transactions
-            $query = "SELECT * FROM transaction LEFT JOIN trans_record on trans_record.transaction_id = transaction.tid WHERE 1=1";
+            $query = "SELECT *, sum(trans_record.total) as total_amount  FROM transaction 
+            LEFT JOIN trans_record on trans_record.transaction_id = transaction.tid WHERE 1=1  group by tid";
 
             // filter by category if specified
             if ($category != '') {
@@ -265,10 +268,7 @@
             ?>
 
         <hr>
-        <?php 
-      
-            
-            ?>
+
         <table class="table table-hover">
             <thead class='table-dark'>
                 <tr>
@@ -276,6 +276,7 @@
                     <th scope="col">Date</th>
                     <th scope="col">Status</th>
                     <th scope="col">Type</th>
+                    <th scope="col">Total</th>
                     <th scope="col"></th>
                 </tr>
             </thead> <?php 
@@ -285,6 +286,7 @@
                     <td> <?php echo $row['datecreated']?> </td>
                     <td> <?php echo $row['status']?> </td>
                     <td> <?php echo $row['type']?> </td>
+                    <td>₱ <?php echo $row['total_amount']?> </td>
                     <td> <button type="button" class="btn btn-success text-light viewTransRecord"
                             style="font-size: 12px"><i class="fas fa-book"></i></button>
                     </td>
@@ -300,6 +302,31 @@
         <div class="card" style="width:100%;max-width:100%;max-height:251px;">
             <canvas id="sales_charts" style="width:100%;max-width:100%;max-height:251px;"></canvas>
         </div>
+
+        <hr>
+
+        <?php         $res = mysqli_query($con, "SELECT *, sum(trans_record.total) as total_amount,COUNT(*) as count  FROM transaction 
+            LEFT JOIN trans_record on trans_record.transaction_id = transaction.tid WHERE 1=1  group by type");?>
+    
+        <table class="table table-hover">
+            <thead class='table-dark'>
+                <tr>
+                    <th scope="col">Transaction Type </th>
+                    <th scope="col">Number of Transaction</th>
+                    <th scope="col">Total</th>
+
+                </tr>
+            </thead> <?php 
+                       while ($row = mysqli_fetch_array($res)) { ?> <tbody>
+                <tr>
+               
+                    <td> <?php echo $row['type']?> </td>
+                    <td> <?php echo $row['count']?> </td>
+                    <td>₱ <?php echo $row['total_amount']?> </td>
+                  
+                </tr> <?php } ?>
+            </tbody>
+        </table>
     </div>
 </div>
 
