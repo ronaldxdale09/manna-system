@@ -106,7 +106,12 @@ include "modal/product_modal.php";
                                             <td>
                                                 <button type="button" class="btn btn-success text-light viewTransRecord"
                                                     id='viewTransRecord' style="font-size: 12px"><i
-                                                        class="fas fa-book"></i></button>
+                                                        class="fas fa-book"></i> </button>
+
+                                                <?php  if( $row['stat'] =='walkin-pending') {?>
+                                                <a href='walkin.php?trans=<?php echo $row['tid']?>' type="button" class="btn btn-dark text-light "
+                                                    style="font-size: 12px"><i class="fas fa-edit"></i> </a>
+                                                <?php } ?>
                                             </td>
                                         </tr>
 
