@@ -9,8 +9,8 @@ $courier_id = $_SESSION["cour_id"];
 
 $sql  = mysqli_query($con, "SELECT *  from accounts where user_id='$courier_id'");
 $users_row = mysqli_fetch_array($sql);
-$rider_name = $users_row['name'];
-
+$rider_name = $users_row['name'].' '.$users_row['lastname'];
+$rider_contact = $users_row['mobile_number'];
 
 
 ?>

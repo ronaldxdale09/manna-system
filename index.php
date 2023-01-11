@@ -144,10 +144,10 @@ if (!isset($_SESSION['ran_traffic_script'])) {
                         <br>
                         <a class='orderNow' href='category.php'> <i class="fa fa-search" style=" font-size: 26px"> </i>
                             Order Now! </a> <br> <br><br>
-                        <a class='downloadNow'
+                        <!-- <a class='downloadNow'
                             href='https://drive.google.com/file/d/1_4WVEeCY9BuPCzkTtU44BDLnkEcir_pD/view?usp=share_link'>
                             <i class="fa fa-download" aria-hidden="true" style=" font-size: 26px;padding-left:10px">
-                            </i> Download App! </a>
+                            </i> Download App! </a> -->
                     </center>
                 </div>
 

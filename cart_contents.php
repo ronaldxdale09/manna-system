@@ -215,18 +215,20 @@ if (isset($_POST["cartitems"])) { ?>
                                 <select class="form-select" style="font-size: 14px" id="dcode">
                                     <option value="0">Select</option>
                                     <?php if (isset($totalamount)) {
-             $st = array_sum($totalamount);
-             $getdisc = " SELECT * FROM `promos`  ";
-             $gdis = mysqli_query($con, $getdisc);
-             $pcode = mysqli_num_rows($gdis);
-             //  $get_id =  mysqli_insert_id($con);
-             if ($pcode >= 1) {
-                 while ($pc = mysqli_fetch_array($gdis)) {
-                     $ed = $pc["expiration-date"];
-                     $min = $pc["minvalue_toavail"];
-                     $ds = $pc["discount"];
-                     if ($st >= $min) {
-                         $dc = $ds;
+
+                                        
+                    $st = array_sum($totalamount);
+                    $getdisc = " SELECT * FROM `promos`  ";
+                    $gdis = mysqli_query($con, $getdisc);
+                    $pcode = mysqli_num_rows($gdis);
+                    //  $get_id =  mysqli_insert_id($con);
+                    if ($pcode >= 1) {
+                        while ($pc = mysqli_fetch_array($gdis)) {
+                            $ed = $pc["expiration-date"];
+                            $min = $pc["minvalue_toavail"];
+                            $ds = $pc["discount"];
+                            if ($st >= $min) {
+                                $dc = $ds;
 
                          date_default_timezone_set("Asia/Manila");
                          $datenow = date("Y-m-d");

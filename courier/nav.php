@@ -21,7 +21,13 @@
             <hr style='color:white'>
         </li>
        
-
+        <li>
+            <a href='remit.php'>
+                <i class='bx bx-grid-alt'></i>
+                <span class="link_name">Remit Cash</span>
+            </a>
+            <hr style='color:white'>
+        </li>
 
 
 
