@@ -89,10 +89,10 @@ if (isset($_GET['tab'])) {
   $arr= mysqli_fetch_array($res);
 
 $cash_on_hand = $arr['total_cash_onhand'];
-$total_amount = $arr['total_remit'];
+$total_amount = $arr['total_amount'];
 $total_remit = $arr['total_remit'];
 ?>
-
+    <?php include "modal/remit_moda.php"; ?>
     <section class="home-section">
 
         <br><br>
@@ -102,7 +102,7 @@ $total_remit = $arr['total_remit'];
                 <div class="row mb-3">
 
                     <div class="col-md-3">
-                        <div class="card shadow border-success">
+                        <div class="card shadow border-success" style="background-color: #DAF6B0;">
                             <div class="card-body">
 
                                 <h5 style="font-weight: bolder;text-align: center;" class="text-dark">
@@ -111,7 +111,7 @@ $total_remit = $arr['total_remit'];
                                         <center>
                                             <?php 
                         
-                          echo '₱ '.$cash_on_hand;      
+                          echo '₱ '.number_format($cash_on_hand);      
                                            ?>
 
                                         </center>
@@ -127,7 +127,7 @@ $total_remit = $arr['total_remit'];
 
 
                     <div class="col-md-3">
-                        <div class="card shadow border-success">
+                        <div class="card shadow border-success" style="background-color: #F6B6B1;">
                             <div class="card-body">
 
                                 <h5 style="font-weight: bolder;text-align: center;" class="text-dark">
@@ -135,7 +135,7 @@ $total_remit = $arr['total_remit'];
                                 <h3>
                                     <center>
                                         <?php 
-                                 echo '₱ '.$total_amount;      
+                                 echo '₱ '.number_format($total_amount);      
                                            ?>
 
                                     </center>
@@ -147,7 +147,7 @@ $total_remit = $arr['total_remit'];
                     </div>
 
                     <div class="col-md-3">
-                        <div class="card shadow border-success">
+                        <div class="card shadow border-success" style="background-color: #80F0FF;">
                             <div class="card-body">
 
                                 <h5 style="font-weight: bolder;text-align: center;" class="text-dark">
@@ -155,7 +155,7 @@ $total_remit = $arr['total_remit'];
                                     <h3>
                                         <center>
                                             <?php 
-                          echo '₱ '.$total_remit;      
+                          echo '₱ '.number_format($total_remit);      
                                            ?>
 
                                         </center>
@@ -183,9 +183,8 @@ $total_remit = $arr['total_remit'];
                 </center>
                 <hr>
 
-                <button class="btn btn-dark  btn-lg text-white mb-2" data-bs-toggle="modal"
-                    data-bs-target="#promptRemit" data-backdrop="static" data-keyboard="false"
-                    style="font-size: 14px;">REMIT CASH <i class="fas fa-plus-circle"></i></button>
+                <button class="btn btn-dark  btn-lg text-white mb-2 btnRemitCash" style="font-size: 14px;">REMIT CASH <i
+                        class="fas fa-plus-circle"></i></button>
                 <br>
                 <?php $results  = mysqli_query($con, " SELECT * FROM `courier_trans`
                 LEFT JOIN accounts on courier_trans.user_id =accounts.user_id 
@@ -198,10 +197,10 @@ $total_remit = $arr['total_remit'];
                             <th>Rider Name</th>
                             <th>Total Amount</th>
                             <th>Total Cash Remit</th>
-                            <th>Action</th>
+                            <th>Cash Onhand</th>
                         </tr>
                     </thead>
-                    <tbody style='font-size:15px'>
+                    <tbody style='font-size:20px;font-weight:bold'>
                         <?php while ($row = mysqli_fetch_array($results)) {
                 ?>
                         <tr>
@@ -209,12 +208,9 @@ $total_remit = $arr['total_remit'];
                             <td><?php echo $row['date']; ?></td>
                             <td><?php echo $rider_name ?></td>
 
-                            <td>₱ <?php echo $row['total_amount'].' '.$row['lastname']; ?></td>
+                            <td>₱ <?php echo $row['total_amount'] ?></td>
                             <td>₱ <?php echo $row['total_remit']; ?></td>
-                            <td><button class="btn btn-dark text-light btnView" data-od="<?php echo $tid ?>"
-                                    data-date="<?php echo $row['datecreated'] ?>"
-                                    data-userid="<?php echo $row['user_id']  ?>"
-                                    style="font-size: 14px;font-weight: bolder;">VIEW</button></td>
+                            <td>₱ <?php echo $row['total_cash_onhand']; ?></td>
 
                         </tr>
 
@@ -245,52 +241,25 @@ $total_remit = $arr['total_remit'];
 <script type="text/javascript" src="../js/popper.js"></script>
 <script type="text/javascript" src="../js/bootstrap.js"></script>
 
+
+
 <script>
-$('.btnView').click(function() {
-    //
-    var od = $(this).data('od');
-    var date = $(this).data('date');
-    var userid = $(this).data('userid');
+$('.btnRemitCash').click(function() {
 
-    console.log(userid);
-    $('#v_orderDetails').modal('show')
-    $('#v_date_order').val(date)
-    $('#v_order_code').val('MN_' + od)
+    cash_onhand = <?php echo $cash_on_hand;?>;
 
 
-    function fetch_table() {
-
-        var trans_id = (od);
-        $.ajax({
-            url: "fetch/view_order_details.php",
-            method: "POST",
-            data: {
-                trans_id: trans_id,
-            },
-            success: function(data) {
-                $('#v_list_purchased_prod').html(data);
-            }
-        });
+    if (cash_onhand == 0) {
+        console.log(cash_onhand)
+        Swal.fire(
+            'You currently have no cash onhand!',
+            'Please Complete assigned deliveries first',
+            'question'
+        )
+    } else {
+        $('#promptRemit').modal('show');
     }
-    fetch_table();
 
-
-    function fetchAddress() {
-
-        var trans_id = (od);
-        $.ajax({
-            url: "fetch/order_shipping.php",
-            method: "POST",
-            data: {
-                trans_id: trans_id,
-                userid: userid,
-            },
-            success: function(data) {
-                $('#v_address_customer').html(data);
-            }
-        });
-    }
-    fetchAddress();
 
 
 })
