@@ -6,7 +6,7 @@
  $trans_id = (string)$_POST['trans_id'];
  
  
-$sql  = "SELECT * from trans_record
+$sql  = "SELECT *,trans_record.price as trans_price from trans_record
 LEFT JOIN product ON trans_record.prod_id =  product.prod_id
 LEFT JOIN photo ON product.prod_id =  photo.prod_id
 WHERE transaction_id='$trans_id'  "; 
@@ -46,7 +46,7 @@ WHERE transaction_id='$trans_id'  ";
                     <td scope="row" hidden>'.$arr["prod_id"].'</td>
                     <td scope="row">'.$arr["barcode"].'</td>
                     <td scope="row">'.$arr["name"].'</td>
-                    <td scope="row">₱ '.number_format($arr["price"],2).'</td>
+                    <td scope="row">₱ '.number_format($arr["trans_price"],2).'</td>
                  
                     <td scope="row">'.$arr["quantity"].'</td>
              

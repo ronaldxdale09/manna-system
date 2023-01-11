@@ -71,18 +71,27 @@ $distributor_name = $arr_dis['distributor_name'];
                                     <th>Barcode</th>
                                     <th>Product </th>
                                     <th>Inventory</th>
-                                    <th> Price</th>
+                                    <th hidden> Price</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php while ($row = mysqli_fetch_array($listProd)) { ?>
+                                <?php while ($row = mysqli_fetch_array($listProd)) { 
+                                    $prod_id =$row['prod_id'];
+                                     $sql  = mysqli_query($con, "SELECT production_log.prod_id, sum(production_log.qty_remaining) AS quantity
+                                              FROM production_log
+                                              LEFT JOIN product ON product.prod_id = production_log.prod_id
+                                              WHERE production_log.prod_id='$prod_id' and production_log.status ='ACTIVE' or production_log.status ='LOW'");
+                                              $arr = mysqli_fetch_array($sql);
+                                    
+                                    
+                                    ?>
                                 <tr>
                                     <td hidden><?php echo $row['prod_id']?></td>
                                     <td><?php echo $row['barcode']?></td>
                                     <td><?php echo $row['name']?></td>
-                                    <td><?php echo $row['quantity']?></td>
-                                    <td> ₱ <?php echo number_format($row['price'],2); ?></td>
+                                    <td><?php echo empty($arr['quantity']) ? 0 : $arr['quantity'];?></td>
+                                    <td hidden> ₱ <?php echo ($row['price']); ?></td>
                                     <td><button type="button" id='btnAdd' class='btnAdd'><i
                                                 class="fa fa-plus-circle"></i></button>
                                     </td>
@@ -176,7 +185,7 @@ $(document).ready(function() {
         $('#barcode').val(data[1]);
         $('#p_name').val(data[2]);
 
-        $('#p_price').val(data[4]);
+        $('#p_price').val(data[4].replace(/[^0-9]/g, ""));
     });
 
 
@@ -199,7 +208,7 @@ $(document).ready(function() {
             });
         }
         fetch_data();
-        
+
         var trans_id = <?php echo $trans_id ?>;
         $('#c_total_amount').val($('#total_amount').val())
         $('#c_walkin_id').val(trans_id)

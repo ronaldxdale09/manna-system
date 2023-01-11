@@ -125,7 +125,7 @@ $disList .= '
 
                     <div class="mb-3">
                         <label for="product_name" class="form-label">Distributor</label>
-                        <select class='form-select' name='distributor'required>
+                        <select class='form-select' name='distributor' required>
                             <option disabled="disabled" selected="selected" value=''>Select Distributor </option>
                             <?php echo $disList?>
 
@@ -159,8 +159,7 @@ $disList .= '
 
 
                     <input type="text" class="form-control" name='product_id' id='product_id' hidden>
-                    <input type="text" class="form-control" name='trans_id' value='<?php echo  $trans_id?> 'hidden
-                        >
+                    <input type="text" class="form-control" name='trans_id' value='<?php echo  $trans_id?> ' hidden>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="mb-3">
@@ -178,23 +177,29 @@ $disList .= '
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="product_name" class="form-label">Price: </label>
+                                <input type="text" class="form-control" style='font-weight:bold;font-size:30px' name='price' id='p_price' >
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="barcode" class="form-label">Quantity</label>
+                            
+                                <input type="text" class="form-control" style='font-weight:bold;font-size:30px' name='quantity' value="1">
 
-                    <div class="mb-3">
-                        <label for="product_name" class="form-label">Price: </label>
-                        <input type="text" class="form-control" name='price' id='p_price' readonly>
+                        </div>
                     </div>
 
 
 
-                    <hr>
-                    <center>
-                        <label for="barcode" class="form-label">Quantity</label>
-                        <div class="counter-modal">
 
-                            <input type="text" name='quantity' value="1">
 
-                        </div>
-                    </center>
+
+
+
+
 
             </div>
             <div class="modal-footer">
@@ -218,9 +223,9 @@ $disList .= '
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method='POST'  action='functions/confirmDistributorTrans.php'  id='addProd'>
-   
-       
+                <form method='POST' action='functions/confirmDistributorTrans.php' id='addProd'>
+
+
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
@@ -253,8 +258,8 @@ $disList .= '
                     <br>
                     <div class="mb-3">
                         <label for="supplier" class="form-label">Distributor Name : </label>
-                        <input type="text" class="form-control" name='customer' id='customer' readonly value='<?php echo $distributor_name ?>'
-                            style='font-size:20px;font-weight:bold' >
+                        <input type="text" class="form-control" name='customer' id='customer' readonly
+                            value='<?php echo $distributor_name ?>' style='font-size:20px;font-weight:bold'>
 
                         </select>
                     </div>
@@ -280,7 +285,7 @@ $disList .= '
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method='POST'  action='functions/voidWalkin.php'>
+                <form method='POST' action='functions/voidWalkin.php'>
                     <div class="mb-3">
                         <input type="text" hidden class="form-control" name='transaction_id'
                             value='<?php echo  $trans_id?>'>

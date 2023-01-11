@@ -13,7 +13,7 @@ include '../../connections/connect.php';
 
       echo $product_id= $row['prod_id'];
       echo $product_quantity= $row['quantity'];
-
+    
    
 
       // Minus from the NTC Bodega
@@ -24,15 +24,16 @@ include '../../connections/connect.php';
 
       $sql = mysqli_query($con, "SELECT * from production_log where prod_id='$product_id' AND status='ACTIVE' ORDER BY `production_code` DESC LIMIT 1");  
       $log = mysqli_fetch_array($sql);
-
+      $prod_code = $log['production_code'];
       $prod_log_qty =  $log['qty_remaining'];
 
 
       $newQty_log = (float)$prod_log_qty - ((float)$product_quantity );
 
   
-      $update = "UPDATE  production_log set qty_remaining ='$newQty_log' WHERE  prod_id='$prod_id'
-      AND status='ACTIVE' ORDER BY `production_code` DESC LIMIT 1";
+
+      $update = "UPDATE  production_log set qty_remaining ='$newQty_log' 
+      WHERE  prod_id='$product_id' and production_code='$prod_code' ";
       $res = mysqli_query($con, $update);
 
 
