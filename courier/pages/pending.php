@@ -224,6 +224,7 @@ $results  = mysqli_query($con, " SELECT *,transaction.status as stat FROM `trans
                         required>
                 </div>
                 <input type="hidden" name="tid" value="<?php echo $tid ?>">
+                <input type="text" hidden name="courier_id" value="<?php echo $courier_id ?>">
                 <div class="modal-footer">
 
                     <button type="submit" name="uploadproof" class="btn btn-light text-primary"
@@ -316,4 +317,6 @@ $('.btnSubmitModal').click(function() {
 
 
 })
+
+
 </script>

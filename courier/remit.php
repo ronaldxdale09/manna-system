@@ -11,6 +11,8 @@ $users_row = mysqli_fetch_array($sql);
 $rider_name = $users_row['name'].' '.$users_row['lastname'];
 $rider_contact = $users_row['mobile_number'];
 
+$dateNow = date("Y-m-d");
+
 
 ?>
 <!DOCTYPE html>
@@ -81,6 +83,15 @@ if (isset($_GET['tab'])) {
 <body style="background-color: white">
 
 
+    <?php 
+  $sql = " select * from courier_trans where user_id='$courier_id' and date='$dateNow'  ";
+  $res = mysqli_query($con,$sql); 
+  $arr= mysqli_fetch_array($res);
+
+$cash_on_hand = $arr['total_cash_onhand'];
+$total_amount = $arr['total_remit'];
+$total_remit = $arr['total_remit'];
+?>
 
     <section class="home-section">
 
@@ -88,23 +99,23 @@ if (isset($_GET['tab'])) {
         <div class="container-fluid">
 
             <div class="wrapper" id="myTab">
-                <div class="row mb-4">
-
+                <div class="row mb-3">
 
                     <div class="col-md-3">
                         <div class="card shadow border-success">
                             <div class="card-body">
 
                                 <h5 style="font-weight: bolder;text-align: center;" class="text-dark">
-                                    TOTAL CASH ON HAND <br> ₱
-                                    <?php 
-        $ccustomers = " select * from accounts  ";
-                    $ccustom = mysqli_query($con,$ccustomers); 
-                    $allcustomers= mysqli_num_rows($ccustom);
-            echo $allcustomers;      
-     ?>
+                                    TOTAL CASH ON HAND <br>
+                                    <h3>
+                                        <center>
+                                            <?php 
+                        
+                          echo '₱ '.$cash_on_hand;      
+                                           ?>
 
-                                </h5>
+                                        </center>
+                                    </h3>
                             </div>
 
                         </div>
@@ -113,39 +124,22 @@ if (isset($_GET['tab'])) {
 
 
 
-                    <div class="col-md-3">
-                        <div class="card shadow border-warning">
-                            <div class="card-body">
 
-                                <h5 style="font-weight: bolder;text-align: center;" class="text-dark">
-                                    PENDING DELIVERY <br><span class="badge bg-dark text-light"> <?php 
-        $corders = " select * from transaction where status='otw'  ";
-                    $countord = mysqli_query($con,$corders); 
-                    $allorders= mysqli_num_rows($countord);
-          echo $allorders;     
-
-    ?></span>
-                                </h5>
-                            </div>
-
-                        </div>
-
-                    </div>
 
                     <div class="col-md-3">
                         <div class="card shadow border-success">
                             <div class="card-body">
 
                                 <h5 style="font-weight: bolder;text-align: center;" class="text-dark">
-                                    COMPLETED DELIVERY <br> <span class="badge bg-success text-light">
+                                    TOTAL DELIVERY AMOUNT<br> </h5>
+                                <h3>
+                                    <center>
                                         <?php 
-        $ccustomers = " select * from accounts  ";
-                    $ccustom = mysqli_query($con,$ccustomers); 
-                    $allcustomers= mysqli_num_rows($ccustom);
-            echo $allcustomers;      
-     ?>
-                                    </span>
-                                </h5>
+                                 echo '₱ '.$total_amount;      
+                                           ?>
+
+                                    </center>
+                                </h3>
                             </div>
 
                         </div>
@@ -157,15 +151,15 @@ if (isset($_GET['tab'])) {
                             <div class="card-body">
 
                                 <h5 style="font-weight: bolder;text-align: center;" class="text-dark">
-                                    TOTAL DELIVERY AMOUNT <br> ₱
-                                    <?php 
-        $ccustomers = " select * from accounts  ";
-                    $ccustom = mysqli_query($con,$ccustomers); 
-                    $allcustomers= mysqli_num_rows($ccustom);
-            echo $allcustomers;      
-     ?>
+                                    TOTAL CASH REMITTED TODAY <br>
+                                    <h3>
+                                        <center>
+                                            <?php 
+                          echo '₱ '.$total_remit;      
+                                           ?>
 
-                                </h5>
+                                        </center>
+                                    </h3>
                             </div>
 
                         </div>
@@ -193,7 +187,9 @@ if (isset($_GET['tab'])) {
                     data-bs-target="#promptRemit" data-backdrop="static" data-keyboard="false"
                     style="font-size: 14px;">REMIT CASH <i class="fas fa-plus-circle"></i></button>
                 <br>
-                <?php $results  = mysqli_query($con, " SELECT * FROM `courier_trans` "); ?>
+                <?php $results  = mysqli_query($con, " SELECT * FROM `courier_trans`
+                LEFT JOIN accounts on courier_trans.user_id =accounts.user_id 
+                where courier_trans.user_id='$courier_id' "); ?>
                 <table id="production_table" class="table table-hover" style="width:100%;">
                     <thead class="table-warning">
                         <tr style='font-size:14px'>
@@ -211,6 +207,8 @@ if (isset($_GET['tab'])) {
                         <tr>
 
                             <td><?php echo $row['date']; ?></td>
+                            <td><?php echo $rider_name ?></td>
+
                             <td>₱ <?php echo $row['total_amount'].' '.$row['lastname']; ?></td>
                             <td>₱ <?php echo $row['total_remit']; ?></td>
                             <td><button class="btn btn-dark text-light btnView" data-od="<?php echo $tid ?>"
@@ -232,87 +230,6 @@ if (isset($_GET['tab'])) {
     </section>
 </body>
 
-<?php 
-$month = date("m");
-$day = date("d");
-$year = date("Y");
-$dateNow = $month . "/" . $day . "/" . $year;
-
-?>
-<div class="modal fade" id="promptRemit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="receivingViewLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="receivingViewLabel">Remit Cash</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-
-                <div class="row">
-                    <div class="col-sm">
-                        <label> Rider Name </label> <br>
-                        <input id='p_name' value='<?php echo $rider_name?>' class='form-control'
-                            style='font-size:25px;border: none;font-weight:bold;text-align:center' readonly>
-                    </div>
-
-                    <div class="col-sm">
-                        <label> Rider ID</label> <br>
-                        <input id='p_category' class='form-control' value='#<?php echo $courier_id?>'
-                            style='font-size:25px;border: none;font-weight:bold;text-align:center' readonly>
-                    </div>
-                </div>
-                <hr>
-
-
-                <div class="row">
-                    <div class="col-sm">
-                        <label>Date </label> <br>
-                        <input class='form-control' value='<?php echo $dateNow?>'
-                            style='font-size:25px;border: none;font-weight:bold;text-align:center' readonly>
-                    </div>
-
-                    <div class="col-sm">
-                        <label> Total Amount Delivered Today</label> <br>
-                        <input id='p_category' class='form-control' value='₱ <?php echo $courier_id?>'
-                            style='font-size:25px;border: none;font-weight:bold;text-align:center' readonly>
-                    </div>
-                </div>
-                <hr>
-
-                <div class="row">
-                    <div class="col-sm">
-                        <label>Cash on Hand </label> <br>
-                        <input class='form-control' value='₱ '
-                            style='font-size:30px;border: none;font-weight:bold;text-align:center' readonly>
-                    </div>
-
-                    <div class="col-sm">
-                        <label>Cash Remit</label> <br>
-                        <input id='p_category' class='form-control' value='₱ '
-                            style='font-size:30px;font-weight:bold;text-align:center' >
-                    </div>
-                </div>
-
-                <hr>
-                <label>Remaining Cash on Hand</label> <br>
-                <input id='p_category' class='form-control' value='₱'
-                    style='font-size:35px;border: none;font-weight:bold;text-align:center' readonly>
-
-
-
-
-
-            </div>
-            <div class="modal-footer">
-
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Return</button>
-            </div>
-
-        </div>
-    </div>
-</div>
 
 
 

@@ -29,7 +29,7 @@ if(isset($_POST['savenew'])){
 
 	$getp_id =  mysqli_insert_id($con); 
 
-	$insertQty = "INSERT INTO `product_quantity`(`prod_id`, `quantity`) VALUES ('$getp_id','0')";
+	$insertQty = "INSERT INTO `trans_record`(`prod_id`, `quantity`) VALUES ('$getp_id','0')";
 	mysqli_query($con,$insertQty);
 
 
