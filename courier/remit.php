@@ -202,7 +202,7 @@ $total_remit = $arr['total_remit'];
                     </thead>
                     <tbody style='font-size:20px;font-weight:bold'>
                         <?php while ($row = mysqli_fetch_array($results)) {
-                ?>
+                         ?>
                         <tr>
 
                             <td><?php echo $row['date']; ?></td>

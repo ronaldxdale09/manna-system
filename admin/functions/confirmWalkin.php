@@ -2,13 +2,13 @@
 session_start();
 include '../../connections/connect.php';
   if (isset($_POST['confirm'])) {
-    echo $total_amount = preg_replace('/[^A-Za-z0-9!. ]/', '',$_POST['total_amount']);
-    echo $transaction_id = $_POST['transaction_id'];
+     $total_amount = preg_replace('/[^A-Za-z0-9!. ]/', '',$_POST['total_amount']);
+     $transaction_id = $_POST['transaction_id'];
 
-    echo $transaction_id = $_POST['transaction_id'];
+     $transaction_id = $_POST['transaction_id'];
 
-    echo $trans_pay = $_POST['trans_pay'];
-    echo $trans_changes = $_POST['trans_change'];
+     $trans_pay = $_POST['trans_pay'];
+     $trans_changes = $_POST['trans_change'];
 
 
 
@@ -19,8 +19,8 @@ include '../../connections/connect.php';
     while ($row = mysqli_fetch_array($listTrans)) {
 
 
-      echo $product_id= $row['prod_id'];
-      echo $product_quantity= $row['quantity'];
+       $product_id= $row['prod_id'];
+       $product_quantity= $row['quantity'];
 
    
 
@@ -32,7 +32,7 @@ include '../../connections/connect.php';
 
       $sql = mysqli_query($con, "SELECT * from production_log where prod_id='$product_id' AND status='ACTIVE' ORDER BY `production_code` DESC LIMIT 1");  
       $log = mysqli_fetch_array($sql);
-    $prod_code = $log['production_code'];
+      $prod_code = $log['production_code'];
       $prod_log_qty =  $log['qty_remaining'];
 
 
@@ -40,15 +40,16 @@ include '../../connections/connect.php';
       // $newQty = (float)$inv - ((float)$product_quantity );
       $newQty_log = (float)$prod_log_qty - ((float)$product_quantity );
 
-      // $sql = "UPDATE  product_quantity set quantity ='$newQty' WHERE  prod_id='$product_id'";
-      // $results = mysqli_query($con, $sql);
+      
 
 
-      $update = "UPDATE  production_log set qty_remaining ='$newQty_log' WHERE  prod_id='$prod_id'
-      AND status='ACTIVE' and production_code='$prod_code'";
+      $update = "UPDATE  production_log set qty_remaining ='$newQty_log' 
+      WHERE  prod_id='$product_id' and production_code='$prod_code' ";
+
+
       $res = mysqli_query($con, $update);
 
-
+    echo $newQty_log;
     }
 
           

@@ -104,13 +104,9 @@ include "modal/product_modal.php";
                                             <td><?php echo $row['stat']; ?></td>
 
                                             <td>
-
                                                 <button type="button" class="btn btn-success text-light viewTransRecord"
                                                     id='viewTransRecord' style="font-size: 12px"><i
                                                         class="fas fa-book"></i></button>
-
-
-
                                             </td>
                                         </tr>
 

@@ -21,52 +21,67 @@ if(isset($_POST['savenew'])){
     {  
        $list_ingredients .= $chk1.",";  
     } 
+
+
+	$sql_check = "SELECT * from product where  barcode='$barcode'";
+	$res_check = mysqli_query($con,$sql_check);
+	$count = mysqli_num_rows($res_check);
+
+	if ($count ==0 ){
 	
 	
-	$insertnew_product = "INSERT INTO `product`(`name`, `description`, `cat_id`, `datecreated`, `ingredients`,`barcode`) 
-	VALUES ('$name','$desc','$cat','$datenow','$list_ingredients','$barcode')";
-	mysqli_query($con,$insertnew_product);
-
-	$getp_id =  mysqli_insert_id($con); 
-
-	$insertQty = "INSERT INTO `trans_record`(`prod_id`, `quantity`) VALUES ('$getp_id','0')";
-	mysqli_query($con,$insertQty);
-
-
-	// $sql = "INSERT INTO `product_quantity`(`prod_id`, `quantity`)
-	//  VALUES ('$getp_id','$onhand_quantity')";
-	// mysqli_query($con,$sql);
-
-
-			//Make the imagename array set at form. look likes this name="imagename[]"
-		foreach($_FILES['image']['name'] as $key=>$val){
-	                  $image_name = $_FILES['image']['name'][$key];
-	                   $tmp_name   = $_FILES['image']['tmp_name'][$key];
-	                $size       = $_FILES['image']['size'][$key];
-	                 $type       = $_FILES['image']['type'][$key];
-	                 $error      = $_FILES['image']['error'][$key];
-	                                                                                                                                    
-	             
-	                                                                                                                                    
-	           $fileName =basename($_FILES['image']['name'][$key]);
-	                 $rand = rand(100,1000);
-
-	               
-	                // File upload path
-	            $uploads_dir = '../../img/products';
-	         move_uploaded_file($tmp_name , $uploads_dir .'/'.$fileName);
-	            //  compressImage($tmp_name,$uploads_dir .'/'.$fileName,69);
-	             	
-	         	$insertphotos = "INSERT INTO `photo`(`prod_id`, `photo`) VALUES ('$getp_id','$fileName')";
-	         	mysqli_query($con,$insertphotos);
-			 			                
-	                                                                                                                          
-	         
-	            }
+		$insertnew_product = "INSERT INTO `product`(`name`, `description`, `cat_id`, `datecreated`, `ingredients`,`barcode`) 
+		VALUES ('$name','$desc','$cat','$datenow','$list_ingredients','$barcode')";
+		mysqli_query($con,$insertnew_product);
+	
+		$getp_id =  mysqli_insert_id($con); 
+	
+		$insertQty = "INSERT INTO `trans_record`(`prod_id`, `quantity`) VALUES ('$getp_id','0')";
+		mysqli_query($con,$insertQty);
 	
 	
-                header("Location: ../products.php");
-                $_SESSION['new_brand']= "successful";
+		// $sql = "INSERT INTO `product_quantity`(`prod_id`, `quantity`)
+		//  VALUES ('$getp_id','$onhand_quantity')";
+		// mysqli_query($con,$sql);
+	
+	
+				//Make the imagename array set at form. look likes this name="imagename[]"
+			foreach($_FILES['image']['name'] as $key=>$val){
+						  $image_name = $_FILES['image']['name'][$key];
+						   $tmp_name   = $_FILES['image']['tmp_name'][$key];
+						$size       = $_FILES['image']['size'][$key];
+						 $type       = $_FILES['image']['type'][$key];
+						 $error      = $_FILES['image']['error'][$key];
+																																			
+					 
+																																			
+				   $fileName =basename($_FILES['image']['name'][$key]);
+						 $rand = rand(100,1000);
+	
+					   
+						// File upload path
+					$uploads_dir = '../../img/products';
+				 move_uploaded_file($tmp_name , $uploads_dir .'/'.$fileName);
+					//  compressImage($tmp_name,$uploads_dir .'/'.$fileName,69);
+						 
+					 $insertphotos = "INSERT INTO `photo`(`prod_id`, `photo`) VALUES ('$getp_id','$fileName')";
+					 mysqli_query($con,$insertphotos);
+											 
+																																  
+				 
+					}
+		
+		
+					header("Location: ../products.php");
+					$_SESSION['new_brand']= "successful";
+	}
+	else {
+	
+		header("Location: ../products.php");
+		$_SESSION['existing']= "successful";
+	}
+   
+	
                 
                 exit();
 

@@ -39,7 +39,7 @@
                         style="width: 60px;height: 20px;border-radius: 30px;">
                 </div>
                 <div class='name-job'>
-                    <div class='profile_name'> <a href="profile.php"><?php echo $rider_name; ?> </a></div>
+                    <div class='profile_name'> <a href="profile.php">Rider </a></div>
                     <div class='job'>Administrator</div>
                 </div>
                 <a href="../log/logout.php">

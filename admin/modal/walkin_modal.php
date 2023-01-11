@@ -120,14 +120,14 @@
                             <div class="mb-3">
                                 <label for="supplier" class="form-label"> Pay : </label>
                                 <input type="text" class="form-control" name='trans_pay' id='customer_pay'
-                                    style='font-size:35px;font-weight:bold;text-align:center'>
+                                    style='font-size:35px;font-weight:bold;text-align:center' required>
 
                                 </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
-                                <label for="supplier" class="form-label">Changes </label>
+                                <label for="supplier" class="form-label">Change </label>
                                 <input type="text" class="form-control" name='trans_change' id='trans_changes' readonly
                                     style='font-size:35px;font-weight:bold;text-align:center' required>
 

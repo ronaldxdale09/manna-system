@@ -33,6 +33,14 @@
             </a>
         </li>
 
+        <li>
+            <a href='rider_remit.php'>
+                <i class='fa-solid fa-motorcycle'></i>
+                <span class="link_name">Courier Remit</span>
+            </a>
+        </li>
+
+
 
         <li>
             <hr style='color:white'>

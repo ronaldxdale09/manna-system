@@ -280,10 +280,26 @@ $(document).ready(function() {
         }).get();
         $('#prodDelete').modal('show');
         $('#del_id').val(data[0].replace(/\s/g, ''));
-   
+
         // Get the select element
 
         // $('#whole_price').val(data[5]);
     });
 });
 </script>
+
+<?php if (isset($_SESSION['existing'])): ?>
+<div class="msg">
+
+    <script>
+    Swal.fire({
+        icon: 'info',
+        title: 'Product Already Exist!',
+        text: 'Input new product',
+    })
+    </script>
+    <?php 
+			unset($_SESSION['existing']);
+		?>
+</div>
+<?php endif ?>

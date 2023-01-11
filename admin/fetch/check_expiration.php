@@ -40,8 +40,8 @@ if ($result->num_rows > 0) {
         if ($current_timestamp >= $expiration_timestamp) {
             // The product is expired
             // echo "Product with ID $id is expired.<br>";
-            // $query = "UPDATE `production_log` SET status='EXPIRED' WHERE prod_id='$id' and production_code='$production_code' "; 
-            // $results = mysqli_query($con, $query);
+            $query = "UPDATE `production_log` SET status='EXPIRED' WHERE prod_id='$id' and production_code='$production_code' "; 
+            $results = mysqli_query($con, $query);
             $expired_products[] = $row['name'];
             $expired_products_quantity[] = $row['qty_remaining'];
 
