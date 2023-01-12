@@ -97,7 +97,7 @@ $sorting_items = mysqli_query($con, $query);
                 <a href="product_details.php?prod=<?php echo $row['prod_id'] ?>" style="text-decoration: none"> <span
                         style="text-align: center;font-weight: bold"><?php echo $row['name'] ?></span> </a><br>
                 <span class="card-text" style="text-align: left;"><?php echo $row['description'] ?>
-                    <span class="card-text" style="text-align: left;"><?php echo $row['category_name'] ?>
+          
                     </span><br>
                     <span class="text-secondary" style="font-size: 20px;font-weight: bolder;">₱
                         <?php echo $row['price'] ?>
@@ -142,7 +142,15 @@ $sorting_items = mysqli_query($con, $query);
                         $soldResult = $con->query($sqlTotalSold);
                         $arr = mysqli_fetch_array($soldResult);
                         $total_sold = $arr['total_sold'];
-                echo  '  '.$total_sold.' Sold' ;
+                   
+                        if ($total_sold != 0 || $total_sold=null || $total_sold='') {
+                            // Calculate the average rating
+                            echo  '  '.$total_sold.' Sold' ;
+                          } else {
+                            echo  '' ;
+                        
+                          }
+
                 ?>
 
             </div>

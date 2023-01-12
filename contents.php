@@ -205,8 +205,13 @@ if (isset($_POST['cartitems']))
     }
     else
     {
-        echo '0';
+        
     }
+
+    
+
+
+
 }
 
 if (isset($_POST['cartwlistitems']))
@@ -284,7 +289,7 @@ if (isset($_POST['allitems']))
                 <a href="product_details.php?prod=<?php echo $row['prod_id'] ?>" style="text-decoration: none"> <span
                         style="text-align: center;font-weight: bold"><?php echo $row['name'] ?></span> </a><br>
                 <span class="card-text" style="text-align: left;"><?php echo $row['description'] ?>
-                <span class="card-text" style="text-align: left;"><?php echo $row['category_name'] ?>
+          
                 </span><br>
                 <span class="text-secondary" style="font-size: 20px;font-weight: bolder;">₱ <?php echo $row['price'] ?>
                 </span> <br>
@@ -388,7 +393,7 @@ if (isset($_POST['allitems']))
             else
             {
         ?>
-                <button class="btn btn-light text-danger addwishlist" data-productid="<?php echo $row['prod_id'] ?>"
+                <button class="btn btn-light text-danger addwishlist" data-productid="<?php echo  $prod_id ?>"
                     style="font-size: 13px;font-weight: bold"><i class="far fa-heart"></i></button>
                 <?php
             }
@@ -453,11 +458,9 @@ $(document).ready(function() {
     })
 
     $('.addwishlist').click(function() {
-
-
         var productid = $(this).data('productid');
 
-
+        console.log(productid)
 
         $.ajax({
             url: "add&remove.php",
@@ -677,7 +680,7 @@ if (isset($_POST['listitems']))
 ?>
 <div class="container">
     <div style="text-align: center;">
-        <img src="img/undraw_no_data_re_kwbl.svg" class="img-fluid mt-5" style="width: 200px">
+        <img src="assets/img/wishlist.png" class="img-fluid mt-5" style="width: 200px">
         <h6 class="mt-4">Your wishlist is Empty</h6>
     </div>
 

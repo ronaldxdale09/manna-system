@@ -27,7 +27,7 @@ if (isset($_GET['tab'])) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<link rel='stylesheet' href='css/tab-orders.css'>
+<link rel='stylesheet' href='css/tab-report.css'>
 
 <body style="background-color: white">
     <div class="wrapper">
@@ -47,16 +47,16 @@ if (isset($_GET['tab'])) {
                         <?php if ($tab == '2') { echo 'checked'; } else { echo ''; } ?>>
                     <input type="radio" name="slider" id="code"
                         <?php if ($tab == '3') { echo 'checked'; } else { echo ''; } ?>>
-                    <input type="radio" name="slider" id="help"
+                    <!-- <input type="radio" name="slider" id="help"
                         <?php if ($tab == '4') { echo 'checked'; } else { echo ''; } ?>>
                     <input type="radio" name="slider" id="about"
-                        <?php if ($tab == '5') { echo 'checked'; } else { echo ''; } ?>>
+                        <?php if ($tab == '5') { echo 'checked'; } else { echo ''; } ?>> -->
                     <nav>
                         <label for="home" class="home"><i class="fa fa-book"></i>Summary Report</label>
                         <label for="blog" class="blog"><i class="fas fa-tasks"></i>Sales Report</label>
                         <label for="code" class="code"><i class="fa-solid fa-truck"></i>Product Report</label>
-                        <label for="help" class="help"><i class="fa-solid fa-check"></i> Customers</label>
-                        <label for="about" class="about"><i class="fa-solid fa-undo"></i> Others</label>
+                        <!-- <label for="help" class="help"><i class="fa-solid fa-check"></i> Customers</label>
+                        <label for="about" class="about"><i class="fa-solid fa-undo"></i> Others</label> -->
 
                         <div class="slider"></div>
                     </nav>
@@ -80,7 +80,7 @@ if (isset($_GET['tab'])) {
 
 
                         </div>
-                        <div class="content content-4">
+                        <!-- <div class="content content-4">
                             <hr>
                             <div class="title">Customer Reports</div>
 
@@ -92,7 +92,7 @@ if (isset($_GET['tab'])) {
 
 
 
-                        </div>
+                        </div> -->
 
                     </section>
                 </div>
