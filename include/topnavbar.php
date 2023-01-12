@@ -126,7 +126,12 @@
                                 $sql = " select * from transaction where status !='completed' and user_id ='$user'   ";
                                             $orders = mysqli_query($con,$sql); 
                                             $allOrders= mysqli_num_rows($orders);
-                                        echo $allOrders;   
+                                        if ($allOrders ='0'){
+
+                                        }else{
+                                            echo $allOrders;   
+                                        }
+                                      
 
                              ?>
                             </span>

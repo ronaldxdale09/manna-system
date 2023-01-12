@@ -5,23 +5,23 @@ include '../connections/connect.php';
 if(isset($_POST['category'])){ 
 
 	?>
-   <div class="table-responsive">
-   
-	    <table class="table table-sm" id="categorytable">
-                  <thead>
-                    <tr>`
-                    	<th scope="col">Photo</th>
-                      <th scope="col">Email</th>
-                      <th scope="col">Lastname</th>
-                      <th scope="col">Firstname</th>
-                      <th scope="col">User_Productlist</th>
+<div class="table-responsive">
 
-                       <th scope="col">Date-Registered</th>
-                      <th scope="col">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody >
-	<?php
+    <table class="table table-sm" id="categorytable">
+        <thead>
+            <tr>`
+                <th scope="col">Email</th>
+                <th scope="col">Lastname</th>
+                <th scope="col">Firstname</th>
+                <th scope="col">Contact</th>
+                <th scope="col">User_Productlist</th>
+
+                <th scope="col">Date-Registered</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
 
 			$gettabledata = "SELECT * FROM `accounts`  ";
 	                $gettingcategories = mysqli_query($con,$gettabledata); 
@@ -31,33 +31,16 @@ if(isset($_POST['category'])){
 	            
 	                 while($row = mysqli_fetch_array($gettingcategories)){
 	                 	$type =$row['user_type'];
-	                 	
-	                 	$photo = $row['photo'];
-	                 	if($photo == ''){
-	                 		$src = '../img/undraw_male_avatar_323b.svg';
-	                 	}else {
-	                 		$src = '../img/users/'.$photo;
-	                 	}
+	             
 					?>
-	   				<tr>
-	   				<td><img src="<?php echo $src ?>" class="img-thumbnail" style="width: 80px;height: 80px">
-	   					<?php 
-	   					if($type == 'admin'){
-                      			
-                      	}else if($type == 'courier'){ 
+            <tr>
 
-                      	}else {
-                      		?>	
-                      		 <a href="" data-bs-toggle="modal" data-bs-target="#changepp" class="changepicture"  data-id="<?php echo $row['user_id'] ?>"   style="text-decoration: none;float: right;"><i class="fas fa-paperclip"></i></a>
-                      		<?php
-                      	}
-	   					 ?>
-	   				</td>
-                      <td> <?php echo $row['email'] ?> </td>
-                      <td><?php echo $row['lastname'] ?></td>
-                      <td><?php echo $row['name'] ?></td>
-                      <td>
-                      	<?php 
+                <td> <?php echo $row['email'] ?> </td>
+                <td><?php echo $row['lastname'] ?></td>
+                <td><?php echo $row['name'] ?></td>
+                <td><?php echo $row['mobile_number'] ?></td>
+                <td>
+                    <?php 
                       		if($type == 'admin'){
                       			echo 'N/A';
                       	}else if($type == 'courier'){ 
@@ -65,195 +48,227 @@ if(isset($_POST['category'])){
                       		echo 'N/A';
                       	}else {
                       		?>
-                      			<div class="btn-group" role="group" aria-label="Basic example">
-					  <button type="button" class="btn btn-light text-info cartl" data-id="<?php echo $row['user_id'] ?>" data-name = "<?php echo $row['name'] ?>" data-bs-toggle="modal" data-bs-target="#cartlist"   style="font-size: 12px"><i class="fas fa-shopping-cart"></i></button>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-light text-info cartl"
+                            data-id="<?php echo $row['user_id'] ?>" data-name="<?php echo $row['name'] ?>"
+                            data-bs-toggle="modal" data-bs-target="#cartlist" style="font-size: 12px"><i
+                                class="fas fa-shopping-cart"></i></button>
 
-					  <button type="button" class="btn btn-light text-danger wl" data-id="<?php echo $row['user_id'] ?>" data-name = "<?php echo $row['name'] ?>" data-bs-toggle="modal" data-bs-target="#wishlist"   style="font-size: 12px"><i class="fas fa-heart"></i></button>
-					 
-					</div>
+                        <button type="button" class="btn btn-light text-danger wl"
+                            data-id="<?php echo $row['user_id'] ?>" data-name="<?php echo $row['name'] ?>"
+                            data-bs-toggle="modal" data-bs-target="#wishlist" style="font-size: 12px"><i
+                                class="fas fa-heart"></i></button>
 
-                      		<?php
+                    </div>
+
+                    <?php
                       	}
 
                       	 ?>
-                      	
 
-                      </td>
-                     
-                      <td>
-                      	<?php 
+
+                </td>
+
+                <td>
+                    <?php 
                       	echo date('M j,Y @ h:i a',strtotime($row['date_registered'])) ;
                       	 ?>
 
-                      </td>
-                      <td>
-                      	<?php 
+                </td>
+                <td>
+                    <?php 
                       	if($type == 'admin'){
                       			echo 'ADMINISTRATOR';
                       	}else if($type == 'courier'){ 
 
                       		echo 'DELIVERY';
                       		?>
-                      		
-                      		<hr>
-                      		   	<div class="btn-group" role="group" aria-label="Basic example">
-					  <button type="button" data-bs-toggle="modal" data-bs-target="#editmodal" data-name="<?php echo $row['name'] ?>" data-lastname="<?php echo $row['lastname'] ?>" data-email="<?php echo $row['email'] ?>" data-id="<?php echo $row['user_id'] ?>" data-backdrop="static" data-keyboard="false" class="btn btn-light text-primary editmodal" data-id="<?php echo $row['user_id'] ?>"   style="font-size: 12px"><i class="fas fa-edit"></i></button>
-					  <button type="button" class="btn btn-light text-danger deletecat" data-id="<?php echo $row['user_id'] ?>" style="font-size: 12px"><i class="fas fa-trash"></i></button>
-					 
-					</div>
-					<hr>
-                      		<?php
+
+                    <hr>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#editmodal"
+                            data-name="<?php echo $row['name'] ?>" data-lastname="<?php echo $row['lastname'] ?>"
+                            data-email="<?php echo $row['email'] ?>" data-id="<?php echo $row['user_id'] ?>"
+                            data-backdrop="static" data-keyboard="false" class="btn btn-light text-primary editmodal"
+                            data-id="<?php echo $row['user_id'] ?>" style="font-size: 12px"><i
+                                class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-light text-danger deletecat"
+                            data-id="<?php echo $row['user_id'] ?>" style="font-size: 12px"><i
+                                class="fas fa-trash"></i></button>
+
+                    </div>
+                    <hr>
+                    <?php
                       	}else {
                       		?>
-                      		   	<div class="btn-group" role="group" aria-label="Basic example">
-					  <button type="button" data-bs-toggle="modal" data-bs-target="#editmodal" data-name="<?php echo $row['name'] ?>" data-lastname="<?php echo $row['lastname'] ?>" data-email="<?php echo $row['email'] ?>" data-id="<?php echo $row['user_id'] ?>" data-backdrop="static" data-keyboard="false" class="btn btn-light text-primary editmodal" data-id="<?php echo $row['user_id'] ?>"   style="font-size: 12px"><i class="fas fa-edit"></i></button>
-					  <button type="button" class="btn btn-light text-danger deletecat" data-id="<?php echo $row['user_id'] ?>" style="font-size: 12px"><i class="fas fa-trash"></i></button>
-					 
-					</div>
-                      		<?php
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#editmodal"
+                            data-contact="<?php echo $row['mobile_number'] ?>" data-name="<?php echo $row['name'] ?>"
+                            data-lastname="<?php echo $row['lastname'] ?>" data-email="<?php echo $row['email'] ?>"
+                            data-id="<?php echo $row['user_id'] ?>" data-backdrop="static" data-keyboard="false"
+                            class="btn btn-light text-primary editmodal" data-id="<?php echo $row['user_id'] ?>"
+                            style="font-size: 12px"><i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-light text-danger deletecat"
+                            data-id="<?php echo $row['user_id'] ?>" style="font-size: 12px"><i
+                                class="fas fa-trash"></i></button>
+
+                    </div>
+                    <?php
                       	}
                       	 ?>
-                      	
-                      	
-                   
 
-                      </td>
-                    </tr>
-	<?php
+
+
+
+                </td>
+            </tr>
+            <?php
 	                 }
 	          }else {
 	          	//echo 'none';
 	          	?>
-	          
-	          	<?php
+
+            <?php
 	          }
 
 	          ?>
-	          </tbody>
-                </table>
-                </div> 
-              
-                 
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-       <script type="text/javascript" src="../js/datatable/datatables.js"></script>
-     <link rel="stylesheet" type="text/css" href="../js/datatable/datatables.css">
-     <script type="text/javascript">
-     	
-     	$(document).ready(function() {
-     	      	   $('#categorytable').DataTable();
+        </tbody>
+    </table>
+</div>
 
 
-     	      	   $('.changepicture').click(function() { 
-     	      	   			var id = $(this).data('id');
-     	      	   			$('#userid').val(id);
-     	      	   
-     	      	   })
- 
-     	      	   $('.cartl').click(function() {
-     	      	   	var id = $(this).data('id');
-     	      	   	var name = $(this).data('name');
-
-     	      	   	$('#usercart').text(name+' Cart');
-     	      	   	$('#userid').val(id);
-     	      	   	getusercart(id)
-     	      	   
-     	      	   })
-
-     	      	   $('.wl').click(function() { 
-     	      	   	var id = $(this).data('id');
-     	      	   	var name = $(this).data('name');
-
-     	      	   	$('#usercartw').text(name+' Wishlist');
-     	      	   	$('#useridw').val(id);
-     	      	   	getuserwlist(id);
-     	      	   })
-
-     	      	      function getusercart(id){
-           $.ajax({
-               url : "action_account.php",
-                method: "POST",
-                 data  : {getusercart:1,id:id},
-                 success : function(data){
-                  $('#usercarts').html(data);
-    
-                 }
-              })
-    }
-
-      function getuserwlist(id){
-           $.ajax({
-               url : "action_account.php",
-                method: "POST",
-                 data  : {getuserwlist:1,id:id},
-                 success : function(data){
-                  $('#userwlist').html(data);
-    
-                 }
-              })
-    }
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript" src="../js/datatable/datatables.js"></script>
+<link rel="stylesheet" type="text/css" href="../js/datatable/datatables.css">
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#categorytable').DataTable();
 
 
-     	      	   $('.editmodal').click(function() { 
-     	      	   	var name = $(this).data('name');
-     	      	   	var lastname = $(this).data('lastname');
-     	      	   	var email = $(this).data('email');
-     	      	   	var id = $(this).data('id');
-     	      	  	$('#eemail').val(email);
-     	      	  	$('#elastname').val(lastname);
-     	      	  	$('#efirstname').val(name);
-     	      	   	$('#catid').val(id);
-     	      	   })
-     	      	   $('.deletecat').click(function() { 
-					var id = $(this).data('id');
-					
-						
-						Swal.fire({
-							  title: 'Are you sure?',
-							  text: "You won't be able to revert this!",
-							  icon: 'warning',
-							  showCancelButton: true,
-							  confirmButtonColor: '#3085d6',
-							  cancelButtonColor: '#d33',
-							  confirmButtonText: 'Yes, delete it!'
-							}).then((result) => {
-							  if (result.isConfirmed) {
-							  	 $.ajax({
-					           url : "action_account.php",
-					            method: "POST",
-					             data  : {deletecat:1,id:id},
-					             success : function(data){
-								 $.notify("Deleted Successfully!", "success");
-								  table_category();
-					             }
-					          }) 
-							  }
-							})
-					
-					
-					    
-						  
-						  })
+    $('.changepicture').click(function() {
+        var id = $(this).data('id');
+        $('#userid').val(id);
 
-     	      	    
-            function table_category(){
-             
-              
-                 $.ajax({
-                         url : "action_account.php",
-                          method: "POST",
-                           data  : {category:1},
-                           success : function(data){
-                      $('#table_category').html(data);
-                           }
-                        })
-                   
-                  
+    })
+
+    $('.cartl').click(function() {
+        var id = $(this).data('id');
+        var name = $(this).data('name');
+
+        $('#usercart').text(name + ' Cart');
+        $('#userid').val(id);
+        getusercart(id)
+
+    })
+
+    $('.wl').click(function() {
+        var id = $(this).data('id');
+        var name = $(this).data('name');
+
+        $('#usercartw').text(name + ' Wishlist');
+        $('#useridw').val(id);
+        getuserwlist(id);
+    })
+
+    function getusercart(id) {
+        $.ajax({
+            url: "action_account.php",
+            method: "POST",
+            data: {
+                getusercart: 1,
+                id: id
+            },
+            success: function(data) {
+                $('#usercarts').html(data);
+
             }
+        })
+    }
 
-     	      });      
-           	
-     </script>
-	          <?php
+    function getuserwlist(id) {
+        $.ajax({
+            url: "action_account.php",
+            method: "POST",
+            data: {
+                getuserwlist: 1,
+                id: id
+            },
+            success: function(data) {
+                $('#userwlist').html(data);
+
+            }
+        })
+    }
+
+
+    $('.editmodal').click(function() {
+        var name = $(this).data('name');
+        var lastname = $(this).data('lastname');
+        var email = $(this).data('email');
+        var contact = $(this).data('contact');
+        var id = $(this).data('id');
+        $('#eemail').val(email);
+        $('#elastname').val(lastname);
+        $('#efirstname').val(name);
+        $('#catid').val(id);
+        $('#econtact').val(contact);
+
+    })
+    $('.deletecat').click(function() {
+        var id = $(this).data('id');
+
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "action_account.php",
+                    method: "POST",
+                    data: {
+                        deletecat: 1,
+                        id: id
+                    },
+                    success: function(data) {
+                        $.notify("Deleted Successfully!", "success");
+                        table_category();
+                    }
+                })
+            }
+        })
+
+
+
+
+    })
+
+
+    function table_category() {
+
+
+        $.ajax({
+            url: "action_account.php",
+            method: "POST",
+            data: {
+                category: 1
+            },
+            success: function(data) {
+                $('#table_category').html(data);
+            }
+        })
+
+
+    }
+
+});
+</script>
+<?php
 
 	         
 
@@ -315,6 +330,8 @@ if(isset($_POST['savenew'])){
 	$firstname = $_POST['firstname'];
 	$password = $_POST['password'];
 	$usertype = $_POST['usertype'];
+	$contact = $_POST['contact'];
+
 
 	$password = encrypt_decrypt('encrypt', $password);
 
@@ -324,22 +341,22 @@ if(isset($_POST['savenew'])){
 
 			
 		
-	                  $image_name = $_FILES['profile']['name'];
-	                   $tmp_name   = $_FILES['profile']['tmp_name'];
-	                $size       = $_FILES['profile']['size'];
-	                 $type       = $_FILES['profile']['type'];
-	                 $error      = $_FILES['profile']['error'];
+	        //           $image_name = $_FILES['profile']['name'];
+	        //            $tmp_name   = $_FILES['profile']['tmp_name'];
+	        //         $size       = $_FILES['profile']['size'];
+	        //          $type       = $_FILES['profile']['type'];
+	        //          $error      = $_FILES['profile']['error'];
 	                                                                                                                                    
 	             
 	                                                                                                                                    
-	           $fileName =basename($_FILES['profile']['name']);
+	        //    $fileName =basename($_FILES['profile']['name']);
 	             
 	            
-	            $uploads_dir = '../img/users';
-	         move_uploaded_file($tmp_name , $uploads_dir .'/'.$fileName);
+	        //     $uploads_dir = '../img/users';
+	        //  move_uploaded_file($tmp_name , $uploads_dir .'/'.$fileName);
 	             
 	        
-	        $insertnewaccount = "INSERT INTO `accounts`(`name`, `lastname`, `email`, `user_type`,`date_registered`, `password`, `photo`) VALUES ('$firstname','$lastname','$email','$usertype','$datenow','$password','$fileName')";
+	        $insertnewaccount = "INSERT INTO `accounts`(`name`, `lastname`, `email`, `user_type`,`date_registered`, `password`, `mobile_number`) VALUES ('$firstname','$lastname','$email','$usertype','$datenow','$password','$contact')";
 	        mysqli_query($con,$insertnewaccount);
 	                                                                                                                          
 	         
@@ -373,8 +390,10 @@ if(isset($_POST['editcategory'])){
 	$eemail = $_POST['eemail'];
 	$elastname = $_POST['elastname'];
 	$efirstname = $_POST['efirstname'];
+	$contact = $_POST['econtact'];
+
 	$uid = $_POST['uid'];
-	$editcategory = "UPDATE `accounts` SET `name`='$efirstname',`lastname`='$elastname',`email`='$eemail' WHERE user_id='$uid' ";
+	$editcategory = "UPDATE `accounts` SET `mobile_number`='$contact',`name`='$efirstname',`lastname`='$elastname',`email`='$eemail' WHERE user_id='$uid' ";
 	mysqli_query($con,$editcategory);
 	
 }
@@ -422,17 +441,17 @@ if(isset($_POST['getusercart'])){
 
 	?>
 
-                      <table class="table table-borderless table-striped table-sm">
-                <thead>
-                  <tr>
-                  
-                    <th scope="col">Product_name</th>
-                    <th scope="col">Quantity</th>
-                  
-                  </tr>
-                </thead>
-                <tbody>
-                	<?php 
+<table class="table table-borderless table-striped table-sm">
+    <thead>
+        <tr>
+
+            <th scope="col">Product_name</th>
+            <th scope="col">Quantity</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <?php 
                 			$getusercart = " select * from cart where user_id = '$id'  ";
                 	                $gcart = mysqli_query($con,$getusercart); 
                 	                $countg= mysqli_num_rows($gcart);
@@ -443,10 +462,10 @@ if(isset($_POST['getusercart'])){
                 	                 	$product_id = $row['prod_id'];
                 	                 	$cartid = $row['cart_id'];
                 						?>
-                						   <tr>
-                  
-                    <td>
-                    	<?php 
+        <tr>
+
+            <td>
+                <?php 
                     		$getproducts = " select * from product where prod_id = '$product_id'  ";
                                       		                $productdetails = mysqli_query($con,$getproducts); 
                                       		               
@@ -455,22 +474,22 @@ if(isset($_POST['getusercart'])){
                                       		                 }
 
                     	 ?>
-                    </td>
-                    <td><?php echo $row['quantity'] ?></td>
-                   
-                  </tr>
-                						<?php
+            </td>
+            <td><?php echo $row['quantity'] ?></td>
+
+        </tr>
+        <?php
                 	                 }
                 	          }
 
                 	 ?>
-               
-                  
-                </tbody>
-              </table>
 
-             
-	<?php
+
+    </tbody>
+</table>
+
+
+<?php
 }
 
 if(isset($_POST['getuserwlist'])){ 
@@ -479,17 +498,17 @@ if(isset($_POST['getuserwlist'])){
 
 	?>
 
-                      <table class="table table-borderless table-striped table-sm">
-                <thead>
-                  <tr>
-                  
-                    <th scope="col">Product_name</th>
-                 	<th scope="col">wlist</th>
-                  
-                  </tr>
-                </thead>
-                <tbody>
-                	<?php 
+<table class="table table-borderless table-striped table-sm">
+    <thead>
+        <tr>
+
+            <th scope="col">Product_name</th>
+            <th scope="col">wlist</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <?php 
                 			$getusercart = " select * from wishlist where user_id = '$id'  ";
                 	                $gcart = mysqli_query($con,$getusercart); 
                 	                $countg= mysqli_num_rows($gcart);
@@ -500,10 +519,10 @@ if(isset($_POST['getuserwlist'])){
                 	                 	$product_id = $row['prod_id'];
                 	                 
                 						?>
-                						   <tr>
-                  
-                    <td>
-                    	<?php 
+        <tr>
+
+            <td>
+                <?php 
                     		$getproducts = " select * from product where prod_id = '$product_id'  ";
                                       		                $productdetails = mysqli_query($con,$getproducts); 
                                       		               
@@ -512,22 +531,22 @@ if(isset($_POST['getuserwlist'])){
                                       		                 }
 
                     	 ?>
-                    </td>
-                    <td><i class="fas fa-heart text-danger"></i></td>
-                 
-                   
-                  </tr>
-                						<?php
+            </td>
+            <td><i class="fas fa-heart text-danger"></i></td>
+
+
+        </tr>
+        <?php
                 	                 }
                 	          }
 
                 	 ?>
-               
-                  
-                </tbody>
-              </table>
 
-             
-	<?php
+
+    </tbody>
+</table>
+
+
+<?php
 }
  ?>

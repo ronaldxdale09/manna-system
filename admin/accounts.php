@@ -14,13 +14,13 @@ if(!isset($_SESSION['admin_id'])){
     <div class="wrapper">
 
 
-    <nav class="sidenav shadow">
-        <?php include 'navbar.php' ?>
+        <nav class="sidenav shadow">
+            <?php include 'navbar.php' ?>
         </nav>
 
 
         <section class="home-section">
-      
+
 
 
             <div class="">
@@ -121,13 +121,14 @@ if(!isset($_SESSION['admin_id'])){
                         <label style="font-size: 14px">User-Type</label>
                         <select class="form-select mb-1" name="usertype" style="font-size: 14px">
                             <option value="client">Customer</option>
-                            <option value="delivery">Delivery</option>
+                            <option value="courier">Delivery</option>
                         </select>
 
-                        <span style="font-size: 14px">Include a Profile Photo.</span>
+                        <!-- <span style="font-size: 14px">Include a Profile Photo.</span>
                         <input type="file" style="font-size: 14px" name="profile" class="form-control e"
-                            accept="image/*">
-
+                            accept="image/*"> -->
+                        <label style="font-size: 14px">Contact</label>
+                        <input type="number" name="contact" style="font-size: 14px" class="form-control e" required="">
 
 
                         <label style="font-size: 14px">Email</label>
@@ -185,6 +186,10 @@ if(!isset($_SESSION['admin_id'])){
                         <label style="font-size: 14px">Firstname</label>
                         <input type="text" name="efirstname" id="efirstname" style="font-size: 14px"
                             class="form-control" required="">
+
+                        <label style="font-size: 14px">Contact</label>
+                        <input type="number" name="econtact" id="econtact" style="font-size: 14px" class="form-control"
+                            required="">
 
 
                         <input type="hidden" id="catid" name="uid">
